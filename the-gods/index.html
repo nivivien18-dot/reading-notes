@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="JJlo1HK5LGbJifYG5h0F7B">
+<head data-page-node-id="djIK8GVfChfVWTC7mJfQHU">
+<meta charset="UTF-8" data-page-node-id="y20G06g8ARQKWHk8m6y5o8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="xMklzjJYQb17RkE7lb12xB">
+<title>《众神》读书笔记 · 四万年的人、物与信仰</title>
+<style>
+  :root{
+    --paper:#f3e9d8;
+    --paper-2:#efe2cc;
+    --ink:#2c2620;
+    --ink-soft:#5a4f42;
+    --ink-faint:#8a7a66;
+    --accent:#9b3b2e;       /* bookmark oxblood */
+    --accent-2:#b8893a;     /* muted gold */
+    --line:#d8c8ab;
+    --card:#fbf5e9;
+    --shadow:0 1px 2px rgba(60,40,20,.08),0 8px 30px rgba(60,40,20,.10);
+    --serif:"Songti SC","STSong","SimSun","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--serif);
+    color:var(--ink);
+    line-height:1.85;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%,rgba(184,137,58,.05),transparent 40%),
+      radial-gradient(circle at 80% 90%,rgba(155,59,46,.04),transparent 45%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:rgba(155,59,46,.18)}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:clamp(420px,72vh,760px);
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+    background:linear-gradient(135deg,#3a2c1c 0%,#574027 45%,#7a5630 100%);
+  }
+  .hero img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;object-position:center;
+    filter:saturate(.85) brightness(.78);
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(28,20,12,.15) 0%,rgba(28,20,12,.35) 45%,rgba(28,20,12,.82) 100%);
+  }
+  /* hanging bookmark ribbon */
+  .bookmark{
+    position:absolute;top:0;right:clamp(20px,6vw,90px);z-index:3;
+    width:46px;height:120px;
+    background:var(--accent);
+    box-shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+  .bookmark::after{
+    content:"";position:absolute;bottom:-1px;left:0;
+    width:0;height:0;
+    border-left:23px solid transparent;
+    border-right:23px solid transparent;
+    border-top:18px solid var(--accent);
+  }
+  .hero-inner{position:relative;z-index:2;padding:clamp(28px,6vw,72px);max-width:920px;color:#f6ecd9}
+  .hero-eyebrow{
+    font-family:var(--sans);font-size:clamp(.7rem,2vw,.82rem);
+    letter-spacing:.42em;text-transform:uppercase;color:var(--accent-2);
+    margin-bottom:14px;font-weight:600;
+  }
+  .hero h1{
+    font-family:var(--serif);font-weight:700;
+    font-size:clamp(2.4rem,8vw,5rem);line-height:1.05;
+    letter-spacing:.04em;
+    color:#fbf3e2;
+    text-shadow:0 1px 0 rgba(0,0,0,.5),0 2px 18px rgba(0,0,0,.45);
+  }
+  .hero .sub{
+    margin-top:18px;font-size:clamp(1rem,3vw,1.4rem);
+    color:#e8d8bd;font-style:italic;letter-spacing:.03em;
+  }
+  .hero .meta{
+    margin-top:22px;font-family:var(--sans);font-size:.82rem;
+    color:#cdbb9c;letter-spacing:.04em;line-height:1.6;
+  }
+
+  /* ---------- RIBBON NAV ---------- */
+  .ribbon{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg,#2b2014,#3a2c1c);
+    box-shadow:0 2px 14px rgba(0,0,0,.25);
+    overflow-x:auto;overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+  }
+  .ribbon ul{
+    display:flex;gap:2px;list-style:none;
+    padding:0 10px;margin:0;min-width:max-content;
+  }
+  .ribbon a{
+    display:block;font-family:var(--sans);font-size:.78rem;
+    color:#d8c6a6;text-decoration:none;white-space:nowrap;
+    padding:13px 16px;position:relative;letter-spacing:.05em;
+    transition:color .2s,background .2s;
+  }
+  .ribbon a::before{
+    content:"";position:absolute;left:0;top:22%;height:56%;width:3px;
+    background:var(--accent-2);opacity:0;transition:opacity .2s;
+  }
+  .ribbon a:hover{color:#fff}
+  .ribbon a.active{color:#fff;background:rgba(155,59,46,.30)}
+  .ribbon a.active::before{opacity:1}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:880px;margin:0 auto;padding:clamp(28px,6vw,64px) clamp(18px,5vw,40px) 40px}
+  section{margin-bottom:clamp(48px,9vw,84px);scroll-margin-top:64px}
+  .sec-tag{
+    display:inline-block;font-family:var(--sans);font-size:.7rem;
+    letter-spacing:.3em;text-transform:uppercase;color:var(--accent);
+    border-bottom:2px solid var(--accent);padding-bottom:4px;margin-bottom:14px;
+  }
+  h2{
+    font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.4rem);
+    font-weight:700;color:var(--ink);letter-spacing:.02em;
+    margin-bottom:8px;line-height:1.25;
+  }
+  h2 .en{display:block;font-family:var(--sans);font-size:.8rem;font-weight:400;
+    letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase;margin-top:6px}
+  h3{font-family:var(--serif);font-size:1.22rem;color:var(--accent);margin:26px 0 10px;font-weight:700}
+  h4{font-family:var(--sans);font-size:.95rem;color:var(--ink-soft);margin:18px 0 6px;letter-spacing:.03em;font-weight:600}
+  p{margin:12px 0;color:var(--ink-soft);font-size:1.04rem}
+  .lead{font-size:1.12rem;color:var(--ink)}
+  strong{color:var(--ink);font-weight:700}
+  em{color:var(--accent)}
+
+  /* card */
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:10px;padding:clamp(18px,4vw,26px);
+    box-shadow:var(--shadow);margin:18px 0;
+  }
+  .card.ribbon-left{border-left:5px solid var(--accent)}
+
+  /* thesis pull-quote */
+  .thesis{
+    background:linear-gradient(135deg,#fbf3e2,#f3e6cf);
+    border:1px solid var(--line);border-left:5px solid var(--accent);
+    border-radius:10px;padding:clamp(22px,5vw,34px);
+    box-shadow:var(--shadow);margin:22px 0;
+  }
+  .thesis .q{font-size:clamp(1.15rem,3.4vw,1.5rem);line-height:1.6;color:var(--ink);font-weight:600}
+  .thesis .src{margin-top:14px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);letter-spacing:.04em}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-family:var(--sans);font-size:.9rem}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+  th{background:rgba(155,59,46,.07);color:var(--accent);font-weight:700;letter-spacing:.03em}
+  tr:hover td{background:rgba(184,137,58,.05)}
+  td b{color:var(--ink)}
+
+  /* list */
+  ul.clean{list-style:none;margin:12px 0;padding:0}
+  ul.clean>li{padding:10px 0 10px 22px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean>li:last-child{border-bottom:none}
+  ul.clean>li::before{content:"❧";position:absolute;left:0;top:10px;color:var(--accent-2);font-size:.9rem}
+  ol.num{margin:12px 0 12px 1.2em;padding:0}
+  ol.num li{margin:10px 0;padding-left:4px;color:var(--ink-soft)}
+  ol.num li::marker{color:var(--accent);font-weight:700}
+
+  /* model grid */
+  .model{border:1px solid var(--line);border-radius:12px;background:var(--card);
+    box-shadow:var(--shadow);padding:clamp(20px,4vw,28px);margin:22px 0;position:relative;overflow:hidden}
+  .model .no{position:absolute;top:-14px;right:14px;font-family:var(--serif);
+    font-size:5rem;color:rgba(155,59,46,.08);font-weight:700;line-height:1}
+  .model h3{margin-top:0}
+  .model .src{font-family:var(--sans);font-size:.74rem;color:var(--ink-faint);letter-spacing:.05em;margin-bottom:8px}
+  .mech{background:rgba(184,137,58,.08);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .scenario{border-top:1px dashed var(--line);margin-top:14px;padding-top:14px}
+
+  /* blind spot */
+  .blind{border-left:4px solid var(--ink-faint);padding:14px 18px;margin:14px 0;background:rgba(138,122,102,.06);border-radius:0 8px 8px 0}
+  .blind.hard{border-left-color:var(--accent)}
+  .blind .tag{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .blind.hard .tag{color:var(--accent);font-weight:700}
+
+  /* booklist */
+  .book{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .book:last-child{border-bottom:none}
+  .book .dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:9px;background:var(--accent-2)}
+  .book .dot.opp{background:var(--accent)}
+  .book .b-title{font-weight:700;color:var(--ink);font-size:1.02rem}
+  .book .b-meta{font-family:var(--sans);font-size:.76rem;color:var(--ink-faint);margin:2px 0 4px}
+  .book .b-why{font-size:.94rem;color:var(--ink-soft)}
+
+  /* quotes */
+  blockquote{
+    margin:14px 0;padding:14px 18px;
+    border-left:3px solid var(--accent-2);
+    background:rgba(184,137,58,.07);border-radius:0 8px 8px 0;
+    font-style:italic;color:var(--ink);
+  }
+  blockquote .en{display:block;font-style:normal;font-family:var(--sans);font-size:.82rem;color:var(--ink-faint);margin-top:8px;line-height:1.5}
+  .star{color:var(--accent);font-weight:700;margin-right:6px}
+
+  /* chapter accordion */
+  details.ch{
+    border:1px solid var(--line);border-radius:10px;
+    background:var(--card);margin:10px 0;overflow:hidden;
+    box-shadow:0 1px 2px rgba(60,40,20,.05);
+  }
+  details.ch[open]{box-shadow:var(--shadow)}
+  details.ch summary{
+    cursor:pointer;list-style:none;padding:16px 18px;
+    display:flex;align-items:baseline;gap:12px;
+    font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--ink);
+    transition:background .15s;
+  }
+  details.ch summary:hover{background:rgba(184,137,58,.08)}
+  details.ch summary::-webkit-details-marker{display:none}
+  details.ch summary .ch-no{
+    flex:0 0 auto;font-family:var(--sans);font-size:.72rem;font-weight:700;
+    color:#fff;background:var(--accent);border-radius:5px;padding:3px 8px;letter-spacing:.03em;
+  }
+  details.ch summary .ch-icon{margin-left:auto;color:var(--accent-2);transition:transform .2s;font-size:.9rem}
+  details.ch[open] summary .ch-icon{transform:rotate(90deg)}
+  .ch-body{padding:4px 18px 20px;border-top:1px solid var(--line)}
+  .ch-artifact{font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);margin:12px 0 4px;letter-spacing:.02em}
+  .ch-artifact b{color:var(--accent)}
+  .ch-gist{font-size:1.02rem;color:var(--ink);font-style:italic;margin:6px 0 12px}
+  .ch-quote{margin:10px 0;padding:10px 14px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.06);border-radius:0 6px 6px 0}
+  .ch-quote .en{display:block;font-family:var(--sans);font-size:.78rem;color:var(--ink-faint);margin-top:6px;line-height:1.5}
+  .ch-note{font-family:var(--sans);font-size:.78rem;color:var(--accent);margin-top:10px;letter-spacing:.02em}
+  .risk-low{color:#5b7a3a}.risk-mid{color:var(--accent-2)}
+
+  /* pick table highlight */
+  .pick td:first-child{color:var(--accent);font-weight:700}
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--line);margin-top:60px;
+    padding:34px clamp(18px,5vw,40px) 70px;
+    font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);line-height:1.9;
+    max-width:880px;margin-left:auto;margin-right:auto;
+  }
+  footer b{color:var(--ink-soft)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 18px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend .s{color:var(--accent);font-weight:700}
+  .legend .f{color:var(--ink-faint)}
+
+  a.inline{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(155,59,46,.35)}
+  a.inline:hover{border-bottom-color:var(--accent)}
+
+  
+/* ---- 逐章精读六层 ---- */
+.ch-blk{margin:14px 0 0;padding:12px 14px;background:rgba(155,59,46,.035);border:1px solid rgba(155,59,46,.10);border-radius:6px}
+.ch-blk h5{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:700}
+.ch-blk p{font-size:.95rem;line-height:1.82;margin:0}
+.ch-blk.think{background:rgba(184,137,58,.07);border-color:rgba(184,137,58,.18)}
+.ch-blk.think h5{color:var(--accent-2)}
+.ch-blk.life{background:rgba(90,79,66,.05);border-color:rgba(90,79,66,.13)}
+.ch-blk.life h5{color:var(--ink-soft)}
+.ch-sec-h{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;color:var(--ink-faint);margin:18px 0 2px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+.ch-map td:first-child{white-space:nowrap;font-weight:700;color:var(--accent)}
+ul.clean{margin:8px 0 0;padding-left:1.2em}
+ul.clean li{font-size:.93rem;line-height:1.8;margin:6px 0;color:var(--ink-soft)}
+
+@media (max-width:560px){
+    .hero .meta{font-size:.74rem}
+    table{font-size:.82rem}
+    th,td{padding:9px 8px}
+    .book{flex-direction:column;gap:6px}
+    .ch-map{display:block;overflow-x:auto;white-space:nowrap}
+    .ch-blk p{font-size:.9rem}
+  }
+</style>
+</head>
+<body data-page-node-id="BvpBk2wpde0A4EGWGyH5fz">
+
+<!-- ============ HERO ============ -->
+<header class="hero" data-page-node-id="EEKQvZrCCU0g5eucdJ39nA">
+  <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=2000&q=80"
+       alt="图书馆书架"
+       onerror="this.style.display='none'" data-page-node-id="4LkGRzyWwamI9GrCoexGvJ">
+  <div class="bookmark" aria-hidden="true" data-page-node-id="x0ivLcKUQz9gq78hEFVEBD"></div>
+  <div class="hero-inner" data-page-node-id="yWcVFwx0l1rEAuzS5Tdcly">
+    <div class="hero-eyebrow" data-page-node-id="4AeaENCYHo9KuqL7iOzLGD">Reading Notes · 角落历史</div>
+    <h1 data-page-node-id="U8EgbCAq9hrXeKb7bjcPSY">众神</h1>
+    <div class="sub" data-page-node-id="OTaBxHuQEz7Y5An2di5uUH">四万年的人、物与信仰 · 一份外科手术式拆解笔记</div>
+    <div class="meta" data-page-node-id="uLFrdyc7R7ATvxZ8lamdrV">
+      尼尔·麦格雷戈（Neil MacGregor）著 · 罗爽 译 · 文汇出版社 2025.11<br data-page-node-id="eszNpZKHnohvu5atNwitLl">
+      原版 Living with the Gods: On Beliefs and Peoples（Allen Lane, 2018）
+    </div>
+  </div>
+</header>
+
+<!-- ============ RIBBON NAV ============ -->
+<nav class="ribbon" aria-label="目录" data-page-node-id="bDz0ntADvJqLQCbtt2Hemi">
+  <ul data-page-node-id="Xm6GducWF3nzfGzgSr5kVU">
+    <li data-page-node-id="zIdcx8gNpQbnEYp42NSDHR"><a href="#about" data-page-node-id="2Klo2oFZmLJc7KokOiBwGf">关于本书</a></li>
+    <li data-page-node-id="KRfx8mzIBHCmvF1TLf8hJi"><a href="#core" data-page-node-id="6jWBrc7GmVYMNRYlFrmll5">一句话核心</a></li>
+    <li data-page-node-id="Me21EhNFoYRLKlWIAwDdM8"><a href="#myths" data-page-node-id="iF6bbSDURVBg7FQnndHoGE">认知误区</a></li>
+    <li data-page-node-id="snlfNRD0TED06cUkmEfcxN"><a href="#logic" data-page-node-id="DCQbSxEMxfKjo2xCv31Vnb">六层逻辑</a></li>
+    <li data-page-node-id="RKmO3r8UTl3mpvoomEhYhM"><a href="#models" data-page-node-id="wGpuKUeOmxAhdEOfwGgH7D">思维模型</a></li>
+    <li data-page-node-id="d6ByFoW74Pv5XLKG5ZVuBI"><a href="#critical" data-page-node-id="IEGKG83wjF5oExFDkHh26F">批判性视角</a></li>
+    <li data-page-node-id="X9IaHAB4VnZ6ywS5pobYeG"><a href="#books" data-page-node-id="9x69neDqr3dO7v4a1mLq3U">对读书单</a></li>
+    <li data-page-node-id="eRRAokEz4OjuZgysQ2avfr"><a href="#chapters" data-page-node-id="WHjKEZr7kb2pMl43uOmR1b">逐章精读</a></li>
+  </ul>
+</nav>
+
+<main data-page-node-id="Mq1rirgpHDSRbjOD6GdOhl">
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" data-page-node-id="vppVeooKaUVlAQj7rzuEky">
+    <span class="sec-tag" data-page-node-id="d65helm2P83T6inuDTBvGD">About · 关于本书</span>
+    <h2 data-page-node-id="QuJhNgXRjm3TCErH1jUhbQ">它到底是什么书<span class="en" data-page-node-id="sXSukIHBzDPja0UEVHvS78">What kind of book is this</span></h2>
+    <p class="lead" data-page-node-id="xFd8B3L55ALJ7NexDIYFVb">这是 BBC Radio 4 三十集节目的配套书，不是学术专著。全书三十篇以<strong data-page-node-id="HlwJFpYUHA8AQJKJ3lGOKk">物</strong>为引子的短文——狮人像、沉湖金器、凯旋门下的长明火、烧给祖先的纸扎电脑。读前必须先拆骨架，否则读完只剩满脑子的文物。</p>
+    <div class="card ribbon-left" data-page-node-id="xNOZQk7jE7g2exMTs5yAzQ">
+      <h4 data-page-node-id="2ZYh5wDSSf43XO7cxo347f">作者简介</h4>
+      <p data-page-node-id="yV5TIrIlYjCLSAGce0GgMU">尼尔·麦格雷戈，1987–2002 英国国家美术馆馆长，2002–2015 大英博物馆馆长，2015–2018 柏林洪堡论坛指导委员会主席。本书源自大英博物馆同名特展 + 三十集广播，获桑福德·圣马丁宗教广播奖。</p>
+      <h4 data-page-node-id="FDaMCsXpBVHvcTdmqsWciD">全书三"不是"（作者开宗明义）</h4>
+      <ul class="clean" data-page-node-id="vUXYaUyiHGeiCjUZHmCnEU">
+        <li data-page-node-id="iR2taDB62alF2eesdI1AKB"><strong data-page-node-id="1dbXmuuI0aALhggfzfY2vz">不是</strong>宗教史——不写教义演变的时间线。</li>
+        <li data-page-node-id="EHgEcFryM6EWmdAidRNzCE"><strong data-page-node-id="8fRZTOCwDOcDj7FFVZxkk5">不是</strong>为信仰辩护——不站队任何一种信条。</li>
+        <li data-page-node-id="R1BiwT2PBUREhIDWbYxujr"><strong data-page-node-id="Ka8zCeoHaXErotzMUQrsZ3">不是</strong>为某特定信仰体系背书——比较研究，不评判真伪。</li>
+      </ul>
+      <h4 data-page-node-id="flrIPjFAvxOtk0ZE7DFykg">方法论三设定（决定后面一切）</h4>
+      <ol class="num" data-page-node-id="bftK3pFHW9a8iqglSNFmPJ">
+        <li data-page-node-id="MXDJ6ctmzh7kYygVH164J7">观察单位 = <strong data-page-node-id="bBUwUlYRDCCPLv1JsPhmvL">社群</strong>，不是个人。进分析的是"整个社会相信什么、做什么"。</li>
+        <li data-page-node-id="zC1ihJYnlCCPelsj7h7yBj">证据入口 = <strong data-page-node-id="KeysaGPgZ43ZQ58zyvtcBW">物、场所、行为</strong>，不是文本。信仰史四万年，文字只有五千年。</li>
+        <li data-page-node-id="roBI91MM8EvXqkKGzB4FDl">立场 = <strong data-page-node-id="idf9SgklDsO83tkDVzVkqG">不判真伪</strong>。只问功能：这套共享信念对公共生活意味着什么？</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CORE ============ -->
+  <section id="core" data-page-node-id="HqtEF5BPBcdZnxCfels3Sd">
+    <span class="sec-tag" data-page-node-id="pgCXIgRSqVWTpUbq25bEph">Thesis · 一句话核心</span>
+    <h2 data-page-node-id="L1saZGFcHwJyq4KHm9f4VK">全书终极论点<span class="en" data-page-node-id="84DdjQpLxgN8cjqGyhaibE">The one-sentence core</span></h2>
+    <div class="thesis" data-page-node-id="1NsbBq8iG0X1M1uP26dQBM">
+      <div class="q" data-page-node-id="n0osAT6NYMmhLO6WLnEnTE">信仰从来不是"个人对神的看法"，而是人类社会用来回答"我们是谁"、并据此划定"谁属于我们"的公共操作系统——我们决定如何与众神共处，就等于决定如何与彼此共处。</div>
+      <div class="src" data-page-node-id="fBvSf63ErRwizh2IHRoWuo">作者原话（引言）· "For in deciding how we live with our gods we also decide how to live with each other."</div>
+    </div>
+    <blockquote data-page-node-id="EsnfGSL1NYOnsowZk869Y3">
+      "Such beliefs have a unique power to define – and to divide – peoples."
+      <span class="en" data-page-node-id="ElbMQGgjGrwEy499cCxhB6">这类共享信念拥有独一无二的力量，既能定义，也能撕裂一个民族。</span>
+    </blockquote>
+    <p data-page-node-id="4eFF8iE7Rtt5b5yGFOemgy">补一句更狠的：全书在哥贝克力石阵那章埋了这句——<strong data-page-node-id="y6FTQ67qiSwyoEXppWGrv8">我们先与众神共处，然后才与彼此近距离共处。</strong>顺序反了：不是人先组成社会再发明宗教，而是人先围绕共同的神圣叙事聚集，才第一次学会大规模地住在一起。</p>
+    <p data-page-node-id="nCt17E879xxI19hNM3wva8">对读者的扎心落点：如果你以为自己生活在"祛魅的现代社会"，只是因为你已经把<em data-page-node-id="7wEKB8rr2srWmh9wbkNEa2">人权、市场、民族国家</em>这些同样是信仰的东西，当成了自然事实。看不见自己的神，是你最深的盲区。</p>
+  </section>
+
+  <!-- ============ MYTHS ============ -->
+  <section id="myths" data-page-node-id="tYYm5qui6M5zI9r9F4VoXL">
+    <span class="sec-tag" data-page-node-id="prTDhfVUUxwjOQRKUkwoGH">Myths · 核心痛点</span>
+    <h2 data-page-node-id="ilLMx5OKusOEFAyaJ7phR5">四个至今流行的认知误区<span class="en" data-page-node-id="bzYEmWKFuOl71SF5qz8c5A">Four misconceptions the book dismantles</span></h2>
+
+    <div class="card" data-page-node-id="cwCmWEd98Q6Qq6thDTfvVk">
+      <h3 data-page-node-id="5WvTVb1B4Xot3u3WZdfWqd">误区一：现代化会让宗教退场</h3>
+      <p data-page-node-id="MBbevLF5C1WJT9HRNNECTp">流行版：社会越富足理性，宗教越边缘。现实打脸——1979 霍梅尼返伊、美国福音派、印度教民族主义、中东神权政治。"自十七世纪以来罕见地，信仰重新塑造着全球议题。"德布雷一句更毒：<strong data-page-node-id="jmw8mfX5CUCDuwJ5AAOjyY">"我们无法把宗教'取消发明'，就像无法取消原子弹。"</strong></p>
+    </div>
+    <div class="card" data-page-node-id="vaYg707MJr5WCsp5TAv2Ng">
+      <h3 data-page-node-id="ThlsLHjyDDGACMWEGsUwYB">误区二：宗教 = 私人灵性 / 教义</h3>
+      <p data-page-node-id="HNitMf2Bup7jqBqOazb8GK">作者纠偏：看的是<strong data-page-node-id="SSO5Doz0zSP7QkjJ4fI5kl">整个社会相信什么、做什么</strong>（practice, not doctrine）。教义不可验证、不可比较；可观察、可比较的是物、场所、行为。这决定了全书方法论。</p>
+    </div>
+    <div class="card" data-page-node-id="9JDV2WuTVFUv1XdloQcOg3">
+      <h3 data-page-node-id="C84xQOpCRZSaDIO2T2FOxn">误区三：政教分离就能终结宗教冲突</h3>
+      <p data-page-node-id="3HZYEK9EGi2HsRsgjpnTNw">法国革命废星期改十进制、苏式国家无神论——结果不是"没有信仰了"，而是<strong data-page-node-id="9RlDNl34FG1WrU50Oa5Y2j">另一套世俗信仰（民族、国家、理性崇拜）占了同一个结构位</strong>。"国家无神论"本身就是一种国教。</p>
+    </div>
+    <div class="card" data-page-node-id="f6LnkhBl4w1rVCNWxaZhGz">
+      <h3 data-page-node-id="HrxTQqyDKH2QSPbyHkKemb">误区四：宗教冲突源于神学分歧</h3>
+      <p data-page-node-id="F1CDedfXdt3vDb9Jk8oadz">当今多数冲突只是<strong data-page-node-id="Bkw8eylYZDFPI14EUKCMnw">用宗教语言框定</strong>的世俗争夺。信仰的功能，是提供"我们 vs 他们"最高效的划界工具。问题从来不是"谁的神是真的"，而是"谁被算在'我们'里"。</p>
+    </div>
+  </section>
+
+  <!-- ============ LOGIC ============ -->
+  <section id="logic" data-page-node-id="Ilr9EtI1vB4tPNU7sy0z6r">
+    <span class="sec-tag" data-page-node-id="LytNF3hVIqLuNClKxlSN3r">Structure · 底层逻辑树</span>
+    <h2 data-page-node-id="F0jDy8EarOmgOaz2zIHLN3">六层推演：从"定位"到"与彼此共处"<span class="en" data-page-node-id="toXeeHiD6YVj2RxdCjLFYQ">Six layers of reasoning</span></h2>
+    <p class="lead" data-page-node-id="6rFNqtLhTLHCzzLBdAUBQA">已滤掉全部案例，只留纯粹逻辑路径。每层一句话结论：</p>
+
+    <div class="card ribbon-left" data-page-node-id="l9T0Ira0qgFr8bx9hUDfaj">
+      <h4 data-page-node-id="dCE2PHKu8FLlf9lBXxfJT0">第一层｜定位（第 1–5 章）</h4>
+      <p data-page-node-id="6rSEKAON3ClgNnNgh3ePiY">信仰回答的不是"神是否存在"，而是<strong data-page-node-id="UsbjyP7VHWCt5oeh4Ia4Zn">"我们在宇宙的什么位置"</strong>。位置定了，"我们是谁"同时定下来。信仰不是文明富足后的奢侈品，是前提。</p>
+      <h4 data-page-node-id="xFHgFMirjeOWaktGz01Law">第二层｜续航（第 6–10 章）</h4>
+      <p data-page-node-id="AcPJAS8IaLdWOO1odwnsXY">把有限的"我"接进比自己长久得多的"我们"。<strong data-page-node-id="3DxqSU2tLyb0Xva8UuL5nQ">与死者共处才是常态，把生者与死者分开才是历史例外。</strong></p>
+      <h4 data-page-node-id="TEP9hQnnPStCsnPObHtGIk">第三层｜建制（第 11–15 章）</h4>
+      <p data-page-node-id="ri3uq76BiMPxsc4yaVbpqr">信念必须外化成可进入、可重复、可监督的空间与日程，才成为社会秩序。神庙天然同时是"央行"和屠宰场——这不是腐败，是结构。</p>
+      <h4 data-page-node-id="ZhHXj8ghANtRIGu0PlWgWe">第四层｜可见化（第 16–20 章）</h4>
+      <p data-page-node-id="5TynoOeefEc4cqTh9ZuQeL">共同体必须能<strong data-page-node-id="1NUOh5HH6WkwcR2spY0FO9">看见</strong>自己信什么。最漂亮的反题：拒斥图像、尊崇话语的传统（犹太/伊斯兰/宗教改革），并未摆脱像，<strong data-page-node-id="zs6rKWALyXp150TK6dIv0q">只是把文字本身制造成了图像</strong>。</p>
+      <h4 data-page-node-id="466SvJK58I1lgyZhpSQBpC">第五层｜划界（第 21–25 章，最锋利）</h4>
+      <p data-page-node-id="fzK04TICLYVSJRSIM6nQNw">多神是"加法"，一神是"排他"。<strong data-page-node-id="4BeFO1bg2UaVa8swCPnM8n">定义"我们"的能力与排斥"他们"的能力是同一枚硬币</strong>，无法只取一面。</p>
+      <h4 data-page-node-id="6It5xHCE9cv52cykk6IqMj">第六层｜撞墙（第 26–30 章）</h4>
+      <p data-page-node-id="uDKrxKsjALDfU5chb0Cyim">宗教既能给统治者背书，也能提供审判统治者的外部标准。终局问题不是"如何消灭宗教"，而是<strong data-page-node-id="BkUN5pE6LpWIEHKRZBqiV3">共享信念不同的人如何共处</strong>。</p>
+    </div>
+    <blockquote data-page-node-id="4pAdCFHMy3Fz379Eg6TYki">
+      人先需要"定位" → 再需要"续航" → 把信念"建制"成空间与日程 → "可见化"成形象 → 机制必然"划界" → 撞上现代国家 → 问题回到原点：不是要不要神，而是怎么和持有别的神的人住在一起。
+    </blockquote>
+  </section>
+
+  <!-- ============ MODELS ============ -->
+  <section id="models" data-page-node-id="mkM54NCIWDR1njDdj9KAJW">
+    <span class="sec-tag" data-page-node-id="vD5eaAGL84Qjh01K6vsY6U">Models · 思维底层模型</span>
+    <h2 data-page-node-id="lYMW3tU4vE9RRijt4IQ9AZ">五个可复用的思维模型<span class="en" data-page-node-id="uuyygMjYXzJ7AwxaprNEDZ">Five transferable mental models</span></h2>
+    <p class="lead" data-page-node-id="eS2xBu5CasKTrDFcDJrC62">诚实前置：麦格雷戈没给任何模型命名。①②③是作者明说的命题，④⑤是我从论证结构反推的。标注「提炼」的责任在我。</p>
+
+    <div class="model" data-page-node-id="ZD8qJq5FW53WEJsjywmn7A">
+      <span class="no" data-page-node-id="NYBTuTwDAQru11idJ0WlsJ">1</span>
+      <h3 data-page-node-id="DOHSZtuYJO5hYE0YGRIezC">共享信念的"操作系统"：定位 · 续航 · 划界</h3>
+      <div class="src" data-page-node-id="eyd48PzHEtbMgxa8GQ7Pq4">来源：作者命题（引言 + 全书结构）</div>
+      <div class="mech" data-page-node-id="oCGyjWklKpYmCE8WRXuCUx">
+        <strong data-page-node-id="8SWDbqtdsRvxP3gW4Q4bPH">机制：</strong>任何活过一代人的社群都跑通三模块——<strong data-page-node-id="OK700Ex2zMZIkuA32pOgcd">定位</strong>（我们在世界的什么位置）、<strong data-page-node-id="X8Rfxqv32aBpAfKcTxtvCP">续航</strong>（一个人怎么接进比自己长的线）、<strong data-page-node-id="7eFyOYY0qlbaevt32KzcuZ">划界</strong>（谁算"我们"）。缺一项社群不会死，而是退化：缺定位退成闲聊群，缺续航退成一波流，缺划界退成广告位。
+      </div>
+      <div class="scenario" data-page-node-id="Fx1UDHTgq80MXHJAr9pDhA">
+        <h4 data-page-node-id="ti16f7gHFoYasB3srCkXbS">破局 · 想拉个业主群 / 家长群 / 同好群，怎么才不会三个月变死群</h4>
+        <p data-page-node-id="p7t2yxFYAgSU2OVBEGliNW">别先问"能拉多少人"，先填三句：这群人共同相信什么（定位）/ 先来的人的经验靠什么传给后来的人（续航）/ 谁不能进（划界）。<strong data-page-node-id="b6CnncYrcYhylL4drauYm5">多数群缺第二项</strong>——老人踩过的坑没有沉淀下来，新人进来还得从头问一遍，第三个月就只剩转租和链接。顺序不能倒：先把"我们为什么在这儿"说清楚 → 设计一个能反复做下去的共同动作 → 最后才拉人。</p>
+      </div>
+    </div>
+
+    <div class="model" data-page-node-id="aHUaV5XAt88UA4O3KtQ2Fo">
+      <span class="no" data-page-node-id="M7T0nzCi71JtSoVjsBsKrm">2</span>
+      <h3 data-page-node-id="F9grWhrw7OxlfZgPJEoMiU">定义即撕裂（边界守恒律）</h3>
+      <div class="src" data-page-node-id="zDDibCtz4TUJ7TZhwuqfjZ">来源：作者命题（第五部分核心）</div>
+      <div class="mech" data-page-node-id="d7BRSemMAjeBejIoxk3PC1">
+        <strong data-page-node-id="mOVYgGqWtUaURS7zyNTsHC">机制：</strong>你定义"我们"的能力 = 排斥"他们"的能力，是同一枚硬币。多神=加法（包容大、动员弱），一神=排他（动员强、包容弱）。宽容不是启蒙送来的礼物，是可被撤回的政治安排。
+      </div>
+      <div class="scenario" data-page-node-id="JUeoQGIDXCHevERnw6TUKS">
+        <h4 data-page-node-id="YIOStzkb1HXADyFfDnKHiI">破局 · 想扩大社交圈：要不要先把自己变得"更好聊"</h4>
+        <p data-page-node-id="spnarxu9L6WyDFB0tjdiJ7">别吵"做自己 vs 迎合别人"，<strong data-page-node-id="7sxm7LpRHOk6fAJqQKWVuk">先想清楚你想从这段关系里拿到什么</strong>。真要靠深度协作拿到结果——一起做事、找人背书、在关键时刻有人拉一把——圈子就必须窄，边界就必须清楚。为了"多认识点人"把自己的标签抹平，换来的不是机会，是一堆既不了解你、也不会真帮你的弱关系；它们还会挤掉你维护老关系的时间。<strong data-page-node-id="PhE1IwmaSWCOwPmGwXbfpW">你以为是用分寸换人脉，实际是拿原来那批真会帮你的人买单。</strong></p>
+      </div>
+    </div>
+
+    <div class="model" data-page-node-id="oeohVrlRsMjfDDebIzDwzW">
+      <span class="no" data-page-node-id="2bZnbML2fpGZ8JhuPkFG79">3</span>
+      <h3 data-page-node-id="j0BfJlVxzDmGYpwzcApXVO">空位不空律（功能先在，载体可换）</h3>
+      <div class="src" data-page-node-id="hyBImJVYIbP7KreDKriR5g">来源：作者命题（第 29 章 + 法国革命历）</div>
+      <div class="mech" data-page-node-id="cQtqH8GwB9oxnPvIsHpQaJ">
+        <strong data-page-node-id="N2dsm9xVP4Tdogo3BZ6tQc">机制：</strong>法国革命废星期、苏式无神论——"消灭"在结构上不可能成功。你能换掉 occupant，留不住空位。德布雷："无法把宗教取消发明，就像无法取消原子弹。"
+      </div>
+      <div class="scenario" data-page-node-id="8uUm8GIu9A44iwlqdgXtyn">
+        <h4 data-page-node-id="oWlXIM2yewVWXrWyegiHvs">破局 · 想戒掉睡前刷手机（或任何一个改不掉的习惯）</h4>
+        <p data-page-node-id="HnOkCj0UZBEPg7Bdno1w6p">三步：①<strong data-page-node-id="CLynAyBDxt0elc8IyjzxRh">先给槽位命名</strong>——睡前那一小时，你要对抗的到底是"想看点刺激的"，还是"不敢让自己安静下来"？定错槽位，替代品必败 ②<strong data-page-node-id="9IgiAWZHCYkEBIzrNNBE92">先插入再拔出</strong>：先把新东西塞进同一个时间点，跑顺了再撤旧的，直接删 App 只会留下真空 ③替代品必须同功能。想戒的是"不用动脑的陪伴"，就不能用"读一本需要专注的书"去填，得用播客、有声书这种同槽位的东西。<strong data-page-node-id="JwqrSEApwAhD9FDxWzn8sl">空位永远会被填，区别只是被谁填。</strong></p>
+      </div>
+    </div>
+
+    <div class="model" data-page-node-id="lgteSpSV48QDU7B6H5jQ5C">
+      <span class="no" data-page-node-id="xCgQY1w5dkyBh53IoJYNUd">4</span>
+      <h3 data-page-node-id="yw6iiztCbTn3S8D25MclpB">仪式先于聚居（提炼）</h3>
+      <div class="src" data-page-node-id="lMjm4tTPfLvZPK96ppOPHj">来源：提炼（作者给证据，没给命题）</div>
+      <div class="mech" data-page-node-id="6rYn644mNaGbqs7JfFiDRx">
+        <strong data-page-node-id="bKf1qL0BzMG1pNFEeFaehJ">机制：</strong>哥贝克力石阵——狩猎采集者先合作建仪式中心，<strong data-page-node-id="5ajgD5vOoRTPGBFxAvr8Sk">之后</strong>才有定居农业。先有共同仪式，后有共同利益。帕特农同时是"央行"和屠宰场，经济功能是仪式的副产品。
+      </div>
+      <div class="scenario" data-page-node-id="steFjgKAVlaGMB0jhk4G6m">
+        <h4 data-page-node-id="OJeppEzOx6mneJwgL2SbVS">破局 · 想组个跑步团 / 周末球局 / 读书会，怎么才不黄</h4>
+        <p data-page-node-id="vGqQV6bYKoVRkxLbaxDBQ1">别先设计好处（AA 更便宜、有人一起打卡、完赛发个奖），先设计一个<strong data-page-node-id="cWoeTJOF9e8f4RDPSwU6CG">零成本、零回报的共同动作</strong>——比如每周三晚七点、同一条路线、跑完各回各家。愿意为一件没有任何回报的事准时出现的人，才是真成员；用好处筛出来的是顾客，不是自己人。顺序倒过来，就是那个"跑团第 21 天只剩两个人打卡"的结局：<strong data-page-node-id="wtzLIPwmkVvcaz5vPvEQR0">先有共同仪式，后有共同利益，不是反过来。</strong></p>
+      </div>
+    </div>
+
+    <div class="model" data-page-node-id="6zCOploWqRXzW0fU3Zvxve">
+      <span class="no" data-page-node-id="Wpk1fRUZJTT8CjUVDKazkF">5</span>
+      <h3 data-page-node-id="6XnWYSwkd26oGhaeX02Zso">物证优先（别听他说什么，看他沉什么进湖里）</h3>
+      <div class="src" data-page-node-id="12aXEFEVhV5DLljbb3oGnC">来源：作者方法论 + 我的外推</div>
+      <div class="mech" data-page-node-id="BaJZAW34q8r2D3Otblm7kh">
+        <strong data-page-node-id="YVQCYvxhsyyPFRK5FGaWzx">机制：</strong>言说成本极低可伪装，物的成本不可逆——<strong data-page-node-id="Te0O34VzmJVjfmjuD415H6">真实偏好只存在于不可逆的支出里</strong>。穆伊斯卡人把金器沉进湖里，不可逆的付出才是验钞机。
+      </div>
+      <div class="scenario" data-page-node-id="6NmdEVwuwoxsTsVxmW2U9A">
+        <h4 data-page-node-id="Fq5UzGnvbxsCWWMTttLkED">破局 · 判断一个人 / 一家店 / 一个机会是不是真靠谱</h4>
+        <p data-page-node-id="oT3toZ0uI9Ed5s8blFeIMq">三张表：预算表（钱沉在哪）、排期表（时间给谁）、沉没表（主动放弃过什么）。演示：同事说"这个项目我一定全力投入"，一查饭局次次到场、会议从不参加、其他机会从不推 → 真神是维持关系，不是做成事 → <strong data-page-node-id="mPpkwf1YCH6Wrwm9nTM7De">按"他只出嘴"来排计划，把关键节点设成不可逆的检查点、小步验证，用对方真神的语言说话</strong>。反向查自己同样成立：嘴上说健康最重要，时间却七成在加班熬夜刷手机，那真神就是工作，不是健康。</p>
+      </div>
+    </div>
+
+    <div class="card ribbon-left" data-page-node-id="qxe5pmb1cCncozW96I33Mp">
+      <h3 data-page-node-id="7tVkgZWMfQa18qPzus0ccn">五模型连用法</h3>
+      <table data-page-node-id="oTGTriJzgcv1P9MTCDmmPe">
+        <tr data-page-node-id="fwt8ICHyEEPFXpwbIEbL96"><th data-page-node-id="JMhuvtSN1vF3uZb0Mr72IA">步</th><th data-page-node-id="h4ArNlPSaUcpZg3WkZ05CB">模型</th><th data-page-node-id="waB37qpRM3V2yGH6HHtuWI">问句</th></tr>
+        <tr data-page-node-id="ovQPH4KPoX2QYErHhS6vvX"><td data-page-node-id="ZzleZdDdnBzxwvDK6dE71C">1</td><td data-page-node-id="vgTRw4LNNHOJnL7Ilcz2qj">操作系统三件套</td><td data-page-node-id="aL0v4ZjhDbsPuv6cypl0tE">这个系统缺哪个模块？（定位/续航/划界）</td></tr>
+        <tr data-page-node-id="SnVJtPUgCDlMFkbJ7yCE05"><td data-page-node-id="fDgsuqHqOco3XW1aU6XhVA">2</td><td data-page-node-id="3Aj0UIqlpKEVHXfTDYQIYj">边界守恒</td><td data-page-node-id="wBwFfa0iOLmNa7JAd4ShQn">我付得起多少"不是我们的人"？这是价格</td></tr>
+        <tr data-page-node-id="j8JtsjLN5xk2uo6Di16VOp"><td data-page-node-id="exYHIeXXQCeLagRO1FPuSt">3</td><td data-page-node-id="3YYTMVJELIla9mLEoQ1hYs">空位不空</td><td data-page-node-id="3TrgH0oFdgIwahS2kZeAQi">砍掉后谁占位？替代品同功能吗？</td></tr>
+        <tr data-page-node-id="gm4AdPRfR4LTtPaODEl77l"><td data-page-node-id="qwAOBthOzjN8EyHGj6201t">4</td><td data-page-node-id="KE3qWATAp75F1DNPIztlqt">仪式先于聚居</td><td data-page-node-id="B2UkcvFpxEbrOVDR1Hb6Ud">第一个共同动作是什么？不是第一个权益</td></tr>
+        <tr data-page-node-id="GBUfmWVRJbpoHsllEXcWMA"><td data-page-node-id="dH9Gg2i13b5YIBpCp7kCYr">5</td><td data-page-node-id="4ycNvQAEvywzP8LakoW6Db">物证优先</td><td data-page-node-id="joLjEMyUxWAsbV9rew6LPW">对方的钱和时间沉在哪？我自己呢？</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ CRITICAL ============ -->
+  <section id="critical" data-page-node-id="x408m7ply9dwIlcQuBum8z">
+    <span class="sec-tag" data-page-node-id="unm0OYakwTrv9pOdw0Il9J">Critical · 批判性视角</span>
+    <h2 data-page-node-id="5TRGiSNYHRfN9sBwbWaoX0">盲区、失效边界与落地坑<span class="en" data-page-node-id="FGxTBG3ayeBLlrqp1ymsXK">Blind spots &amp; practical traps</span></h2>
+    <p class="lead" data-page-node-id="0zsXsYrpTXNaY6k5WehDIP">批评分两类：<strong data-page-node-id="0SHmoh6zMw5xURQo9zF6z8">硬伤</strong>（换作者也该避免）vs <strong data-page-node-id="amn3j0At6YEE50YnvigBpU">体裁代价</strong>（展示与论证二选一的结果）。下面 ①–④ 是硬伤，⑤⑥ 是代价。</p>
+
+    <h3 data-page-node-id="S5oIl32aT0EUhKMuEevRlC">六条方法论盲区</h3>
+    <div class="blind hard" data-page-node-id="FGAYtw0yx30MlDGOomkPOi">
+      <div class="tag" data-page-node-id="Y8tzCbXzC3PxYL415LOtYn">硬伤 ① 功能主义不可证伪</div>
+      <p data-page-node-id="Ks4Yreyhox1hEdDNxifeY1">只答"信仰有什么用"，不答"为什么是这一个形式"。按同一逻辑，商场也是当代教堂（中庭、节律、朝圣动线、奉献行为）。<strong data-page-node-id="vnYMR0aDOIukEMebDAGE9N">一个同时能解释教堂和商场的框架，无法帮你区分教堂和商场。</strong>失效场合：凡需预测和取舍之处。</p>
+    </div>
+    <div class="blind hard" data-page-node-id="ks9pYEjo1DOxHjZTonh06q">
+      <div class="tag" data-page-node-id="itBuewe9GJ3caxmGiHd742">硬伤 ② 幸存者偏差写进方法论</div>
+      <p data-page-node-id="sCBVJukzqNVVC752P5yIZo">证据库 = 大英博物馆 = 帝国收藏史。材质偏差（石金留，歌舞无）、价值偏差（精英物）、掠夺偏差（帕特农、贝宁青铜、秘鲁祖先捆）。<em data-page-node-id="ge78XU2ek4ujpfFcJOvYaq">Publishers Weekly</em> 点名：书中对文物的来源与归属争议"未置一词"。他拿物做证据，抽样框就必须交代。</p>
+    </div>
+    <div class="blind hard" data-page-node-id="JPDFM29SbVRiEKiQxaXRYC">
+      <div class="tag" data-page-node-id="vmpNfiaCnULG5qoCGrEg1A">硬伤 ③ "信仰"是未经反思的普世范畴</div>
+      <p data-page-node-id="98gp14CmzgRbNePHvcVfHq">塔拉勒·阿萨德《宗教的谱系》（1993）：把"宗教"理解为可内在持有的 belief，是 17 世纪新教欧洲的发明。<strong data-page-node-id="J5AyujSDuxTTyHTVYlD8On">他不是在描述普遍现象，是在用欧洲基督教概念重新命名全世界。</strong></p>
+    </div>
+    <div class="blind hard" data-page-node-id="NsHXNCFzgA0WBksGDDGJbR">
+      <div class="tag" data-page-node-id="h5WcInYsJ5F1mYS49TFuHv">硬伤 ④ 因果方向未定（哥贝克力 n=1）</div>
+      <p data-page-node-id="LYDTrWRj806tvjK1DBV26h">诺伦扎扬主张"大神驱动社会复杂化"，反方 Turchin 等用 Seshat 414 个社会主张相反——那篇 <em data-page-node-id="QCHvi4fq7JqS4kR8zgbkaF">Nature</em> 2019 文章 2021 年因方法争议撤稿。当启发式用，别当定律。</p>
+    </div>
+    <div class="blind" data-page-node-id="uQI51lfeY3PZxIxdJTZ9kG">
+      <div class="tag" data-page-node-id="4SQNgFULXJlQ3puEbqIwHe">代价 ⑤ 理解优先 → 判断真空</div>
+      <p data-page-node-id="HCx9LCrO0pl5TtYmzf6HeM">John Carey（<em data-page-node-id="YEkWA7ss0MOs6wKKDSz54W">Sunday Times</em>）："无论某种宗教实践多可怕，他都不愿批评。"框架强于解释，弱于裁决。你需要说"这事不该做"的那一刻，它会沉默。</p>
+    </div>
+    <div class="blind" data-page-node-id="qTvoW8bsqs9r5BQQFOFl1M">
+      <div class="tag" data-page-node-id="hUEVTtQnDSr8JkWyzELVd3">代价 ⑥ 策展即论点</div>
+      <p data-page-node-id="DaxNgaAO8AScZyBr1eCri7">作者自己承认："换一批物，就会讲出不同的故事。"例子只能证明存在性，不能证明普遍性。你看到的三十个物是被选过的，被排除的几万件同样有话要说。</p>
+    </div>
+
+    <h3 data-page-node-id="yjT8aoKOKarvqfCmITrEFJ">落地时最容易踩的六个坑</h3>
+    <div class="card" data-page-node-id="7PPoMI2eJMTOkAFS0GaWLg">
+      <h4 data-page-node-id="MkBBLHeZgrDQvlsNBUpiY6">坑① 把"功能"读成"应该"（自然主义谬误）</h4>
+      <p data-page-node-id="5Cwvqqg0tDY4k9mkmjb0o6">书说社群需要划界 → 所以我该建封闭圈层。砷有功能不等于你该摄入砷。自检：这是在描述机制，还是在给我行动指令？</p>
+      <h4 data-page-node-id="fP2082xqE7JNLbpA7RqCXI">坑② 把幸存者偏差原样搬进个人复盘（<span class="star" data-page-node-id="g4yo2Hg26s3zffe1bSR4Ye">这个坑最贵</span>）</h4>
+      <p data-page-node-id="TWBftIIGFpqmpDOUHzXCI9">刷到"30 岁存款百万""三个月瘦 20 斤"就总结成功要素、照做、然后怀疑自己——是大英博物馆抽样错误的完全复刻。修正：①每看到一个成功案例，先问同期有多少人做了同样的事没成，找差异不是共性 ②没水花、被限流被删的往往信息量更大 ③先排除展示因素（平台机制、时机、算法偏好）再谈方法。</p>
+      <h4 data-page-node-id="p5pDIEzAaG9kphTG3bEQ1u">坑③ 把"空位不空"当宿命而放弃行动</h4>
+      <p data-page-node-id="UdF0TJmBgqTsB5pkk6qh2c">它是描述律不是宿命律。正确用法："我会被替代，所以主动指定替代者。"不是"换不换都一样"。</p>
+      <h4 data-page-node-id="UCND9j1LTJdjv9HcNWx9cJ">坑④ 把"定义即撕裂"误用成"必须树敌"</h4>
+      <p data-page-node-id="jRHF9WCB4CBTMgK9myOMGZ">守恒律是描述性约束不是行动指令。多神"加法"也是有效结构，对小圈子、刚起步的阶段往往更合适。划线是手段不是目标。</p>
+      <h4 data-page-node-id="bQ7OiMJ5KdlcbqUBFjuZVH">坑⑤ 用物证法判断人时忘了"物会撒谎"</h4>
+      <p data-page-node-id="nlO1LY8SKZrIgBQs4da4RF">有观众的支出是信号装置不是偏好证据。三张表之外加第四张——<strong data-page-node-id="XBHS7VH5OyAnqbg2KfuUio">观众表</strong>：这笔支出，谁会看到？有观众的支出一律打折。</p>
+      <h4 data-page-node-id="7wV6oyPmLzzetdS6NCD0QB">坑⑥ 把"同情式理解"变成失去判断力</h4>
+      <p data-page-node-id="YA9KQZMLYq50TTcxZezTtS">看到网上铺天盖地都在转的离谱东西，第一反应是"它满足了什么需求"而非"它该不该被这么追捧"。给理解设时间盒：先理解 10 分钟，再强制切到判断模式。</p>
+    </div>
+  </section>
+
+  <!-- ============ BOOKS ============ -->
+  <section id="books" data-page-node-id="TurNoKtTiFcEC6kVRERB7p">
+    <span class="sec-tag" data-page-node-id="TIll4wD96pwGgi5Z5Wdd0C">Reading · 对读书单</span>
+    <h2 data-page-node-id="kisXj9NECOyDG9RWH9dUJi">互补与对立的经典<span class="en" data-page-node-id="KCmvdaKJuqVDxQhMecvA2h">Companions &amp; antidotes</span></h2>
+    <p class="lead" data-page-node-id="ZC7fJGlVWCVZFb6sBNNzai">麦格雷戈站在很中间的位置——功能主义 + 物质证据 + 同情式理解。左边补机制，右边给解毒剂。</p>
+
+    <h3 data-page-node-id="fcFEtzkRzokV0BAKBk3FTM">互补：补上他缺的因果机制与学术底座</h3>
+    <div class="book" data-page-node-id="KQdeFgIGMenhtGJyzrYJZI"><span class="dot" data-page-node-id="WuRXSCBABivd2aj5M9F4nA"></span><div data-page-node-id="jmwrU3jE0DynrFFKZQSsWt">
+      <div class="b-title" data-page-node-id="HhYbFHvg1m5rKN30mXqXfp">涂尔干《宗教生活的基本形式》(1912)</div>
+      <div class="b-meta" data-page-node-id="XCTHFqxRMUX70JkxgTG2Xd">Émile Durkheim · 他是麦格雷戈的隐形祖先</div>
+      <div class="b-why" data-page-node-id="JC9xN5D1N7TjKmp1YO2a3N">麦格雷戈说"共享信念凝聚社会"；涂尔干更狠一步——<strong data-page-node-id="HAp8zqFLNI6tyVNbxrmUVg">被崇拜的其实就是社会本身</strong>。</div>
+    </div></div>
+    <div class="book" data-page-node-id="5x325hpbfryiesyGoFuxYi"><span class="dot" data-page-node-id="be2erMCArxBItwcKotHKQf"></span><div data-page-node-id="GEwggG67CKq2P77m0DfmCI">
+      <div class="b-title" data-page-node-id="yY4v1Q83WYfjjWKWNbEpUA">诺伦扎扬《大河神》(2013)</div>
+      <div class="b-meta" data-page-node-id="npoEeeJCvlqpCnCZuEmLOr">Ara Norenzayan · 补因果机制与实验</div>
+      <div class="b-why" data-page-node-id="pumdBJayXxN9AO9NKrHZF1">"超自然监控"心理机制 + 匿名经济游戏实验。但因果方向未定，见盲区④。</div>
+    </div></div>
+    <div class="book" data-page-node-id="ip61hc30bXWbAv13I9Ky69"><span class="dot" data-page-node-id="aTMOKAgNhmfyEYEDCSbWbd"></span><div data-page-node-id="Rh4ERMj6JpmxrOHOlLy5Fk">
+      <div class="b-title" data-page-node-id="vGGWvdEda6R9AdtjCpJbU7">Vásquez《More than Belief》(2011)</div>
+      <div class="b-meta" data-page-node-id="99P0I9zpCUvYPQbG3BXuOj">Manuel Vásquez · 补方法论底座</div>
+      <div class="b-why" data-page-node-id="tFzb6OwFfbgMWrYASCfu4Y">把"以物证信仰"建为理论：宗教是具身实践，不是待解读的文本。</div>
+    </div></div>
+    <div class="book" data-page-node-id="SiYqbekVyNH8KyvSEafeSh"><span class="dot" data-page-node-id="9TFHc88AGDm2lpc0ZiUB8o"></span><div data-page-node-id="E6A56kADBXueCNMEP8qman">
+      <div class="b-title" data-page-node-id="zWv0M2uKnJ3NjLfAk83fGy">安德森《想象的共同体》(1983)</div>
+      <div class="b-meta" data-page-node-id="FqIO1E5pNlcTI1H4lFBL9B">Benedict Anderson · 补最后一层</div>
+      <div class="b-why" data-page-node-id="3ctFq9FglZGPO2tOys3TJf">民族国家就是那个新容器，靠印刷资本主义和共同阅读节奏维系。</div>
+    </div></div>
+    <div class="book" data-page-node-id="V0XKL2CV3odCOw4iCaSrWs"><span class="dot" data-page-node-id="GeOrrGz3zy5YclidFeECAV"></span><div data-page-node-id="k5D6AyLoO2LoKh3ioFbCWr">
+      <div class="b-title" data-page-node-id="QJ9TGI46CSIsjsB87QtzGE">泰勒《世俗时代》(2007)</div>
+      <div class="b-meta" data-page-node-id="EXG1OETKz80ThPC2ogVegD">Charles Taylor · 补深度</div>
+      <div class="b-why" data-page-node-id="9Bg32E50RsIrgCDqDakciT">世俗性不是信仰的减法，而是"信仰的条件"整体迁移了。</div>
+    </div></div>
+
+    <h3 data-page-node-id="0fHOfVef0H0yT3I8iIDxQn">对立：三本解毒剂，每本专治一条盲区</h3>
+    <div class="book" data-page-node-id="Lg5O310GlIzSyJOPLN0qWB"><span class="dot opp" data-page-node-id="Wry4GUJpnPs1wf9wGDiCPi"></span><div data-page-node-id="lmJLtl2ViWJSGwBR6gNUbc">
+      <div class="b-title" data-page-node-id="EB32FHNgws0C1kW3tyyudU">阿萨德《宗教的谱系》(1993)</div>
+      <div class="b-meta" data-page-node-id="D0qkOtihwcGtg8NCNiwAXX">Talal Asad · 治盲区③</div>
+      <div class="b-why" data-page-node-id="SofII6baWYv8z1PtNLnz8h">直击命门：麦格雷戈贯穿全书的"belief"是 17 世纪新教欧洲的地方性概念。读完你无法再用"信仰"这个词而不不安。</div>
+    </div></div>
+    <div class="book" data-page-node-id="HhfcsnddUr9Ktd4pHpbTUE"><span class="dot opp" data-page-node-id="HH3WencNZwNKzFzJehrQtT"></span><div data-page-node-id="GANIuFQJOieCFoheencPcR">
+      <div class="b-title" data-page-node-id="5yc8wP7eT5HsZtG8xTG8Ot">林肯《Holy Terrors》(2003)</div>
+      <div class="b-meta" data-page-node-id="RTNgM1qzzZ5w7bEWJfFBgf">Bruce Lincoln · 治盲区⑤</div>
+      <div class="b-why" data-page-node-id="HEhxXq2P17RBk6KvVHN13D">核心问题："谁在用这套话语、对谁有利"——恰好是麦格雷戈系统性淡化的一面。</div>
+    </div></div>
+    <div class="book" data-page-node-id="SOCeR1balDnTp6lfTNMu6y"><span class="dot opp" data-page-node-id="yENHXqkUuHKAhUZFGVLqOy"></span><div data-page-node-id="K6yZUGprhGFAwRZrzCyjEQ">
+      <div class="b-title" data-page-node-id="ExuUYP63jm6jXyJ9nqoc8L">祖克曼《没有上帝的社会》(2008，中译 2021)</div>
+      <div class="b-meta" data-page-node-id="c0VVa4xS1D6rJ64F1dwllc">Phil Zuckerman · 反对核心论点</div>
+      <div class="b-why" data-page-node-id="vOo2Y3rUVodv7qGRU0DoTL">丹麦瑞典宗教性可能史上最低，同时暴力犯罪与腐败水平世界最低。推翻"填位者必须是宗教"，反而验证"空位不空律"。</div>
+    </div></div>
+
+    <div class="card ribbon-left" data-page-node-id="pcPwT5lXLHDNszpxBkkJTW">
+      <h4 data-page-node-id="jHfsnPK3FUXix5382jfnOm">一句话对照</h4>
+      <table data-page-node-id="cHGy7Zn7YRrpLzfTqjXNKU">
+        <tr data-page-node-id="GXh2iz2qaNaGY5gy2EvDng"><th data-page-node-id="9LXQzXzMuEtugm40JMX2eG">问题</th><th data-page-node-id="EO90l1KysOHGdKHpVwfyig">麦格雷戈</th><th data-page-node-id="k6zTgUzZXMDyaf7jjI4gzi">阿萨德</th><th data-page-node-id="JKqz0nDhl5tKR2Dswm7Lp4">诺伦扎扬</th><th data-page-node-id="G86bjptCQlqAV7Pxk6Vbq1">祖克曼</th><th data-page-node-id="n1qvl0NsXB1CHvKPh3yLVv">泰勒</th></tr>
+        <tr data-page-node-id="32Ke7zHWDU7QTRn4iuTLS9"><td data-page-node-id="wzgPnQjDj93wRngWCEheBp">信仰是什么</td><td data-page-node-id="RXvhnV9UPEfgEWaqTiJwmf">社会的操作系统</td><td data-page-node-id="1I9MrBrdNVgGjZZ0tc6hXI">一个欧洲概念</td><td data-page-node-id="A0RkknyLpoE5RomJidSSjd">一套监控装置</td><td data-page-node-id="z4YHxMfVz9UI5yzqU4kKYO">一种可选项</td><td data-page-node-id="X0GtDAb0aIw3CSYxPkjwIA">可能性的条件</td></tr>
+        <tr data-page-node-id="BNU5o9MuHB3kvB4xgAt6lN"><td data-page-node-id="J2LZsbOGns7hHL6b89pF0T">会消失吗</td><td data-page-node-id="YuCRLFGk5RvjN4kuBJixH8">不会</td><td data-page-node-id="ZaqLoqmcF882HlOu5ilGm9">问题本身错了</td><td data-page-node-id="fPpRJT3jkZsYGKRzpQjIHW">被世俗监控替代</td><td data-page-node-id="4gSk5uD1FL7whyXUNAsAgj">已消失（北欧）</td><td data-page-node-id="znQiFQ6ibABPqAuP2VD1zj">没消失，变形了</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTERS ============ -->
+  <section id="chapters">
+    <span class="sec-tag">Chapters · 逐章精读</span>
+    <h2>引言 + 30 章 · 六层精读<span class="en">Close reading, chapter by chapter</span></h2>
+    <p style="font-size:.95rem;color:var(--ink-soft);margin:8px 0 12px">---</p>
+    <div class="ch-sec-h">结构总图 · 各章到底在处理什么对象（此表为拆解者重建，作者在书里没有这样排过）</div>
+    <p style="font-size:.95rem;color:var(--ink-soft);margin:8px 0 12px">原版目录是一句「引言 + 六个部分，每部分五章」的整齐排比，作者从未说明这三十章之间有递进关系。但把每一章<strong>处理的对象</strong>排成一列，会浮出一条清楚的暗线：<strong>这本书其实是沿着「共同体这件事能硬到什么程度」一路走下去的。</strong></p>
+    <table class="ch-map"><thead><tr><th>单元</th><th>处理的对象（物证）</th><th>性质</th><th>在序列里的位置</th></tr></thead><tbody><tr><td>引言</td><td>一周七天的名称</td><td>时间化石：最不显眼的公共协议</td><td>起点：用一件人人都在用、却没人意识到的东西开局</td></tr><tr><td>1 信仰的起源</td><td>乌尔姆狮人像</td><td>想象力：为永不可见之物赋形</td><td>一部：宇宙观——信仰先回答「我们在宇宙的什么位置」</td></tr><tr><td>2 火与国家</td><td>罗马维斯塔圣火／1795 宝玑时钟</td><td>国家的中心是一堆需要有人看护的火</td><td>一部：从自然元素转向<strong>共同体本身的中心</strong></td></tr><tr><td>3 生与死之水</td><td>恒河、卢尔德圣水、约旦河水</td><td>为身体做好迎接神灵的准备</td><td>一部：同一逻辑的第二种元素</td></tr><tr><td>4 光的回归</td><td>纽格莱奇墓的冬至阳光</td><td>在最深的严冬给出一份宇宙承诺</td><td>一部：时间维度——承诺可以被准时兑现</td></tr><tr><td>5 收获与敬意</td><td>尤皮克人的海豹／埃及谷物木乃伊</td><td>互惠，而非支配</td><td>一部：<strong>第一次提出与《创世记》相反的关系模型</strong></td></tr><tr><td>6 与逝者共处</td><td>印加祖先木乃伊／中国祖先画像／纸扎</td><td>与死者同住是常态，分开才是例外</td><td>二部：共同体内部——先把<strong>时间上的成员</strong>（死者）算进来</td></tr><tr><td>7 诞生与身体</td><td>女王的身体／亚伯拉罕诸教的生育立场</td><td>身体从青春期起就被社群主张</td><td>二部：再把<strong>身体</strong>这个入口算进来</td></tr><tr><td>8 传统中的位置</td><td>瓦努阿图编发仪式／犹太儿童学《托拉》</td><td>长者把儿童引入一个已存在的世界</td><td>二部：<strong>个体如何被接进既有秩序</strong></td></tr><tr><td>9 让我们祈祷</td><td>米勒《晚祷》</td><td>公开召集一场私人行为</td><td>二部：日常的、重复的身体动作</td></tr><tr><td>10 歌的力量</td><td>《海湾圣咏集》／《奇异恩典》</td><td>同步的身体动作才是「我们感」的发生器</td><td>二部收束：<strong>由静态身份走向同步行为</strong></td></tr><tr><td>11 神之家</td><td>哥贝克力石阵／吉尔苏神像游行泥板</td><td>先有神庙，后有城市</td><td>三部：公共空间——<strong>信仰开始占有空间</strong></td></tr><tr><td>12 献给神的礼物</td><td>穆伊斯卡金筏／帕特农神庙</td><td>神圣世界与金融世界的共同史</td><td>三部：空间里的交换</td></tr><tr><td>13 神圣的杀戮</td><td>阿兹特克人祭／古希腊动物献祭</td><td>交换逻辑推到尽头的代价</td><td>三部：<strong>交换的极限</strong></td></tr><tr><td>14 做一个朝圣者</td><td>卢尔德的酒店房间数</td><td>重心从「有形」移向「无形」</td><td>三部：人开始<strong>向空间移动</strong></td></tr><tr><td>15 节庆时刻</td><td>农神节／《圣诞颂歌》／《圣尼古拉来访》</td><td>圣诞节是 19 世纪的发明</td><td>三部收束：<strong>时间被重新划分，传统可被后期制造</strong></td></tr><tr><td>16 女性守护神</td><td>以弗所阿尔忒弥斯像／瓜达卢佩圣母</td><td>一个形象如何代表一个共同体</td><td>四部：媒介与形象——<strong>形象开始承担共同体</strong></td></tr><tr><td>17 精神复制时代的艺术作品</td><td>俄罗斯圣像绘制手册／杜尔迦像</td><td>复制品同样有效，力量在关系不在材质</td><td>四部：形象的<strong>复制</strong></td></tr><tr><td>18 意义的累积</td><td>赫尔特亨《圣诞》／桑人岩画／资生堂楼顶稻荷神社</td><td>宗教显得恒久，只因它始终在无形地改变</td><td>四部：形象的<strong>叠加</strong></td></tr><tr><td>19 改变你的生活</td><td>圣周五《谴责》／被钉十字架的基督像</td><td>形象反过来命令观看者</td><td>四部：形象的<strong>反噬</strong></td></tr><tr><td>20 拒斥图像，尊崇话语</td><td>伊斯兰书法／《古兰经》背诵者</td><td>拒斥图像不等于摆脱图像</td><td>四部收束：<strong>反例</strong>——文字本身被制成图像</td></tr><tr><td>21 多神的祝福</td><td>罗马帝国的神祇／前 173 年元老院法令</td><td>多神是加法：容纳大，动员弱</td><td>五部：边界政治——<strong>神的数量决定边界的宽严</strong></td></tr><tr><td>22 一神的力量</td><td>《十诫》石板</td><td>一神是排他：动员强，边界焊死</td><td>五部：与 21 对偶的<strong>另一极</strong></td></tr><tr><td>23 地方之灵</td><td>泰国灵屋／瓦努阿图的空间语言</td><td>既不是神也不是魔的中间层</td><td>五部：<strong>解围者</strong>——防止二分法绑架全书</td></tr><tr><td>24 若神与我们同在</td><td>1896 年阿德瓦战役／拉斯塔法里运动</td><td>当这个神同时是战神</td><td>五部：边界从信仰变成<strong>领土</strong></td></tr><tr><td>25 宽容与不宽容</td><td>孟买／阿克巴赞助的印度教故事插图</td><td>宽容是一种管理技术，不是放任</td><td>五部收束：<strong>这套机制有没有刹车</strong></td></tr><tr><td>26 天命</td><td>伊丽莎白二世加冕圣油／贝宁 Oba 权杖／周代青铜铭文</td><td>授权的锋利之处在于可被收回</td><td>六部：国家权力——<strong>合法性技术</strong></td></tr><tr><td>27 愿你的国降临</td><td>巴尔·科赫巴加盖币／马赫迪白旗</td><td>硬币与旗帜成为神学宣言</td><td>六部：信仰<strong>想要拥有国家</strong></td></tr><tr><td>28 拧紧螺丝</td><td>17 世纪日本告示板／胡格诺教堂被拆毁版画</td><td>把「异端」重分类为「犯罪」</td><td>六部：国家<strong>清除</strong>信仰</td></tr><tr><td>29「没有上帝！」</td><td>1795 年宝玑透明玻璃盒时钟（<strong>回返第 2 章</strong>）</td><td>废除上帝后，机械仍在走，约束没了</td><td>六部：国家<strong>废除</strong>信仰，方向与 28 相反</td></tr><tr><td>30 与彼此共处</td><td>2013 年大壶节／T.S. 艾略特诗句</td><td>与他人正确地共同生活，是最接近天堂的事</td><td>终点：<strong>回到起点，给出出口</strong></td></tr></tbody></table>
+    <div class="ch-sec-h" style="margin-top:22px">五组对偶（拆解者重建）</div>
+    <p style="font-size:.95rem;color:var(--ink-soft);margin:8px 0 12px">- <strong>2 ↔ 29</strong>：同一件物证——1795 年宝玑制造的透明玻璃盒时钟——在全书出现两次。第 2 章里，看得见机械装置等于把上帝设计成钟表匠；第 29 章里，神被拿掉之后机械依然在走，但国家权力连一种抽象的约束都没有了。<strong>第一次证明上帝在，第二次证明拿掉上帝之后剩下的东西有多危险。</strong></p>
+    <ul class="clean"><li><strong>2 ↔ 29</strong>：同一件物证——1795 年宝玑制造的透明玻璃盒时钟——在全书出现两次。第 2 章里，看得见机械装置等于把上帝设计成钟表匠；第 29 章里，神被拿掉之后机械依然在走，但国家权力连一种抽象的约束都没有了。<strong>第一次证明上帝在，第二次证明拿掉上帝之后剩下的东西有多危险。</strong></li><li><strong>16 ↔ 17</strong>：原件与复制品。第 16 章问一个形象凭什么代表共同体，第 17 章回答复制品为什么同样有效——两章合起来才说明：<strong>力量在关系里，不在材质里。</strong></li><li><strong>19 ↔ 20</strong>：图像改变人生 vs 拒斥图像。第 20 章是第 19 章的反例——拒斥图像并不等于摆脱图像，只是把文字本身制造成了图像。两条相反的路线，落在同一个机制上。</li><li><strong>21 ↔ 22</strong>：全书最明确的一组对偶。多神是加法，规模收益极大、动员力弱；一神是排他，动员力极强、代价是把「我们／他们」焊死。<strong>第 23 章是这一组的解围者</strong>：多神与一神这组二分法解释不了泰国灵屋、瓦努阿图空间语言里那些既不是神也不是魔的存在。</li><li><strong>28 ↔ 29</strong>：国家与信仰的两个极端。第 28 章是信仰太多、被判定为威胁而遭清除；第 29 章是信仰被国家主动废除。方向相反，落在同一个结论上——<strong>当信仰与国家彻底绑死，无论绑的方向是正还是负，出问题的是被绑死的那一环。</strong></li></ul>
+    <div class="ch-sec-h" style="margin-top:22px">首尾扣环</div>
+    <p style="font-size:.95rem;color:var(--ink-soft);margin:8px 0 12px">- <strong>引言 ↔ 第 30 章（全书主扣环）</strong>：书名是 Living with <strong>the Gods</strong>，末章是 Living with <strong>each other</strong>。引言那句「我们决定如何与自己的神相处，也就决定了如何与彼此相处」，在末章被翻面兑现——前二十九章一直在证明信仰是最高效的划界工具，末章必须回答「那还怎么在一起生活」，否则全书只有诊断没有出口。</p>
+    <ul class="clean"><li><strong>引言 ↔ 第 30 章（全书主扣环）</strong>：书名是 Living with <strong>the Gods</strong>，末章是 Living with <strong>each other</strong>。引言那句「我们决定如何与自己的神相处，也就决定了如何与彼此相处」，在末章被翻面兑现——前二十九章一直在证明信仰是最高效的划界工具，末章必须回答「那还怎么在一起生活」，否则全书只有诊断没有出口。</li><li><strong>第 1 章 ↔ 第 30 章</strong>：第 1 章的狮人像证明，四万年前的人类社群就已经允许某人脱离生存劳动去制造无用之物；第 30 章的大壶节证明，四万年后这种「为了一件看不见的东西而大规模聚集」的能力一点没变。<strong>开头是能力的最早证据，结尾是能力的最新证据。</strong></li><li><strong>第 5 章 ↔ 第 25 章</strong>：第 5 章提出「治理这地」的支配观在诸信仰中其实是异类，多数信仰主张的是互惠；第 25 章的宽容则是这种互惠观在现代政治里的残存形式。<strong>一条从「人与自然的互惠」延伸到「人群之间的互惠」的暗线。</strong></li></ul>
+    <p style="font-size:.95rem;color:var(--ink-soft);margin:8px 0 12px">---</p>
+    <details class="ch" open>
+      <summary><span class="ch-no">引言</span>信仰与归属 Believing and belonging<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>麦格雷戈先用三句话把读者的预期砍掉：这本书<strong>不是宗教史，不是为信仰辩护，更不是为某个特定信仰体系辩护</strong>。他要处理的不是「个人信什么」，而是「整个社会信什么、做什么」——信仰作为<strong>实践</strong>而非<strong>教义</strong>。接着他指出启蒙方案漏掉的那个常量：把宗教从国家里剥离出去，并不会让冲突结束，因为人需要的不是一套教义，而是<strong>归属</strong>，以及一个每个人都在其中有份的故事。最后他给出一个任何人当场就能验证的证据：一周七天的名字。你每报一次日期，就在念一遍异教神的名字——星期命名是这套机制留下的时间化石。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>引言交出的是全书的<strong>题眼与判据</strong>，两者缺一后面三十章都立不住。题眼是那句对仗：<strong>我们决定如何与自己的神相处，也就决定了如何与彼此相处</strong>——这一句把「信仰」从私人领域拽进公共领域，使后面所有关于火、水、图像、国家的讨论都合法地属于同一个议题。判据是<strong>观察单位的置换</strong>：不可验证的内心信念不进分析，进分析的是物、场所、行为。抽掉引言，后面三十章会退化成一本装帧精美的宗教文物图录——有物证，没有论点。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>放在最前面的作用是<strong>先拆读者的默认框架，再上物证</strong>。如果直接以第 1 章的狮人像开局，读者会把它当成一个关于「宗教起源」的故事读下去；引言先把「宗教 = 私人灵性 / 教义体系」这个默认框架拆掉，第 1 章的物证才会被读成「一个社会允许某人脱离生存劳动去制造无用之物」——一个关于<strong>社会</strong>的事实，而不是关于<strong>神</strong>的事实。它与末章第 30 章「与彼此共处」构成全书最强的<strong>首尾扣环</strong>：书名是 Living with <strong>the Gods</strong>，末章是 Living with <strong>each other</strong>，引言用一句话把这两件事焊死，末章用三十章的物证把这句话兑现。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>In deciding how we live with our gods we also decide how to live with each other.（我们决定如何与自己的神相处，也就决定了如何与彼此相处。）<span class="en">（出版方护封 / 引言，全书题眼）</span></div>
+        <div class="ch-quote"><span class="star">★</span>Such beliefs have a unique power to define – and to divide – peoples.（这样的信念有一种独特的力量去定义——也去撕裂——人群。）<span class="en">（Dublin Review of Books 引）</span></div>
+        <div class="ch-quote"><span class="star">★</span>'Who are we?' is the great political question of our time, and it is essentially about what we believe.（"我们是谁"是我们时代最大的政治问题，而它本质上关乎我们相信什么。）<span class="en">可核对的原文引文</span></div>
+        <div class="ch-quote"><span class="star">★</span>To name the days of the week is, for most of the world, to declare consciously or unconsciously, the religious history of your particular community.（给一周的日子命名，对世界上大多数人而言，就是有意无意地宣告你自己社群的宗教史。）<span class="en">可核对的原文引文</span></div>
+        <div class="ch-quote"><span class="star">★</span>We still live every day with the gods of our ancestors and our conquerors, inhabiting an ancient but stable structure of time.（我们至今每天都和我们祖先的、以及我们征服者的神住在一起，栖居在一个古老却稳固的时间结构里。）<span class="en">可核对的原文引文</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>星期命名是这套机制留下的化石：它不是一件器物，却比任何器物都更难被替换——因为它被写进了每个人每天都要用的时间单位里。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>引言最漂亮的一笔，也是最脆弱的一笔。「一周七天都在念异教神的名字」这个论证，证明力其实只覆盖印欧语系——星期名称在日语里是日月五行，在中文里是数字加「星期／周」，在希伯来语里同样只有安息日是例外。<strong>一个只能证明一部分语言的例子，被用来支撑一个关于全人类的论点。</strong> 这不是致命伤，但它暴露了全书一个贯穿性的方法风险：麦格雷戈是博物馆长，他的论证高度依赖「一件物证能否独立承载一个跨文化命题」，而物证的分布从来不是均匀的——有文物留存的文明会不成比例地占据篇幅。引言用星期命名开局，事实上是拿一个<strong>北欧—日耳曼语族的化石</strong>当作人类通则的入口。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想你上次在群里约时间。你说「周三下午」，脑子里完全没有出现过任何神——但你刚才用了一个以北欧神命名的单位，而群里所有人都在同一套不用解释的时间格子里对齐了。这就是引言说的那种东西：<strong>最高效的公共协议，往往是你完全意识不到自己正在用的那一个。</strong> 一个人换一份工作、进一个新圈子，最先要适应的从来不是规章制度，而是那些没人会专门告诉你、但所有人都在遵守的默认单位——几点算迟到、事情要在群里说还是私聊说、什么话算玩笑。这些规则大部分从未被写成条文，却和星期命名一样稳固：你每天都在用，你从来没想过它为什么是这样，而你一旦不按它来，立刻就会被识别为「不是我们这边的人」。</p>
+        <p>---</p>
+        <p># 第一部分：我们在图景中的位置（Our place in the pattern）</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">1</span>信仰的起源 The beginnings of belief<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>全书从一件约四万年前的猛犸象牙雕像讲起：德国出土的乌尔姆狮人像，人身狮首，是迄今所知最古老的具象雕塑之一。它的关键在于雕的是一个自然界从未存在过的形象——既不是狮子，也不是人，而是两者的合一，作者据此把信仰的起点定位于想象力而非恐惧。物证本身还携带社群信息：制作这样一件精工之物至少需要约四百小时，只有成熟雕刻家能胜任，这意味着冰河时代的社群愿意让一个有能力的人长期脱离觅食、缝衣、守火等生存任务，去干一件对物质存活毫无用处的事。对面部的磨损分析显示雕像被长时间把玩、可能跨越数代人，指向某种持续的仪式生活；同一地区出土的多种骨笛则把物证链从"造一个形象"扩展到"共同的活动"与"进入另一个领域"。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章是全书方法论的定音鼓，三件事都在这里一次性立起来：观察单位是社群而非个人（四百小时的背后是整个社群的许可）；证据入口是物而非文本（没有经文、没有口传，只有一件象牙）；不判真伪、只问功能（不问狮人像"灵不灵"，只问社群为什么舍得为它投入）。抽掉这一章，全书"以物观信"的做法就成了无根之木，副标题里的"四万年"也无从起算——它同时为书的核心论点供给了原点事实：信仰自诞生起就是社群用想象力协调集体资源的公共行为，而不是个人对神的私下看法。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>作为全书第一章，它必须先于一切"有文本的宗教"出现，才能让"证据入口是物"这条方法规则不带偏见地展开——一旦从经书讲起，方法就输了。它与紧随其后的第 2 章构成一组递进：第 1 章是无国家的冰河时代社群为想象之物投入稀缺人力，第 2 章则是国家把这同一套"为无用之物投入关键资源"的逻辑收编为中央制度（炉膛变成 focus、变成国家中心）——先社群、后国家，是全书后段一切政治论述的预演。它还与第 4 章形成远距的物证呼应：狮人像的四百小时与纽格莱奇横跨数代人的巨石工程，是同一条定律的两次兑现。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>the oldest evidence yet found of the human mind giving physical form to something which can never have been seen<span class="en">迄今发现的人类心智为永不可能被看见之物赋予物质形态的最早证据。</span></div>
+        <div class="ch-quote"><span class="star">★</span>Yet they allowed someone of great ability to spend a lot of time away from such tasks … to produce an object which could play no part in its physical survival.<span class="en">然而他们允许一个极有才能的人长时间脱离这些活计……去制作一件对族群的物质存活毫无用处的物件。</span></div>
+        <div class="ch-quote"><span class="star">★</span>Imagination is at the core of it. What we do very well is thinking ahead, into the future, beyond our individual lives, as well as into the past.<span class="en">想象力才是核心。我们真正擅长的是向前思考，想到未来，想到超出我们个体生命之外，也想到过去。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>人类信仰的起点不是对未知之物的恐惧，而是把一个世上从未有过的形象亲手雕出来的那种想象力。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章的论证有一个未被言明的外推：从一件出土于特定地区的象牙雕像，直接跳到"信仰的起源"这个全人类命题。四万年前的信仰若真实存在，大概率大量寄身在木、皮、声、舞这些不留痕迹的载体上，象牙只是恰好活得下来——用唯一幸存的证据给信仰断代，方法上接近幸存者偏差。更根本的一处滑动：作者从"对物质存活无用却投入巨大"推出"这是信仰"，但这只能证明社群愿意供养意义生产，无法证明所生产的就是宗教——一个同样成立的解释是装饰、威望或游戏。"想象力是核心"作为命题几乎不可证伪，什么都能装进去，这恰恰是它作为开章立论最需要被读者警惕的地方。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>一个人完全可以从自己身上验证这一章的逻辑：想想你有没有为一件"毫无用处"的事花过几百个小时——给还没出生的孩子织毛衣、练一首不打算弹给任何人听的曲子、把一部老剧反反复复地重看。这些事对收入、晋升、生存全无帮助，但多数人心里清楚，正是这类事把日子从"活着"里区分了出来。再想一步更狠的验证：家庭里谁被允许"不做正经事"？一个孩子想学画画，家长是勒令去补课，还是默许他占用一个周末——冰河时代那个社群做出的选择，跟今天一家人围着饭桌做的选择，是同一道题。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">2</span>火与国家 Fire and state<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章追踪"火"如何从家庭炉灶一路升格为国家中枢。focus 一词在拉丁语里的本义就是"炉膛"，人们每次说"焦点"，都在无意识地复刻火的聚集力。罗马把这条逻辑做到了极致：灶火女神维斯塔的神庙是整个城市与帝国的"炉膛"，一个彻底家庭化的女神成了国家的中央象征；维斯塔贞女的全部职责就是让圣火不灭，火熄即被视为罗马人与神的关系破裂。这套符号此后从未退场——伊丽莎白一世以童贞女王自比维斯塔贞女，玛丽·安托瓦内特让人把自己画成维斯塔，1914 年英国把"守住家中的火"变成全民动员的口号，巴黎凯旋门下的纪念之火自 1923 年 11 月 11 日点燃后，每晚由退伍军人和学童举行续火仪式，二战德占期间也未中断。章末的收束极狠：最后一位维斯塔贞女 394 年卸任，仅仅一代人之后，哥特人洗劫了罗马。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章供给了全书的第一根制度支柱：信仰如何从家庭装置放大为国家装置——"我们决定如何与自己的神相处，也就决定了如何与彼此相处"这条核心命题，在这里第一次以国家为刻度得到演示。它同时埋下全书另一条定律：符号比神学活得更久，维斯塔的神学早已无人信奉，但"中心是一堆必须有人看护的火"这个结构一次次换装重来。抽掉这一章，第一部分就少了从社群到国家的关键一跃，后文第五、六部分处理神与世俗权力的全部讨论也失去了起点——读者将不知道国家的"中央神圣装置"是从哪里长出来的。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它与第 1 章构成递进：狮人像展示的是无国家的社群如何供养神圣之物，本章则展示国家如何把同一个炉膛收编为自身的中枢——社群在前、国家在后，为全书后段的政治叙事搭好台阶。它与第 3 章构成一组元素对偶：火与水都是用来重置人与世界关系的自然物，但火的本性是"必须持续看护、一旦疏忽就熄"，水的本性是"完成一次转化即告生效"——延续与更新，两种仪式逻辑各占一章。本章还埋着全书最长的一处物证回返：1795 年宝玑透明玻璃盒时钟在此登场，看得见的机械装置对应着"上帝作为钟表匠"的世界观；到第 29 章"没有上帝！"它会再次出现——那时神被拿掉，机械照走，却不再有任何抽象之物约束它。此章看表，是造物主的设计；彼章看表，只是零件在空转。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>Just as any fire will perish if it is not carefully tended and fed, so the institutions of a society will crumble if not constantly repaired and renewed.<span class="en">正如任何火若不悉心照料与添柴就会熄灭，一个社会的制度若不持续修补与更新，也会崩塌。</span></div>
+        <div class="ch-quote"><span class="star">★</span>'focus' is the Latin for hearth, and every time we use the word, we pay unconscious tribute to the incomparable gathering power of fire.<span class="en">focus 在拉丁语里就是"炉膛"，我们每用一次这个词，都在无意识地向火那无可比拟的聚集力致敬。</span></div>
+        <div class="ch-quote"><span class="star">★</span>The domestic fire of Vesta was the central symbol of the Roman state.<span class="en">维斯塔家灶之火，是罗马国家的中央象征。</span></div>
+        <div class="ch-quote"><span class="star">★</span>The last Vestal Virgin stood down in 394. Only a generation later, the Goths sacked Rome.<span class="en">最后一位维斯塔贞女在 394 年卸任。仅仅一代人之后，哥特人洗劫了罗马。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>一个共同体的中心，就是那堆必须有人日夜看护、否则就会熄灭的火。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>章末那组并置——贞女卸任、一代人后罗马遭劫——是全书修辞最重的一处因果暗示，也最经不起追问：罗马的陷落有军政经济的层层原因，把两个事件剪在一起产生的"熄火亡国"印象，是叙事的胜利、史学的偷懒。更深的问题在于本章对"延续"的态度：凯旋门的火在德占期间照常续燃，作者把它当作仪式生命力的证据，但同一堆火先后为彼此敌对的政权服务，恰恰说明这套结构是空的、谁都能往里填内容——全书主张"只问功能不问真伪"，可到了这里，功能被径直当成了价值：续火本身被写得值得敬意，而"空心化延续是否还算同一种信仰"这个尖锐问题被轻轻放过了。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>一个人不需要懂任何罗马史就能撞见这套结构。想想你家那盏总有人记得留的灯——加班晚归的人推开门那一刻，灯还亮着，这件事没人讨论过，但全家人都默认它不能断；一旦搬了家、换了作息，没人再记得留灯，很多人会说不清为什么，家就是"散了一点"。再想想家族群：每年固定只有某位长辈发的那条问候还维系着几十个沉默的头像，那台手机一换，群就死了。续火仪式的本质不是火，是"这件事必须有人做、而且真有人做"——你可以今晚就检查一遍，你所在的小集体里，那堆"火"是什么，现在还谁在添柴。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">3</span>生与死之水 Water of life and death<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章横跨三大信仰场景，展示水在做同一件事：把人从旧的关系里取出来，为迎接神灵的活动做准备。英国王室至今用约旦河水为王室成员施洗；欧洲的天主教徒把卢尔德的水装瓶带回家；在印度，核心不是庙而是河——恒河在神话中先以银河的形态流过天空，然后才降临北印度平原，它是女神恒迦的液态化身，是天地之间沟通与共融的通道。恒河同时掌管生死：在瓦拉纳西的河边火葬、或把骨灰交入恒河，灵魂便能从轮回的重负中解脱。作者由此把水的净化从"隐喻"还原为"操作"：它不是在比喻上象征洗礼，而是在实际上重新设定了人与世界的关系。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这是全书跨信仰比较的第一份大规模"同构证据"：神不同、教义不同、地理不同，水履行的职能却完全一致。它把全书"不判真伪、只问功能"的方法从口号兑现成可操作的示范——不比较恒迦与圣母谁更真，只看两者都在用同一种物质完成同一种社会手术。抽掉这一章，全书的比较方法就停在宣言层面，后续一切"看似不同的信仰其实在解决同一个问题"的论证都缺了第一个实证支点；"我们是谁"的命题也少了一块底砖，因为在印度，身份认同的锚点根本不在庙宇而在河。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它与第 2 章构成一组元素对偶：火与水都是重置人神关系的自然物，但火以"持续看护"定义延续，一旦断绝便是关系破裂；水以"一次完成"定义转化，仪式做完即已生效——两种相反的仪式语法紧挨着摆放，等于替读者搭好一套分析模板：往后看到任何仪式，先问它属于"火型"还是"水型"。它与第 4 章构成递进：本章的水处理的是身体层面的入门转化，第 4 章的光处理的是社群层面的年度存亡——从个体仪式升到宇宙日历，正是第一部分标题"我们在图景中的位置"逐级展开的路径。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>It is the rivers that matter. They really are the temples of India.<span class="en">真正要紧的是河流。它们才是印度的神庙。</span></div>
+        <div class="ch-quote"><span class="star">★</span>The Ganges is actually the liquid form of the goddess Ganga … a channel of communication and of communion between heaven and earth.<span class="en">恒河其实是女神恒迦的液态形态……是一条天地之间沟通与共融的通道。</span></div>
+        <div class="ch-quote"><span class="star">★</span>Water to prepare the body for the activity of the spirit, water that readies humans for a new relationship with the world.<span class="en">水为身体做好迎接神灵活动的准备，水让人类准备好与世界建立一种新的关系。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>水在世界各信仰里做的其实是同一件事：替人完成一次关系的重置，让他有资格进入与神、与世界的新约。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章的样本选择值得警惕：恒河、卢尔德、约旦河，三个都是水仪式里最响亮的名字，用最典型的例子证明"普遍功能"，接近用明星案例证明规律。更麻烦的是"只问功能"的双刃：一旦把教义差异全部压平成"都是重置关系"，比较就滑向套套逻辑——凡能重置关系的都算证据，不能重置关系的案例（大量传统里水同时是危险、污染与死亡的载体）就天然不进入视野。作者宣布悬置真伪，却也顺手悬置了实用的解释（清水冲洗的卫生效果同样能解释部分仪式的存续），什么时候用功能、什么时候不管功能，标准并未言明，这是方法三设定里最没交代清楚的一环。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>一个人今天仍然在用身体验证"水是操作不是隐喻"。想想你有没有过这种经历：谈一件大事之前，先去洗把脸，或者在面试、见重要的人之前特意冲个澡换身衣服——事情还没开始，但洗完那一刻你确实觉得自己"重新来过"了。再想想大扫除：很多人会发现，把屋子彻底收拾一遍之后，纠结了很久的决定忽然就敢做了——水换成了抹布，逻辑一模一样：先重置环境，再重置关系。你甚至可以当场回想，家里有没有人坚持"回家第一件事是洗手"——问一句为什么，答案多半不是卫生，而是"不洗就不算到家"。这句"不洗就不算"，就是水的仪式语法。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">4</span>光的回归 The return of the light<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章以爱尔兰纽格莱奇墓为核心物证：这座比巨石阵和金字塔更古老的石阵墓室，在每年 12 月 21 日上午 8 点 58 分，让一道窄窄的阳光沿专门设计的通道射入地下，照亮墓室 17 分钟。作者首先强调"死亡的寒冬"并非修辞——直到二十世纪，欧洲的冬季死亡率仍显著上升，食物与燃料够不够撑到春天，是每个前现代社群真实的年度悬念。冬至之所以成为从死亡到生命的转换轴点，正因为它是光开始回归的第一天；欧亚大陆的大量巨石建筑——布列塔尼的 Gav'rinis、马耳他的 Ggantija——都不约而同对准了回归的第一缕阳光。建造纽格莱奇需要一个高度组织化的社群：足够的人口与农业剩余，投入巨大且技术精湛的劳动力，工程可能横跨数代人。章末点出的原理是：为存在性的、而非物质性的收益，投入关键资源。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章供给了全书最重要的一条定律："为存在性而非物质性的收益投入关键资源"——它解释了本书一切神圣工程的经济学：狮人像的四百小时、大教堂、朝圣路，成本逻辑全部同源。它同时给第一部分的主题"我们在图景中的位置"以正面定义：所谓位置，就是社群用建筑物把自己钉在宇宙节律的一个确定坐标上，冬至那 17 分钟就是钉子。抽掉这一章，第一部分就只剩三件孤立的文物而没有原理，全书"信仰回答的是存在问题而非生存问题"的主张也失去了最硬的证据——没有什么比一座为死后之人设计采光的大石头房子更能证明这句话。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它与第 3 章构成递进：水完成的是个体的一次性转化，光承诺的是社群的年度存续——从身体升到日历，从入门仪式升到共同体级工程，第一部分由内向外推了两级。它与第 5 章构成一予一报的递进：本章是自然向人给出承诺（光会回来、庄稼会长），第 5 章是人向自然回礼（收获时致敬意）——先把"图景"讲完，下一章才轮到人在图景中承担什么。它还与第 1 章遥相扣合：狮人像的四百小时与纽格莱奇的数代人工程，是同一条"为存在性收益投入关键资源"定律在四万年跨度两端的兑现，首章埋下的经济逻辑在此显形。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>It is the cosmic promise, given in the depth of winter, that light and warmth will return and new crops will grow.<span class="en">这是在最深的寒冬里给出的一份宇宙承诺：光与暖会回来，新的庄稼会长起来。</span></div>
+        <div class="ch-quote"><span class="star">★</span>The investment of critical resources for existential rather than material advantage.<span class="en">为存在性的、而非物质性的收益，投入关键资源。</span></div>
+        <div class="ch-quote"><span class="star">★</span>Every year at precisely 8.58 on the morning of 21 December … For 17 minutes, this narrow sun beam illuminates the underground tomb.<span class="en">每年 12 月 21 日上午 8 点 58 分……这道狭窄的阳光照亮地下墓室，持续 17 分钟。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>冬至那道准时照进墓室的阳光，是一个社群用数代人的巨石工程买下的确定性：光会回来。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章最诱人的部分恰恰最不牢靠：8 点 58 分与 17 分钟的精确数字给读者一种"古人精确设计"的震撼，但建造者没有留下只言片语，"宇宙承诺"是今人塞进石头里的现代词汇——对准冬至的建筑也完全可能只是历法观测，不必然承载存在的焦虑。考古天文学还有个统计学暗礁：古代建筑数量庞大，总有一些凑巧对准某个天文事件，单靠"对准了"无法区分设计与巧合。最值得注意的论证失衡在于：本章关于工程组织的部分（人口、剩余、劳力）证据极硬，关于意义的部分（承诺、慰藉）几乎全靠投射——作者把整个论证的重心压在了较软的那条腿上，却用较硬那条腿的可靠性给整章背了书。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>一个人不需要去过爱尔兰就活在冬至逻辑里。想想冬天下班时天已经全黑的那种心情，和夏天傍晚七点天还亮着时的那种心情——同一个人、同一份工作，前者觉得日子在熬，后者觉得日子在过。再想想你身边有没有人一到冬天就把办公桌挪到窗边、午休特意下楼晒十分钟太阳，或者全家雷打不动要在冬至那天包一顿饺子——没有人说得出这些讲究的来历，但它们执行的正是同一件事：在最黑的时节里，主动给自己找一道会回来的光。你甚至可以自查：去年冬天你最难受的那几周，是不是恰好是天最短的那几周——如果是，纽格莱奇的建造者四千年前就替你测好了这个数据。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">5</span>收获与敬意 Harvest and homage<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章用两套古老实践颠覆一个现代默认值：《创世记》"治理这地"所代表的、由神授予的随意支配自然之物的那种权利观，在人类诸信仰中其实是异类，多数体系主张的是更复杂的互惠关系。阿拉斯加的尤皮克人靠海豹过活——肉皮肠供给营养，脂肪炼油作燃料——但他们的仪式是邀请这一整年被猎获的动物的灵魂：公开尊荣你必须杀死的动物，给被杀的海豹递上一口水好让它的灵魂不渴，用尽动物的每一部分，因为它们在被猎杀之后仍然有知觉。古埃及则把命脉押在尼罗河的泛滥上：水太大毁地，水太小饥荒，一切都系于自然的恰当平衡；而主管平衡的奥西里斯神不是在旁边主持这个过程——他自己也被卷入其中，他也生，他也死。章末直指当下：阿拉斯加与埃及在截然不同的环境里都演化出谦卑承认依赖的叙事，并因此能设计出让整个社群参与照料自然的行动，而现代世界的大多数，这两件事都做不到了。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章给第一部分收口，也供给全书一条反直觉定律：信仰体系本质上是社群与自然签订的互惠契约，而不是支配许可证——它同时示范了本书反复使用的手法，把读者以为的"常态"（圣经式支配观）暴露为统计学上的例外。更关键的是它接通了全书核心命题的因果链：叙事承认依赖，于是能产生让整个社群共同参与的行动——这正是"信仰是回答我们是谁的公共操作系统"在人与自然关系上的完整展开。抽掉这一章，第一部分就停在"人如何被宇宙节律安放"，少了"人如何回应这份安放"的伦理维度，全书通往生态议题的整条线索也断了头。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它与第 4 章构成一予一报的递进：上一章自然给出宇宙承诺（光会回归、庄稼会长），本章人向自然偿还敬意（收获时致谢、用尽每部分）——先有图景，再有义务，第一部分的主题"我们在图景中的位置"至此从被动句式转成主动句式。它与第 1 章构成第一部分的首尾扣环：开篇的人用想象力把自己安放到自然之上（雕出一个超越自然的形象），收束的人用仪式把自己放回自然之内（承认对海豹与尼罗河的依赖）——一章言超越，一章言依附，位置的两面合在一起才完整。它还向第二部分交棒：让整个社群参与照料的机制，正是下一部分"共同信仰"讨论"信仰如何把活人绑成我们"的第一块砖。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>In this regard the Judaeo-Christian tradition is unusual. Most belief systems urge a more complex, reciprocal relationship between us and the living world.<span class="en">在这一方面，犹太-基督教传统是个异类。多数信仰体系主张的是我们与生命世界之间一种更复杂的、互惠的关系。</span></div>
+        <div class="ch-quote"><span class="star">★</span>you offer a seal you have killed a drink of water, so its soul will not be thirsty<span class="en">你给被自己杀死的海豹递上一口水，好让它的灵魂不至于口渴。</span></div>
+        <div class="ch-quote"><span class="star">★</span>Both Alaskan and Egyptian societies, in very different circumstances, evolved narratives to acknowledge with humility their dependence on the natural world. In consequence, both could devise actions to engage the whole community in husbanding it. Most of the modern world is now struggling to do either.<span class="en">阿拉斯加与埃及社会在截然不同的环境里，都演化出了叙事，以谦卑承认自己对自然世界的依赖。因此两者都能设计出行动，让整个社群参与照料它。而现代世界的大多数，如今这两件事都做不到了。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>多数信仰体系与自然签下的是互惠契约，而不是支配许可证。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>"基督教传统才是异类"这个反转本身就像一次布道，手法值得警惕：作者给狩猎与河流信仰选的是它们最温情脉脉的版本（递水、用尽每一部分），给圣经传统取的却是字面最硬的支配读法——而"治理这地"在解经传统里同样有托管、看顾的读法，这一面完全没有出场，比较的天平是被摆过的。同样可疑的是对"谦卑"的浪漫化：尤皮克与埃及的敬意首先是生存压力下的必要谨慎，把它直接读成伦理自觉，是用现代生态焦虑给古人贴金。最尖锐的矛盾在方法层面：作者开宗明义"不判真伪、只问功能"，可章末"现代世界两件事都做不到了"是一句明白的价值判词——悬置判断的方法在生态议题上被作者自己率先打破，这个口子一开，读者有理由追问全书其余的"中立"还剩多少。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>一个人在饭桌上就能验证这一章的核心。想想家里老人那些被晚辈嘲笑过的习惯：碗里绝不剩一粒米、鱼要吃干净、"点多少吃多少，点了就得吃完"——年轻人嫌它们抠门过时，但仔细一想，这些规矩执行的正是"对被吃掉之物保持敬意、承认自己依赖它"的逻辑，和给海豹递水是同一套语法。再想想点外卖：大多数人对着"满三十减八"凑单多点的两份菜，倒掉时心里连一丝波动都没有——被支配、可随意处置之物，连被看见的资格都没有。你可以当场自查：上次扔掉一整盒没动过的食物时，你有没有过一秒钟的不安；如果答案是没有，那不是你心硬，而是你恰好活在一个把"治理这地"当成默认设置的世界里。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">6</span>与逝者共处 Living with the dead<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章用三件物证——印加议事时被抬进房间的祖先木乃伊捆、中国用于仪式性对话的祖先画像、以及今天被烧掉的纸扎电脑与奢侈品——论证「与逝者共处」才是人类社会的常态，把生者与死者彻底分开反而是晚近的历史例外。作者引入埃德蒙·伯克对社会的那条著名定义：伙伴关系不仅存在于生者之间，也贯穿死者与未出生者。在中国，这套与祖先的持续对话延续两千多年，只是供品换成了数码照片和纸扎电子产品。结尾作者以本国国殇纪念为例收束：纪念仍在，但「共处」已经断了——记住死者，却不再让死者参与当下的决定。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章为「共同信仰」这根支柱打下了时间维度上的地基：所谓「我们」，从来不只是此刻活着的这批人，而是横跨生者、死者与未出生者的伙伴关系。全书的操作系统——信仰回答「我们是谁」——在此被拉长为跨代命题：一个共同体如果连死者和后代都算成员，它划出的「谁属于我们」就有了纵深。抽掉这一章，全书的「我们」就退化成一个当下的、随时可解散的人群，第二部分后面所有关于身体、传统、祈祷、歌唱的粘合机制都将失去时间上的锚。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章是第二部分的开篇，同时与第一部分第 2 章「火与国家」构成物证回返：那章处理的是国家层面生生不息的火，这章处理的是共同体层面「不退场」的逝者，两章共同把「延续」从自然秩序推进到人际秩序。它也率先亮出第二部分的推进逻辑——纵向地把跨代的死者接进「我们」；紧接着的第 7 章转向另一个方向的边界个案（女性的身体），从「时间上的成员」走到「身体上的归属」，一头一尾合起来，正好圈定共同体吸纳成员的两条轴线。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>For the Inca and many cultures of the Americas, all time is together: the present, future and past exist concurrently, are always in parallel.<span class="en">对印加和美洲许多文化而言，所有时间是在一起的：现在、未来与过去并存，始终平行。</span></div>
+        <div class="ch-quote"><span class="star">★</span>society is a partnership not only between those who are living, but between those who are living, those who are dead, and those who are to be born.<span class="en">社会是一种伙伴关系，不仅在生者之间，而且在生者、死者和将要出生者之间。（引自伯克）</span></div>
+        <div class="ch-quote"><span class="star">★</span>We remember our dead, but we no longer live with them.<span class="en">我们记住我们的死者，却不再与他们共同生活。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>与逝者共处是人类的常态，把生者与死者分开才是历史的例外。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章最强的地方是那条对照：印加把「尚未出生的后代」也请进议事房间，而现代国家只在纪念日「想起」死者，却不让死者影响任何现实决定。但作者的论证在方法论上有一处没处理干净：他一方面坚持「不判真伪、只问功能」，另一方面「我们不再与逝者共处」这个判断本身预设了一种失落叙事——似乎功能断掉就是损失。可伯克式跨代伙伴关系未必只有温度：它同样可以被用来要求活着的人服从死者的安排，替未出生者拦截当下的选择。作者没有问：与逝者共处的功能失效，究竟是共同体的萎缩，还是共同体成员获得了修改自己章程的能力？描述机制与惋惜机制之间的缝隙，这一章比别处更宽。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><ul class="clean"><li>想想你家里老人的智能手机相册：很多人手机里存着已故亲人的照片、语音，偶尔翻出来放一遍——这就是「记忆还在、共处已断」的日常版本：你保留了对方的存在，但不再让对方参与你换工作、搬家、结婚这些决定。</li><li>再想想大多数人家里的家风和规矩：小时候被要求「你爷爷在的时候不许这样」，长大后自己当家长，只留了一句「我们家没这讲究」——一代人就把跨代伙伴关系里死者的那一票没收了，而且没收得很自然。</li><li>还有一种反向例子：一个人守着上一辈传下来的某个执念——比如房子必须留给谁、某个日子必须回家——明知道不合理却改不掉。这时候可以自问：这到底是在「与逝者共处」，还是逝者在替自己过日子？本章的框架正好能用来给自己做这个区分。</li></ul>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">7</span>诞生与身体 Birth and the body<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章讨论生育如何把私人身体接入公共领域。亚伯拉罕诸教数百年来的共同立场是：生育能力尤其是孩子，是来自神的礼物——而礼物意味着有赠予者、有归属安排。由此推出的社会后果是：女性的身体从青春期起就被更广泛的社群主张，不再完全属于个人。作者用君主制下「女王的身体」作极端形态：王位继承悬于一个女人的生育，她的身体因此成为国家事务。整章只是冷静拆解这套机制如何运转，并没有替任何一方做价值判断。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章提供的是全书最锋利的那条定律的一个实例：信仰不是私人意见，而是公共操作系统——而操作系统要运行，就必须先「征用」入口硬件，也就是身体。一旦孩子被视为神的礼物，生育就不可能是纯粹私事，女性身体就成了共同体与个人争夺的边境。抽掉这一章，全书「我们决定如何与神相处，也就决定如何与彼此相处」这句话里最刺人的那一面就没了：它证明这套系统不只是温柔地安顿人，还会实际地划分人的身体归属。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>前一章刚把「我们」拉长到跨代的死者，这一章立刻收紧到最微观的单位——一个青春期的身体，形成大与小、纵向与横向的对偶：第 6 章说共同体的成员名单跨时间扩展，第 7 章说这份名单落到每个成员身上时，要以身体为代价。同时它为第 8 章「传统中的位置」准备了入场券：身体先被社群主张，随后才谈得上「被引入一个已经存在的成人世界」——先有归属的容器，再谈归属的仪式。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>The body of the queen is an affair of the state.<span class="en">女王的身体是国家事务。</span></div>
+        <div class="ch-quote"><span class="star">★</span>right from the moment of puberty, a woman's body is already in a sense claimed by the wider community<span class="en">从青春期那一刻起，女性的身体在某种意义上就已经被更广泛的社群主张了。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>从青春期那一刻起，女性的身体就已经在某种意义上被更广泛的社群主张，不再完全属于个人。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章是全书「只问功能、不判真伪」的方法设定压力最大的一处，而作者恰恰在这里选择了纯描述、零判断。描述当然有力量，但停在这里有一个真实的风险：把「社群主张女性身体」讲成一套运转了几百年、各教一致的机制，而不指出这套机制的受益方与承担方严重不对称，读者很容易把它读成「这是普遍事实，所以可以接受」。更值得追问的是作者自己没碰的一层：礼物的比喻天然携带交换结构——神给了孩子，那社群欠神什么、女性又欠社群什么？这个债务关系才是「身体被主张」的财务底账，书里到此为止没有掀开。诚实地说，这一章是理解优先、判断真空的典型样本：机制拆得越清楚，不给判断就越像默认。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><ul class="clean"><li>想想大多数人身边都有的场景：一个年轻人在饭桌上宣布不打算结婚或不要孩子，长辈的反应往往不是「你的事你做主」，而是一整套「对家里得有个交代」的说辞——那一刻就能看清，「身体和人生的选择属于谁」从来不是纯粹的私事，总有一只社群的手在主张份额。</li><li>再想想办公室里最常见的共识：谁要是深夜加班后请假去医院，大家都理解；谁要是请假去做体检前的健身、或者干脆休息一天，就要编个更「正当」的理由——身体的使用权默认有一张公共账单，连休息都要对集体解释。</li><li>还可以拿老人来验证：一个人年轻时对子女的婚姻、生育从不置喙，老了却开始念叨「趁我还在，你们赶紧要一个」——同一套社群主张会随年龄换方向流动，从要求别人的身体，变成替「还没出生的人」主张名额。伯克那句「死者与将要出生者之间的伙伴关系」，在饭桌上就是这么落地的。</li></ul>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">8</span>传统中的位置 A place in tradition<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章用瓦努阿图编发仪式与犹太儿童学习阅读《托拉》作对照物证，讨论成年礼的本质：长者把儿童引入一个已经存在的成人世界。现代社会发生了模式反转——年轻人互相把彼此引入他们自己创造的成人世界，传统不再是「被交给你的东西」，而成了「你自己发明的东西」。作者的判断克制但分量很重：我们是自由社会，我们要选择，我们不想未来被交到我们手上——而代价是代际传递的链条断在中间。这一章既写清了成年礼的功能，也直接承认了现代生活为这份功能标出的价格。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章把第二部分的核心问题从「身体」推进到「身份的交接班」：共同信仰这套操作系统要延续，光征用入口不够，还得有安装程序——成年礼就是安装程序，负责把个体接入既有秩序。抽掉这一章，全书就少了「传统如何自我复制」这一环：第 6 章说了共同体包含死者，第 8 章回答死者凭什么还在场——因为每一代都被人领着走进死者留下的那个世界。它同时贡献了全书少见的一处作者自陈立场：选择自由与传递链条，不可兼得。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>第 7 章刚说完身体被社群主张，本章紧接着处理被主张的身体如何「办手续入籍」：从归属的容器走到归属的仪式，是严格的递进关系。它又与第 6 章构成首尾扣环——第 6 章结尾哀叹「我们不再与逝者共处」，本章把这条断链的中断点标了出来：就断在「长者不再引导儿童进入成人世界」这件事上。向后看，本章里犹太儿童学读《托拉》那种日复一日的重复，正引出第 9 章的主题——重复的身体行为（祈祷）如何维系身份；静止的身份叙述在此让位于下一章的日常动作。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>we have moved away from a model of elders initiating children into an adult world … the young initiate each other into adult worlds of their own<span class="en">我们已经从「长者引导儿童进入成人世界」的模式移开……年轻人彼此引导，进入他们自己创造的成人世界。</span></div>
+        <div class="ch-quote"><span class="star">★</span>We want choice. We don't want our future handed down to us.<span class="en">我们要选择。我们不想未来被交到我们手上。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>成年礼的本质是长者把儿童引入一个已经存在的成人世界，而这个模式现代社会已经放弃。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章最值得推敲的是那组对照本身可能过于干净。「长者引导」对「年轻人互引」的二分，把现代社会写成了没有成年礼的荒原，但这更像是印刷时代之前的教会视角，而非当代事实——多数人的职场第一周、新城市的第一年，其实充满了没人明说的入会仪式，只是没有仪式的名目，也不由长者主持。更深的漏洞在于作者自己埋的：他说自由社会「不想未来被交到手上」，可这句话本身无法用他的方法验证——不判真伪、只问功能的设定，遇到「我们要选择」这种价值宣言就失效了，他等于在功能分析的中途悄悄换成了价值语言。另外，本书第 10 章会论证同步的身体动作制造「我们感」，那按同一逻辑，年轻人互引的那个世界同样在制造粘合——只是粘合的共同体不再跨代。作者对「新共同体」的粘合力只字未提，这是本章与全书后半潜在的一处自相矛盾。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><ul class="clean"><li>想想大多数人是怎么学会「成为一个大人」的：不是父母教的，而是同龄人教的——第一份工作怎么说话、第一次租房怎么谈判、第一段感情怎么处理，全是同龄人互相带路。可以在心里问一句：这套「成人世界」的规则，有哪一条是长辈交给你的？多数人会发现，几乎为零。</li><li>再想想家里老人和年轻人各自手机里装的软件：长辈会认真问「这个怎么用」，年轻人会随口说「你自己点两下就会了」——教学意愿的消失，就是传递链条断裂的最小可见样本。</li><li>还可以反向验证：一个人如果真从长辈手里接过过一样东西——一门手艺、一个家族说法、一套做菜的口诀——他在做这件事时的那种郑重感，和跟同龄人互相摸索时的随意感，完全是两种体验。那种郑重感就是本章说的「被交给你的东西」，多数人一辈子只有一两件，这个稀少程度本身就是答案。</li></ul>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">9</span>让我们祈祷 Let us pray<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章以米勒 1857 年的画作《晚祷》为核心物证，重估祈祷的性质：它看似社交退缩，实则极其身体化、同时高度公共——是一次「对私人行为的公开召集」。画中教堂钟声召唤所有人原地停下、念同一段祷文；这幅画在工业革命的城镇里引起巨大共鸣，正因为它唤起了工厂永不停歇之前的那个法国。作者随后拉开光谱：爱尔兰的国家级广播至今每天两次敲响《天使祷文》钟声；清教徒禁绝歌舞之后，西方祈祷失去了身体的动能，而穆斯林的祈祷保留了下来。收尾落在全书论点上：无论跪坐站立，祈祷的主语始终是「我们」——与神连接，同时也是更完整地与彼此连接。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章为全书核心命题「与神相处 = 与彼此相处」提供了最小、最日常的实验单元：一次几分钟的祈祷。它证明共同信仰不只在宏大典仪中运转，更嵌在每天的固定时刻、靠一具具身体在同一时间做同一个动作来维持。抽掉这一章，第二部分就少了从「身份」跨到「行为」的那座桥——第 6 到 8 章讲的是「我们是谁」，第 9 章开始回答「我们每天做什么来持续是我们」，重复的身体动作由此第一次成为论证主角。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>顺着第二部分内部那条「由静态身份走向同步行为」的线索，本章恰好站在转折点上：前一章的物证（学读《托拉》的儿童）已经有重复练习的影子，本章把它放大为整个村庄被钟声统一调度；下一章第 10 章再把人数从「各自原地的许多人」加到「同一个屋檐下的一群人」，从同一时刻升级到同一动作，最终推出「我们感」的发生器。同时，《晚祷》这幅画的怀旧结构——革命之前的统一法国——与第 6 章「我们不再与逝者共处」共享同一种失落语调，两章互为和声：一个是失去共处的死者，一个是失去共处的钟声。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>It is a public summons to a private act.<span class="en">这是一次对私人行为的公开召集。</span></div>
+        <div class="ch-quote"><span class="star">★</span>however we do it, whether we kneel, sit, stand or prostrate ourselves – it is 'we' who pray. As in almost all religious rituals, to connect with God is also to join more fully with each other.<span class="en">无论我们怎么做，无论跪、坐、站还是五体投地，祈祷的都是「我们」。正如几乎所有宗教仪式一样，与神连接同时也是更完整地与彼此连接。</span></div>
+        <div class="ch-quote"><span class="star">★</span>the puritans banned all dancing and singing, and we lost a lot of that bodily dynamism of our prayer, which Muslims … have retained<span class="en">清教徒禁绝了一切舞蹈与歌唱，我们的祈祷因此失去了许多身体的动能，而穆斯林保留了它。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>祈祷不是社交退缩，而是极其身体化的、高度公共的行为——一次对私人行为的公开召集。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章对祈祷的「公共性」论证很漂亮，但细看有一处论证跳跃：从「钟声同时召集所有人」推到「祈祷的主语是我们」，中间漏掉了一步——被同时召集的人完全可以在各自田里各念各的、互相不视对方为同类。同时性制造的不一定是共同体，可能只是整齐的平行个体；真正粘合的恐怕不是同一时刻，而是同一时刻加上知道对方也在做（画里那对夫妇是并肩站着的，这一点比钟声更关键）。另外，作者用清教徒禁歌舞来说明「身体动能的流失」，这里藏着一个与全书方法的微妙摩擦：既然只问功能不判高下，为什么保留了身体动作的祈祷就被暗示为更完整？「更完整」的标准从哪里来？这一章的审美偏好（画作的、前工业的、有钟声的法国）偶尔盖过了功能分析， nostalgia 的成分比作者自己承认的多。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><ul class="clean"><li>想想大多数人手机里那个固定的提醒：晚上十点弹出来的「该睡了」、或者每天同一时间的服药闹钟——一个人按提醒做事时并不特别，但全家人的闹钟都设在同一时刻、到点各自放下手里的事，那个瞬间就有了本章说的味道：私人行为被公开调度。</li><li>再想想办公室里那种没人明说的统一动作：下午三点大家不约而同起身接水、同一个整点集体看一眼门口——同一时刻做同一件事，会莫名其妙地产生一点「我们是一个战壕的」的感觉，哪怕谁也没说话。</li><li>还可以用带娃验证：把孩子睡前那套流程打乱一天——顺序乱了、时间挪了——多数家庭当晚就会付出代价：孩子闹、大人累。那套流程没有任何超自然内容，但它就是靠日复一日的重复身体动作，把「这个家」维持成「这个家」。本章讲的钟声，功能上和这套睡前流程是同一种东西。</li></ul>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">10</span>歌的力量 The power of song<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章以 1640 年《海湾圣咏集》（英属北美第一本印刷书）和 1772 年《奇异恩典》为核心物证，提出一个修订版的历史判断：宗教改革的成功一半靠印刷机，另一半靠唱歌。改革前的宗教音乐由受训专家用拉丁文演唱，崇拜被专业人士中介；路德的「信徒皆祭司」把弥撒文本改成人人能唱的韵文，为个人的信仰创造出个人责任。作者随后给出全书最接近因果解释的机制：身体的同步性——歌唱、吟诵、站立、行进，在制造「我们感」上绝对关键；唱歌时呼吸改变带来的生理变化，会在身体层面直接生产共同体感。有了共享身份，人就开始把别人看作「属于我们」的同类，更信任、更愿意合作。《奇异恩典》只有一个词超过一个音节，其作者却从奴隶贩子转身为废奴运动者——简单的歌承载了最重的转向。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章是第二部分的收束与机制核心：前九章反复出现的「我们」，到本章终于拿到了发生器——同步的身体动作。它把全书的核心命题从陈述升级为可解释的机制链：一起唱歌 → 身体同步 → 我们感 → 信任与合作 → 共同体。抽掉这一章，全书「信仰是社会操作系统」的说法就始终停在比喻层面；有了它，「我们如何与神相处 = 如何与彼此相处」获得了生理学意义上的地基——神的事，说到底是身体一起做的事。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章是第二部分的终点，也是通往第三部分的门轴：第 9 章的祈祷还是「同一时刻、各自原地」的动作，本章的歌唱是「同一屋檐、同一呼吸」的动作，人数与同步度双双拉满，完成了第二部分从静态身份到同步行为的全程推进。而「同步动作产生我们感」这条机制，正是第三部分全部内容的引擎——第 11 章神之家、第 12 章献给神的礼物、第 14 章朝圣、第 15 章节庆，无一不是把更多人放进更大的同步容器：先在歌里验证的机制，随后将在建筑、仪式与人群的尺度上反复放大。第 10 章等于把零件装配好，交给了下一部分去开机。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>the success of the Reformation was due in part to the printing press … it was also in part due to the power of song<span class="en">宗教改革的成功，一部分归功于印刷机……另一部分归功于歌的力量。</span></div>
+        <div class="ch-quote"><span class="star">★</span>singing, chanting, standing, marching are all absolutely critical in producing a sense of 'we-ness'<span class="en">歌唱、吟诵、站立、行进，在产生「我们感」这件事上都是绝对关键的。</span></div>
+        <div class="ch-quote"><span class="star">★</span>When we have shared identity, we begin to stop seeing people as 'others'. They're like us, they're of us, they're with us. We trust and co-operate with them more.<span class="en">一旦有了共享身份，我们就开始不再把别人看作「他者」。他们像我们，属于我们，和我们在一起。我们更信任他们，更愿意合作。</span></div>
+        <div class="ch-quote"><span class="star">★</span>The Bay Psalm Book, the first book to be printed in British North America, appeared in 1640. It defined and united Boston protestants for well over a hundred years.<span class="en">1640 年问世的《海湾圣咏集》是英属北美印刷的第一本书。它在之后一百多年里定义并团结了波士顿的新教徒。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>同步的身体动作才是我们感的真正发生器，宗教改革的成功一半靠印刷机，另一半靠唱歌。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章机制解释有说服力，但正因为它最接近因果断言，也就最该被追问。「同步产生我们感」是一把没有方向的手枪：同一机制既能唱着圣歌废奴，也能让一屋子人齐声做更坏的事——作者在第 10 章只展示了光亮面，把黑暗面留给很后面的章节才触碰，这里的因果机制在他自己笔下是不对称的。第二个漏洞是反例处理缺位：如果同步动作如此关键，怎么解释那些几乎不唱、不集体跪拜的信仰形态照样延续千年？第三处是作者没说破的自我引用：《奇异恩典》的故事（一个人被一首歌改变，进而去改变制度）之所以动人，靠的是叙事的完整，而不是机制的可重复——全书方法设定说观察单位是社群不是个人，这一章的高潮却落回了一个个人转信的故事，恰好偏离了他自己的方法。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><ul class="clean"><li>想想大多数人唯一还会整齐唱歌的场合：生日歌。一桌人各唱各的调，但唱到第三句，那种莫名的「一伙人」的感觉会浮上来——几十年的熟人社会靠这个维持，现在只剩这首歌还在营业。</li><li>再想想演唱会、球场、广场上万人合唱或齐声喊口号的体验：明明周围全是陌生人，几段副歌之后，一个人会突然对邻座产生信任感，散场时还帮他捡东西——同步动作制造「我们感」不需要任何宗教内容，两小时就够。</li><li>最日常的验证是带娃和走路：一个人推着婴儿车哼固定的几首儿歌，孩子一哼就安静；两口子散步时不知不觉走出同一个步频。这些都是零成本的同步实验——身体先达成一致，感觉随后跟上，顺序从来如此。本章说的歌的力量，拆到最小就是这样一件每天在发生、只是没人注意的事。</li></ul></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">11</span>神之家 The house of God<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章从一个反直觉的先后秩序入手：以哥贝克力石阵为证，人类可能是先学会为仪式合作建造大型圣所，之后才学会在城市里密集地共同生活。视线随即移入城市内部——神圣建筑几乎总是最宏大、最昂贵、最持久的公共工程，往往是公共生活与精神生活的共同顶点。美索不达米亚吉尔苏城邦的神像游行泥板显示，把神像抬出来巡游的政治功能，在于提醒居民他们是同一个国家的一部分、是同一位统治者的臣民、因敬拜同样的神而联合。至于神圣空间如何被造出来，一半靠对光的精心引入，一半靠前人数个世代的临在与祈祷所沉积下来的氛围。最后落到一处极端检验：一处礼拜场所被亵渎，即便无人受伤，也会被普遍读作对一个共同体的攻击。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>本章为全书立起场所这根支柱：信仰首先不是一套观念，而是对空间的占据与对准入的分配，信仰的公共性不是副产品，而是生产出我们这个共同体的机制。它同时给出全书最硬的一条定律——权力确保准入，准入反过来强化权力，划界本身就是权力的运作方式。抽掉这章，全书就失去了信仰为何必然是空间性的、为何必然与准入和排斥绑定的根基，后面关于形象、边界政治、国家权力的全部讨论都会悬空。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>与第 10 章歌的力量构成对偶：第 10 章讲的是同步的身体动作在时间中产生我们感，第 11 章则要求这具同步的身体有一个固定、可返回的地点——把共在从瞬时事件变成可重复的空间事实。与第 12 章是递进：先确立固定的神圣场所，第 12 章才谈得上往这个场所里送东西，空间先成为容器，交换才可能发生。与第 30 章形成首尾扣环：引言题眼如何与众神共处即如何与彼此共处在这里获得最物质化的一击——一栋建筑被亵渎，被读作一群人被攻击，意义的落点从物直接回到人。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>first came the temple, then came the city<span class="en">先有神庙，后有城市。</span></div>
+        <div class="ch-quote"><span class="star">★</span>we lived with the gods before we lived at close quarters with each other<span class="en">我们先与众神共处，之后才与彼此近距离共处。（Guardian 书评引）</span></div>
+        <div class="ch-quote"><span class="star">★</span>power secures access and access further reinforces power<span class="en">权力确保准入，准入反过来进一步强化权力。</span></div>
+        <div class="ch-quote"><span class="star">★</span>When a place of worship is desecrated. Even if nobody is hurt, it is universally read as an attack not just on a building, but on a community.<span class="en">当一处礼拜场所被亵渎，即便无人受伤，也普遍被读作不只是对一栋建筑的攻击，而是对一个共同体的攻击。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>城市里的神圣建筑总是最宏大、最昂贵、最持久，往往是公共生活与精神生活的共同顶点。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>神像游行的政治功能，是提醒居民他们是同一个国家的一部分，是同一位统治者的臣民，因敬拜同样的神而联合。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>神圣空间之所以神圣，很大一部分在于对光的精心引入，也在于前人数个世代的临在与祈祷。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章是全书因果主张最强的一章，也是证据最薄的一章。仪式先于聚居目前主要由哥贝克力石阵一处遗址支撑，用单一遗址去改写人类聚居的因果方向，是把启发式当定律用；更稳的读法是建造大型圣所与密集聚居互为条件，谁先谁后无法由一处遗址裁定。</p>
+        <p>另一处是本章只做了一半的功能分析。既然准入由权力决定，那么谁被挡在门外就是这套理论的必然推论，而作者只算了准入如何强化权力，没有追问被排除的那批人如何形成他们自己的我们感。全书设定不判真伪，只问功能，但功能只算了内部粘合，没算外部排斥。</p>
+        <p>还有一条方法论边界：以最宏大、最昂贵、最持久作为神圣性的判据，分辨力不足——体育场、纪念碑、议会大厦全都符合这三条，判据会把一切宏大公共工程吸入宗教建筑的范畴。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想办公室里那间谁都能进的大会议室，和那间要被叫进去才能进的小房间：一个人被叫进小房间开会，和被留在群里看通知，读到的是两种完全不同的信号：自己到底属不属于我们。工位怎么排也是同一种东西——谁坐在领导旁边，谁坐在门口，从来不只是行政问题。</p>
+        <p>再想想小区里那个谁都不怎么用、但谁都不肯拆的亭子或空地。它没什么实用功能，可一旦传出要拆掉改成停车位，群里的反应往往比涨物业费还激烈。一个人不需要信什么，也会本能地觉得动了那个地方就是动了大家。</p>
+        <p>还有一件可以当场自证的：翻翻手机相册，看看是不是总在同一个角度拍同一张照片——同一张桌子、同一扇窗、同一个路口。多数人都有这么一个定点，隔一阵子就要回一次，回来之后会觉得日子是连着的。这就是最日常的一件事：一处固定的场所把时间缝了起来。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">12</span>献给神的礼物 Gifts to the gods<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章问的是：人往神圣场所里送东西，这件事到底在做什么。穆伊斯卡人的黄金人在瓜塔维塔湖上完成加冕并向湖中投入黄金与祖母绿，关键在于他们完全不以货币价值看待黄金，而视其为一场关于平衡与交换的宇宙编排的一部分——价值至高无上地存在于和平平衡的创造之中。接着是帕特农：它不只是神庙，约公元前 438 年被设计为雅典帝国的财库，一笔巨大的财富储备挂在女神雅典娜名下，却能转作国家财政；危机与危险时期提取量会急速上升，古希腊的献祭始终是临时性的。最后落在词源上：古代许多城市的公共财库都设在神庙里，罗马的财库设在朱诺·莫内塔神庙，Moneta 今天在意大利语里是零钱的意思——于是每一次说出 money 这个词，都在承认神圣世界与金融世界有一段漫长的共同历史。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>本章贡献神圣与金融同源这条定律：价值存储、信用、财政这些看似纯世俗的制度，最初长在献祭这套交换逻辑里，钱的正当性是从神那里借来的。它同时贡献献祭的可逆性与临时性这条观察——给神的东西并不真的消失，而是在神圣与世俗之间循环。抽掉这章，全书就少了钱的合法性从何而来这一环，后面国家如何接管神圣权威去动员与索取的那几章也就失去了源头。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>与第 11 章直接递进：第 11 章给出固定的神圣场所，本章立刻追问这个场所里发生什么——答案是交换，空间由此从静态的崇拜对象变成有进有出的机构。与第 13 章是同一条逻辑的两端：本章确立给神的东西必须是付出，并且强调这付出是临时的、可以取回；第 13 章把取不回设为献祭的定义条件，两章之间是可逆到不可逆的直接升级，不是并列。与第 5 章收获与敬意构成物证回返：同样是把产出的一部分交出去，第 5 章交的是收成，本章交的是储备——从回馈升级为把权力存起来。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>in English every time we use the word 'money' we acknowledge that the sacred and the financial world have a long shared history<span class="en">在英语里，我们每用一次 money 这个词，都在承认神圣世界与金融世界有一段漫长的共同历史。</span></div>
+        <div class="ch-quote"><span class="star">★</span>The Muisca saw gold not at all in terms of monetary value, but as part of a cosmic choreography of equilibrium and exchange.<span class="en">穆伊斯卡人完全不以货币价值看待黄金，而视其为一场关于平衡与交换的宇宙编排的一部分。</span></div>
+        <div class="ch-quote"><span class="star">★</span>The ancient Greek offering was continually provisional.<span class="en">古希腊的献祭始终是临时性的。</span></div>
+        <div class="ch-quote"><span class="star">★</span>what is stored in it is really an expression of Athenian wealth and power<span class="en">存放在其中的，其实是雅典财富与权力的表达。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>穆伊斯卡人没有用物质性的经济尺度来交换产品，价值至高无上地存在于和平平衡的创造之中。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>古代许多城市的公共财库都设在神庙里，罗马的财库设在朱诺·莫内塔神庙。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>在国家危机与危险时期，从神庙中取出的量会急速上升。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>money 来自 Moneta 这条词源炸弹传播力极强，但它证明的比它听起来的少得多：一个词的历史来源，不能证明它所指的制度至今仍具神圣性。作者用它做收束，是把语源的诗意当成了因果的证据。这是全书最容易被引错的一条。</p>
+        <p>更实质的问题在本章内部。雅典的例子说献祭是国家储备、已经金融化；穆伊斯卡的例子说黄金根本不按货币价值衡量、刻意拒绝金融化。这是两种截然相反的交换逻辑，把它们并列在同一章，会让人以为存在一条从神圣礼物到货币的单线演化，而本章自己的物证恰恰否定了单线演化。作者没有处理这个自相矛盾。</p>
+        <p>还有一处：把帕特农读作财库，依赖的是女神名下但可转作国家财政这个判断，而这一步恰恰模糊了全书的核心区分——神的东西和人的东西到底分不分。不分，则献给神这个词没有内容；分，则转作财政就是挪用。作者需要选一个，但他两个都用。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想随份子这件事：一个人把钱装进红包送出去，本子上记着名字和数目——这既是人情，也是一笔将来要还的储备。多数人家里都有一本这样的账，它同时是情感账户和金融账户，谁也不觉得这两件事矛盾。</p>
+        <p>再想想部门聚餐时那个先垫付再报销的人。钱先出去，回来的是位置和信任。一个人垫出去的那一刻，买的通常不是那顿饭。</p>
+        <p>还有一件当场能验证的：打开手机银行的自动扣款页面，看看那些会员、云存储、订阅。多数人每月都在为看不见但一直在的东西付钱，并且说不清自己到底得到了什么。这就是最日常的一件事：把价值交给一个你并不完全理解的对象，换一份秩序感。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">13</span>神圣的杀戮 Holy killing<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章把第 12 章的交换逻辑推到尽头：给神的东西必须不可逆地付出，而最不可逆的付出是生命，于是献祭成为给神的礼物这条思路的极端形式。作者同时强调它高度社会性的一面——献祭之后紧接着是分配与共食，屠宰与用餐是同一个场合的两半，共同体在那一顿里重新确认一次自己。由此得到一个并置：帕特农既是财库也是献祭之所，而这不是制度腐败，是同一结构的不同面。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>本章贡献成本这根支柱：共同体拿什么来证明自己是认真的——交出去的东西越不可回收，承诺越可信。这是全书把信仰即公共操作系统这一主张落到成本与信号上的唯一一章。抽掉它，共同体靠共享信念粘合就成了一句没有代价的话，既无法解释人为什么愿意为共同体付出真实的东西，也无法解释后面国家凭什么可以要求人付出真实的东西。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>与第 12 章是同一逻辑的两端而非并列：第 12 章说献祭物是临时的、可以取回，本章把取不回设为献祭之所以成立的条件，两章之间是可逆到不可逆的极限化推进。与第 14 章构成对偶：本章是人在原地把最贵重之物交出去，是物向神移动；第 14 章是人自己动身去那个地方，是身向场所移动——第三部分由物到身这条推进线索，正是在这两章之间完成转向。与第 6 章与逝者共处存在物证回返：两者都在处理生命与共同体之间如何结算，一个面向逝者，一个面向神。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <p>本章未能取得可核对的逐字引文，以下为章旨句。</p>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>献祭是给神的礼物这条逻辑推到尽头的形式，因为最贵重的礼物是生命。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>给神的东西必须不可逆地付出，而最不可逆的付出是生命。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>献祭之后是分配与共食，屠宰场和餐厅是同一个地方。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>帕特农同时是财库与献祭之所，这不是腐败，是结构。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章在结构上最必要，在论证上最薄弱。作者把献祭解释为礼物逻辑的极限化，但礼物逻辑解释不了献祭的核心特征：礼物的价值来自交换双方共享的尺度，而把生命交出去这件事，恰恰在于它没有任何可回收的尺度。用最贵重的礼物来定义它，是把经济类比硬套在一个反经济的行动上。</p>
+        <p>更大的问题在语料。作者用阿兹特克与古希腊两种相隔极远、社会结构完全不同的案例来支撑同一个献祭概念，等于预设献祭是一个跨文化常量。但全书的方法设定是观察社群、只问功能，那么这两处的功能显然不同：一个是国家层面的公共展演，一个是社群层面的分肉共食。把它们装进同一个词里，恰恰犯了作者自己在别处警惕的错误——脱离具体社群去谈信仰。</p>
+        <p>还有一处重心错位。如果真正生产我们感的是后面那顿饭，那么按第 10 章的论证（同步的身体动作产生我们感），本章的重心应该落在后半段；但作者把标题和篇幅都给了前半段那个交出去的动作。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想一个人为什么会愿意把最贵的东西交出去。多数人一生中都有过一次明知道不划算还是要给的片刻——给父母的一笔钱，为孩子让出的一段时间，为一个承诺推掉的机会。共同点在于：被选中交出去的那部分，恰恰因为它收不回来。收不回来的付出才是可信的承诺，这是所有关系里都在用的信号机制，跟有没有神无关。</p>
+        <p>再想想办公室里那种谁愿意留到最后才走的默契。留下的那个人未必做得多，但那段时间是回不来的，所以它被所有人默认读成这个人认真。一个群体判断谁是自己人，靠的从来不是表态，而是不可回收的成本。</p>
+        <p>还有一件能当场自证的：想想上一次在群里不敢说话的时刻。怕的往往不是说错，而是说过就收不回去——一旦发出去，那个立场就永久地贴在你身上。人们对不可逆的恐惧，和献祭逻辑里对不可逆的追求，是同一种心理的两面。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">14</span>做一个朝圣者 To be a pilgrim<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章处理的是人自己动身这件事，并给出一个时间维度上的判断：过去一个半世纪，朝圣的重心一直在从有形移向无形。过去人们奔赴的是圣髑与遗址，也就是吸引乔叟笔下朝圣者的那类地方；现在人们奔赴的是神视与神圣显现发生的现场。作者用卢尔德的规模说明这不是边缘现象：在法国，只有巴黎的酒店房间比它多，每年访客超过 600 万。隐含的论点是一层耐人寻味的反转——物质性的圣物可以被搬走、被质疑、被证伪，而一次显现所在的地点无法被搬走，这反而更稳固。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>本章贡献身体的移动这根支柱：信仰不只占据空间，还要求人亲自走过去，把空间距离变成投入的证明。它同时贡献一条关于权威来源迁移的观察——当可搬动的物证越来越容易被质疑，权威就转移到不可搬动的东西上，也就是地点与亲历。抽掉这章，全书就缺了信仰如何被个人以身体成本认购这一环，共同体粘合的论证会全部停留在集体仪式层面，解释不了一个人独自上路时那种归属从何而来。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>与第 13 章构成对偶：第 13 章是人在原地把最贵重之物交出去，物向神移动；本章是人自己动身去那个地方，身向场所移动。与第 11 章形成回返式的补完：第 11 章确立场所神圣并追问这之后人怎么办，答案就是动身前往——第 11 章讲固定，本章讲移动，两者合起来才构成完整的场所经济学。与第 15 章递进：本章处理空间上的非常态，人去往别处；第 15 章处理时间上的非常态，日子被重新划分——第三部分由空间入时间，在此交接。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>Focus over the last century and a half has been moving from the tangible to the intangible: in place of the relics and sites that attracted Chaucer's pilgrims, people now travel to the scenes of visions and divine epiphanies.<span class="en">过去一个半世纪，焦点一直在从有形移向无形：取代吸引乔叟笔下朝圣者的那些圣髑与遗址的，是人们如今前往神视与神圣显现发生的现场。</span></div>
+        <div class="ch-quote"><span class="star">★</span>In France, only Paris has more hotel rooms than Lourdes: there are more than 6 million visitors annually.<span class="en">在法国，只有巴黎的酒店房间比卢尔多：每年访客超过 600 万。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>物质性的圣物可以被搬走、被质疑、被证伪，但一次显现所在的地点无法被搬走，这反而更稳固。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>从有形到无形这个判断方向是对的，但作者给的证据只支撑了规模，没支撑转移本身。卢尔德的酒店数与年访客量只能说明朝圣依然庞大，不能说明动机已经从圣髑转向神视；要证明转移，需要的是同一批目的地在两百年间的类型变化，而本章没有给。这是拿一个横截面的数据去支撑一个纵向的趋势判断。</p>
+        <p>更值得追问的是那条反转逻辑。圣物可搬走、地点搬不走，所以地点更稳固——这条推理有个隐蔽的跳跃：稳固与否取决于信众相信什么，而不取决于对象本身的物理属性。圣髑曾经稳固，正因为当时没人质疑它的来历；质疑成风之后，稳固性就转移到别处。真正变化的不是对象的可搬运性，而是整个社会的证伪习惯。作者把一个社会学问题写成了物体属性问题。</p>
+        <p>还有一处与全书方法的张力：全书强调不判真伪、只问功能，但本章的功能分析恰恰要求作者回避那次显现到底有没有发生——一旦问下去，功能分析就撑不住。在这里，不判真伪不是方法论的克制，而是论证的必要遮蔽。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想一个人为什么会特意跑去现场看一场比赛、一场演出、一次日出，明明手机上能看得更清楚。多出来的那部分价值不在内容里，而在一个人亲自到过这件事上。任何人都有一两个非要亲自去一趟的地方，事后说不清为什么非去不可，但那段路程本身就是理由。</p>
+        <p>再想想打卡这件事：多数人都有过排很久的队、只为站到某个位置拍一张照片的经验。同款照片谁都能拍到，可排队那段时间是买不来的——那段时间是成本，成本才让照片对本人有意义。</p>
+        <p>还有一件当场能验证的：想想手机里那个一直没删的导航记录或者照片定位。多数人其实很少回看，但真要删会觉得舍不得。舍不得的不是那张图，是那个人当时真的在那里这件事。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">15</span>节庆时刻 Festival time<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章处理时间如何被信仰重新划分，并用一个反常识的案例把它说透：圣诞节不是古老传统，而是 19 世纪的发明。节日的一般功能先被给出——每个节日都是此前所有节日的一次重演，参与者因此强烈地感到生命不是一段有始有终的孤独独幕剧。罗马农神节是另一端：那一周里严肃被禁止，不许谈生意，奴隶变成主人、主人变成奴隶。圣诞节约起源于 3 世纪，古老，但绝对不是圣经里的，后来的新教徒据此试图彻底废除它：1620 年抵达美洲的天路客特意在圣诞节照常干活，苏格兰议会 1640 年废除圣诞节，迟至 1958 年圣诞节在苏格兰仍是正常工作日。美国的再发明走的是另一条路——纽约重新发现自己的荷兰根源、捡起圣尼古拉传统，1823 年克莱门特·克拉克·摩尔把它写成一首有节奏好记的诗，很快成为大西洋两岸的畅销书，节日的焦点从此转向儿童。狄更斯 1843 年的《圣诞颂歌》几乎影响了英国圣诞的每一个方面：传统圣诞餐长期是鹅，火鸡迅速成为全家首选；更重要的是它提出，圣诞应当是社会和谐的节日、慷慨的时刻、跨越阶级的团结时刻。结尾给出圣诞节为什么有效：它说出了一个我们无法逃避的深刻事实——我们生来都是无助的，而一次新的诞生，是巨大的喜悦与值得庆祝的时刻。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>本章贡献时间这根支柱：共同体不只占据空间、交换物品、移动身体，还把日历切成平常与非常，靠周期性的重演更新自身。更关键的是它贡献了一条方法论级的观察——传统可以被后期制造，而且制造得极其有效。抽掉这章，全书就少了信仰的持久性来自重演而非起源这一条，后面形象与意味如何在时间中一层层累积的讨论也就失去了支点。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>与第 14 章递进：第 14 章是空间上的非常态，人离开日常去往别处；本章是时间上的非常态，日常被切成节日与平常，两者合起来完成第三部分由日常到非常的收束。与第 12 章构成物证回返：第 12 章的礼物在节日里变成大规模、周期性、人人参与的形式，圣诞的慷慨时刻正是那条交换逻辑的时间化。与第 4 章光的回归首尾扣环：都是用一年的某个节点对抗黑暗与中断，第 4 章处理自然的光，本章处理社会的光。往前则直接接上第四部分第 18 章意义的累积——既然圣诞节能被 19 世纪的三件偶然造出来，形象的意味同样可以被后世不断叠加，这条观察正是第三部分转向第四部分的接口。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>Because each festival is a re-enactment of all its predecessors, we come to a powerful appreciation that life … is not a lonely, one-act story with a beginning and an end.<span class="en">因为每个节日都是此前所有节日的一次重演，我们会强烈地体认到：生命不是一段有始有终的、孤独的独幕剧。</span></div>
+        <div class="ch-quote"><span class="star">★</span>It was nonsense, but rhythmic and memorable nonsense, and it quickly became a bestseller on both sides of the Atlantic.<span class="en">那是胡话，但有节奏、好记的胡话，它很快成了大西洋两岸的畅销书。</span></div>
+        <div class="ch-quote"><span class="star">★</span>Christmas should be a festival of social harmony, a moment for generosity, for solidarity across the classes.<span class="en">圣诞应当是社会和谐的节日，是慷慨的时刻，是跨越阶级的团结时刻。</span></div>
+        <div class="ch-quote"><span class="star">★</span>we are all born helpless, and a new birth is a moment of enormous joy and celebration<span class="en">我们生来都是无助的，而一次新的诞生，是巨大的喜悦与值得庆祝的时刻。</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>圣诞节约起源于 3 世纪，古老，但绝对不是圣经里的。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>迟至 1958 年，圣诞节在苏格兰仍是正常工作日。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>农神节那一周里严肃是被禁止的，不许谈生意，奴隶变成主人、主人变成奴隶。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章是全书最漂亮的论证，也是方法论上最危险的一章。圣诞节的发明史证明了传统可以被后期制造，但这条结论有适用范围：圣诞之所以能被重新发明，是因为它在 19 世纪之前就已经被削弱、被废除、被争论过。一个从未中断、从未被质疑的传统，抵抗再发明的能力要强得多。作者把一个已经松动的案例当成了普遍规律，这会让人误以为一切传统都同样可塑。</p>
+        <p>另一处没处理好的是本章内部的打架。开头把节日的功能定义为重演此前所有节日，强调连续性与代际感；结尾却证明圣诞节是一场 19 世纪的断裂式发明。如果现行形态只有一百多年，那么重演所感受到的那种连续性本身就是被制造出来的效果。作者没意识到这两层之间的张力，反而让它们互相支持。真正有意思的结论他没说出来：传统的力量不来自它真的古老，而来自它让人感到古老。</p>
+        <p>还有一个判断：狄更斯那条线索的说服力依赖于《圣诞颂歌》的传播力，而传播力是 19 世纪印刷与识字率的产物。作者把一本书改变一个节日写成了近乎个人创造力的故事，低估了媒介条件的分量——这与本书第四部分处理复制的主题本该连起来，却被分在了两个部分。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想月饼和汤圆：一个人从小吃到大的那几样，包装、口味、送谁不送谁，其实十几年里换过好几轮。多数人坚称老传统就是这样，可真去问家里长辈，会发现长辈小时候吃的根本不是这一套。传统在每个人心里，都比它实际的年头要老。</p>
+        <p>再想想公司年会。很多人入职时以为那是公司历来如此，待久了才发现是某一届某一年的临时安排，定了三年就成了传统，第五年就有人站出来维护它，说不能改。一项安排只要重复够多次，就会自动获得本来就该这样的地位。</p>
+        <p>还有一件当场能验证的：想想家里那个每年都要做、但没人说得清为什么要做的动作——年夜饭一定要有一道没人爱吃的菜，某个日子一定要在固定时间拍一张照，某个群一定要发一句一模一样的话。做的时候没人追问来历，不做就浑身不对劲。这就是重演本身的效力：它不需要你相信，只需要你重复。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">16</span>女性守护神 The protectoresses<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章从以弗所的阿尔忒弥斯像切入，追问一个形象凭什么能代表整个共同体。以弗所的阿尔忒弥斯两侧有鹿、头戴王冠，最惊人的是她上身布满的一排东西，历来被解释为多个乳房或公牛睾丸，解释本身从未定于一尊。她是野生动物的神，也是不婚不育的神：与孪生兄弟阿波罗一样永不长大，把生育力收在自己体内而不使用它，由此获得对自己身体的掌控。作者据此提出一次重读——她的童贞与其说关乎性贞洁，不如说关乎「独身且有权能」这一观念。她同时保护女人也保护男人，是一位普世神祇；章末把这条线索拉到现代的瓜达卢佩圣母，显示「女性守护神」并非地中海世界的一次性现象，而是一种反复出现的解决方式。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章给全书提供了第四部分的起点定律：一个共同体的自我理解需要一个可看的人格化中心，而这个中心的权威来自它被托付的关系，不来自它的材质、年代或出处。抽掉这一章，全书会缺掉「形象如何承载共同体身份」这一环——信仰如何回答「我们是谁」就说不清楚，只剩下制度与行为，没有面孔。它同时也给全书核心命题补上性别维度：一个社会把什么样的权能当作守护，就暴露了它希望自己被怎样保护。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章与第 17 章构成全书最紧的一对对偶：第 16 章问形象凭什么代表共同体（原件），第 17 章问复制品为什么同样有效（复制品），两章合起来才推出「力量在关系里，不在材质里」。往前看，第 15 章「节庆时刻」讲的是人群在节庆中的集体行为，本章紧跟着给这个人群一张脸——第三部分处理场所与行为，第四部分从这一章起转到形象与媒介。往后看，本章的守护神是「被请求」的对象，第 19 章的十字架则是「指控观看者」的对象，崇拜关系在第四部分内部被反转；而阿尔忒弥斯上身那些东西的多重解释，本身就是第 18 章「意义的累积」的一个现成实例。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>Artemis's virginity … relates less to the idea of being sexually chaste than to the idea of being single and powerful.<span class="en">阿尔忒弥斯的童贞，与其说关联于性贞洁，不如说关联于「独身且有权能」这一观念。（MacGregor, *Living with the Gods*, 第 16 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>She harnesses that fertility within herself without using it. That gives her control over her own body.<span class="en">她把生育力收在自己体内而不使用它。这给了她对自己身体的掌控。（MacGregor, *Living with the Gods*, 第 16 章）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>一个形象能被一群人当作守护者，靠的不是它像不像，而是它被放在关系里的哪个位置。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>阿尔忒弥斯上身那些突起物究竟是乳房还是公牛睾丸，至今没有一个解释能压住另一个——这只说明，意义从来不是被封在物里的。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章的重读有力度，也有代价。把「童贞」从性贞洁挪到「独身且有权能」，是一次去性化的解释，它让古代材料变得可敬，却也把古人可能同时持有的好几种意思压成了一种——那些突起物的解释分歧恰恰说明古人自己也没有统一说法，作者却在另一处要求一个统一答案，这是本章内部的一处不自洽。更大的遗漏是：本章把阿尔忒弥斯与瓜达卢佩圣母并置，却没有追问「为什么守护神常常是女性」这个问题。若答案是庇护与母性的普遍联想，那就等于承认一套跨文化的心理常量；若答案是特定历史情境（民族建构、殖民遭遇）的产物，那它就不能被当作普遍机制。作者回避了这个二选一，而这恰恰是全书「不判真伪、只问功能」方法的典型风险：功能解释太好用，好用就容易滑成「凡是存在的，就一定在起某种好作用」。瓜达卢佩圣母与墨西哥民族身份的绑定关系若不加以处理，本章的「普世守护神」命题就是悬空的。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想你手机里那张很久没换的头像，或者家族群里置顶的那张老照片。大多数人从不觉得自己在「供奉」它，可一旦有人换掉或删掉，群里马上会有人问一句「怎么换了」。那张图之所以有分量，不在图本身拍得好不好、清不清楚，而在有多少人默认它在那儿。再想想办公室里那张谁也说不清是谁挂上去的画、店铺柜台后面那尊摆件——平时没人看它，可真有人动它，所有人都会不舒服。力量从来不在材质里，在关系里：一个人对一张图、一件摆设、一句口号的在意程度，量出的其实是他在多大程度上把自己算在这群人里。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">17</span>精神复制时代的艺术作品 The work of art in times of spiritual reproduction<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章处理复制：当一个神圣形象被反复制作，它的力量为什么没有稀释，反而增强。俄罗斯东正教的圣像绘制手册规定，画家必须掌握长期约定俗成的、表现圣徒的惯例；画家的任务因此不是发明，而是「转录」教会既有的圣像。由此得到一个反直觉的结论——圣像的权威恰恰来自它的不变：可变意味着可疑，不变才意味着可信。章中把印度教女神杜尔迦像放在同一论域，显示「复制而非原创」不是某一传统的特例，而是一条跨越传统的规律。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章贡献全书关于「权威来源」的一条关键定律：信仰系统的可信度建立在可重复性上，而不是建立在原创性上。抽掉这一章，全书无法解释为什么一张廉价印刷、批量复制的圣像仍能动员成千上万的人，也就无法解释宗教为什么能大规模传播——而后者正是第五、六部分要处理的一神划界与国家权力的前提。它与第 16 章合起来才完整：形象的权能被托付于关系，因此复制品同样有效，甚至因为流传更广而更有效。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章是第 16 章的另一半：第 16 章给原件（以弗所的阿尔忒弥斯像）的代表权奠基，本章证明复制品不需要沾到原件也能独立生效，两章合起来才是「力量在关系里，不在材质里」的完整论证。往下，第 18 章紧挨着给出相反的一面——同一个形象在不同时代被叠加新含义——「不变」与「变」这两章必须相邻才成立：只讲不变，信仰会变成僵死的标本；只讲变，信仰会失去连续性的外观。再往下，第 19 章接住本章的前提：正因为复制品的可信度来自不变，它才有资格反过来命令观看者。章名戏拟本雅明《机械复制时代的艺术作品》，这个标题本身就是这本书与整个现代性批判传统的对话接口。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>The task of the painter is not to invent but to 'transcribe' these holy images of the Church.<span class="en">画家的任务不是发明，而是「转录」教会的这些圣像。（MacGregor, *Living with the Gods*, 第 17 章）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>在宗教图像的评价体系里，原创是风险，重复才是信用。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>一份权威若来自「它一直都是这样」，那么改变它的代价就不是审美争议，而是信任崩塌。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>「转录」这个框架在东正教圣像手册里站得住，推及全部宗教制作则需要更小心。作者把圣像手册与杜尔迦像放进同一章，但两者的权威逻辑并不相同：一类靠「严格不差样」取得信用，另一类则与年度制作、反复重做的实践相连——后者恰恰可能靠「这一次做得格外好」而非「与上一次一模一样」来获得认可。把「手工转录的不变」当成普遍规律，会掩盖掉那些靠每次重做来获取权威的图像传统，这是本章最值得质疑的一步。</p>
+        <p>标题的借用也留了缺口。本雅明说的是机械复制消解原作的光韵，本书则主张复制生产权威——这个反转很漂亮，但作者没有交代：他讨论的主要是手工复制（画家一笔一笔重画），而本雅明讨论的是机械复制（印刷、摄影），两者在本雅明那里方向相反。用一个戏拟的标题把两种复制混在一起，省掉的是一次真正有分量的回应。更深一层，本章沿用了全书「证据入口是物与行为不是文本」的设定，可它自己恰恰依赖一份规范性文本（绘制手册）来说明物为什么这样——方法在这里轻微地自我拆台：你无法只用物来证明「物为什么必须不变」，不变是一条被写下来的规定。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想你上次在群里看到的一张被转了很多次的图。没人问它最早是谁发的、什么时候拍的、有没有被裁过——转发本身就成了授权。图传到第二十手时，它的力量不是变小了，而是变大了，因为看见它的人更多、默认它为真的人更多。同样的机制在文件上更明显：一份文档被无数人转发、被各个群里反复贴出来之后，大多数人会默认它「应该没错」，哪怕谁也没有核实过。这就是「不变等于可信」的日常版本——一个人对某个说法的信任度，常常不取决于证据，而取决于他见过多少次。反过来看，谁要是把那份文件改了一个标点，群里的第一反应不是「改得对不对」，而是「你怎么敢动它」。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">18</span>意义的累积 The accretion of meaning<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章论证：宗教之所以显得坚固恒久，只因为它始终在无形地改变。作者用三块物证推进。第一，赫尔特亨·托特·辛特·扬斯约 1490 年的《圣诞》：画里的牛和驴在福音书中根本没出现，它们来自希伯来先知以赛亚的预言；婴儿身体发光、像太阳一样射出光线的细节，则来自瑞典的圣布里奇特在一次异象中所见——马厩因婴儿的光辉而变暗。由此得出方法论：和多数宗教图像一样，这幅画讲的不是一个故事，而是好几个，并且允许观看者加上自己的那一个。第二，南非桑人岩画：19 世纪 70 年代德国语言学家威廉·布利克用一种如今已无人使用的桑语与桑人长谈，创制记音文字记下他们所说的一切，留下大批传记与仪式、神话记录；岩画中的人兽混合图像被解读为正在通灵、吸收动物力量以进入灵界的萨满，而这样的壁画能让没有进入通灵状态的其余族人分享萨满那被提升的灵性经验。第三，日本的融合：佛教传入时，外来神祇被缓慢而有意地等同于本土神道的神祇，是一次了不起的吸收壮举，佛教的神荼吉尼最终与神道的稻荷共存；而只有当日本遭遇一个拒绝一切此类协商的宗教——基督教——时，这种精神才硬化了。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章把「传统可以被后期制造」从一次观察升格为一条普遍机制，从而解开了全书一个关键难题：信仰如何既声称自己古老，又能随时更新。抽掉这一章，全书无法解释第 17 章「不变的权威」与随处可见的实际变化怎么共存——权威靠不变，存续靠改变，两条腿缺一条就走不动。它同时也为全书核心命题提供了时间维度：一个共同体回答「我们是谁」时引以为据的那些「一直如此」，其实是层层叠加的产物，而叠加本身正是共同体仍在存活的证据。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章与第 17 章相邻，构成「不变 ↔ 变」的一组：第 17 章说权威来自不变，本章紧接着说存续来自改变，两章必须连读，否则读者只会得到半边真理。往前，本章直接兑现第 15 章埋下的伏笔——「节庆时刻」里圣诞节是 19 世纪被重新发明的，这条观察在本章升格为普遍机制；同时它也回返第 16 章：阿尔忒弥斯上身那些东西的解释分歧，正是意义累积的现成实例。往后，本章末尾「拒绝一切协商的基督教让日本精神硬化」这一句，直接给第 20 章让路——第 20 章要展开的正是「拒绝协商」这条路的正面形态；而形象与文字的争执通向边界的宽严，又与第五部分「一神还是多神」的划界政治接上。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>Religions seem substantial and enduring only because they are always invisibly changing.<span class="en">宗教之所以显得坚固而恒久，只因为它始终在无形地改变。（MacGregor, *Living with the Gods*, 第 18 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>Like most religious pictures, this one tells not one story, but several – and allows us to add ours.<span class="en">和多数宗教图像一样，这幅画讲的不是一个故事，而是好几个——并且允许我们加上自己的那一个。（MacGregor, *Living with the Gods*, 第 18 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>a wall painting like this would allow the rest of the group, who are not in a trance, to share in the shamans' heightened spiritual experience<span class="en">这样的壁画能让没有进入通灵状态的其余族人，分享萨满那被提升的灵性经验。（MacGregor, *Living with the Gods*, 第 18 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>Only when it was confronted with a religion which refused all such negotiation – Christianity – did the Japanese spirit harden.<span class="en">只有当日本遭遇一个拒绝一切此类协商的宗教——基督教——时，日本的这种精神才硬化了。（MacGregor, *Living with the Gods*, 第 18 章）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>牛和驴不在福音书里，却在每一幅圣诞画里——传统的厚度常常来自那些没人记得出处的补充。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>东京一家化妆品公司总部的屋顶上供着一座稻荷神社，稻荷既能保佑稻米收成，也能保佑公司利润。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>「累积」既是本章的解释力，也是它的漏洞。如果任何新含义都能被吸收进一个形象，那么「改变」这个概念就失去了判别力——没有任何证据能反驳它，因为任何反例都可以被说成又一次累积。作者其实自己给出了边界：当日本遭遇拒绝协商的基督教时，累积停住了。但他没有追问边界从哪里来——是唯一真神的结构、是文本的不可协商、还是背后的政治压力？他把原因安在「拒绝协商」上，而「拒绝协商」本身恰恰是需要被解释的那个结果。这是循环论证的风险，也是全书最容易滑进去的地方：用现象的标签当作现象的原因。</p>
+        <p>第二处值得指出的是材料的中介问题。布利克对桑人的记录，是在桑语正在消亡、殖民压力正在加剧的语境下做的抢救式采集：他问什么、记什么、怎么翻译，决定了我们今天能从岩画里「看到」什么。作者用这批材料重建岩画的萨满含义，却没有充分标记这层中介——而「后来的记录者往材料里叠加了自己的一层」恰恰正是本章的主题。一个讲意义累积的章节，没有把自身的累积过程纳入审视，这是方法上的一次漏检。第三点，把壁画解释为「让未通灵者分享通灵者的经验」，是一个功能性的漂亮解释，但它默认了图像的作用是分配体验；这是否只是因为图像是我们唯一留下来的证据？行为、声音、气味也许承担过同样的功能，只是没有留下物证。全书以物为证据入口，代价就是把留下来的那部分当成全部。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想你家那个每年都不太一样的「老规矩」：过年一定要做的某道菜、某个必须走的流程。谁也说不清它最初为什么这么定，但每一代人都往里加一点自己的理由——有人因为省事改了步骤，有人因为孩子喜欢加了点东西。它之所以显得「一直如此」，只是因为每一次改动都小到没人留意。再想想那个用了好几年的群名、那个发烂了的表情包：它的意思早就和最初不一样了，可群里所有人都还觉得它是老样子。大多数人对传统的感受就是这样——坚固感和变动同时存在，而坚固感恰恰是由那些不被记录的小改动维持的。一件事能传多久，不看它守得多严，看它容得下多少新解释。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">19</span>改变你的生活 Change your life<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章处理宗教图像的动力学：图像不只是被观看，它要反过来作用于观看者。《谴责》是天主教堂圣周五礼仪的一部分，在礼仪中，神责备他的子民不断辜负他慈爱的引领。西方基督教的核心因此是一个高度带电的单一图像——十字架上的基督，以及「我们这些有罪的人要为他的苦难负责」这一观念；中世纪教堂塞满了图像，目的不是装饰，而是推动、迷住或震撼人，直到人想要改变自己的人生。作者在这里给出全书少见的一次明确价值判断：这是关于被赦免的罪疚，而这和仅仅让人自我感觉糟糕是非常不同的两件事。章末转向反题：宗教改革者对这些「改变生命的图像」深怀敌意，他们相信传达宗教真理唯一可靠的方式是话语，图像对真信仰是危险的，最好毁掉。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章补上第四部分的动力学闭环：形象承载意义（16–18）之后，还必须解释形象如何改造人。抽掉这一章，全书只有「形象承载共同体身份」，没有「形象驱动个体行为」，也就无法接上第六部分的国家权力——信仰之所以能被动员进政治，前提正是它能让一个人觉得「我该变成另一个样子」。它同时把全书核心命题落到最实处：罪疚—赦免的机制把个人的情绪转化成可预期的社会秩序，于是「如何与神相处」真的就等于「如何与彼此相处」。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章与第 20 章构成第四部分末尾的一对对偶：本章讲图像能改变人生，第 20 章讲另一条路选择拒斥图像——而拒斥并不等于摆脱，只是把文字本身制造成了图像，两条相反路线落在同一个机制上。往前，本章是第 17 章的落点：第 17 章说复制品的可信度来自不变，本章接着说，不变的终点是要让人改变。再往前，它与第 16 章形成崇拜关系的反转——第 16 章的守护神是被祈求的对象，本章的十字架是指控观看者的对象，看与被看的位置彻底调了个头。它还回扣第三部分第 13 章「神圣的杀戮」：十字架这个图像之所以高度带电，正因为它把一次处刑变成了每个观看者的责任。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>the central purpose of many religious images … They are designed to move, fascinate, or unsettle us to the point where we will want to change our life.<span class="en">许多宗教图像的核心目的……它们被设计来推动、迷住、或震撼我们，直到我们想要改变自己的人生。（MacGregor, *Living with the Gods*, 第 19 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>the extraordinary centrality in Western Christianity of a single highly charged image: Christ on the Cross and of the idea that we, sinful humanity, are responsible for his anguish<span class="en">一个高度带电的单一图像在西方基督教中的非凡核心地位：十字架上的基督，以及「我们这些有罪的人要为他的苦难负责」这一观念。（MacGregor, *Living with the Gods*, 第 19 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>this is about guilt that is forgiven, and that is very different from just making people feel bad about themselves<span class="en">这是关于「被赦免的罪疚」，而这和仅仅让人自我感觉糟糕，是非常不同的两件事。（MacGregor, *Living with the Gods*, 第 19 章）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>图像的最高目标不是被理解，而是被服从。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>一个共同体最有效的自我约束装置，往往不是规则，而是一张让人无法直视的图。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>作者在这里罕见地给出了价值判断——区分「被赦免的罪疚」和「仅仅让人自我感觉糟糕」。这是全书「不判真伪、只问功能」方法的一次自我越界：一旦你要区分好的罪疚和坏的罪疚，你就已经引入了功能之外的标准。问题在于，作者没有交代这个标准从何而来，也没有说明为什么「能被赦免」就是好的那一类。这个缺口不算致命，但它暴露了全书方法的一条边界：功能分析可以解释一个装置怎么运转，却无法判断它把人带向何处，而作者偶尔还是忍不住要判断。</p>
+        <p>第二个问题是样本。第 16、17、18 章都是多传统并置，本章却把「图像改变人生」这一普遍命题压在基督教十字架这一个案例上，单案例撑普遍命题，是明显的选择偏差——何况这个案例恰恰是图像密度和罪疚机制都极端的一个传统。第三，效力如何测量？作者用的是礼仪文本的设计意图和信徒的自述，把「设计来做什么」当成「实际做到了什么」。这是全书方法的老问题：以物为证据入口，能证明有人做了这张图、写了这篇礼文，却很难证明看的人真的被改变了。中世纪教堂塞满图像这个事实，同样兼容另一种解释——图像多只是因为委托者多、钱多、工匠多，未必因为每个人都因此改了人生。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想你上次刷到某张照片或某段视频之后，当场就动了念：给很久没联系的人发了条消息、下单了一件本来不会买的东西、或者把购物车清了。图刷过去就没了，但那一瞬间你确实动了。这就是图像的日常效力——它的目标不是让你欣赏，是让你做点什么。再想想手机锁屏上那句话、办公室墙上贴的那句标语、冰箱门上那张便条：它们每天被看一眼，作用不在字面意思，而在反复提醒你该成为什么样的人。</p>
+        <p>「被赦免的罪疚」也有一条日常版本。大多数人做完一件错事，真正需要的不是一直自责，而是有个程序让你认完就能翻篇——家里那句「说开了就好了」，公司里那句「复盘完就过去」。让人一直难受的装置会把人逼走，让人难受完还能回到队伍里的装置才会留下人。一个人愿意留在某个群体里，往往不是因为这个群体从不让他内疚，而是因为它有办法把内疚收尾。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">20</span>拒斥图像，尊崇话语 Rejecting the image, revering the word<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章给出第四部分的反例：走另一条路的信仰。16 至 17 世纪，整个北欧的绘画、彩色玻璃和雕像被大规模捣毁，理由是改革者相信传达宗教真理唯一可靠的方式是话语，图像对真信仰是危险的。犹太教与伊斯兰教是重视话语胜过图像的宗教，穆罕默德有言：好的书写让真理凸显出来。作者由此推出一条后果链：对「话语」的强调必然鼓励学习与识字——犹太女性的识字率发展得相对较早，儿童尤其是男孩在极小的年纪就被教读书，即便在今天，仍有数量惊人的人能凭记忆背诵整部《古兰经》。结论是全书最漂亮的一个反题：反图像的传统催生了人类历史上最高的识字率与最强的文本记忆传统，它们没有摆脱可见的形式，只是换了载体——拒斥图像，并不等于摆脱了像。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章证明「形象」这一机制不可被绕开：拒斥图像只是把文字本身制造成了图像。抽掉这一章，第四部分会退化成「图像万能论」——读者会以为形象是宗教的必选项，而不会看到机制的普遍性与载体的可替换性。它同时提供了通往第五部分的接口：以文字为中心的信仰倾向于更硬的边界，因为文字可以被引证、被核对、被判定是否属于内部；形象与文字的争执背后，正是共同体边界的宽严问题。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章是第 19 章的反例，两章必须成对读：第 19 章说图像能改变人生，本章说另一条路把图像全部拒掉——而拒斥的结果不是回到无像，而是把文字做成了像。往前，它与第 18 章形成物证回返：第 18 章末尾「拒绝一切协商的基督教让日本精神硬化」这一句，在本章得到正面展开——「拒绝协商」从一句观察变成了整整一章。它也与第 16 章首尾扣环：第四部分从「一个形象代表一个共同体」出发，绕经复制、累积、反噬，最后落在「文字被制成图像」，同一个机制转了一整圈回到原点。往后，它直接接上第五部分「一神还是多神」：文字性的信仰如何划定边界，正是第 21 章以后要处理的划界政治。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>Good writing makes the truth stand out.<span class="en">好的书写让真理凸显出来。（第 20 章，书中引述穆罕默德语）</span></div>
+        <div class="ch-quote"><span class="star">★</span>Focus on the word in both faiths necessarily encouraged learning and literacy.<span class="en">这两个信仰对「话语」的强调，必然地鼓励了学习与识字。（MacGregor, *Living with the Gods*, 第 20 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>even today an astonishing number of people can recite the entire Qur'an by heart<span class="en">即便在今天，仍有数量惊人的人能凭记忆背诵整部《古兰经》。（MacGregor, *Living with the Gods*, 第 20 章）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>拒斥图像，并不等于摆脱了像——只是把文字本身制造成了图像。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>一个反对形象的信仰，最终生产出的是人类最强的文本记忆传统：换掉的是载体，不是机制。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这个反题漂亮，代价是概念的边界被拉松了。如果任何可见的形式——包括被装裱、被悬挂、被反复摹写的文字——都可以被称作「图像」，那么「图像」这个词就不再有区分力，说「一切宗教都离不开图像」就成了一句无法被证伪的话。作者没有给出「什么算图像、什么不算」的判据，而这恰恰是本应在本章交代的。</p>
+        <p>第二处是因果链的压缩。作者把识字率与背诵传统的繁荣归给「对话语的强调」，这是单因解释：印刷成本、教育制度、国家行政对文书的需要都在起作用，其中任何一项都可能独立推动识字。为了让反题显得利落，作者把一条多因链条压成了一环。第三，也是最可惜的一处遗漏：16 至 17 世纪北欧那场捣毁运动被一句话带过，作者只写了动机结构（认为图像对真信仰危险），没有写过程——于是读者看不到，砸掉形象本身就是一场极具冲击力的公共行为，是一次面向所有人的、用破坏来完成的表态。拒斥图像从来不是退出图像政治，而是换了一种更激烈的图像政治。这一层作者没有点破，是本章最大的缺口，也是全书在第四部分收尾时最该说却没说的一句。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想身边那种只认文字、不屑看图的人：手机里存的是长文章和纯文字截图，头像是一句黑底白字的话，对短视频不屑一顾。他以为自己退出了图像，其实他把文字当图像用了——那句话、那个纯色背景、那种排版，本身就是一张图，看一眼就知道他是什么人。形式换了，机制没换。</p>
+        <p>再想想家里贴出来的那张家规、公司走廊墙上挂的那版制度。写成白纸黑字裱起来，其实没人从头读到尾，但那张纸立在那里就是在起作用：它不需要被阅读，只需要被看见。大多数人服从的不是条文内容，而是「它被挂起来了」这件事本身。一个人以为自己靠道理做决定，多数时候是在回应某个被摆在他眼前的可见形式——至于那形式是画出来的还是印出来的，差别远没有想象中大。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">21</span>多神的祝福 The blessings of many gods<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章以罗马帝国为主要案例，讲多神体系如何运转。罗马扩张时把自己的神输出到新行省并建庙供奉，但这些神并不嫉妒，罗马也从不搞劝化异教徒的传教运动，被征服地区的原有神祇继续受到敬奉。核心机制是：尊荣别人的神，等于承认敬拜这些神的人是共同体的合法部分——双方都在这个过程中变得不那么陌生。公元前 173 年元老院一句法令概括了这套世界观：不朽的神在各地都是同一的。作者随后点出多神的两大收益：它让罗马把从埃及到诺福克这一惊人范围内的民族吸收进同一个国家；它还给美索不达米亚人一个舒服的世界观——在地震洪水频发的地区，灾难不是受难者的错。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章提供了全书边界问题的「加法」极限案例：信仰作为公共操作系统，其「我们是谁」的答案最多可以开到多大。全书的题眼是「如何与众神共处即如何与彼此共处」，本章给出最宽的答案——我们等于所有其神被我尊荣的人。抽掉这一章，全书就少了「边界可以开到几乎不设限」的参照系，第 22 章的排他机制失去对照物，第五部分「由神的数量推进到划界政治」的整条线索也失去了起点。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章是第五部分的开篇，与第 22 章构成全书最明确的一组对偶：多神做加法、一神做减法，一个规模收益极大但动员力弱，一个动员力极强但把边界焊死——对偶的左翼必须先立起来，右翼才有撞击面。同时它紧接第 20 章「拒斥图像、尊崇话语」：多神体系恰恰是无唯一权威文本的典型，媒介之争在这里被揭底为边界宽严之争，第 22 章关于唯一文本的论点由本章先行铺垫出反面。它还向第 25 章投下伏线：罗马式的容纳是一种不自觉的宽容，第 25 章会把宽容变成自觉的治理技术。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>If you honour other people's gods, you acknowledge them, and the people who worship them, as a legitimate part of your community.<span class="en">如果你尊荣别人的神，你就在承认他们、以及敬拜他们的人，是你共同体的一个合法部分。（第 21 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>*iidem ubique di immortales*: "the immortal gods are the same everywhere"<span class="en">不朽的神在各地都是同一的。（公元前 173 年罗马元老院法令，第 21 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>it offered Mesopotamians a world view in which natural disaster – not infrequent in a region of earthquakes and floods – was not the fault of those who suffered it.<span class="en">它给了美索不达米亚人一个世界观：在一个地震和洪水频发的地区，自然灾害不是受难者的错。（第 21 章）</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>尊荣别人的神听起来是承认，实际也是一种治理技术——主动权始终在尊荣者手里，被尊荣的一方未必感到被接纳，更可能只是被管理。罗马模式的「承认」建立在权力不对等之上，作者用「你和他们都会改变」把这件事讲得过于对称，回避了谁定义谁被纳入的问题。另一个没处理好的地方：多神的容纳有个隐含前提——各方神祇可以并列摆放；一旦其中任何一方宣称唯一，这套加法立刻失效。这个边界条件作者没有明说，要等到第 22 章才显影。此外，「灾难不是受难者的错」这个世界观固然让人舒服，但它同时卸掉了追责的可能——安慰与豁免是同一个功能的正反面，功能分析方法照见了前者，对后者只字未提。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>多神逻辑在日常生活里随处可见：想想一个办公室里同事桌上摆的东西——有人转锦鲤，有人开工红包，有人考试季拜考神。没有人被要求解释或改信，只要这些小仪式彼此互不干涉，新人摆上自己的那一件就算入了伙。那就是「尊荣别人的神」的日常版本：不懂，但允许，允许即接纳。它的代价也一样真实：真到了要全员拼一个 deadline 的时刻，这种松散共识喊不动人——没人会为一缸锦鲤熬夜。一个人可以当场验证：回忆你待过的最包容的圈子，再回忆它上次需要集体行动时是什么效率。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">22</span>一神的力量 The power of one<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章与第 21 章严格对位：多神做加法，一神做减法。作者的核心论点是一个复合命题——亚伯拉罕诸教的独特之处不只是信仰独一神，更在于拥有一部宣称唯一权威地位的圣典文本，这在人类历史上极不寻常；世界上多数信仰在多数历史时期都没有这种文本。书中的典型物证是《十诫》：一位全能全控的神，交下一部写在不可更改之石上的文本，规定清晰、不可变易的教义。由此引出本章的政治命题：定义「我们」的能力与排斥「他们」的能力是同一枚硬币——排他换来极强的动员力，代价是把边界焊死。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章贡献了全书的「动员力定律」：边界焊得越死，集体行动力越强。全书说信仰是回答「我们是谁」的公共操作系统，本章揭示这个系统最强的运行模式——用一部不可更改的文本一次性锁定答案。抽掉这一章，全书只剩温和的粘合剂版本，无法解释排他性如何制造出史上最强大的「我们」；第 24 章「神作为战神」的战争逻辑也会失去发动机，因为动员力正是从排他文本里来的。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章紧贴第 21 章构成全书最明确对偶的右翼：加法在前、减法在后，一放一收。它同时是第 20 章的收束——那一章讲拒斥图像、把话语本身制成权威，本章给出这套媒介革命的完整政治形态：唯一文本即唯一边界，媒介问题就此兑换成划界问题。向后看，它为第 24 章装上发动机（排他的神一旦与国家机器结合就是战争之神）、为第 25 章立起待检验的难题（这样的边界还有没有刹车）。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>一神教的独特之处不止于信一个神，更在于拥有一部宣称唯一权威地位、写在不可更改之石上的圣典文本。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>定义「我们」的能力与排斥「他们」的能力，是同一枚硬币的两面。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>世界上多数信仰在多数历史时期，并没有宣称这种独特地位的文本。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>作者把「信一个神」和「有一部唯一权威文本」当成一回事来讲，但严格说这是两个变量：逻辑上可以存在一神而无唯一正典，也可以存在多神而出现唯一正典。把复合现象整体归因于「一神」，等于悄悄更换了论证单位——真正制造排他的可能是文本的权威结构而非神的数量，作者没有拆开验证。另一个裂缝：动员力强在第 21 章被描述为多神的短板，在本章被描述为一神的优势，到第 24 章才显形为代价——这个变量在两章之间从缺点变成优点再变成隐患，中间的因果链作者没有真正搭起来，读者只能自行脑补。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>一神逻辑的日常对应物是那种规矩极严的社群。想想你加过的群：有的群松散到只有表情包，有的群有一套新人必读的手册、固定的话术、不容置疑的惯例。后一种群说干就干、分工利落、动员效率惊人——但代价你也见过：谁稍微不合那套规矩，很快就被当成「不是我们的人」，多数人于是学会先沉默再观望。一个人可以当场验证：回忆你待过的规矩最严的圈子，再问自己——你在里面发过多少次不同意见？</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">23</span>地方之灵 Spirits of place<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章处理一类被现有分类漏掉的存在：精灵、妖精、地精、仙子——它们顽皮、狡猾、危险，通常就在视线之外，曾是欧洲乡间无处不在的近旁临在，数个世纪里与正统基督教不安地共存，十九世纪没有跟着人们搬进城市，如今滑稽地停在迷信、奇想与奇幻文学之间的某处。与之对照的是泰国的灵屋：为安抚恶灵或招引守护者而建，在快速城市化的泰国依然遍布机场、购物中心和学校。本章的核心是语言困境：英语被基督教与古典世界塑造得太深，找不到不带轻蔑意味的词去讨论那些明确既不是神也不是魔的存在。作者随后用瓦努阿图北部的空间语言把这个洞挖深——那里的人用海的方位说话，说话方式本身就嵌入景观——并收在景观即继承而来的共享故事之网这一命题上。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章是前两章的解围者。全书讲信仰划界，第 21、22 章立起多神与一神的二分法，但泰国灵屋和欧洲精灵这类「既不是神也不是魔」的存在两头都装不下——本章的存在本身就是对二分法的反例，防止全书被自己的提问方式绑架。它同时为全书的公共操作系统命题补上一块底层组件：操作系统不仅装着神，还装着地方——信仰与景观的绑定是比神谱更早、更顽固的一层。抽掉这一章，第五部分的标题「一神还是多神」本身就成了一个装不下现象的假问题。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>在全书最尖锐的一组对偶（21 加法 / 22 排他）之后，作者插进一个第三项——不是调和，而是拆台：先把二分法的解释力打穿一个洞，第 24 章的极端案例才有足够松动的地基。本章同时与第 20 章回返：那里讲把话语制成权威，这里讲没有正典、只靠语言与地方存续的信仰，恰好是文本权威的反面镜像。瓦努阿图的空间语言还是全书方法三设定的贴身自证——证据入口不是文本而是物、场所与行为，这一章几乎是方法的示范课。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>This is an area of belief and behaviour for which we often in English do not have the right words.<span class="en">这是一个我们在英语里常常没有恰当词汇的信仰与行为领域。（第 23 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>Your very way of speaking is intimately embedded in the landscape.<span class="en">你的说话方式本身就亲密地嵌入在景观之中。（第 23 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>to walk through this kind of landscape is to walk through an inherited web of shared stories<span class="en">走过这样的景观，就是走过一张继承而来的共享故事之网。（第 23 章）</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>「词汇的匮乏就是思想的匮乏」这个论断滑向了语言相对论的强版本，但作者实际展示的只是英语没词——没词不等于没法想，也可能只是没法体面地说。从「描述工具缺失」跳到「思想本身受限」，中间缺了一整段论证，他借瓦努阿图的方位语言补洞，但语言系统不同不直接推出概念系统不同。另一处可以质疑：他把英国精灵在十九世纪的退场讲成城市化造成的遗忘，这个叙事偏浪漫——退场的具体机制是什么、谁认定它们「不值得带进城」，作者没有回答，仿佛遗忘是自然现象而非有人执行的选择。最后，泰国灵屋与欧洲精灵被并置在同一个「地方之灵」标签下，但一个仍在机场和商场里日常运转，一个只剩文学素材的功能——一个是活的操作系统，一个是博物馆展品，并置的代价他没有交代。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>地方性语言在日常里一直是活的。想想你怎么给外地朋友指路——多半不说路名，而说「那个有烤红薯摊的路口」「过了那家总排队的奶茶店右转」：你的方向感就是长在你的活动半径上的，换个人来就失效。再想想家里或小区里的「老位置」——奶奶惯常坐的那把椅子、楼下车棚边那根凳子，没人规定，但谁都默认碰不得。还有办公室里那盆没人记得来历、却总有人拦着不许挪的植物：它既不是制度也不是迷信，动它之前一定有老员工出来拦你。一个人当场就能验证：问自己老家有哪个词，普通话里根本找不到对应——那个缺口就是本章说的东西。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">24</span>若神与我们同在 If God be with us<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章把「神站在我们这边」的机制推到极端：当一个民族国家的神同时还是战神，会发生什么。书中给出的机制链条是：一个共同体先获得「新自我形象」——伊丽莎白时代的英格兰把自己想象成勇敢对抗强权的信众集体；或者像埃塞俄比亚那样，一个基督教立国逾千五百年、独立于帝国教会之外发展的纯粹民族教会——书中特别强调 1896 年阿德瓦一役，一个非洲国家在非洲人的领导下彻底击溃了一支欧洲军队，成为欧洲人不总是赢的标志。收尾是本章最深的结构洞见：一个作为纯粹民族制度发展起来的教会，本由本地环境塑造、也为本地环境而造，却给了历史完全不同、生活在另一大陆的人们一个传统和形象，而他们把它变成了自己的。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章贡献了全书从信仰边界到暴力边界的关键一步。第五部分的推进是「有多少个神 → 神把谁划在外面」，本章补完最后一环：当排他的神同时被共同体认作战神，划界就获得了动员暴力的许可证——「我们是谁」的答案直接兑换成「我们可以对谁做什么」。抽掉这一章，第五部分与第六部分之间就断了铰链：第 26 章「天命」要讲的信仰与国家主权的合流，在这里没有预演；全书的暗线——越来越靠近世俗权力与暴力——也在这一站落空。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章与第 25 章构成对偶：这边讲「神与我们同在」会把共同体带向哪里，那边追问这套机制有没有刹车。对第 22 章它是递进而非重复：22 章把边界焊死，本章展示焊死的边界一旦接上国家机器和战争叙事会释放什么。物证上它还与第 2 章「火与国家」以来的信仰—国家共生线索形成回环——国家从信仰里拿走火，信仰从国家里拿走剑。收尾那个「民族之神被异国人群挪用」的悖论，又悄悄为第 25 章的宽容命题埋下材料：被挪用本身说明神的归属比想象中松。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>remarkable things happen when you live with a god who is not your neighbour's – especially if the god of a nation state is also the god of battles<span class="en">当你与一个不是你邻居的神共处时，会发生非同寻常的事——尤其当那个民族国家的神同时也是战神。（第 24 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>An African country, under African leadership, had utterly vanquished a European army<span class="en">一个非洲国家，在非洲人的领导下，彻底击溃了一支欧洲军队。（第 24 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>a church which had developed as an exclusively Ethiopian national institution … has given people with completely different histories, and living in a different continent, a tradition and a figure which they have made their own<span class="en">一个作为纯粹的埃塞俄比亚民族制度发展起来的教会……给了历史完全不同、生活在另一个大陆的人们一个传统和一个形象，而他们把它变成了自己的。（第 24 章）</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章收尾包含一个作者注意到却没有解释的反直觉机制：越排他、越民族化的神，反而越容易被历史完全不同的人群整体挪用——排他性在这里成了可移植的招牌，因为「不是你邻居的神」恰恰保证了它不会被本地惯例稀释。功能分析方法照出了这个悖论的轮廓，却给不出因果解释。另一个没处理好的地方：书中把一场军事胜利主要当作信仰叙事的材料来读——「神与我们同在」的框架揭示了动员从哪里来，但同时也收编了胜利本身的政治逻辑（谁被动员、为谁的利益），分析工具在这里既揭示又遮蔽。本章作为机制研究是干净的，但读者应当意识到：机制解释得越漂亮，越容易让人忘记机制之外还有账要算。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>这里只看动机结构，不看任何具体事件。一群人需要一个把「我们」和「他们」分开的工具，而这个工具最锋利的时刻，永远是一次对外的共同压力。想想一个办公室里的「我们这边／他们那边」是怎么生成的：多半诞生于抢同一个客户、或一起扛一场大检查的那几周——那段时间边界最清晰、内部最齐心、加班都加得心甘情愿；压力一消失，「我们」往往也就散了，留下来的只有几句口头的「当年咱们」。再想想家族群或同学群里那段没人敢碰的「共同记忆」：平日各自为政，一旦被外人质疑，全群瞬间同仇。一个人可以当场验证：回忆你最近一次「一致对外」的经历，数一数当时在场的「我们」，现在还剩几个还来往。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">25</span>宽容与不宽容 Tolerating and not tolerating<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章问的是整套划界机制有没有刹车。书中的对照结构是：一边是那种多语、多信仰彼此比邻的大都会式共存——作者说，各大信仰以如此规模比肩而行的地方，没有比那更多的了；另一边是另一种模式——信仰共同体应当反映为政治集团、甚至获得领土保证，一片领土属于一种文化或一种宗教，因而某一群体在决定什么建在哪里上拥有优先权。本章的核心是一个定义差异：印度式的世俗主义，意思不是政府事务中没有宗教，而是任何宗教都不得优于其他任何宗教。历史支点是莫卧儿皇帝阿克巴：他令臣下为印度教故事绘制插图、培育有见识的多元主义，其臣下记载各派在同一场所各行其礼，他本人的信念是——若真正的知识各处都能找到，真理为何要被局限于一种宗教。作者以罕见的明确语气收尾：这种相互尊重的共存理想，如今没有得到维护。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章是全书题眼「如何与众神共处即如何与彼此共处」在边界问题上的直接检验场。前四章分别立起加法、排他、中间层、战神，本章把问题收拢为一句：这套划界机制能否被自觉限制。它贡献了全书唯一一个正面答案——宽容不是没有边界，而是一种主动的边界管理技术：谁都不凌驾。抽掉这一章，全书就成了一部「划界机制如何运转」的技术手册，作者的价值判断无处落脚，题眼也只能悬空。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章与第 24 章构成对偶：那边是排他的极端后果，这边是排他的刹车实验。它同时是第 21 章的回返与升级：罗马式的容纳是不自觉的——加法只是扩张的副产品；阿克巴式的多元主义是自觉的——宽容被明确做成一项治理技术，从「碰巧容纳」推进到「设计容纳」。它还是第五部分通往第六部分的门槛：本章的结论是刹车存在但没有被维护，于是第 26 章转入权力叙事便顺理成章——宽容解决不了的，权力会接管。向后远望，宽容命题直接预告了第 30 章「与彼此共处」的首尾扣环。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>Secularism in the Indian form means not 'no religion in government matters', but 'no favouritism of any religion over any other'.<span class="en">印度式的世俗主义，意思不是「政府事务中没有宗教」，而是「任何宗教都不得优于其他任何宗教」。（第 25 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>Sunnis and Shias met in one mosque, and Christians and Jews in one church, and observed their form of worship.<span class="en">逊尼派与什叶派在同一座清真寺聚会，基督徒与犹太人在同一座教堂，各行其礼拜之仪。（第 25 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>If some true knowledge was everywhere to be found, why should truth be confined to one religion?<span class="en">如果真正的知识在各处都能找到，真理为何要被局限在一种宗教里？（第 25 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>a land or a territory belongs to a culture or a language or a religion, and therefore one group has the priority in defining what gets built where<span class="en">一片土地或一块领土属于一种文化、一种语言或一种宗教，因而某一群体在决定「什么东西建在哪里」上拥有优先权。（第 25 章）</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>作者把宽容讲成一种精巧的治理技术——不偏不倚、谁都不凌驾——但书中的成功案例恰恰依赖一个强执行者自上而下的赞助。这暴露了机制内置的漏洞：中立的裁判一旦退场，或裁判自身变成利益一方，「谁都不凌驾」立刻失去支点。宽容作为管理技术需要不断被重新执行，而作者只哀叹它没有被维护，没有回答它靠什么自我维持——这恰是全章最该回答的问题。更深的一层：本书的方法设定是不判真伪、只问功能，可本章结尾罕见地下了明确的价值判断——那盏明灯没有被维护。功能主义在它最想发言的地方给不出标准，作者只能悄悄换回启蒙式的评价语言；方法与结论之间的这次越轨，说明纯功能分析撑不起宽容这种规范性命题。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>这里只看动机结构，用任何人身边都有的日常。合租屋是「谁都不凌驾」最干净的模型：运转好的合租屋从来不是「公共区域没有个人物品」，而是「任何人的东西都不能霸占公共区域」——一个人可以当场回想住过的合租屋，是不是只要有谁开始把客厅当自家客厅，平衡就开始崩，而且崩的速度远快于建立的速度。家族群是第二个：长辈转发养生文、小辈刷梗图，一个还能正常说话的群，规则通常不是「不许谈某类话题」，而是「任何一类话题都不许垄断」——想想哪个群是因为单一话题刷屏而慢慢冷掉的。第三个小模型是小区业主群：健身器材还是儿童滑梯建在哪儿、谁先入住谁的意见算数——一个运转好的小区不是没有偏好，而是没有哪一拨人的偏好默认算数；一旦默认成立，其他人剩下的就只有沉默和退群。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">26</span>天命 The mandate of Heaven<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章考察统治合法性从哪儿来，以及它怎么失效。作者先用两件授权道具立起通则：加冕礼上倾倒在君主身上的圣油，把一位当代欧洲君主接回圣经传统，使她成为主的受膏者；一位十六世纪的统治者从不在公开场合进食，因为臣民相信他是神、无需食物即可存活，而维持这个信念对他的权威至关重要。通则是：要在人们眼中成为领袖，在多数社会、多数历史时期，都必须先在神的眼中成为他们的领袖。真正锋利的转折来自约公元前 1050 年的一批青铜器铭文所承载的观念——统治权可以被拿走，上天的恩宠不能被视为理所当然；朝中设有学者，职责是了解民意，并通过民意了解天意，如果有足够多的人在足够长的时间里表达了足够的不满，他们就可能提出这位统治者的时辰到了。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章把全书的核心命题从我们是谁推进到谁有权统治。前五部分反复证明信仰是最高效的划界工具，本章补上缺失的一环：划界一旦落到权力上，信仰就从黏合剂变成签发机关——统治权由神授予，因而是可授权的、也因而可以是可收回的。抽掉这一章，全书只有信仰如何塑造共同体，没有信仰如何制造统治者；第六部分后面四章全部失去起点——没有授权，就谈不上有信仰想拥有自己的国家（27），谈不上国家拿信仰开刀（28、29），也谈不上最后要回答的共处问题（30）。它也是全书题眼的政治化版本：我们决定如何与自己的神相处，同时也就决定了由谁来管我们。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章是第六部分的开篇，与第 25 章构成一次位置跃迁：第 25 章问一个社群能不能容下不同的神，本章把同一个问题搬到权力顶端，问它能不能容下不同的统治者——宽容的难题从信仰层面升格为统治层面。它与第 27 章构成授权与建国的对偶：本章是被授予的统治权，锋利处在于可以被收回；第 27 章是被争取的统治权，锋利处在于还没拿到就要先宣示。向后它还为第 29 章埋下物证回返的对照：圣油与权杖是看得见的授权道具，第 2 章那座看得见机械装置的宝玑时钟会在第 29 章再次出现，两处的共同点是合法性必须被展示出来才成立。放在第六部分打头，是因为它是后面四步的逻辑前提——先确立统治权由神签发，才谈得上收回、争取、清除、废除与共处。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>the right to govern can be removed<span class="en">统治权是可以被拿走的。（第 26 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>To be a leader in the eyes of a people, it has in most societies, and for most of history, been necessary to be their leader in the eyes of God.<span class="en">要在人们眼中成为领袖，在多数社会、多数历史时期，都必须先在神的眼中成为他们的领袖。（第 26 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>Oba would never eat in public, because his subjects believed him to be a god, and so he could survive without food.<span class="en">Oba 从不在公开场合进食，因为他的臣民相信他是神，因而无需食物即可存活。（第 26 章）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>天命真正的锋利之处不在授予，而在可以被收回。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>民意是天意的读数装置：足够多的人在足够长的时间里不满，授权就到期了。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章最锋利的那半句其实和全书的方法设定打架。作者的证据入口是物，而权力的授予有物——圣油、权杖、加冕礼；权力的收回却没有物，它只存在于铭文与事后叙述里。也就是说，本章最能立住论点的部分，恰好是全书宣称不依赖文本、而不得不依赖文本的部分。第二个漏洞：那句通则说多数社会、多数历史时期都需要神圣背书，但本章三件物证全部来自君主制社会，非君主制的授权形式在这章完全缺席，通则的覆盖面被样本悄悄限窄了。第三个问题更深：全书的方法是只问功能、不判真伪，可授权被收回这件事，功能上完全无法区分天意收回与人事推翻——而这一区分恰恰是本章论点的要害，作者绕开了它。还有一层张力：如果统治者的神圣性靠公开行为来维持（不进食），那么授权就不只是被授予的，还是被持续表演出来的，作者对这层表演性只是一笔带过。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>授权的到期在日常里几乎从不以宣布的形式出现。想想任何一个小圈子里那个默认说了算的人——家里负责张罗年夜饭的那位、办公室里拍板定时间的那位——他失去位置的那天，通常不是有人站起来说换人，而是下一次有事的时候，大家开始绕开他去问别人。没有投票，没有冲突，甚至没有人承认发生过什么；授权的收回就是这样完成的：不是被夺走，而是被不再使用。反过来也一样，一个人之所以还算数，不是因为他上一次被授权过，而是因为这一次还有人等他开口。可以当场验证：回想你所在的任何一个圈子，上一次有人被默认征询意见是什么时候，他的意见后来还被引用过吗？民意作为授权的读数装置，读的从来不是满意度，而是一个人还留在不留在被询问的名单上。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">27</span>愿你的国降临 Thy kingdom come<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章考察当一种信仰试图拥有自己的国家时会发生什么。第一件物证是公元二世纪在罗马钱币上加印的犹太符号与铭文——那是一次为摆脱罗马统治、建立独立国家的尝试，最终失败；加盖币是最廉价也最激进的主权宣示，因为在敌人的货币上改写神的名义，等于不花一寸土地就先宣布了主权。第二件物证是十九世纪苏丹一面镶浅蓝边的白色棉旗，随马赫迪军队攻占而升起，直到 1890 年代中期随这支军队的溃败而消失。两件物证构成一个严格的对照结构：两者都是信仰寻求自己的国家，两者都以失败告终，一个是货币上的神学，一个是旗帜上的神学。本章由此给出它与第 26 章的分工——天命是被授予的统治权，本章是被争取的统治权。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章给全书补上主权这一环：信仰不只是划界工具，还是建国的模具。全书说信仰是社会用来回答我们是谁的公共操作系统，本章把这个系统推到它的最大野心——不只是划定谁属于我们，而是让我们自己成为一个国家。抽掉这一章，第六部分就只有自上而下的单向视角（国家如何使用信仰），缺少自下而上的那一半（信仰如何想成为国家），第 26 章授权可被收回也就失去了它的对称项。它同时把第四部分关于媒介的结论接到政治上：加盖币和旗帜都是可复制、可流通的载体，宗教形象一旦上了货币与旗帜，就等于进入了国家的血液循环系统。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章与第 26 章构成授权与建国的对偶：一个讲统治权被授予且可被收回，一个讲统治权被争取且尚未到手；前者的锋利在失效机制，后者的锋利在先宣示后拥有。它与第 28 章构成递进：本章的两则案例都停在失败上——信仰想要国家而得不到；第 28 章紧接着翻转方向，问当国家判定某种信仰在争夺国家时会怎样，于是从信仰要建国推进到国家清除信仰。向后它还与第 12 章、第 17 章形成物证回返：加盖币是一件被改写的流通物，与复制时代宗教形象如何增殖本是同一机制，只是这次增殖发生在货币上。夹在 26 与 28 之间，它正好是授权、争取、镇压三步中的中间那一步——没有这一步，第 28 章的清除就缺少动机来源。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <p>本章没有可核对的原书引文，以下为章旨句，非原书措辞。</p>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>当信仰试图拥有自己的国家时，硬币和旗帜就成了神学宣言。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>加盖币是最廉价也最激进的主权宣示：在敌人的货币上改写神的名义。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>一个是货币上的神学，一个是旗帜上的神学，两者都试图让信仰拥有自己的国家，两者都以失败告终。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章是全书最容易滑向结果倒推的一章。作者选的两个案例都以失败告终，但失败是事后才成立的属性：只看物证本身，加盖币确实流通过，白旗确实升起过，它们恰恰是成功的主权宣示物。用结局来定义物证的性质，等于悄悄把不判真伪只问功能换成了以成败论性质，这是方法论上的一次偷换。第二个漏洞：货币与旗帜本来就是国家的形式，用它们证明信仰想建国，其实证明了信仰已经在借用国家的形式——那么到底是信仰想拥有国家，还是信仰只有通过国家的形式才能被看见？这两者作者没有分开处理。还有一处与第 26 章的张力：第 26 章说统治权可由高于统治者的天意收回，可本章里信仰自己要去当那个统治者，那谁来约束它？全书没有回答，而这个问题在第 29 章会以更极端的形式回来。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>宣示往往不是实力的结果，而是实力的替代品——越是没有把握的一方，越需要把标志做得显眼。想想办公室里那条谁也没授权过的规矩：第一个人这么做，第二个人照着做，第三个人开始纠正新来的人，到第四个人它就成了规矩本身。全程没有谁发布过它，它靠被重复而成立。信仰想拥有国家这件事，在日常里对应的是一个人先把外在的标记立起来——头像、口号、站队姿势——然后期待内在的归属感自己长出来。这个顺序可以当场验证：回想你最近一次表态，是先有了确信，还是先有了姿态？多数人的答案不太体面，但很有用：归属常常是跟随行为长出来的，不是行为跟随归属长出来的。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">28</span>拧紧螺丝 Turning the screw<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章拆解一种国家技术：当某种信仰被判定为对国家的威胁，国家不需要否定它的教义内容，只需把它重新定义为安全问题，迫害就从神学争议变成了行政程序。两件几乎同时期的物证构成对照。十七世纪日本路边的一块告示板明文悬赏，举报基督徒者可获得丰厚奖赏——它把信仰变成邻里的互相监督，把执行成本外包给了日常生活。同时期的法国，一幅版画记录了一座胡格诺教堂被官方批准拆毁——拆毁是公开的、程序化的、并且被图像记录下来，示众本身就是程序的一部分。本章处理的是只废除这一个宗教，它给自己设定的对位项在第 29 章：废除一切宗教。两条路的终点是同一个——国家成为信仰的裁判者。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章补上全书缺失的执行端。前五部分反复证明信仰是最高效的划界工具，但划界靠什么落地，一直没有答案；本章的回答是一次重分类——把信仰从错重新归类为危险，于是排斥不再需要理由，只需要程序。抽掉这一章，全书对信仰阴暗面的解释还停在第 25 章的心理层面（人为什么不容忍），缺了制度层面（不容忍怎样被写成流程、怎样自我运转）。它也是第六部分最关键的一次转换：从这里开始，暴力不再来自信仰本身，而来自行政分类——信仰只是被分类的对象。这条转换支撑了第 29 章的对称命题，也让末章的共处问题变得真实：要在一起生活的，不只是信与不信的人，还有被程序改造过的人。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章与第 27 章构成一次方向翻转：第 27 章是信仰想拥有国家而失败，本章是国家反过来处置信仰——同一件事的两个方向，先讲信仰的欲望，再讲国家的反应。它与第 29 章构成全书最重要的一组对偶：本章是信仰太多、被判定为威胁而遭清除，第 29 章是信仰被国家主动废除；方向相反，落在同一个结论上——当信仰与国家彻底绑死，无论绑的方向是正还是负，出问题的是被绑死的那一环。它与第 25 章形成扣环：第 25 章提出宽容问题，本章给出它的失败形态，末章再回来回答还怎么共处。夹在 27 与 29 之间，它是从信仰建国到国家废神的中间项——先有国家裁判一个宗教，才有国家裁判全部宗教。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <p>本章没有可核对的原书引文，以下为章旨句，非原书措辞。</p>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>当一种信仰被判定为对国家的威胁，国家会把它从异端重新分类为犯罪。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>国家不需要否定某个信仰的内容，只需把它重新定义为安全问题。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>悬赏举报把信仰变成邻里的互相监督，公开拆毁则把程序本身做成示众。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>作者把这个机制讲得太干净了。重新分类听起来像一次性的行政动作，可两件物证指向的执行主体完全不同：告示板把监督外包给邻里，版画记录的却是自上而下的公开拆毁。也就是说，同一种重分类至少有两种落地方式——自下而上的互相举报，和自上而下的程序化示众——作者把它们并列，却没有问哪一种更容易停下来。这是真正的漏洞：举报一旦变成邻里之间的事，就脱离了行政程序的可撤销性，即便告示板被撤除，监督也已经长进了日常关系里，撤掉的是文件，不是习惯。方法的边界也在这里显形：作者能说明重分类的功能，却解释不了为什么有些社会重分类后能复原、有些不能——那需要度量执行成本，而物证给不出成本。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>一个人被从想法不同重新分类成制造麻烦，中间发生的事，值得拆开看。想想你上次在群里看到的那个人：他一开始只是意见不一样，大家还在跟他争；后来争变成了他每次都这样；再后来变成有他在就聊不下去。从头到尾没有出现新的事实，出现的是分类的跳转——从观点不同，可以争论；到制造麻烦，需要清退。跳转一旦完成，后面所有的处理都会显得像是程序：不是谁在排斥他，是这样下去没法做事。这个结构最值得注意的是它的不可逆性：分类换过去之后，即使那个人什么都没再做，大家也只会把他后来的每一个动作读成果然如此。你自己可以验证：回想一次你从反对某个人的意见变成不想看到他发言，那道分界线在哪一天？多数人答不出来，因为重分类是在一次次沉默里完成的，而沉默从来不留下记录。</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">29</span>没有上帝！ There is no God!<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>本章处理第 28 章的反面：不是信仰太多，而是信仰被国家主动废除。1793 年，法兰西民族庆祝了第一个理性节，致敬启蒙思想家这批世俗圣徒；因为旧制度下教会与国家的融合极深，革命必须连根拔起。革命不只废除了上帝，还重新排序了时间：月份统一为三十天，不分成四个星期，而是分成三个旬、每旬十个编号日，月份按农业与季节的自然循环命名，几乎押韵地三三成组；各地各异的度量衡系统也一并被废除。核心物证是 1795 年宝玑制造的一座时钟：机械装置完全可见地坐落在一个玻璃盒里，没有任何装饰，这是一件被设计来唤起信任的物件。结局是拿破仑上台后不出数年，理性胜利的多数象征就消失了。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这是全书因果论断最锋利的一章，也是唯一一次明说神被拿掉之后会失去什么：绝对君主的权力既由神授予，也为神所约束，那时存在一套公认的道德抵抗语汇；当上帝被废除，国家权力连一种抽象的约束都不复存在。抽掉这一章，全书只证明了信仰有多危险——划界、迫害、建国冲动——却没有回答那个对称问题：没有信仰是否更安全。它给出的答案是不。这一章把全书论点从信仰制造边界推进到信仰同时也是一种约束装置，而这一推进正是末章能谈共处的前提：如果神只有坏处，第 30 章就没有理由谈任何形式的共处，也没有理由谈任何形式的自我限制。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章与第 28 章构成全书最重要的一组对偶：第 28 章是信仰太多、被判定为威胁而遭清除，本章是信仰被国家主动废除；方向相反，落在同一个结论上——当信仰与国家彻底绑死，无论绑的方向是正还是负，出问题的是被绑死的那一环。它与第 2 章构成全书唯一的双次物证回返：第 2 章火与国家里那座 1795 年宝玑透明玻璃盒时钟，看得见机械装置，等于把上帝设计成钟表匠；到本章它再次出现，神被拿掉之后机械装置依然在走，但国家权力连一种抽象的约束都没有了——同一件物证两次登场，第一次证明上帝存在，第二次证明拿掉上帝之后剩下的东西有多危险。它与第 26 章扣环：第 26 章说统治权由神签发也可被收回，本章把签发机关整个撤销，授权问题被推到极限。向后它给第 30 章留下一个空洞——抽象约束没了，意义的需要却没被废掉——末章必须回答这个空洞由什么来填。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>When God was abolished, there was no longer even an abstract restraint on state power, and in Russia and in France, murder followed in the name of reason.<span class="en">当上帝被废除，国家权力连一种抽象的约束都不复存在了，于是在俄国和法国，以理性之名的大屠杀随之而来。（第 29 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>this is an object designed to inspire trust … it insists that there is nothing mysterious or miraculous about the world we inhabit, that all aspects of it are clear and regular, measurable and visible<span class="en">这是一件被设计来唤起信任的物件……它坚称我们所栖居的世界没有任何神秘或奇迹可言，它的一切方面都是清晰、规则、可测量、可见的。（第 29 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>Within a few years of Napoleon's coming to power, most of the symbols of the Triumph of Reason had disappeared.<span class="en">拿破仑上台后不出数年，理性胜利的多数象征就消失了。（第 29 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>the need for a notion of existence – for meaning – beyond the individual and the individual life<span class="en">对一种存在的观念、对意义的需要——超出个体、超出个体生命的意义。（第 29 章）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>神被拿掉之后，机械装置依然在走，但国家权力连一种抽象的约束都没有了。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章有几处作者没有处理好。第一，他把废除上帝与随后的大规模杀戮连成单线因果，可同一章自己给出的反证是：理性节、十进制历法这些象征在拿破仑上台后几年就消失了。如果因果真是废神导致失控，那么神的回归理应终止失控，作者却没追踪这一段——他证明的其实是相关性，讲的是因果性。第二，宝玑时钟这件物证被用得太顺手：透明玻璃盒被解释成毫无神秘可言的世界观宣言，但透明同样可以读成炫耀技艺、读成奢侈消费、读成新贵阶层的趣味，作者只取了能支撑论点的那一种读法。这与全书证据入口是物的方法设定直接冲突——物不会自己说话，是解释它的人替它说的，物证能承载多少论证，取决于解释者愿意承认多少种读法。还有一处与第 26 章的紧张：第 26 章证明神圣授权可以失效，本章却主张废掉授权来源会让权力失去约束，两者并非不能并存，但作者没有交代这个张力。最后是一个未兑现的推论：对超出个体生命的意义的需要不会随上帝一起被废除，那么它必然寻找替代物——替代物长什么样，全书到此为止，没有追问。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>废除一个约束装置，废掉的往往不是约束本身，而是用来表达约束的那套语言。想想你上次赶 deadline 的时候：把某个规矩、某个仪式、某个不该这么做的念头当成负担扔掉，那一刻确实轻松了，效率也确实高了。可过一阵你会发现，真正需要那个规矩的不是它自己，是你需要一个能对自己说不的东西。大多数人都有过这种体验：把闹钟关掉以为能多睡一会儿，结果整天都失去了参照点——少的不是闹钟，是一天的时间结构。你身边那种把原则当成麻烦的人，最后往往不是更自由，而是更容易被眼前的压力推着走，因为压力永远比原则更具体、更急、更响。可以当场验证：回想一次你为了效率砍掉某个固定的习惯，砍掉之后你是真的省下了时间，还是把这段时间交给了离你最近的那个催促？</p>
+        <p>---</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">30</span>与彼此共处 Living with each other<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>末章开局不是胜利宣言，而是一个困境：有那样一群人，他们想要体验生命的深度与丰富，却做不到——他们体现的正是艾略特那句我们有过这经验，却错过了其中的意义。接着作者给出规模证据，说明这种需要有多大：2013 年，估计有 1.2 亿人在两个月内参加了大壶节。然后是诊断：今天的道德危险是冷漠的全球化，当宗教参与者让位于越来越原子化的消费者。收尾落在全书分量最重的一句上——与他人正确地共同生活，与彼此共处，是我们能够到达的最接近天堂的事。本章不提供新的机制，它把前面二十九章积累下来的东西兑换成一个出口。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这是全书的答案章。前面二十九章一直在证明信仰是最高效的划界工具：它回答我们是谁，划定谁属于我们，决定谁有权统治，解释国家如何清除一种信仰、又如何废除一切信仰，以及拿掉它之后会剩下什么。如果书停在第 29 章，就只有诊断没有出口。本章必须回答那个被一路推迟的问题：既然信仰天然划界，那还怎么在一起生活。它的答案不是取消划界，而是把与神相处的规则翻面兑现为与彼此相处的规则——抽掉这一章，全书会变成一本关于信仰如何分裂人类的书，而不是书名所承诺的那本关于如何共处的书。它也是全书唯一一次给出规范判断的地方，前面的功能分析在这里让位给一句应当。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>本章与引言题眼构成首尾扣环：书名 Living with the Gods 与末章标题 Living with each other 只差一个词，而这个差值就是全书走了三十章的距离；引言那句我们决定如何与自己的神相处，也就决定了如何与彼此相处，在末章被翻面兑现——起点是与众神共处，终点是与彼此共处，题眼里并列的两件事，到末章变成了同一件事的两面。它与第 29 章构成递进：第 29 章留下一个空洞，抽象约束没了，意义的需要也没被废掉；本章用大壶节的规模证据回应后者——这份需要大到了要一亿两千万人聚在一起才够；用与彼此共处回应前者——约束可以由横向的关系来承担，不必由垂直的神来承担。它与第 26 章扣环：第六部分从谁有权统治出发，回到怎么在一起生活，形成一个闭环。它还回返第 25 章：宽容问题提出之后，中间经过授权、建国、清除、废神四次加压，末章才给出它的答案形态。物证上也有一次回返：本章的核心物证不再是物，而是一次聚集——把活人绑成我们的从来不是教义，是共同在场，这正是第二部分共同信仰的命题。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>living properly with other people, living with each other, is the nearest we can get to heaven<span class="en">与他人正确地共同生活，与彼此共处，是我们能够到达的最接近天堂的事。（第 30 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>the 'globalization of indifference' … as the religious participant has given way to the ever more atomized consumer<span class="en">「冷漠的全球化」……当宗教参与者让位于越来越原子化的消费者。（第 30 章）</span></div>
+        <div class="ch-quote"><span class="star">★</span>We had the experience and missed the meaning.<span class="en">我们有过这经验，却错过了其中的意义。（引自艾略特，第 30 章）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>信仰天然划界，所以共处不是取消边界，而是学会带着边界在一起。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>当宗教参与者让位于越来越原子化的消费者，危险不是冲突，而是冷漠。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>末章是全书最弱的一章，也是最诚实的一章。说它弱，是因为与他人正确地共同生活是最接近天堂的事这句话没有给出任何判准：什么算正确地？全书的方法设定是不判真伪只问功能，可一旦谈到正确，就必然需要一个规范标准，而这个标准恰恰是全书一直在回避的东西。前二十九章提供了大量关于如何划界的机制描述，却没有一处告诉读者哪一种划界是可以接受的，于是末章的出口是一个没有门槛的出口——谁都能进去，也因此谁都可以不进去。说它诚实，是因为作者没有伪造一个解决方案，他承认自己诊断得出、开方不了。第二个漏洞：把冷漠的全球化归因于消费者取代参与者，这个诊断把结构问题个人化了，原子化是市场与城市组织方式的结果，不是个人选择的结果，作者在这里违反了他自己观察单位是社群不是个人的方法设定。第三：本章用大壶节的规模来证明人们对深度经验的需要，但规模证明的其实是这种需要被满足的困难程度——要一亿两千万人聚在一起才够，正好反证了日常里共处有多难。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>想想你上次在一个很多人聚着的场合——年会、婚礼、家长会——人群最密的时候，孤独感反而最清楚。这就是末章诊断的那一层：不是大家互相敌对，而是大家各取所需地来了又走了。再想想手机里那些群，绝大多数不是被谁解散的，是慢慢没人说话了；冷漠不是冲突的反面，冷漠是参与的替代品，它比冲突更安静，也更难逆转。有一条可以当场自证：回想你最近一次真正觉得和大家在一起的时刻，它几乎一定不是消费出来的——不是买到的、刷到的、被推送的——而是你自己投入了什么，时间、力气，或者一次不那么舒服的妥协。末章那句最接近天堂的事翻成日常就是：不是人更多，是你在这群人里承担了一个位置。位置这东西没法靠围观获得，只能靠被需要获得，而被需要的前提是你先让别人占到你的时间。</p></div>
+      </div>
+    </details>
+  </section>
+
+  </main>
+
+<footer data-page-node-id="U2fWBJ0GKQrKftZZpDznYP">
+  <b data-page-node-id="o4AxBRjZy64FsHI5EgeI1e">信源构成</b>：原书（A 级）未直接获取全文，引文来自出版方护封、Dublin Review of Books、Guardian / Sunday Times 书评及读者逐字读书笔记转录（B/C 级）；章节内容对照 BBC Radio 4 三十集官方简介。中译本 2025.11 才出，★ 引文英文供核对、中文供使用。<br data-page-node-id="7aK5FMQ4eVVcsFt0G7QElt">
+  <div class="legend" data-page-node-id="VAUYVcFrxM4aTLidcXJ1sp">
+    <span data-page-node-id="corQdY9g2Z8YIjBUzXJBve"><span class="s" data-page-node-id="t0BhrFlwSwxe1Q3iPPy3xC">★</span> 原文引文（可直接引用；未能核对纸本者标「待核实」）</span>
+    <span data-page-node-id="j7EinEusiXpHngYWmarLYp"><span class="f" data-page-node-id="U3GKI3zjnFkMI8QdpFqffA">☆</span> 章旨句（我提炼，非原话，严禁加引号）</span>
+  </div>
+  <b data-page-node-id="rG83vY7DhDnXZN8vy9F1yK">合规提示</b>：第 7/13/25/26 章涉及性别、人祭、当代地缘与统治合法性，小红书发布前须做敏感内容筛查；涉政内容有平台限流风险，再好也别碰。<br data-page-node-id="QstiGFgl1tKm6Iz1i1mLEf">
+  <b data-page-node-id="2V2kz4MFtzaMIZPeo1z1Os">生成</b>：基于四份拆解稿（骨架 / 思维模型 / 批判视角 / 逐章精读）整合，参考 book-distiller 读书人格与 book-skeleton-dissection 拆解结构。单文件 HTML，可离线阅读。
+</footer>
+
+<script>
+  // 书签色带：滚动高亮当前章节
+  const links = Array.from(document.querySelectorAll('.ribbon a'));
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = map.get(e.target.id);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  document.querySelectorAll('main section').forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

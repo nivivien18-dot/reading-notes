@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《文明的故事》读书笔记</title>
+<style>
+  :root{
+    --paper:#f3e9d8; --paper-2:#efe2cc; --ink:#2c2620; --ink-soft:#5a4f42; --ink-faint:#8a7a66;
+    --accent:#9b3b2e;   /* 书签朱红 oxblood */
+    --accent-2:#b8893a; /* 暖金 muted gold */
+    --line:#d8c8ab; --card:#fbf5e9;
+    --shadow:0 1px 2px rgba(60,40,20,.08),0 8px 30px rgba(60,40,20,.10);
+    --serif:"Songti SC","STSong","SimSun","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--serif); color:var(--ink); line-height:1.85;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%,rgba(184,137,58,.05),transparent 40%),
+      radial-gradient(circle at 80% 90%,rgba(155,59,46,.04),transparent 45%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:rgba(155,59,46,.18)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:clamp(420px,72vh,760px);display:flex;align-items:flex-end;overflow:hidden;
+    background:linear-gradient(135deg,#3a2c1c 0%,#574027 45%,#7a5630 100%);}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.85) brightness(.78);}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(28,20,12,.15) 0%,rgba(28,20,12,.35) 45%,rgba(28,20,12,.82) 100%);}
+  .bookmark{position:absolute;top:0;right:clamp(20px,6vw,90px);z-index:3;width:46px;height:120px;background:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.35);}
+  .bookmark::after{content:"";position:absolute;bottom:-1px;left:0;width:0;height:0;border-left:23px solid transparent;border-right:23px solid transparent;border-top:18px solid var(--accent);}
+  .hero-inner{position:relative;z-index:2;padding:clamp(28px,6vw,72px);max-width:920px;color:#f6ecd9}
+  .hero-eyebrow{font-family:var(--sans);font-size:clamp(.7rem,2vw,.82rem);letter-spacing:.42em;text-transform:uppercase;color:var(--accent-2);margin-bottom:14px;font-weight:600;}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.4rem,8vw,5rem);line-height:1.05;letter-spacing:.04em;color:#fbf3e2;text-shadow:0 1px 0 rgba(0,0,0,.5),0 2px 18px rgba(0,0,0,.45);}
+  .hero .sub{margin-top:18px;font-size:clamp(1rem,3vw,1.4rem);color:#e8d8bd;font-style:italic;letter-spacing:.03em;}
+  .hero .meta{margin-top:22px;font-family:var(--sans);font-size:.82rem;color:#cdbb9c;letter-spacing:.04em;line-height:1.6;}
+
+  /* ---------- RIBBON NAV ---------- */
+  .ribbon{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,#2b2014,#3a2c1c);box-shadow:0 2px 14px rgba(0,0,0,.25);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
+  .ribbon ul{display:flex;gap:2px;list-style:none;padding:0 10px;margin:0;min-width:max-content;}
+  .ribbon a{display:block;font-family:var(--sans);font-size:.78rem;color:#d8c6a6;text-decoration:none;white-space:nowrap;padding:13px 16px;position:relative;letter-spacing:.05em;transition:color .2s,background .2s;}
+  .ribbon a::before{content:"";position:absolute;left:0;top:22%;height:56%;width:3px;background:var(--accent-2);opacity:0;transition:opacity .2s;}
+  .ribbon a:hover{color:#fff}
+  .ribbon a.active{color:#fff;background:rgba(155,59,46,.30)}
+  .ribbon a.active::before{opacity:1}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:880px;margin:0 auto;padding:clamp(28px,6vw,64px) clamp(18px,5vw,40px) 40px}
+  section{margin-bottom:clamp(48px,9vw,84px);scroll-margin-top:64px}
+  .sec-tag{display:inline-block;font-family:var(--sans);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:4px;margin-bottom:14px;}
+  h2{font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;color:var(--ink);letter-spacing:.02em;margin-bottom:8px;line-height:1.25;}
+  h2 .en{display:block;font-family:var(--sans);font-size:.8rem;font-weight:400;letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase;margin-top:6px}
+  h3{font-family:var(--serif);font-size:1.22rem;color:var(--accent);margin:26px 0 10px;font-weight:700}
+  h4{font-family:var(--sans);font-size:.95rem;color:var(--ink-soft);margin:18px 0 6px;letter-spacing:.03em;font-weight:600}
+  p{margin:12px 0;color:var(--ink-soft);font-size:1.04rem}
+  .lead{font-size:1.12rem;color:var(--ink)}
+  strong{color:var(--ink);font-weight:700}
+  em{color:var(--accent)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:clamp(18px,4vw,26px);box-shadow:var(--shadow);margin:18px 0;}
+  .card.ribbon-left{border-left:5px solid var(--accent)}
+  .thesis{background:linear-gradient(135deg,#fbf3e2,#f3e6cf);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:clamp(22px,5vw,34px);box-shadow:var(--shadow);margin:22px 0;}
+  .thesis .q{font-size:clamp(1.15rem,3.4vw,1.5rem);line-height:1.6;color:var(--ink);font-weight:600}
+  .thesis .src{margin-top:14px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);letter-spacing:.04em}
+
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-family:var(--sans);font-size:.9rem}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+  th{background:rgba(155,59,46,.07);color:var(--accent);font-weight:700;letter-spacing:.03em}
+  tr:hover td{background:rgba(184,137,58,.05)}
+  td b{color:var(--ink)}
+
+  ul.clean{list-style:none;margin:12px 0;padding:0}
+  ul.clean>li{padding:10px 0 10px 22px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean>li:last-child{border-bottom:none}
+  ul.clean>li::before{content:"❧";position:absolute;left:0;top:10px;color:var(--accent-2);font-size:.9rem}
+  ol.num{margin:12px 0 12px 1.2em;padding:0}
+  ol.num li{margin:10px 0;padding-left:4px;color:var(--ink-soft)}
+  ol.num li::marker{color:var(--accent);font-weight:700}
+
+  .model{border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow);padding:clamp(20px,4vw,28px);margin:22px 0;position:relative;overflow:hidden}
+  .model .no{position:absolute;top:-14px;right:14px;font-family:var(--serif);font-size:5rem;color:rgba(155,59,46,.08);font-weight:700;line-height:1}
+  .model h3{margin-top:0}
+  .model .src{font-family:var(--sans);font-size:.74rem;color:var(--ink-faint);letter-spacing:.05em;margin-bottom:8px}
+  .mech{background:rgba(184,137,58,.08);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .scenario{border-top:1px dashed var(--line);margin-top:14px;padding-top:14px}
+
+  .blind{border-left:4px solid var(--ink-faint);padding:14px 18px;margin:14px 0;background:rgba(138,122,102,.06);border-radius:0 8px 8px 0}
+  .blind.hard{border-left-color:var(--accent)}
+  .blind .tag{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .blind.hard .tag{color:var(--accent);font-weight:700}
+
+  .book{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .book:last-child{border-bottom:none}
+  .book .dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:9px;background:var(--accent-2)}
+  .book .dot.opp{background:var(--accent)}
+  .book .b-title{font-weight:700;color:var(--ink);font-size:1.02rem}
+  .book .b-meta{font-family:var(--sans);font-size:.76rem;color:var(--ink-faint);margin:2px 0 4px}
+  .book .b-why{font-size:.94rem;color:var(--ink-soft)}
+
+  blockquote{margin:14px 0;padding:14px 18px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.07);border-radius:0 8px 8px 0;font-style:italic;color:var(--ink);}
+  blockquote .en{display:block;font-style:normal;font-family:var(--sans);font-size:.82rem;color:var(--ink-faint);margin-top:8px;line-height:1.5}
+  .star{color:var(--accent);font-weight:700;margin-right:6px}
+
+  /* ---------- 逐章精读：六层块 ---------- */
+  .ch-blk{margin:14px 0 0;padding:12px 14px;background:rgba(155,59,46,.035);border:1px solid rgba(155,59,46,.10);border-radius:6px}
+  .ch-blk h5{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:700}
+  .ch-blk p{font-size:.95rem;line-height:1.82;margin:0}
+  .ch-blk.think{background:rgba(184,137,58,.07);border-color:rgba(184,137,58,.18)}
+  .ch-blk.think h5{color:var(--accent-2)}
+  .ch-blk.life{background:rgba(90,79,66,.05);border-color:rgba(90,79,66,.13)}
+  .ch-blk.life h5{color:var(--ink-soft)}
+  .ch-sec-h{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;color:var(--ink-faint);margin:18px 0 2px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+  .ch-map td:first-child{white-space:nowrap;font-weight:700;color:var(--accent)}
+
+  details.ch{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:10px 0;overflow:hidden;box-shadow:0 1px 2px rgba(60,40,20,.05);}
+  details.ch[open]{box-shadow:var(--shadow)}
+  details.ch summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;align-items:baseline;gap:12px;font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--ink);transition:background .15s;}
+  details.ch summary:hover{background:rgba(184,137,58,.08)}
+  details.ch summary::-webkit-details-marker{display:none}
+  details.ch summary .ch-no{flex:0 0 auto;font-family:var(--sans);font-size:.72rem;font-weight:700;color:#fff;background:var(--accent);border-radius:5px;padding:3px 8px;letter-spacing:.03em;}
+  details.ch summary .ch-icon{margin-left:auto;color:var(--accent-2);transition:transform .2s;font-size:.9rem}
+  details.ch[open] summary .ch-icon{transform:rotate(90deg)}
+  .ch-body{padding:4px 18px 20px;border-top:1px solid var(--line)}
+  .ch-artifact{font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);margin:12px 0 4px;letter-spacing:.02em}
+  .ch-artifact b{color:var(--accent)}
+  .ch-gist{font-size:1.02rem;color:var(--ink);font-style:italic;margin:6px 0 12px}
+  .ch-quote{margin:10px 0;padding:10px 14px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.06);border-radius:0 6px 6px 0}
+  .ch-quote .en{display:block;font-family:var(--sans);font-size:.78rem;color:var(--ink-faint);margin-top:6px;line-height:1.5}
+  .ch-note{font-family:var(--sans);font-size:.78rem;color:var(--accent);margin-top:10px;letter-spacing:.02em}
+  .risk-low{color:#5b7a3a}.risk-mid{color:var(--accent-2)}
+  .pick td:first-child{color:var(--accent);font-weight:700}
+
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:34px clamp(18px,5vw,40px) 70px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);line-height:1.9;max-width:880px;margin-left:auto;margin-right:auto;}
+  footer b{color:var(--ink-soft)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 18px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend .s{color:var(--accent);font-weight:700}
+  .legend .f{color:var(--ink-faint)}
+  a.inline{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(155,59,46,.35)}
+  a.inline:hover{border-bottom-color:var(--accent)}
+
+  @media (max-width:560px){
+    .hero .meta{font-size:.74rem}
+    table{font-size:.82rem}
+    th,td{padding:9px 8px}
+    .book{flex-direction:column;gap:6px}
+  }
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+  <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=2000&q=80" alt="图书馆书架" onerror="this.style.display='none'">
+  <div class="bookmark" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Reading Notes · 全书总拆</div>
+    <h1>文明的故事</h1>
+    <div class="sub">十一卷 · 827 万字 · 一部用四十年写完的文明通史</div>
+    <div class="meta">
+      【美】威尔·杜兰特 &amp; 阿里尔·杜兰特 著 · 台湾幼狮文化 译 · 天地出版社 2018<br>
+      原版 The Story of Civilization（Simon &amp; Schuster, 1935–1975）· 1968 年普利策非虚构奖
+    </div>
+  </div>
+</header>
+
+<nav class="ribbon" aria-label="目录">
+  <ul>
+    <li><a href="#about">关于本书</a></li>
+    <li><a href="#core">一句话核心</a></li>
+    <li><a href="#myths">认知误区</a></li>
+    <li><a href="#logic">六层逻辑</a></li>
+    <li><a href="#models">思维模型</a></li>
+    <li><a href="#critical">批判性视角</a></li>
+    <li><a href="#books">对读书单</a></li>
+    <li><a href="#chapters">逐卷精读</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <section id="about">
+    <span class="sec-tag">About · 关于本书</span>
+    <h2>它到底是什么书<span class="en">What kind of book is this</span></h2>
+    <p class="lead">一套写给普通人读的文明通史：11 卷，从苏美尔写到拿破仑，作者夫妇用 40 年（1935–1975）写完。本笔记是<strong>全书总拆</strong>——不逐章复述 827 万字，而是拆杜兰特统摄 11 卷的文明史观总框架，再按卷做结构定位与精读。</p>
+    <div class="card ribbon-left">
+      <h4>作者简介</h4>
+      <p>威尔·杜兰特（Will Durant，1885–1981），美国历史学家、哲学家，哥伦比亚大学博士，曾任教于哥伦比亚与加州大学洛杉矶分校；妻子阿里尔·杜兰特（Ariel Durant，1898–1981）自第 7 卷起署名合著。第 10 卷《卢梭与大革命》获 1968 年普利策非虚构奖；原计划的第 12 卷《达尔文时代》、第 13 卷《爱因斯坦时代》仅存笔记，两人于 1981 年相继去世。</p>
+      <h4>全书三"不是"（作者开宗明义）</h4>
+      <ul class="clean">
+        <li><strong>不是</strong>帝王将相史——观察单位是"文明"这个有机体，帝王只在喂养或消耗这台机器时才被记录。</li>
+        <li><strong>不是</strong>欧洲中心史——作者自认反对"叙述史必始自希腊"的成见，主张亚洲是希腊罗马文化的背景与基石（东方占 11 卷中的 1 卷，见批判视角）。</li>
+        <li><strong>不是</strong>进步直线史——全书终点是"进步=遗产的传递与增值"，而不是人变好了。</li>
+      </ul>
+      <h4>方法论三设定（决定后面一切）</h4>
+      <ol class="num">
+        <li>文明 = <strong>增进文化创造的社会秩序</strong>，解剖模板固定为经济、政治、伦理、心智四要素。</li>
+        <li>兴衰 = <strong>自由与秩序的钟摆</strong> + 挑战与回应的节律，11 卷卷序本身就是钟摆的摆动记录。</li>
+        <li>终点 = <strong>遗产传递律</strong>：文明死于断代，不死于战败；教育是文明的传导技术。</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h4>版本与事实核查</h4>
+      <ul class="clean">
+        <li>原版 11 卷：Our Oriental Heritage (1935) / The Life of Greece (1939) / Caesar and Christ (1944) / The Age of Faith (1950) / The Renaissance (1953) / The Reformation (1957) / The Age of Reason Begins (1961) / The Age of Louis XIV (1963) / The Age of Voltaire (1965) / Rousseau and Revolution (1967) / The Age of Napoleon (1975)，合计约 13,549 页。</li>
+        <li>前六卷署名威尔·杜兰特一人，自第 7 卷起阿里尔署名合著（第 7 卷致读者："杜兰特夫人在最后这几卷中做了实质性的工作，我们的名字必须并列在卷首。"）。</li>
+        <li>中译本：台湾幼狮文化 译，天地出版社 2018.10，11 卷套装（第一卷 CIP：ISBN 978-7-5455-4135-9），与微信读书版同源。</li>
+        <li>《历史的教训》（The Lessons of History, 1968）为 11 卷的作者自浓缩，另有中译单行本；第 11 卷末《结论 历史的教训》为系列内版本，本笔记独立立为"总论卡"。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="core">
+    <span class="sec-tag">Thesis · 一句话核心</span>
+    <h2>全书终极论点<span class="en">The one-sentence core</span></h2>
+    <div class="thesis">
+      <div class="q">文明不是英雄创造的，而是经济、政治、伦理、心智四种条件相互咬合的一种社会秩序；它不自生、不永存，全靠每一代用教育传递——历史的主角从来不是帝王，而是这台由无数无名者维持的传承机器。</div>
+      <div class="src">全书"宪法"，第一卷第一章 · 见下方原文</div>
+    </div>
+    <blockquote>
+      <span class="star">★</span>「文明是增进文化创造的社会秩序。它包含了四大因素：经济的供应、政治的组织、伦理的传统及对知识与艺术的追求。动乱终结之时即是文明的起点，因为一旦恐惧被克服，好奇心与进行建设的欲望不受约束，人们自然便会产生进一步了解并改善生活的冲动。」
+      <span class="en">——第一卷《第一章 文明的条件》</span>
+    </blockquote>
+    <blockquote>
+      <span class="star">★</span>「假如教育即是文明的转移，则我们毫无疑问处在进步中。文明不是继承的，它必须由学习得来，而且每一代贵能推陈出新。假如这种转移中断100年，文明势将死亡，而我们也必须再变为野人。」
+      <span class="en">——第十一卷《结论 历史的教训 · 真有进步吗？》（全书终点，与开卷定义首尾扣环）</span>
+    </blockquote>
+    <p>最反常识的落点：这套书写尽王朝、战争与天才，最后的判词却是"文明的账不在军事与版图上结"——政治上的失败者常常是文化上的胜利者，而真正能杀死文明的只有一件事：一代人没把东西教给下一代。</p>
+  </section>
+
+  <section id="myths">
+    <span class="sec-tag">Myths · 核心痛点</span>
+    <h2>六个至今流行的认知误区<span class="en">Six misconceptions the book dismantles</span></h2>
+    <div class="card">
+      <h3>误区1：历史是大人物的故事</h3>
+<p>流行说法：伟人创造时代，读懂恺撒、拿破仑就读懂了历史。</p>
+<p>杜兰特反着说——<strong>文明造民族，而不是民族造文明</strong>：</p>
+<p><span class="star">★</span>「文明不是由伟大的种族创造的，相反，伟大的文明创造了民族。地理环境与经济条件创造某种文化，而文化又创造了某种典型。」——第一卷《文明的条件》</p>
+<p>他甚至把这条原则反过来用：写拿破仑用了整整一卷，但收笔的判词是"抱负超过能力、幻想领导野心"，而不是"改变了历史进程的天才"。天才是文明土壤结出的果实，土壤才是主角。</p>
+    </div>
+    <div class="card">
+      <h3>误区2：中世纪是"黑暗时代"</h3>
+<p>流行说法：罗马灭亡后欧洲沉沦千年，直到文艺复兴才重见天日。</p>
+<p>杜兰特用一整卷《信仰的时代》翻这个案：</p>
+<p><span class="star">★</span>「中古时代并非仅是一种文明和他种文明之间的插曲而已。」——第四卷《结语 中古的遗产》</p>
+<p><span class="star">★</span>「中古时期的人先是野蛮的牺牲品，其后变为野蛮的征服者，而后又成为新文明的创造者。对一个产生如此多伟大人物，从野蛮的废墟中兴起了教皇制度、欧洲的诸多国家，及产生了如此丰富的精神与物质财富的时期，以傲慢不屑的态度加以轻视是不智的。」——第四卷《结语 中古的遗产》</p>
+<p>他给 13 世纪的评分是：<span class="star">★</span>「在任何时代都极少出现如此完美和富于变化的一种知识上或艺术上的兴盛」——中世纪不是文明的休耕期，是文明的重建期。</p>
+    </div>
+    <div class="card">
+      <h3>误区3：天才与思想凭空点燃时代</h3>
+<p>流行说法：文艺复兴是因为重新发现了古希腊手稿。</p>
+<p>杜兰特直接纠偏：书稿是果不是因——</p>
+<p><span class="star">★</span>「钱是一切文明的基础。商人、银行家和教会付款买下了古典再生所需的书稿。但解放文艺复兴时代心灵和理性的也并非那些书稿」——第五卷《背景》</p>
+<p>同一逻辑他用在科学上：<span class="star">★</span>「商业和工业的迅速扩张，迫使科学随同发展。」——第七卷《召唤理性》。思想史的地基是账本。</p>
+    </div>
+    <div class="card">
+      <h3>误区4：罗马亡于蛮族（或亡于基督教）</h3>
+<p>流行说法：外部入侵或基督教腐蚀了这个伟大帝国。</p>
+<p>杜兰特两头都驳。对外因说：</p>
+<p><span class="star">★</span>「一个伟大的文明国家，其灭亡，常非由于外力的摧毁，而是其内部的腐蚀所造成的。」——第三卷《尾声 罗马衰颓的原因》</p>
+<p>对"基督教亡罗马"说（他直接点名吉本那一派）：</p>
+<p><span class="star">★</span>「基督教的成长，与其说是罗马帝国衰颓的原因，毋宁说是罗马帝国衰颓所造成的结果。」——第三卷《尾声 罗马衰颓的原因》</p>
+<p>帝国在蛮族进来之前"已只剩下一个空壳了"——信仰填补的是国家留下的窟窿，而不是凿出这个窟窿。</p>
+    </div>
+    <div class="card">
+      <h3>误区5：启蒙是理性的胜利进军</h3>
+<p>流行说法：理性从笛卡儿一路高歌猛进到伏尔泰，18 世纪是光明的世纪。</p>
+<p>杜兰特偏说：<span class="star">★</span>「17世纪，可能比称为理性时代的18世纪更可称为理性时代，因为，虽然那时的思想家只是一小群人士的呼声，但他们表现得睿智中庸，对理性和自由的界限和困难，比法国启蒙时的那种激动有更深切的了解。」——第八卷《尾声》（幕次划分出自第八卷卷末，非第七卷自我定位，引用须注明）</p>
+<p>而"理性开始"也不是对信仰的胜利——它是从信仰内部撕开的裂缝：新教把个人判断原则用来反教皇，最后反噬了《圣经》本身，<span class="star">★</span>「理性的呼吁结束了『信仰时代』。新教改革的成就远超过它原有的期望。」——第七卷《哲学的再生》。</p>
+    </div>
+    <div class="card">
+      <h3>误区6：革命是穷人饿出来的</h3>
+<p>流行说法：法国大革命因为人民吃不上面包。</p>
+<p>杜兰特给出了全书最反直觉的归因：</p>
+<p><span class="star">★</span>「这次革命不归因于农人们有耐性的贫穷，而是中产阶级危险的财富。」——第十卷《中产阶级与革命》</p>
+<p>饥饿只是导火索：<span class="star">★</span>「但饥饿与愤怒能产生动力，却不能产生领导力」；结构性根因是 <span class="star">★</span>「革命的根本因素是现实的经济与政治形式之间的悬殊，是中产阶级制造和拥有财富上的重要性与政府权力上的被排斥」。把革命读成饥饿史，就永远看不懂谁在操盘。</p>
+<p>---</p>
+    </div>
+  </section>
+
+  <section id="logic">
+    <span class="sec-tag">Logic · 底层逻辑</span>
+    <h2>六层逻辑推演<span class="en">Six-layer reasoning（拆解者重建）</span></h2>
+    <p class="lead">杜兰特没有写过"我的方法"这一章；以下六层是从 11 卷的反复实践中重建的推演链，每层回答"比上一层多解决了什么"。</p>
+<p>杜兰特没有写过"我的方法"这一章，但第一卷第一部实际上把整台机器的图纸摊开了。以下六层是从 11 卷的反复实践中重建的推演链，每层回答"比上一层多解决了什么"。</p>
+<p><strong>第一层 · 定位层：文明 = 增进文化创造的社会秩序。</strong>
+先划定研究对象：不是种族、不是国家、不是民族，而是一种把人的创造力从生存斗争里解放出来的秩序。四大因素（经济/政治/伦理/心智）就是这台机器的四个子系统。这层解决"历史写什么"。</p>
+<p><strong>第二层 · 续航层：经济供应是文明的底座。</strong>
+<span class="star">★</span>「分析到最后，文明是基于食物的供应。教堂与神殿，博物馆与歌剧院，图书馆与学校，这些都是文明这栋建筑物辉煌的正面，而在其背面都是屠宰场。」——第一卷《文明的经济条件》。文明在农舍播种，在城市开花——但农舍永远排在城市前面。这层解决"文明靠什么活着"。</p>
+<p><strong>第三层 · 建制层：政治组织把暴力变成秩序。</strong>
+国家不是契约的产物而是征服的产物：<span class="star">★</span>「繁荣为国家之母，而战争则为其父」，但真正让它存活的是时间——<span class="star">★</span>「每个国家，一开始都是强制的。但服从的习惯竟变成了良知，不久每个人都会为忠于国家而深受感动」。这层解决"秩序从哪来"。（此层的锋利之处见思维模型 M3。）</p>
+<p><strong>第四层 · 伦理层：道德是合作的技术，伦理进步 = 适用半径扩大。</strong>
+<span class="star">★</span>「历史上伦理的进步，不在于伦理准则的改良，而在于其适用范围的扩大。」——第一卷《文明的伦理条件》。道德内容随经济组织形态变（父系财产制催生贞节观），真正稳定的进步只有一样：圈外人不断被纳入"我们"。这层解决"陌生人如何合作"。</p>
+<p><strong>第五层 · 心智层：宗教保存伦理，艺术科学哲学是文明的果实与防波堤。</strong>
+<span class="star">★</span>「宗教并非伦理的基础，但有助于伦理。」——第一卷《文明的伦理条件》；到最后一卷《历史的教训》他仍在补这一刀：<span class="star">★</span>「"只要有贫穷存在，就有神祇。"」。心智产品不是装饰，是文明的储存器（这层直接为第四卷翻案"黑暗时代"供弹药）。</p>
+<p><strong>第六层 · 传承层：教育是文明的传导技术，中断即死亡。</strong>
+<span class="star">★</span>「文明不是自生的，更不是永不朽灭的，它必须经由每一世代的不断更新，如在其进程中遭遇了任何财政上或传递上的中断，皆可导致其灭亡。人类与兽类的分别仅在于教育，教育也可视为文明传导的技术。」——第一卷《文明的条件》。到《历史的教训》他给出量化版：<span class="star">★</span>「假如这种转移中断100年，文明势将死亡，而我们也必须再变为野人。」这层解决"文明怎么不死"——全书最后落到遗产论，落点正在此。</p>
+<p><strong>贯穿全书的兴衰节律</strong>（不属于六层任何一层，是六层公转的轨道）（不属于六层任何一层，是六层公转的轨道）：挑战与回应（文明成长由压力激发）、自由与秩序的钟摆（希腊→罗马→教会→文艺复兴→宗教改革→启蒙→革命→拿破仑，整条卷序就是钟摆的摆动记录）、以及文明的迁移律：<span class="star">★</span>「文明不会死亡，只会迁移；其住地及装束虽有所改变，但必继续生存。」——第二卷《结语》。</p>
+<p>---</p>
+  </section>
+
+  <section id="models">
+    <span class="sec-tag">Models · 思维模型</span>
+    <h2>九个思维底层模型<span class="en">Mental models</span></h2>
+    <div class="model">
+      <div class="no">M1</div>
+      <h3>文明四要素模型：把任何系统拆成四个子系统</h3>
+      <div class="src">来源标注：作者命题。</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：看一个东西会不会垮，别先看它的招牌（艺术、品牌、口号），先看四层从下往上查：钱从哪来？谁管秩序？陌生人怎么合作？留没留下能传下去的东西？招牌永远是最先亮也最容易骗人的那层。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario"><p>一个人判断自己供职的公司或常去的店要不要继续投入，常规做法是看它名气大不大、装修好不好、老板上不上镜——全是最上层。模型问法：这家公司的现金流是什么结构？出了乱子谁说了算、靠什么服众？员工和客户之间的默契靠什么维持？老员工带走的东西能不能传给新员工？诊断动作：四个问题按顺序问，哪一层先答不上来，垮就垮在哪。模型判断：招牌可以输血，底座不能。破局动作：与其在宣传层焦虑，不如在底座层排队退出。</p></div>
+    </div>
+    <div class="model">
+      <div class="no">M2</div>
+      <h3>文明造民族论：不是什么样的人做成什么事，是什么样的事造就什么样的人</h3>
+      <div class="src">来源标注：作者命题。</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：把一群人放进同样的地理、经济、制度环境里，几代之后他们会长出相似的习性；反过来，把"国民性""公司文化里的人种"当因变量而不是自变量，绝大多数解释立刻失去魔力。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario"><p>一个人在换城市、换行业、给孩子挑环境时会问"哪里的人更精明/更实在/更有素质"——把人群性格当成了天生属性。模型问法：这个环境的规则奖励什么、惩罚什么？留下来的人是被什么筛选出来的？诊断动作：看十年间这个环境里"混得好的人"的共性怎么变。模型判断：人随筛选条件走。破局动作：与其挑"好人多的地方"，不如挑"规则让人只能好好做事的地方"——包括给自己挑的岗位和给孩子挑的班集体。</p></div>
+    </div>
+    <div class="model">
+      <div class="no">M3</div>
+      <h3>国家生于暴力、成于遗忘：一切"从来如此"最初都是强加的</h3>
+      <div class="src">来源标注：作者命题。</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：任何权力要活下来，都不靠每次重新赢一遍，靠把"服从"变成"习惯"，再把习惯变成"义务感"——三代之后，被统治者的孙辈会为忠于当初强加的东西而感动。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario"><p>一个人对行业惯例、组织规矩、家族安排感到"本来就该这样"时，很少会问它的起点。模型问法：这个规矩是谁、在什么时候、用什么方式立的？它是被遵守出来的还是被自愿接受的？诊断动作：往前查它的成立时刻——多数规矩能查到一个具体的、带强制色彩的起点。模型判断："从来如此"不等于"正当如此"，但也不等于"该推翻"——杜兰特的完整答案是把这笔账记清楚，而不是退回无秩序（见 M7）。破局动作：对身边规矩保持一层"历史账本意识"——不必事事反抗，但至少知道自己此刻的"良知"里哪一部分是被驯化出来的，签约、站队、传家训之前先翻一遍账。</p></div>
+    </div>
+    <div class="model">
+      <div class="no">M4</div>
+      <h3>道德是经济结构的上层建筑：先看谁付钱，再看谁脸红</h3>
+      <div class="src">来源标注：作者命题。</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：道德标语是表，财产与利益结构是里。什么时代喊什么道德，取决于那个时代什么东西需要被保护；结构一变，道德跟着重新洗牌，谁越得慢谁越痛苦。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario"><p>一个人看到两代人之间的道德冲突——长辈强调节俭、体面、"铁饭碗才稳"，自己看重灵活、体验、跳槽——容易归因为"代沟""人品"。模型问法：双方成长时的经济结构各自奖励什么？长辈的道德是在短缺经济里练成的生存技术，还是凭空的性格？诊断动作：把每条道德训条翻译成它当年保护的具体利益。模型判断：大部分道德冲突是两套经济结构在打架，不是善恶之争。破局动作：吵"对错"之前先对"结构"——顺着这层看，很多家庭矛盾可以从互相改造降级为互相翻译。</p></div>
+    </div>
+    <div class="model">
+      <div class="no">M5</div>
+      <h3>伦理进步 = 适用半径扩大：评价进步，数圈外人</h3>
+      <div class="src">来源标注：作者命题。</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：一个社会的道德水位，不体现在它对圈内人多好，而体现在它把多少人划进圈。伦理口号几千年不变，圈的大小一直在变——这才是可以测量的进度条。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario"><p>一个人评价自己所在的群体（公司、小区、粉丝群、大家庭）"风气好不好"，通常是看圈内待遇。模型问法：这个群体对圈外人——外包、临时工、新来的、退出的、对面竞争者——适用哪套规则？诊断动作：找一条圈内外执行标准不一样的规则，圈越小道德越原始。模型判断：圈外人的待遇才是真实水位。破局动作：想抬一个群体的道德水位，别在圈内堆美德，去推一条"把圈外人当人"的具体规则。</p></div>
+    </div>
+    <div class="model">
+      <div class="no">M6</div>
+      <h3>宗教是伦理的保存技术：理解别人信什么，先看它替谁防什么</h3>
+      <div class="src">来源标注：作者命题。</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：Durant 眼里信仰的第一功能不是解释世界，是保存合作秩序——把"别偷别抢别撒谎"从理性论证升级成超自然制裁，让信条比论证活得久。所以他不问"这个宗教真不真"，只问"它替哪个秩序站岗"。拿破仑对杜兰特说的那句也在此列：<span class="star">★</span>「由天堂的观念，宗教引入了一种平等的意识。由于这种意识，富人逃过了被穷人屠杀的厄运。」——第十一卷《拿破仑其人·哲学家》</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario"><p>一个人遇到亲戚家的红白喜事规矩、老家的祭祖、长辈坚持的仪式，常在"迷信vs科学"里二选一，选哪边都吵。模型问法：这套仪式在替谁保存什么秩序？（家族财产的分配惯例？赡养责任的公开确认？）诊断动作：仪式的"防什么"清单——它防止的往往是具体的背叛、遗忘、争产。模型判断：功能还在，仪式就不会消失，理性拆不掉需求。破局动作：要么提供功能等价的替代品（家庭会议、公开的照护协议），要么接受仪式本身——唯独别指望一句"不科学"能让需求消失。</p></div>
+    </div>
+    <div class="model">
+      <div class="no">M7</div>
+      <h3>自由—秩序钟摆：自由生钟摆的另一极，是它自己</h3>
+      <div class="src">来源标注：作者命题（全书结构本身就是这条的演示）。</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：一个群体松久了会渴望规矩，紧久了会渴望松；可怕的不是摆动，是每摆到极值的人都以为这次能停在极值上。极端自由招来的不是自由，是能终结混乱的最狠的那只手。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario"><p>一个人加入的社群、团队、家庭在"松"与"紧"之间反复折腾：管得僵死时人人怀念自由气氛，彻底放羊时又有人呼吁立规矩、甚至盼一个"强人"。模型问法：现在处于摆的哪一段？呼喊的方向是修正还是矫枉过正？诊断动作：数一数"呼吁彻底放开"和"呼吁彻底收紧"的声音，哪边情绪最大——钟摆离极值就近了。模型判断：松紧没有终极答案，只有节律管理。破局动作：在秩序松动期主动补"最小共识"，在秩序压抑期主动给"安全出口"，把自己活成钟摆的阻尼，而不是摆锤上最用力的那一个。</p></div>
+    </div>
+    <div class="model">
+      <div class="no">M8</div>
+      <h3>文明遗产传递律：文明死于断代，不死于战败</h3>
+      <div class="src">来源标注：作者命题。</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：文明不是实体是接力——火炬不在任何一代人手里常驻，每一代要么接棒跑一段，要么让它掉在地上。战败、亡国、搬家都杀不死它，唯有一种东西能：一代人没把东西教给下一代。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario"><p>一个家庭、一门手艺、一个小团队最怕的不是外部打击（搬家、换行业、平台倒闭），是内部的交接断档——老人带不走、新人接不上、关键经验没有文字化。模型问法：如果核心成员明天离开，哪些东西会彻底消失？诊断动作：清点"只存在某人脑子里"的关键流程与人脉，列成断代风险清单。模型判断：死于断代的远多于死于对手的。破局动作：把最值钱的隐性经验做一次"文明化"——写下来、带着做一遍、让第二个人能独立复现；家事同理，老人的故事和账目趁记得时录下来。</p></div>
+    </div>
+    <div class="model">
+      <div class="no">M9</div>
+      <h3>进步会计学：进步不是人变好，是遗产变厚</h3>
+      <div class="src">来源标注：作者命题（杜兰特晚年总论里的自我修正）。</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：每一代人都站在上一代的存量上，不管这一代人多么糟糕，只要存量在传递中增值（技术、知识、制度、教育方法），进步就成立；反过来，情绪最好的一代人碰上断代，也是退步。进步不记账在感受上，记在库存上。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario"><p>一个人判断"现在是不是好时代"、要不要对未来悲观，常用自己这几年的感受做依据——收入体感、网络情绪、身边人的抱怨。模型问法：这一代接手的存量（可用的知识、工具、制度保障）比上一代多了还是少了？传递机制（教育、档案、公开资料）在增强还是在崩坏？诊断动作：列自己实际用到的前人存量——语言、识字、疫苗、法律、工具——再列自己这一代真正新添的存量。模型判断：感受会骗人，库存不会；但库存的增值只对会用它的人兑现。破局动作：与其争"时代好坏"，不如把自己活成"传递中增值"的一环——学到的、验证过的、踩过的坑，至少留一份能被别人取用的版本。</p></div>
+    </div>
+  </section>
+
+  <section id="critical">
+    <span class="sec-tag">Critical · 批判性视角</span>
+    <h2>盲区与落地坑<span class="en">Blind spots &amp; pitfalls</span></h2>
+    <h3>方法论盲区</h3>
+    <div class="blind hard"><div class="tag">硬伤</div><h4 style="margin:6px 0">盲区 1 · 欧洲中心的自相矛盾</h4><p>第一卷高调宣布反对欧洲本位——<span class="star">★</span>「我们之所以由东方开始，不是因为亚洲乃我们所熟知的最古老的文明之地，而是因为亚洲的文明形成希腊与罗马文化的背景与基石」。然后呢？近东、印度、中国、日本合计只占一卷，其余十卷全部是欧洲（外加拜占庭、伊斯兰作为"欧洲的邻居"处理）。</p>
+<p>更麻烦的是第五卷结尾那记判词：文艺复兴 <span class="star">★</span>「结束了东方精神千年来在欧洲的统治」。"东方"在他笔下时而是给希腊施恩的老师，时而是压在欧洲身上的精神包袱——同一个词承担了两个相反的角色。这不是笔误，是他整套叙事需要的张力：西方必须既欠东方的债、又要挣脱东方的"统治"。今天读这套书的人需要自带这一层免疫力。</p></div>
+    <div class="blind"><div class="tag">代价</div><h4 style="margin:6px 0">盲区 2 · 无脚注的宏大叙事（代价）</h4><p>杜兰特有意不写学术注释，追求"给普通人读的通史"。代价是两层：其一，他的任何判断都无法核对其证据链，而专业史家从第一卷起就严苛批评（James Breasted 的书评几乎全盘否定）；其二，庞大的阅读快感会制造"全知错觉"——读者以为见识增长了，实际上只是立场被替换了。<span class="star">★</span>「历史大部分为猜测，其余则为偏见。」——这句话是杜兰特自嘲的清醒，也恰好是这套书自身的警告标签。</p></div>
+    <div class="blind hard"><div class="tag">硬伤</div><h4 style="margin:6px 0">盲区 3 · 女性几乎隐形</h4><p>八百多万字，女性作为文明的参与者——一半人口的劳动、生育、教育、传承功能——没有获得与"文明的一半"相称的分析位置。连合著者阿里尔·杜兰特本人，也要到第七卷才被署名。用 M5（伦理进步=适用半径扩大）检验这套书自身：它的"我们"的圈，画得不圆。</p></div>
+    <div class="blind"><div class="tag">代价</div><h4 style="margin:6px 0">盲区 4 · "以今拟古"的投影风险</h4><p>杜兰特的核心手法之一是把古人翻译成近代人：普罗泰戈拉=伏尔泰、庇罗=帕斯卡、德谟克利特=霍布斯（第二卷《重返宗教》整段）。这让历史亲切，也让历史变成作者时代偏见的三棱镜。他在《恺撒与基督》致读者里承认得很直白：<span class="star">★</span>「鉴彼知此，这部《恺撒与基督》也可以说是讲我们自己的历史。」——好处是他从不假装中立，坏处是"历史在重复"往往是"作者在挑选"。凡是他让你觉得"这说的就是今天"的地方，都要多问一句：是我看见了规律，还是他递给我了一面镜子？</p></div>
+    <div class="blind"><div class="tag">代价</div><h4 style="margin:6px 0">盲区 5 · 决定论的收口太整齐</h4><p>道德=经济结构的上层（M4）、革命=中产阶级危险的财富、文艺复兴=钱的产物、宗教=伦理的保存技术——杜兰特的每个解释都漂亮到可疑。真实历史里总有不服从结构的个案：真心殉道的人、不为财的圣徒、砸锅卖铁也要写完的作家。杜兰特不是看不到，是他的框架消化不了——功能主义的框架天然把"反功能行为"解释成"另一种功能"。读者要警惕的不是他错，是他太顺。</p>
+<p>---</p></div>
+    <h3>普通人最容易踩的坑</h3>
+    <div class="blind"><div class="tag">坑</div><h4 style="margin:6px 0">坑 1 · 拿警句当定律</h4><p>这套书警句密度全书史罕见——<span class="star">★</span>「文明在农舍里播种，但只在城市里开花」<span class="star">★</span>「繁荣为国家之母，而战争则为其父」。最常见的误用是把它们从语境里挖出来当铁律发帖、辩论、指导决策。这些句子是杜兰特对特定时代特定材料的修辞压缩，不是物理学。安全用法：每条警句都回到它诞生的那卷那一章，问"他写这句时在看什么材料"。</p></div>
+    <div class="blind"><div class="tag">坑</div><h4 style="margin:6px 0">坑 2 · 用杜兰特背书当代地缘与政治</h4><p>⚠ 高风险坑。他写拿破仑的兴衰、写民族性、写革命、写"东方/西方"，今天读起来句句像在影射时事。把他的判词直接搬运去评论当代国家、民族、边境、宗教议题，学术上站不住（他的材料止步 1815），传播上更是高危（涉政限流的平台规则 + 引战风险）。他自己的提醒应该被遵守：<span class="star">★</span>「历史讥笑一切企图强行将其纳入理论范式或逻辑规范之中。历史非难我们的通则，破坏我们的规条。历史是一个怪物。」</p></div>
+    <div class="blind"><div class="tag">坑</div><h4 style="margin:6px 0">坑 3 · 把"文明兴衰律"读成宿命论</h4><p>读完钟摆律、衰亡律，容易得出"组织/国家/时代注定完蛋"的躺平结论，或者反过来"我们正在重演罗马"的末日叙事。杜兰特自己的收笔恰恰反对这两者——他的终点是遗产论：文明死于断代，不死于战败（M8）。能被传递的东西就不死。宿命论是读反了。</p></div>
+    <div class="blind"><div class="tag">坑</div><h4 style="margin:6px 0">坑 4 · 把"道德=经济上层建筑"读成取消道德</h4><p>M4 的本意是解释道德的来源，不是宣布道德是假的。如果一个人从这套书里读出"反正道德是利益的面具，讲道德的都是伪君子"，那是在用第一卷的分析框架给自己的人性漏洞发通行证。杜兰特全书都在维护"合作半径扩大"这个道德进度条——他取消的是道德的先天神圣性，不是道德的必要性。</p></div>
+    <div class="blind"><div class="tag">坑</div><h4 style="margin:6px 0">坑 5 · 用宏大叙事替代具体阅读</h4><p>11 卷读完，容易产生"我懂历史了"的错觉，从此看什么都用四要素+钟摆+兴衰律套。杜兰特这套工具箱对"看透大结构"极好用，对具体问题（一个行业的兴衰、一个政策的效果）颗粒度完全不够——那里需要的是一手数据和现场感，不是文明史观。工具箱越锋利，越要记得它不是唯一的抽屉。</p>
+<p>---</p></div>
+  </section>
+
+  <section id="books">
+    <span class="sec-tag">Counterparts · 对读书单</span>
+    <h2>互补、对立与对照<span class="en">What to read next</span></h2>
+    <h3>互补（读完杜兰特该补什么）</h3>
+
+    <h3>对立（专治这套书的盲区）</h3>
+
+    <h3>对照（同题竞争，检验成色）</h3>
+
+  </section>
+
+  <section id="chapters">
+    <span class="sec-tag">Chapters · 逐卷精读</span>
+    <h2>逐卷精读<span class="en">Close reading, volume by volume</span></h2>
+    <div class="ch-sec-h">结构总图 · 十一卷到底在拆什么</div>
+    <p style="font-size:.92rem;color:var(--ink-soft);margin:8px 0 12px">全书十一卷，是把一台叫"文明"的机器从图纸、样机、量产、改造、过载、到交棒给下一代，完整走了一遍生命周期。结构总图之后是 12 张精读卡（11 卷 + 总论卡《历史的教训》），每张按六层展开。</p>
+    <table class="ch-map">
+      <thead><tr><th>序</th><th>卷</th><th>处理的对象</th><th>性质</th><th>在序列里的位置</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>东方的遗产</td><td>文明的<strong>图纸</strong>：四要素框架 + 东方先行者</td><td>总纲</td><td>为全部十卷立规矩</td></tr>
+        <tr><td>2</td><td>希腊的生活</td><td>秩序原型 A：<strong>自由</strong></td><td>样机实验</td><td>与卷三构成第一组对偶（自由 vs 秩序）</td></tr>
+        <tr><td>3</td><td>恺撒与基督</td><td>秩序原型 B：<strong>法律</strong>；以及秩序崩溃时信仰如何接管</td><td>样机实验＋转辙器</td><td>与卷二对偶；把接力棒交给教会</td></tr>
+        <tr><td>4</td><td>信仰的时代</td><td>秩序原型 C：<strong>信仰</strong>作为跨国黏合剂</td><td>样机实验＋孵化器</td><td>与卷二、三合成"三种秩序原型"；为卷五蓄力</td></tr>
+        <tr><td>5</td><td>文艺复兴</td><td>解放第一幕：<strong>知性</strong>的个体解放（南欧）</td><td>解放双联剧上篇</td><td>与卷六对偶</td></tr>
+        <tr><td>6</td><td>宗教改革</td><td>解放第二幕：<strong>道德</strong>的信仰解放（北欧）</td><td>解放双联剧下篇</td><td>与卷五对偶；把教条撕碎，逼出卷七</td></tr>
+        <tr><td>7</td><td>理性开始的时代</td><td>理性在<strong>信仰内部</strong>撕开裂缝</td><td>攻防三部曲之一</td><td>与卷八对偶（裂缝 vs 王座）</td></tr>
+        <tr><td>8</td><td>路易十四时代</td><td>信仰占据王座，理性在缝隙里<strong>开花结果</strong></td><td>攻防三部曲之二</td><td>与卷七对偶；压制的果实在国外（荷兰/英国），逼出卷九</td></tr>
+        <tr><td>9</td><td>伏尔泰时代</td><td>理性变成<strong>公共批判力量</strong></td><td>攻防三部曲之三</td><td>与卷十对偶（理性 vs 情感）</td></tr>
+        <tr><td>10</td><td>卢梭与大革命</td><td><strong>情感</strong>对理性的反叛引爆革命</td><td>革命与收编上篇</td><td>与卷十一扣环</td></tr>
+        <tr><td>11</td><td>拿破仑时代</td><td>革命吞噬后代，被一个军人<strong>收编成法典与秩序</strong></td><td>革命与收编下篇（终卷）</td><td>兑现卷十结语"轰然而降"的预言</td></tr>
+        <tr><td>12</td><td>结论·历史的教训</td><td>十一卷素材的<strong>总清算</strong>：遗产论与进步定义</td><td>全书总论</td><td>回答卷一第一章提出的问题，首尾扣环</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.88rem;color:var(--ink-faint);margin:10px 0 4px">：卷2↔卷3（自由/秩序，希腊/罗马）；卷5↔卷6（知性解放/道德解放，南欧/北欧）；卷7↔卷8（理性开场/信仰王座）；卷9↔卷10（理性批判/情感反叛）；卷10↔卷11（革命/秩序）。
+<strong>首尾扣环</strong>：卷一结语预告 <span class="star">★</span>「欧洲舞台排演着柏拉图、恺撒与基督的三幕戏剧」——"恺撒"在卷三登场，现代恺撒（拿破仑）在卷十一收场；而全书终点《历史的教训》回答的正是卷一第一章的问题（文明是什么、会不会死），答案从"定义"升级为"遗产交棒"。 <b>此表为拆解者重建，作者在书里没有这样排过。</b></p>
+    <div class="ch-sec-h" style="margin-top:26px">十二张精读卡 · 默认展开卷一</div>
+    <details class="ch" open>
+      <summary><span class="ch-no">卷一</span>东方的遗产<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：文明的图纸在东方画成，西方只是这张图纸上最晚开工的工地。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>杜兰特 1935 年开卷之作，四部加结语：第一部"文明的建立"（六章）先把文明的总框架摊开——文明的条件、经济条件、政治条件、伦理条件、心理条件、史前文明；然后按同一套解剖模板依次写苏美尔、埃及、巴比伦、亚述、波斯、犹太（第二部），印度与南亚（第三部），中国与日本（第四部），终于"我们的东方遗产"。时段上近东写到亚历山大之死，印度中国日本写到 1930 年代。他在致读者里公开反对"叙述史必始自希腊"的欧洲本位，坚称亚洲是希腊罗马文化的背景与基石。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>这卷是全书的宪法。其一，分析框架：文明定义为"增进文化创造的社会秩序"，固定为经济、政治、伦理、心智四大因素，此后十卷对每个文明都按这套格式解剖——第一卷卷末《结语 我们的东方遗产》把文明拆为劳动、政府、道德、宗教、科学、哲学、文字、艺术八条逐条清点，这是<strong>一次性总纲</strong>，后续各卷卷末不再做这种要素式清单（框架下沉为各卷内部固定的章节编排顺序，各卷卷末收束改用主题式判断）。其二，立场：破欧洲中心论，后续希腊、罗马、欧洲各卷全部建立在"西方是亚洲的增补"这一前提上。其三，史观：文明不自生、不永存，靠每一代传递维持，传递中断即灭亡——全书衡量一切文明的恒定尺度在此立下。抽掉这卷，后面十卷的分析就没有统一语言。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>放在最前面是功能性的：读者必须先拿到四要素体检表，再看后面十卷对各个"病例"的解剖。四部由近及远（近东→印度→远东），与"文明由东向西流动"的论点同构。它开篇的谦逊是设计出来的——一个承认欠东方巨债的西方史家，才有资格写后面十卷的西方。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「我们之所以由东方开始，不是因为亚洲乃我们所熟知的最古老的文明之地，而是因为亚洲的文明形成希腊与罗马文化的背景与基石」<span class="en">——致读者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「文明是增进文化创造的社会秩序。它包含了四大因素：经济的供应、政治的组织、伦理的传统及对知识与艺术的追求。动乱终结之时即是文明的起点，因为一旦恐惧被克服，好奇心与进行建设的欲望不受约束，人们自然便会产生进一步了解并改善生活的冲动。」<span class="en">——第一章 文明的条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「文明在农舍里播种，但只在城市里开花。」<span class="en">——第一章 文明的条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「文明不是由伟大的种族创造的，相反，伟大的文明创造了民族。地理环境与经济条件创造某种文化，而文化又创造了某种典型。」<span class="en">——第一章 文明的条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「文明不是自生的，更不是永不朽灭的，它必须经由每一世代的不断更新，如在其进程中遭遇了任何财政上或传递上的中断，皆可导致其灭亡。人类与兽类的分别仅在于教育，教育也可视为文明传导的技术。」<span class="en">——第一章 文明的条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「分析到最后，文明是基于食物的供应。教堂与神殿，博物馆与歌剧院，图书馆与学校，这些都是文明这栋建筑物辉煌的正面，而在其背面都是屠宰场。」<span class="en">——第二章 文明的经济条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「繁荣为国家之母，而战争则为其父。」<span class="en">——第三章 文明的政治条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「每个国家，一开始都是强制的。但服从的习惯竟变成了良知，不久每个人都会为忠于国家而深受感动。」<span class="en">——第三章 文明的政治条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「自由是安全的奢侈品，自由的个人是文明的产物与标记。」<span class="en">——第三章 文明的政治条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「历史上伦理的进步，不在于伦理准则的改良，而在于其适用范围的扩大。」<span class="en">——第四章 文明的伦理条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「宗教并非伦理的基础，但有助于伦理。」<span class="en">——第四章 文明的伦理条件</span></div>
+        <div class="ch-quote"><span class="star">★</span>「欧美可说是亚洲不肖的子孙，他们不曾真正了解亚洲古文化的宝藏。」<span class="en">——结语 我们的东方遗产</span></div>
+        <div class="ch-quote"><span class="star">★</span>「欧洲舞台排演着柏拉图、恺撒与基督的三幕戏剧。」<span class="en">——结语 我们的东方遗产</span></div>
+        <div class="ch-quote"><span class="star">★</span>「埃及人的悲观主义及怀疑主义，可以说是由于西克索人入侵、整个民族精神崩溃的结果。希腊沉溺于斯多葛学派及伊壁鸠鲁主义，也是同样情况下的产物。」<span class="en">——埃及·哲学</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这一卷最值得警惕的是"框架的暴力"。四要素模板让苏美尔、埃及、印度、中国、日本变得可比，但也强行把不可比的东西拉平了：中国一章的"哲学家的时代"被压缩成几个思想家的列传，社会史细节远逊于他写法国的密度——框架对欧洲是显微镜，对东方是望远镜。另一个自我矛盾：他反对欧洲中心论，却把印度中国日本写到 1930 年代为止，而欧洲十卷只写到 1815——东方在他这里是"背景＋现状"，欧洲才是"过程"。这个不对称是他自己没有处理的。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人学任何复杂领域（行业、学科、一门手艺）时，最容易犯的错是从"最辉煌的部分"入门——就像从希腊讲起的历史。这一卷示范的读法是先找"经济条件"：这个行业靠什么活着、钱从哪流到哪、谁在做脏活。查清楚"背面是屠宰场"的部分，再看台前的辉煌，就自带免疫力——无论审视一个平台、一个职业还是一座城市。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷二</span>希腊的生活<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：自由既能同时点亮民主、哲学与艺术，也能在同一座城里把它们全部烧掉。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>从克里特米诺斯、迈锡尼、荷马英雄时代写起，经城邦形成、大殖民、希波战争、伯里克利黄金时代、伯罗奔尼撒战争、亚历山大东征与希腊化世界，到罗马征服为止，约两千年。三部结构本身就是一出兴衰剧："希腊的兴起"（十章）→"希腊的黄金时代"（八章）→"希腊的衰落"（十二章），末附结语"希腊的文化遗产"。杜兰特把文明当有机体写：土地、政体、伦理、宗教、艺术、科学在同一躯体里互相牵动——雅典的民主、哲学与雕刻几乎同时爆发，也几乎同时互相拖垮。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>第一卷给了图纸，这一卷是第一台样机——而且是第一卷最缺的那种：个体主义、世俗化、政治实验。它让"文明"第一次脱离王朝—神庙的连续叙事，变成一次完整的生长—成熟—自毁—迁移生命周期演示。它同时给全书立了另一根支柱：自由与创造力的正相关，以及自由与自毁的正相关——两句话在同一个雅典身上都成立。没有希腊这台样机，后面写罗马（秩序接管自由）、写文艺复兴（自由重启）、写革命（自由过载）就都失去了参照系。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与卷三构成全书第一组对偶：希腊=自由，罗马=秩序——这组对偶在卷三《罗马法》章被杜兰特亲手点破（"罗马代表秩序，就如同希腊代表自由"）。本卷第三部"衰落"的写法（城邦混战、哲学向宗教回流、迎接罗马）预告了全书的衰亡模板：文明不是被外敌杀死的，是自己先活成了可以被接管的样子。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「在我们的文化中，除机械以外，几乎没有一样现世的事物不是自希腊流传下来的。」<span class="en">——致读者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「我并不想从孤立的理论和学术角度来了解和体会这些因素，而是把它们当作一个伟大的文化有机体，这个伟大的文化有机体，生生不已，相激相荡，拥有数以百计的器官和数以亿万计的细胞，却只有一个躯体和一个灵魂。」<span class="en">——致读者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「这就是雅典的民主政治——历史上最狭隘也是最充实的：最狭隘，指其享受民主权利的人数很少；最充实，指全体公民在管制立法及治理公众事务上的直接与平等权利。」<span class="en">——行政</span></div>
+        <div class="ch-quote"><span class="star">★</span>「历史是能够原谅雅典民主政治的一切过错的。」<span class="en">——行政</span></div>
+        <div class="ch-quote"><span class="star">★</span>「黄金时代随着苏格拉底之死而结束。」<span class="en">——苏格拉底之死</span></div>
+        <div class="ch-quote"><span class="star">★</span>「物极必反……自由过分，不管对国家或个人而言，都只有变成奴役……最令人讨厌的暴君，也是由于极端自由而产生。」<span class="en">——柏拉图·理想家</span></div>
+        <div class="ch-quote"><span class="star">★</span>「《法律篇》一书使得原来活生生、现在却垂死的雅典屈服于莱喀古斯以来已经死了的斯巴达。既然连雅典最著名的哲学家对自由都几乎无法辩护，希腊也该进入王治的时代了。」<span class="en">——柏拉图·立法者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「文明不会死亡，只会迁移；其住地及装束虽有所改变，但必继续生存。」<span class="en">——结语 希腊的文化遗产</span></div>
+        <div class="ch-quote"><span class="star">★</span>「我们知道希腊的弱点——其疯狂而无情的战争、其呆滞的奴隶制度、其从属的妇女地位、其普遍缺乏的道德节制、其腐朽的个人主义、其未能与秩序及和平相配合的自由。」<span class="en">——结语 希腊的文化遗产</span></div>
+        <div class="ch-quote"><span class="star">★</span>「他们会将希腊视为西方文明明媚的早晨，此种文明虽有其同类的错误，却是我们的营养及生命。」<span class="en">——结语 希腊的文化遗产</span></div>
+        <div class="ch-quote"><span class="star">★</span>「从塔尔苏斯人芝诺到塔尔苏斯人保罗之间，只有一步之差——这便是前往大马士革的路上所走的。」<span class="en">——重返宗教</span></div>
+        <div class="ch-quote"><span class="star">★</span>「斯多葛的信念中很多成分是源自亚洲的，有些是出自闪米特。在本质上，斯多葛学说正是东方文明胜过希腊文明的一种重要表征。在罗马征服希腊之前，希腊已不是原来的希腊了。」<span class="en">——重返宗教</span></div>
+        <div class="ch-quote"><span class="star">★</span>「哲学就像一个堕落了的女儿，历尽辉煌的冒险及黑暗的幻灭之后，放弃了对真理及快乐的追求，以悔改者的姿态回到她母亲——宗教——的怀抱，再度从信仰中寻求希望的基石及仁慈的赞助。」<span class="en">——重返宗教</span></div>
+        <div class="ch-quote"><span class="star">★</span>「罗马征服希腊之后，大希腊文明征服了罗马，正如昔日东方文明征服希腊一样。」<span class="en">——结语 希腊的文化遗产</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>杜兰特对希腊民主的判词必须成对使用（跨卷配平，单引任何一句都歪）：辩护词是"历史是能够原谅雅典民主政治的一切过错的"，而卷三的判词是"战争频仍，民主的劫运便注定了"——完整判断是：和平条件下民主是创造力的学校，战争条件下它是自杀程序。他的同时代映射手法在本卷也最露骨（普罗泰戈拉=伏尔泰、庇罗=帕斯卡……），历史在他手里是可以平移对照的活标本——这是魅力也是风险。另外注意一个翻译陷阱：卷二结语注把希腊文明灭亡系于"325 年君士坦丁堡建立"，与卷三口径冲突（325 尼西亚会议 / 330 定都君士坦丁堡为两件事），疑为中译本失误——引用时按"325/330 分述"处理。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个社群、一个团队最生机勃勃的阶段，往往就是它最"雅典"的阶段：人人有话说、什么都敢试、才华横溢也内耗不断。这一卷给普通人的镜子是：欣赏那个阶段的同时看清它的自毁机制——当"什么都可以"变成"什么都不约束"，最先离开的往往是能干的人。对照卷三再想一遍：接盘的从来不是更聪明的人，是更能定规矩的人。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷三</span>恺撒与基督<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：帝国用三百年证明武力与法律可以赢一切对手，然后用被征服者证明它赢不了人心。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>从约公元前 800 年埃特鲁斯坎序曲写到公元 325 年尼西亚会议（尾声延伸到 476 年），约 1300 年。双线咬合：一条是罗马从共和到帝国的政治—法律—经济衰变，一条是基督教从犹太教派到国教的成长。三部：恺撒时代（前 800—前 30）、奥古斯都时代（前 30—192）、基督时代（3—325）。杜兰特明说这卷是"综述性历史"——写那个时代人民的生活、工作与文化，并且 <span class="star">★</span>「鉴彼知此，这部《恺撒与基督》也可以说是讲我们自己的历史。」<span class="en">——致读者</span></p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>这卷是全书的转辙器：古代世界在这里结束，基督教欧洲在这里开始。它给"文明"框架补上了秩序原型（法律）与信仰接管机制——第三卷的答案是：帝国靠武力和法律赢了三百年，最后输给以言词对抗武力的少数人，而胜利者接过失败者的骨架（罗马法、拉丁语、主教制、道路网）流入中世纪。"文明不会死亡只会迁移"这条全书规律，在本卷完成了第一次大规模演示。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与卷二对偶（秩序接管自由）。双线设计本身就是论断：标题"恺撒与基督"不是并列，是一场对簿——一个靠改造制度改造人，一个靠改造人取消制度。它与卷四直接咬合：卷三末"被俘的罗马又俘虏了它的征服者"正是卷四（教会作为罗马帝国的继承人）的开场条件。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「法律最足以说明罗马精神的特征。在历史上，罗马代表秩序，就如同希腊代表自由。希腊留下的民主与哲学，成为个人自由的依据；罗马留下的法律与政绩，则成为社会秩序的基础。如何将这两种不同和极端相反的遗产相互协调，是伟大政治家的责任。」<span class="en">——罗马法</span></div>
+        <div class="ch-quote"><span class="star">★</span>「罗马公民最可贵的特权就是他的身体、财产、权利受法律保护。他在涉讼之时可不受刑罚或粗暴对待，罗马法最值得赞美的是它保护个人对抗国家。」<span class="en">——罗马法·自然人法</span></div>
+        <div class="ch-quote"><span class="star">★</span>「民主原则是自由，战争原则是纪律，二者互相排斥。战争要求高度的智慧与勇气，迅速决策，一致行动，即刻服从。战争频仍，民主的劫运便注定了。」<span class="en">——希腊的衰亡·罗马的改变</span></div>
+        <div class="ch-quote"><span class="star">★</span>「被剥光了的希腊人，为罗马人提供了精神的衣服。」<span class="en">——希腊的衰亡·罗马的改变</span></div>
+        <div class="ch-quote"><span class="star">★</span>「恺撒希望用修改制度和法律的方式来改造人群，耶稣则主张借改造人群的途径来重定制度和减少法律规定。」<span class="en">——耶稣·传道期</span></div>
+        <div class="ch-quote"><span class="star">★</span>「当敌人混乱时，他们却在内部建立起秩序，以言词对抗武力，盼望对抗残暴，最后击败了这个历史上最强盛的帝国。恺撒与基督在斗技场上对势，胜利终属于基督。」<span class="en">——基督教的胜利</span></div>
+        <div class="ch-quote"><span class="star">★</span>「一个真正的信徒应先为基督徒，再做政治家，但对君士坦丁来说恰好相反。基督教对他来说是一种手段，不是目的。」<span class="en">——基督教的胜利·君士坦丁和基督教</span></div>
+        <div class="ch-quote"><span class="star">★</span>「一个伟大的文明国家，其灭亡，常非由于外力的摧毁，而是其内部的腐蚀所造成的。罗马帝国倾覆的基本原因，在于它的人民、它的道德风气、阶级间的斗争、商业的败落、官僚作风的专制政治、繁重的课税及耗费繁大的战争。」<span class="en">——尾声 罗马衰颓的原因</span></div>
+        <div class="ch-quote"><span class="star">★</span>「基督教的成长，与其说是罗马帝国衰颓的原因，毋宁说是罗马帝国衰颓所造成的结果。」<span class="en">——尾声 罗马衰颓的原因</span></div>
+        <div class="ch-quote"><span class="star">★</span>「被俘的罗马又俘虏了它的征服者。政权与治术由此行将倾覆的帝国转至强而有力的教皇手中。断剑之威被慰藉之笔所代替。」<span class="en">——尾声 罗马人的成就</span></div>
+        <div class="ch-quote"><span class="star">★</span>「我们可以相信某些斯多葛派神学及伦理学，借着塔尔苏斯的学术气氛而渗入了保罗的基督教神学中。他时常采用斯多葛学派的名词'气'，而英文翻译者把它译为'灵'。」<span class="en">——使徒·保罗</span></div>
+        <div class="ch-quote"><span class="star">★</span>「爱比克泰德也曾拜读过耶稣的教义，而在不知不觉中成为一个改信基督教的人。」<span class="en">——罗马希腊·爱比克泰德</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这卷藏着全书最完整的一条跨卷暗线——"斯多葛→基督教"四站接力：第一站论断在卷二（芝诺到保罗"只有一步之差"），第二站机制在本卷（斯多葛的"气"经塔尔苏斯学术气氛渗入保罗神学，译出来就是"灵"——不是换了神，是换了一个词），第三站现场也在本卷（大马士革路上），第四站成品还是本卷（爱比克泰德"不知不觉中成为改信基督教的人"）。杜兰特把一个两千年的宗教转型写成了同一条路上的四次落脚。另一处要提防的是他对"内部腐蚀"清单的修辞过载：人口、道德、税收、官僚全列入死因，等于没有死因——衰亡解释的可证伪性被他自己的文采牺牲掉了。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个组织被"接管"之前，先经历的多半不是惨败，是空心化：最能干的人在躺平，最有想法的人在出走，剩下的人靠流程和口号维持运转——罗马"只剩下一个空壳了"的状态，在任何公司、家族、行业里都能对号入座。这一卷给普通人的可自证指标：别看公告栏，看有没有人还在为"不合理但没人管"的事较真。较真的人一消失，接管的时机就到了。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷四</span>信仰的时代<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：信仰不是文明的休眠，是文明的冬小麦——春天来临时发芽的正是它护住的东西。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>325 年尼西亚会议到 1321 年但丁谢世，近千年。三部：拜占庭、伊斯兰及犹太文明（17 章）；黑暗时代与十字军东征（9 章）；基督教巅峰的文明（13 章），终于但丁与《神曲》。四条文明线并行处理：拜占庭保存古典遗产，伊斯兰扩展科学哲学，犹太学者做翻译与中继，西欧在蛮族废墟上重建——杜兰特的核心姿态是拒绝"黑暗时代"叙事：中世纪不是两种文明之间的插曲，而是从野蛮到新文明的重建期。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>这卷把卷一框架里"宗教"与"伦理"两个要素推到全书最高音量：信仰是苦难时代的秩序技术——它提供意义、纪律与跨国道德共同体，教会承担教育、慈善与对野蛮的驯服。同时它演示了 M6（宗教=伦理保存技术）的完整生命周期：组织化带来财富与权力，财富与权力败坏精神事业，而理性恰恰在被引进堡垒护教时获得了裁判权。文艺复兴不是对中世纪的否定，是中世纪的成熟果实——这是"文明传递律"的又一次正面论证。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>三种秩序原型的收官（自由/法律/信仰），并直接为卷五蓄力：阿奎那把理性带进信仰，司各特与奥坎把信仰从理性剥离，卷末威克里夫、胡斯、彼特拉克、薄伽丘已把线索递到意大利。杜兰特把翻译运动写成"伊斯兰教对基督教的无心的报复"——跨文明接力是这卷的真正主题。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「在这里，出人意料地，希腊文明竟能绵延下去，坚韧地保存其古代宝藏，最后传递给文艺复兴时期的意大利及西方世界。」<span class="en">——弃教者尤里安·君士坦丁大帝的遗产</span></div>
+        <div class="ch-quote"><span class="star">★</span>「一般说来，东方的基督徒认为伊斯兰教的统治，要比拜占庭及教会的统治仁慈多了。」<span class="en">——伊斯兰景观·信仰</span></div>
+        <div class="ch-quote"><span class="star">★</span>「由于他们的居间促成，他们以伊斯兰教思想为营养，激励了西方基督徒的心灵。」<span class="en">——犹太人的心智·文学</span></div>
+        <div class="ch-quote"><span class="star">★</span>「就许多方面而言，宗教是人类最有趣的行为方式之一，因为它是人类生命的最终诠释，也是对抗死亡的唯一利器。」<span class="en">——罗马天主教·大众的信仰</span></div>
+        <div class="ch-quote"><span class="star">★</span>「基督教的力量在于给人们一种信仰，而非提供知识；是一种艺术，而非科学；是一种美感，而非真理。而人们喜欢这样。」<span class="en">——罗马天主教·大众的信仰</span></div>
+        <div class="ch-quote"><span class="star">★</span>「这正是精神事业的悲剧，无组织则凋萎；有组织又因其物质上的需要而败坏。」<span class="en">——罗马天主教·教会的财政</span></div>
+        <div class="ch-quote"><span class="star">★</span>「他将理性如俘虏般引进信仰的堡垒，而他的胜利带来了信仰时代的结束。」<span class="en">——理性的探索·托马斯学说的评估</span></div>
+        <div class="ch-quote"><span class="star">★</span>「因信仰而拒斥理性终导致因理性而拒斥信仰，故而在信仰时代中结束了对勇敢的探索。」<span class="en">——理性的探索·继承者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「中古时代并非仅是一种文明和他种文明之间的插曲而已。」<span class="en">——结语 中古的遗产</span></div>
+        <div class="ch-quote"><span class="star">★</span>「中古时期的人先是野蛮的牺牲品，其后变为野蛮的征服者，而后又成为新文明的创造者。对一个产生如此多伟大人物，从野蛮的废墟中兴起了教皇制度、欧洲的诸多国家，及产生了如此丰富的精神与物质财富的时期，以傲慢不屑的态度加以轻视是不智的。」<span class="en">——结语 中古的遗产</span></div>
+        <div class="ch-quote"><span class="star">★</span>「我们绝对无法对中古时代做到公平的地步，直到我们了解意大利的文艺复兴并非是他们的欠债，而是他们的成就。」<span class="en">——结语 中古的遗产</span></div>
+        <div class="ch-quote"><span class="star">★</span>「13世纪是奥古斯都或利奥十世的时代。在任何时代都极少出现如此完美和富于变化的一种知识上或艺术上的兴盛。」<span class="en">——结语 中古的遗产</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>"精神事业的悲剧"那一句是全卷最深的一刀，但杜兰特没有给出解法——他连教会的腐败带教会的功劳一起收下，这种"账全记、结论不急着下"的姿态正是他与布道者的区别。要警惕的倒是他对宗教裁判所的篇幅分配：批判集中在刑讯与迫害的个案，却很少追问"跨国道德共同体"本身的历史代价。此外，把欧洲复兴归功于拜占庭—伊斯兰—犹太的三级接力，是他全书最经得起后来学术检验的判断之一——这条线在今天的全球史里被越写越厚。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人身边总有这样的阶段或组织：用一套共同信念撑过了最艰难的时期（创业维艰的团队、白手起家的家庭、共建的小区群）——信念就是那个时代的"修道院"，保存了最珍贵的东西：互助的习惯、记账的规矩、教新人的耐心。麻烦总在富起来之后到来：规矩变成权力、初心变成饭碗。这卷给普通人的现实链接是：别急着嘲笑还守着旧规矩的人，先问那些规矩护住了什么；也别假装组织化的代价不存在——它护住的东西与它烂掉的部分，往往是同一批。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷五</span>文艺复兴<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：个体诞生了，账单随后就到——文艺复兴是文明第一次为自由开的信用卡。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>1304 年彼特拉克诞生到 1576 年提香之死，"文艺复兴"一词严格限定于意大利。四部：文艺复兴总述（佛罗伦萨两百年）、文艺复兴在意大利（各城邦与达·芬奇）、文艺复兴在罗马（教会的危机与辉煌）、文艺复兴的没落（知识革命、道德解放、政治崩溃、衰微），末附结语。杜兰特的核心判断是三重否定式的肯定：否认它是古典复兴（钱与中产阶级现世主义才是基础）；否认它是解放盛世（它是 <span class="star">★</span>「两个严苛时代之间的插曲」）；否认它是该被唾弃的堕落（账要认，交易值得）。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>这卷给全书贡献了"解放的账单"这一母题：自由开启创造力，也制造道德混乱、个人主义失控与秩序真空——卷一的钟摆律在这里第一次完整摆起来。它同时是 M1（经济底座决定招牌）的最强案例：天才爆发被还原为盈余资本、城市竞争与现世主义的产物。它上承卷四（文艺复兴是中世纪的成就），下接卷六（松弛与教廷腐败正是宗教改革的燃料）。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与卷六构成解放双联剧：卷五南欧知性解放，卷六北欧道德解放——同一场"个体站起来"在两种气候里的两种结局。卷末"政治的崩溃"（1494 年外敌入侵、1527 年罗马劫掠）是设计好的关门声：打开的门被重新关上，把叙事推入卷六的信仰内战。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「钱是一切文明的基础。商人、银行家和教会付款买下了古典再生所需的书稿。但解放文艺复兴时代心灵和理性的也并非那些书稿，而是因中产阶级兴起所造成的现世主义」<span class="en">——背景</span></div>
+        <div class="ch-quote"><span class="star">★</span>「在自由使人毁于道德的混乱、分崩的个人主义和国家的奴役之前，新自由让人创造了一个惊人的世纪（1434—1534年）。两个严苛时代之间的插曲便是文艺复兴。」<span class="en">——背景</span></div>
+        <div class="ch-quote"><span class="star">★</span>「美第奇时代，人文主义者占据了意大利的心灵，使它从宗教转向哲学，从天堂转向地上，也向讶异的一代泄露了异教的思想和艺术的宝藏。」<span class="en">——人文主义者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「现在人类研究的适当题材是"人"，是他潜在的力量和身体的美，是他感官和感情的欢乐、痛苦，是他理性的脆弱尊严，是丰富、完美地显露这些题材的古希腊、罗马文学。这就是人文主义。」<span class="en">——人文主义者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「他的妙语之一是"国家并不能用念珠来治理"。」<span class="en">——"国家之父"科西莫</span></div>
+        <div class="ch-quote"><span class="star">★</span>「萨沃纳罗拉是中古世纪在文艺复兴时代的遗留，文艺复兴毁了他。」<span class="en">——殉道者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「我们知道这是所有革命中最困难的，萨沃纳罗拉失败了，而基督却只在为数可怜的少数人身上获得成功。但是我们也知道，这种革命是唯一能在人类事件上造成真正进步的一种。在它身旁，历史的血腥颠覆只是短暂和无效的，虽改变了一切，却不能改变人。」<span class="en">——殉道者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「他并非文艺复兴之人，因为他太温和、太内向、太文雅，不能刻画出一个在语言和行动上极为猛烈而强有力的时代。他并非一个完美的人，因为他不具有政治家和管理者的性格。虽然如此，他仍可以说是文艺复兴时期或者是整个人类历史上最完美的人。」<span class="en">——达·芬奇</span></div>
+        <div class="ch-quote"><span class="star">★</span>「马基雅维利的理论代表一种复苏的异教精神对衰微的基督教的最大挑战。在他的哲学里，宗教又如在古罗马时代一样，变成政治的附属品，国家才是上帝。」<span class="en">——马基雅维利思想的讨论</span></div>
+        <div class="ch-quote"><span class="star">★</span>「每个人只要他认为是适当的，不管传统认为对不对，就去做。人们希望的不再是做一个好人，而是怎样成为一个强者。」<span class="en">——道德堕落的根源与形式</span></div>
+        <div class="ch-quote"><span class="star">★</span>「至于道德松弛，这是知识开放的代价，这个代价虽重，但那种自由是现代世界无价的天赋人权，是今日我们精神的气息。」<span class="en">——结语</span></div>
+        <div class="ch-quote"><span class="star">★</span>「文艺复兴已厌倦原罪，以令人心悸的、神秘的对死后的恐怖，它不再理会死亡，开始面对生命」<span class="en">——结语</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>杜兰特在这卷的笔法是全书最"两面派"的：先判萨沃纳罗拉死刑（他是中古遗留、被时代毁灭），再在结尾把"改变人而非改变制度"的革命判为唯一真正的进步——被时代碾碎的人拿到哲学上的最高分，这是他的招牌平衡术，也暴露了他评史的真尺度：不看输赢看改动的是什么层级。真正今天读来刺目的是结语那句——文艺复兴 <span class="star">★</span>「恢复了古典文化，也结束了东方精神千年来在欧洲的统治」："东方"一词在此承担了与卷一致敬截然相反的贬义，全书最大内在张力在这卷到了顶点。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人、一个家庭、一个团队"放开手脚"的黄金期，几乎都有同款账单：规矩松弛的甜头先到，代价迟到——健康、信用、关系、底线的重新谈判都在后面。这卷给普通人的现实链接是识别"插曲结构"：越是爆发式繁荣的阶段，越要问一句退出机制——盛宴散场时留在原地的人，买单最重。文艺复兴的教训不是"别解放"，是解放要自带新秩序，否则秩序会以外国军队、宗教裁判或市场崩盘的形式自己上门。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷六</span>宗教改革<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：改革者抢到权力后做的第一件事，往往是把他们反对过的那套原封搬回来。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>名义上写宗教改革，实际覆盖 1300—1564 年的欧洲（兼及伊斯兰、犹太、俄罗斯）。三部：从威克利夫到路德（15 章）、宗教改革（13 章）、宗教改革的余响（11 章），末附三方辩驳式结语。杜兰特自嘲书名"并不十分恰当"，正确名称该是《1300 到 1564 年前后意大利以外的欧洲文明史》。核心判断：腐败是真的、改革是必要的，但这场改革把文明撕成了两半——南欧的知性解放与北欧的道德收紧从此敌对，而改革者以良心自由始、以新的不宽容终。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>这卷给全书立了"竞争保宽容"这条制度性判断（M6 的政治版）：信仰垄断产生不宽容，信仰竞争反而逼出宽容与自我净化——天主教会的特伦特会议改革被他判为"新教改革中最辉煌的产物"。它同时是钟摆律的北欧半场：卷五的自由松了道德，卷六的信仰紧了道德；两者共同把欧洲心灵的战场腾空，留给卷七的理性登场。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与卷五对偶（南/北、知性/道德），杜兰特径直写成 <span class="star">★</span>「拉丁人与条顿人之争」。它为卷七铺路的机制被写得很清楚：路德高呼"信仰万岁"一百年后，培根宣称"知识就是力量"——教条垄断被撕开后，上百个教团互相攻讦，理性成了各教派找理由的公共工具。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「宗教通常繁荣于农业社会，科学则随工业经济而得势。」<span class="en">——改变中的环境</span></div>
+        <div class="ch-quote"><span class="star">★</span>「宗教改革实际是世俗对教会这种自然集中的财富与利益所要求的重新分配。」<span class="en">——教会被指控</span></div>
+        <div class="ch-quote"><span class="star">★</span>「路德领导的宗教改革运动，是想将全部生活委诸神学，却无心地、不情愿地促进了成为现代生活基本要件的深入与世俗化。」<span class="en">——马丁·路德的神学</span></div>
+        <div class="ch-quote"><span class="star">★</span>「像路德这种坚强而独断个性的人，在他地位相对稳固之后，要他依然主张容忍，便很难办到了。一个肯定其自身通晓《圣经》的人，是不能容忍他的反对者的。」<span class="en">——不宽容的异教徒</span></div>
+        <div class="ch-quote"><span class="star">★</span>「路德应该从没妥协。1522年，他已经比那时的历任教皇更像教皇。」<span class="en">——不宽容的异教徒</span></div>
+        <div class="ch-quote"><span class="star">★</span>「这实在是人类的一大悲剧，他在结论中说，昔日反对宗教法庭恐怖之人，一朝得势，竟袭宗教法庭的旧制，以之残害其他人。许人以黎明者，带来的竟是黑暗，人的观念变换得为什么这样快？」<span class="en">——对容忍的呼吁</span></div>
+        <div class="ch-quote"><span class="star">★</span>「加尔文神权政治奠基之时，即民主政治萌芽之日。」<span class="en">——日落黄昏</span></div>
+        <div class="ch-quote"><span class="star">★</span>「总之，那是一次令人惊讶的复兴，是新教改革中最辉煌的产物。」<span class="en">——特伦特会议</span></div>
+        <div class="ch-quote"><span class="star">★</span>「文艺复兴与宗教改革是近代史的两个源泉，也是近代生活中知性与道德的两个敌对的根源。」<span class="en">——结语</span></div>
+        <div class="ch-quote"><span class="star">★</span>「任何宗教必须在竞争中求生存是最好不过的。若不面临挑战而显得至高无上，它就会趋向不宽容。宗教改革带来的最大礼物就是提供这种信仰上的竞争，使每种宗教奋力而为，提醒它们应当宽容大量，并把自由的热望与尝试带给我们脆弱的心灵。」<span class="en">——结语</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这卷最经得起时间检验的是"竞争保宽容"那条制度判断——它可迁移到一切观念市场：任何立场的垄断都会趋于傲慢，任何立场被迫竞争时反而学会克制。最需要免疫的是他的站队：杜兰特明显偏爱文艺复兴线（卷五），把宗教改革判为"逸出常轨、排斥理性"——但北欧的识字率、婚姻伦理、市政自治恰恰在新教区率先起飞，这一层他基本没有展开。他的偏好是他的时代给他的，读者不必继承。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个圈子里"打假"起家的人，一旦成了新权威，多半会用当年被骂过的手段去管别人——从论坛版主到行业自律组织，剧本几乎不变。这卷给普通人的自证实验：想想自己经历过的"推翻旧规矩的人"，十年后他们立的规矩比旧的松还是紧？"许人以黎明者，带来的竟是黑暗"不是嘲讽改革，是提醒改革者会变——包括每个人自己担任的小小"改革者"角色（换岗位第一件事立规矩的人，先照照这面镜子）。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷七</span>理性开始的时代<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：理性不是冲进来的，是从信仰自己的墙缝里长出来的——所以墙的主人一直没换。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>1558 年（伊丽莎白登基、培根与莎士比亚降生）到 1648 年《威斯特伐利亚和约》，延伸至 1650 年笛卡儿逝世。三部：理性的觉醒（英国与苏格兰，终于 1649 年查理一世被斩）、理性与信仰（南欧三国）、理性的考验（荷兰、伊斯兰、三十年战争、伽利略时代的科学、哲学的再生）。从本卷起阿里尔·杜兰特署名合著。杜兰特没有把"理性开始"写成胜利进军，而是写成一次从信仰内部长出的分裂：科学方法、怀疑、国家理由三条线同时启动，"理性开始"＝信仰体内撕开裂缝，真正的对撞留给后两卷。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>这是攻防三部曲的开局：它确立全书近代部分的真主角——不是国王与战争，而是信仰与理性之争（卷末判词：与它相比 <span class="star">★</span>「所有敌对国家的战争与革命，都显得无足轻重了」）。它同时落实 M1 的近代版：科学不是纯粹好奇心的产物，而是工商扩张的副产品。注意一个系列内部的口径变化：本卷致读者预告三卷统一主题是"理性的成长"，第八卷致读者把提法改成了"信仰和理性之间的大争论"——引用贯穿三卷的主题词时，以第八卷为准，"成长"的线性叙事被作者自己修正为"攻防"叙事。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与卷八对偶：卷七是裂缝，卷八是"信仰仍占王座、理性在缝隙开花"。本卷刻意让高潮前置、果实延后——伽利略的平反要等到 1835 年，笛卡儿出航后又回到"安全而熟悉的港口"，理性在本卷始终没有赢。卷末那句"种子正在萌芽了"把兑现责任全部推给后两卷，而第八卷尾声果然翻案：17 世纪比 18 世纪更配叫理性时代——这个名号的争夺（本卷曾把"理性时代"安到笛卡儿头上，第八卷卷末又把它从 18 世纪摘回来）是杜兰特自己的口径演变，拆解者重建幕次时必须注明：所谓"第二幕"的幕次表出自第八卷卷末，不是本卷的自我定位。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「该卷包括自伊丽莎白一世登基（1558年）、培根（1561年）和莎士比亚（1564年）降生起，到《威斯特伐利亚和约》签订（Treaty of Westphalia）（1648年）、伽利略（1642年）和笛卡儿（1650年）逝世为止……在这一时期，基本的发展是民族主义的兴起和神学的式微。」<span class="en">——致读者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「商业和工业的迅速扩张，迫使科学随同发展。」<span class="en">——召唤理性·科学</span></div>
+        <div class="ch-quote"><span class="star">★</span>「人是因为无知而贫穷，还是因为贫穷而无知呢？……而在一个财富不足以及财富集中于少数人的国度里，知识的瘴气则毒害了科学的根，使科学的花朵枯萎。」<span class="en">——召唤理性·迷信</span></div>
+        <div class="ch-quote"><span class="star">★</span>「因此，我们可以将培根置于理性时代的先驱地位，他并不像他的某些继承者一样，是理性的崇拜者。」<span class="en">——召唤理性·理性的司晨者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「文明的灵魂是它的宗教，而它是随信仰俱亡的……欧洲思想家——欧洲心灵的先锋——不再讨论教皇的权威，他们开始辩论上帝的存在。」<span class="en">——哲学的再生·怀疑论者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「渐增的教派就像过多的子孙一样互相争战，揭露彼此的弱点，使信仰裸呈在理性主义者的狂风中。他们在战役中纷纷引用《圣经》和理性来支持自己。《圣经》的研究使人民对其意义和可靠性产生怀疑，理性的呼吁结束了『信仰时代』。新教改革的成就远超过它原有的期望。」<span class="en">——哲学的再生·怀疑论者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「与正在兴起、散播、激发、改变欧洲甚至世界心灵的信仰与理性之争比起来，所有敌对国家的战争与革命，都显得无足轻重了。」<span class="en">——哲学的再生·笛卡儿</span></div>
+        <div class="ch-quote"><span class="star">★</span>「《威斯特伐利亚和约》终止了神学对欧洲心智的统治，而为理性实验留下一条虽然障碍重重，然而可能通过的道路。」<span class="en">——威斯特伐利亚和约</span></div>
+        <div class="ch-quote"><span class="star">★</span>「宗教必须经历出生和死亡的过程，迷信却是永恒的。只有幸运的人才能脱离神话而生活，多数人受到身体和灵魂的痛苦，而最微妙的解痛药便是超自然的一剂。甚至连开普勒和牛顿都把科学和神话混在一起。」<span class="en">——迷信</span></div>
+        <div class="ch-quote"><span class="star">★</span>「1835年，教会把伽利略作品撤出禁书目录。这个颓丧的、被击败的人终于胜过了历史上最强大的机构。」<span class="en">——伽利略</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这卷拒绝圣徒传的姿态最彻底：培根是受贿下台的政治投机者，伽利略骄傲、虚荣且最终下跪弃绝，笛卡儿听说伽利略被判刑后"几乎决定烧毁所有原稿"——理性的诞生是懦弱与勇敢的混合物，不是史诗。这恰好是他比"科学 triumphalism"诚实的地方。但有一个结构性偏心：他把"被教会镇住的法国"的理性成就大量记给了荷兰与英国，这条"压制—外流"暗轴（法国按住理性、理性在国外结果）解释力很强，却也让法国本土的詹森派、波尔—罗亚尔传统被压缩成了配角——那是第八卷的戏份。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个体系里新方法的诞生几乎都长这样：不是天降英雄，而是旧体系内部的业务需求（对数、望远镜、海图都是被算账和航海逼出来的）先逼出工具，再用工具反过来质疑旧权威。普通人验证这条很容易：任何单位里最先"不讲规矩讲数据"的人，最初动机几乎都是把活干完，不是想造反——等他们开始用数据质疑流程本身时，"伽利略时刻"就到了。这卷的现实提醒是双面的：做新事的人别急着宣布胜利（种子到收获隔了几十年）；管旧事的人要明白，把新方法赶出墙外，它会在隔壁开花。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷八</span>路易十四时代<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：宫廷养得出风格，养不出文明——被供养的艺术成了传声筒，活下来的恰是没被完全收编的那几个。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>1648 年《威斯特伐利亚和约》到 1715 年路易十四去世。三部：路易十四与法国（含帕斯卡、莫里哀、法国古典文学全盛）、英伦与欧陆的革命与改革（克伦威尔、光荣革命、彼得大帝等）、知识的探索（牛顿、英国哲学、法国信仰与理性、斯宾诺莎、莱布尼茨），末附尾声。致读者点明通篇主题是信仰和理性之间的"大争论"——信仰占据王位，理性在霍布斯、洛克、牛顿、培尔、斯宾诺莎的新说中百花齐放。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>这卷把"文明由谁供养"摆上台面，并给出双答案。表面答案：宫廷——王室年金、学院、凡尔赛把艺术礼仪语言塑成欧洲标准，<span class="star">★</span>「路易十四与他的宫廷使法国文明化」。随即自我拆台：这种艺术 <span class="star">★</span>「与平民脱节」，成了阶级与国王的传声筒；供养它的财富来自柯尔伯压低的工资与第三阶级的丁税盐税——<span class="star">★</span>「工人的情况在路易十四时代可能连中世纪都不如」。真正的文明养分在宫廷消化不良的缝隙里：帕斯卡的怀疑、培尔的辞典、丰特内尔的科普。暗轴在此成型：法国王权按住理性（禁教笛卡儿哲学），理性的果实只能结在国外——为卷九必须发生在法国埋下因果。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与卷七对偶（裂缝 vs 王座）：卷七结尾"种子正在萌芽了"在本卷得到兑现（培尔被直接称为"启蒙运动之父"）。它同时是卷九的靶场：杜兰特明说伏尔泰对这个世纪的颂词 <span class="star">★</span>「我们必须修改一下他的颂文」——太阳王用秩序与荣耀造出的法国，正好成为启蒙最完美的靶子与最华丽的舞台。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「通篇主题是信仰和理性之间的"大争论"。信仰在这一时期占据王位，但是理性在霍布斯、洛克、牛顿、培尔（Bayle）、丰特内尔（Fontenelle）和斯宾诺莎诸人新说中也百花齐放。」<span class="en">——致读者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「他们只知道，没有王权，国家将回复封建割据与敌对中。经过黎塞留的个人独裁、投石党的犯上作乱、马扎然的中饱私囊，法国的中下层阶级反而欢迎一位"合法"统治者的集权领导，因为他似乎能保证秩序、安全与和平。」<span class="en">——路易十四</span></div>
+        <div class="ch-quote"><span class="star">★</span>「他并没有说过"朕即国家"，但他完全相信这一点。」<span class="en">——路易十四</span></div>
+        <div class="ch-quote"><span class="star">★</span>「路易十四与他的宫廷使法国文明化。」<span class="en">——宫廷</span></div>
+        <div class="ch-quote"><span class="star">★</span>「历史上或许除了希腊的伯里克利政府外，再没有像路易十四时代有如此蓬勃鼎盛、卓越超群的艺术了。」<span class="en">——艺术组织</span></div>
+        <div class="ch-quote"><span class="star">★</span>「它是与平民脱节的，不像荷兰的艺术那样表现尼德兰的风格。它成了一个阶级、国家和国王的传声筒，而不是整个民族的心声。」<span class="en">——艺术组织</span></div>
+        <div class="ch-quote"><span class="star">★</span>「我在15分钟内可以册封20个公爵或贵族，但要数百年才能造就一个芒萨尔。」<span class="en">——艺术组织</span></div>
+        <div class="ch-quote"><span class="star">★</span>「商业阶级的财富增加了，国家的收入提高了，但工人的情况在路易十四时代可能连中世纪都不如。法国在工业中一如在战争中，都要求纪律。」<span class="en">——柯尔伯重建法国</span></div>
+        <div class="ch-quote"><span class="star">★</span>「在这么多光芒四射的显赫人物中，只有平民化的莫里哀和拉封丹在今天最受欢迎，因为他们忘记了希腊和罗马，只记得法国」<span class="en">——补遗与结论</span></div>
+        <div class="ch-quote"><span class="star">★</span>「他给法国一个井然有序的政府和统一的国家，并在文化上，使法国赢得西方世界中不容置疑的领导地位。他成为法国至高无上的时代中的代表和标记，至今仍处于他光辉被泽的荣耀中的法国，已学会宽恕他为造就她的伟大而几乎毁灭了她的事实。」<span class="en">——诸神的黄昏</span></div>
+        <div class="ch-quote"><span class="star">★</span>「17世纪，可能比称为理性时代的18世纪更可称为理性时代，因为，虽然那时的思想家只是一小群人士的呼声，但他们表现得睿智中庸，对理性和自由的界限和困难，比法国启蒙时的那种激动有更深切的了解。」<span class="en">——尾声</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这卷的对照组选得极毒：荷兰画农夫、工人、乞丐，法国画"红尘场里的逍遥"—— Durant 借此把"文化领导权"与"文明生命力"劈成两件事，这是 M1 的美学版。他评路易十四的分寸感也值得学：既不写成暴君也不写成圣君，承认专制在投石党乱后有民意基础，同时把账单（免税特权、压低工资、龙骑兵迫害、废除《南特诏书》）记到小数点。最反直觉的遗产是尾声那句翻案——17 世纪比 18 世纪更配叫理性时代：理由不是成就大小而是气质（睿智中庸 vs 激动）。他等于把"启蒙"降了一格，给自己偏爱的那代人补发了奖状。引用"第二幕"幕次划分时须注明出自本卷卷末。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个行业、平台或城市的"黄金时代"叙事，几乎都由官方排行榜和头条建筑构成——但决定什么东西能活五十年的，往往是当时不被供养、甚至被压着的那批人（做工具的、写清楚的、给普通人用的）。普通人验证：数一数自己领域里公认的"黄金时代"，再看今天还在用的基础件（术语、工具、入门书）是当年的头条作品还是边缘作品。凡尔赛定律：预算最厚的窗口期产出的东西未必传得最久；紧约束下长出来的手艺反而常活——这对个人选择投入方向同样成立。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷九</span>伏尔泰时代<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：启蒙最深的一仗不是证明上帝不存在，而是把"冤案"变成全欧洲的私事。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>1715 年路易十四去世到 1789 年前夕（主体至 1756 年，尾声追踪到 1789）。三部：伏尔泰与英国、伏尔泰时代的欧陆、伏尔泰的思想与宗教的冲突——从流亡英国、结识牛顿与洛克，到《百科全书》，终于卡拉斯案与"打倒卑鄙"的晚年战争，收于"哲学家的胜利"。杜兰特明说本书不是伏尔泰传，而是以他为经纬：他跨国界连接宫廷与沙龙、学者与公众，把抽象理性变成小册子与具体冤案中的公共行动，因而最能代表一个世纪。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>这卷完成"理性从方法变成公共批判力量"的最后一跳：英国经验提供范型（洛克、牛顿、宽容、有限宪政），沙龙与《百科全书》组织知识，小册子降低传播门槛，卡拉斯等冤案给理性装上道德感情——<span class="star">★</span>「这部《百科全书》是大革命之前的革命。」启蒙的可靠胜利被明确为"人道化"而非形而上学：宽容、司法改革、同情从宗教训诫变成世俗公共道德。它同时埋下卷十的引信：理性主义内部将遭卢梭以感情、自然与平等反击。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>攻防三部曲收官，与卷十对偶（理性 vs 情感）。设计上它把卷八"压制—外流"的暗轴翻成"收复失地"：伏尔泰从英国带回洛克与牛顿，启蒙在法国本土登陆——上一卷被禁笛卡儿的国家成了舞台。卷末"哲学家的胜利"与卷十开头"欧洲已厌倦理性"首尾相撞，这是全书安排最狠的一次转场。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「"伏尔泰，"乔治·勃兰兑斯说，"是一个世纪的缩影。""18世纪的真正国王，"维克多·库辛说，"是伏尔泰。"」<span class="en">——致读者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「"我多么热爱英国！"后来他写给杜德芳夫人的信上说，"我多么热爱这些言所欲言的人民！"」<span class="en">——伏尔泰在英国</span></div>
+        <div class="ch-quote"><span class="star">★</span>「"如果上帝不存在，就应该创造一个；但所有的自然现象，证明他的确存在。"」<span class="en">——伏尔泰与上帝</span></div>
+        <div class="ch-quote"><span class="star">★</span>「一部百科全书的目的在于尽力搜集散在地球各地的知识，然后将之解释给同时代的人，并进而传给后代子孙，以往各世纪的辛劳，对于那些来者不该没有用处；又接受较好教导的后继者，可能也变得更有德行而快乐。这样，我们便不会枉为人类而死。」<span class="en">——一部书的历史</span></div>
+        <div class="ch-quote"><span class="star">★</span>「这部《百科全书》是大革命之前的革命。」<span class="en">——百科全书</span></div>
+        <div class="ch-quote"><span class="star">★</span>「呼喊吧！同时也让别人呼喊。为卡拉斯家族而呼喊，为反对宗教狂热而呼喊。」<span class="en">——欧洲的良心</span></div>
+        <div class="ch-quote"><span class="star">★</span>「人民的错误以罪行的形式出现时，政府才有权惩罚。如果他们不危害社会，他们就没有罪。他们引起宗教狂热时，他们就扰乱了社会，因此为了要容忍，人必须避免宗教狂热。」<span class="en">——欧洲的良心</span></div>
+        <div class="ch-quote"><span class="star">★</span>「"要将此人判死刑，只要两小时就够了，"伏尔泰说，"要证明他的清白，却需要9年的光阴。"」<span class="en">——欧洲的良心</span></div>
+        <div class="ch-quote"><span class="star">★</span>「他的心灵像一把火焰烧遍了欧洲和18世纪，而且在每一个时代中，都激励了无数的灵魂。」<span class="en">——伏尔泰的执拗</span></div>
+        <div class="ch-quote"><span class="star">★</span>「要是我们不尊敬伏尔泰，我们就不配享有自由。」<span class="en">——结语</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>杜兰特对伏尔泰的"传播者"定位本身就是一记冷判：思想史上活得久的未必是最深的人，而是把深的东西写得让最多人愿意动手的人。需要打免疫的是他对《百科全书》的两面处理——一面称其"大革命之前的革命"，一面直陈它事实错误与偏见严重；这两面都是真的，引用时不可只取一面。另注意他与后世的分岔：他把启蒙的成就记在"人道化"账上，而非"理性王国"账上——这个落点让他与 20 世纪对启蒙的反思（理性主义的自大）擦肩而过，他自己就提前做了那套反思的温和版。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>普通人能亲身验证"传播者定律"：真正改变一个小区、行业、家庭议事规则的，往往不是研究最深的人，而是肯把事写成大家都看得懂的一条说明、一封公开信、一次据理力争的人。卡拉斯案的机制今天依然在跑：一件具体的冤屈＋一个肯持续发声的人＋可见的传播渠道，胜过一万句抽象的正确。反过来它也提醒每个人：表态的成本低，持续为一个具体的人查证、翻案的成本才是启蒙的真价格。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷十</span>卢梭与大革命<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：革命的名义权归哲学家，操盘权归中产阶级，账单归所有人——包括投票支持的贵族自己。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>1756 年七年战争爆发到 1789 年 7 月 14 日巴士底狱陷落，33 年（1968 年获普利策奖，中译本分两册）。以卢梭为轴心、四部铺开欧洲全景：卢梭与法国、卢梭时代的南欧、卢梭时代的宗教（含康德、歌德、叶卡捷琳娜）、卢梭时代的英国（后五章实为法国革命前史，终于"政治的溃乱"）。革命十年的恐怖与督政府在卷十一；本卷卷末停在巴士底陷落与路易十六日记里的"7月14日，无事"。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>这卷是"情感对理性的反叛"的全书论证核心：杜兰特把卢梭定义为 <span class="star">★</span>「19世纪对18世纪的反叛」，让这个定义统摄从康德、歌德到浪漫派的整条线索。它同时把"革命归因"从思想史扳到社会结构史：革命的主体不是饥饿的农民而是"中产阶级危险的财富"；贵族为夺回王权放出来的力量，最终吞掉贵族自己。全书最重要的一条政治判断在此完成——思想提供语言，结构决定时机，而结构的账（低估宗教抑制本能）最终记在哲学家头上。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与卷九对偶（理性 vs 情感），与卷十一扣环（结语明言期待"像拿破仑那样有能力者的轰然而降"）。全卷结构本身是"钟摆摆到极值"的现场记录：卷九的批判沙龙在本卷变成街头，卷一立的自由—秩序钟摆在 1789 年抵达自由极点，下一卷开始回摆。另有一处文本裂缝可供观察：致读者自称本卷是结尾卷（"写到法国大革命时，我们已精力殆尽"），结语却预告拿破仑——写作计划与出版现实的错位，本身就是"计划传递中断"的活例。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「当时的欧洲已准备迎合一种让感情凌驾于思维之上的信仰。欧洲已厌倦于法律、礼仪、习惯和风俗的压抑。当时的欧洲已听够了理性、论证和哲学。」<span class="en">——忏悔录</span></div>
+        <div class="ch-quote"><span class="star">★</span>「伏尔泰在法兰西学院（1778年）被人们当作偶像崇拜，而卢梭正蛰居在巴黎一间不为人知的房子受人轻视与责难之际，卢梭的时代已经开始了。」<span class="en">——忏悔录</span></div>
+        <div class="ch-quote"><span class="star">★</span>「哲学家正安于现状仅呼吁零星改革特殊病状之际，卢梭却在攻击整个经济、社会和政治秩序，而且以他那种彻底的个性，指出除革命别无他途可循。」<span class="en">——社会契约论</span></div>
+        <div class="ch-quote"><span class="star">★</span>「我们很惊奇地察觉此书的声望与影响，是在法国大革命之后才开始的，而非在此之前。」<span class="en">——社会契约论</span></div>
+        <div class="ch-quote"><span class="star">★</span>「但浪漫运动是何意？是感觉对理性的反叛、本能对理智的反叛、情感对判断的反叛……简而言之，19世纪对18世纪的反叛，或更精确地说，是1760年至1859年对1648年至1760年的反叛。」<span class="en">——卢梭的影响</span></div>
+        <div class="ch-quote"><span class="star">★</span>「斯塔尔夫人曾谓卢梭："没有创造过任何东西，却将所有东西付诸一炬。"」<span class="en">——卢梭的影响</span></div>
+        <div class="ch-quote"><span class="star">★</span>「因此，我们不能把大革命时期发生的暴力事件归咎于哲学家们，尽管革命领导者直接受到他们的影响。哲学家们无意制造暴动、大屠杀与断头台之事。他们恐惧退缩于那些流血景象。他们可以正当地说他们被残酷地误解了，但是他们在对低估宗教的传统、抑制人类动物本能的影响上应负责任。」<span class="en">——哲学家与革命</span></div>
+        <div class="ch-quote"><span class="star">★</span>「革命虽采取他的理论，但忽略了他的警告。革命者把法国建成共和政体时，在谈判中他们不是法国的哲学家而是普卢塔克的希腊和罗马英雄，他们的偶像不是费内而是斯巴达和罗马共和国。」<span class="en">——哲学家与革命</span></div>
+        <div class="ch-quote"><span class="star">★</span>「就是这些富有、骄傲而往往一无是处的地主触发了这次革命。……贵族们为他们的坟墓掘下第一铲泥土。」<span class="en">——贵族与革命</span></div>
+        <div class="ch-quote"><span class="star">★</span>「法国大革命的本质是中产阶级利用农民的不满破坏封建制度，用市民的不满缓冲国王的军队，因而倾覆贵族和教士。」<span class="en">——中产阶级与革命</span></div>
+        <div class="ch-quote"><span class="star">★</span>「这次革命不归因于农人们有耐性的贫穷，而是中产阶级危险的财富。」<span class="en">——中产阶级与革命</span></div>
+        <div class="ch-quote"><span class="star">★</span>「但饥饿与愤怒能产生动力，却不能产生领导力」<span class="en">——工业与革命</span></div>
+        <div class="ch-quote"><span class="star">★</span>「革命的根本因素是现实的经济与政治形式之间的悬殊，是中产阶级制造和拥有财富上的重要性与政府权力上的被排斥。」<span class="en">——中产阶级与革命</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这卷的"分层归责法"是全书最有辨识度的论证姿态：理念归卢梭、暴力不归卢梭、但"低估宗教抑制本能"这一笔记在哲学家账上——三层账本让所有极端立场都失去舒适区。最反直觉的一击是滞后性判断："不是卢梭制造了革命，而是革命制造了卢梭"——《社会契约论》1762 年几乎无人问津，其圣经地位是革命之后追认的。因果方向一倒，"思想改变世界"的教科书叙事就得重写：思想更像事后的语法书。另一条跨卷线值得记下（伏笔—兑现链）：本卷"中产阶级利用农民的不满"在卷十一有三级递进——1789 破坏封建结构（本卷）→ 1794 热月 <span class="star">★</span>「资产阶级再次虏获大革命」（卷十一·温和派）→ 卷末定谳（卷十一《结论·经济与历史》）。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>普通人身边最常见同款剧本：一群人因真实的不满聚集，牵头操盘的却是有产、有闲、有组织能力的那批人；事成之后，操盘的收割改革成果，出力的只分到口号。验证方法很朴素：看任何一场"群众胜利"之后，谁上了台、谁回了原位。另一条更个人的链接是"滞后性"：自己推崇的理念多年无人理睬，不必沮丧——多数思想是在事件之后才被追认的；反过来，火起来也别太当真，流行可能只是时代在找它的语法书。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">卷十一</span>拿破仑时代（终卷）<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：革命教会欧洲要自由，拿破仑教会欧洲要秩序——两者都用了同一种方式：把法国当成试验田，账单都寄给了欧洲。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>1789—1815 年（"那 27 年"），叙事尾部至 1840 年拿破仑遗骸归葬荣军院。四部：法国大革命（1789—1799，含恐怖时代与督政府——兑现卷十的前瞻）、法国大革命与英国、拿破仑与欧陆（含贝多芬、日耳曼哲学）、拿破仑的升沉（莫斯科、厄尔巴、滑铁卢、圣赫勒拿），末附《总结（1815—1840）》。对拿破仑的总评不是"解放者 vs 独裁者"二选一，而是以 1807 年《泰尔西特和约》为界的分段论：此前他是进步力量（三重纪律、法典、让欧洲"向前推进半个世纪"），此后他效法并联合他当初反对的专制君主，成为反动力量。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>终卷收束两条大线。叙事线：革命吞噬自己的后代，又被一个军人收编成法典与秩序——钟摆从自由极点摆回秩序极点，全书 11 卷完成一个整摆。思想线：卷十的两条判断在此兑现——革命归因于中产阶级的财富（本卷"回顾"章回收），哲学家低估宗教（本卷"哲学家"节回收，拿破仑 1801 年政教协定为"兑现"）。拿破仑本人的成败则被归为结构判断：不是道德失败，是被"根深蒂固的民族性"击溃，驱动是 <span class="star">★</span>「他的抱负远超过了能力的范围，幻想左右着野心」。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与卷十扣环（革命/秩序），且是全书终卷：最后一个主角恰好是卷一结语预告的"三幕戏剧"里"恺撒"的现代版——古代那幕演完，现代这幕收场。杜兰特刻意让大革命占本卷前两卷部（不是附录）：革命十年必须与它的收编者放在同一卷里，才能看清"同一股力量的两个阶段"。全书终于《结论 历史的教训》（拆解者独立为总论卡，见下）。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「"大恐怖"因此开始了。从6月10日延续到7月27日，不到7个星期，1376名男女被斩首——比自1793年3月到1794年6月10日被斩首的总数还多155名。」<span class="en">——恐怖时代·大革命吞灭它的后代</span></div>
+        <div class="ch-quote"><span class="star">★</span>「为大革命工作所需的能力性质，与建立新秩序所需的性质十分不同：前者的工作需要愤恨、热诚、勇气，而且忽视法律；后者需要忍耐、理智、合乎实际的判断，而且尊重法律。」<span class="en">——大革命下的人生·回顾</span></div>
+        <div class="ch-quote"><span class="star">★</span>「至于博爱，它被断头台摧毁，终于成为一项协议。」<span class="en">——大革命下的人生·回顾</span></div>
+        <div class="ch-quote"><span class="star">★</span>「资产阶级再次虏获大革命。」<span class="en">——温和派</span></div>
+        <div class="ch-quote"><span class="star">★</span>「这种时代精神——首先在法国，接着在中欧——是维持秩序，结束个人主义、滥用自由与破碎统治所必需的。从这个方面来看，拿破仑是一股进步的力量。」<span class="en">——总结·回顾</span></div>
+        <div class="ch-quote"><span class="star">★</span>「事实证明他是一个极为优秀的政治家，但他抛弃了政事去追求战争的荣耀和刺激。身为将军他得到了法国，也以将军之身失去了法国。他的优点也是他的致命伤。」<span class="en">——拿破仑其人·将军</span></div>
+        <div class="ch-quote"><span class="star">★</span>「可是，他为什么失败了呢？因为他的抱负远超过了能力的范围，幻想左右着野心，野心又控制了他的性格和思想。……这位伟大的独裁者追求权力的坚强意志，终于被根深蒂固的民族性击溃了。」<span class="en">——拿破仑其人·统治者</span></div>
+        <div class="ch-quote"><span class="star">★</span>「他几乎完全消除了政府贪污的现象，单单此项成就即足以使他不朽。」<span class="en">——拿破仑时代的法国</span></div>
+        <div class="ch-quote"><span class="star">★</span>「不受限制的自由是绝对的混乱。」<span class="en">——大革命下的人生·回顾</span></div>
+        <div class="ch-quote"><span class="star">★</span>「在500年内，法国人幻想的都是我。他们将只谈论我们胜利战役的光荣。天主帮助任何敢谈说我缺点的人！」<span class="en">——结束·了不起的独裁者</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>分段论（1807 分界）是全书人物评价方法的巅峰：不在善恶里站队，改用可检验的拐点与结构归因，把"解放者/独裁者"这个二选一问题直接作废。他借拿破仑之口留下的那句"由天堂的观念，宗教引入了一种平等的意识。由于这种意识，富人逃过了被穷人屠杀的厄运"，与卷十"哲学家低估宗教"的账单形成闭环——功能主义宗教观在叙事与总论之间咬合。发散一步：杜兰特对"恐怖时代"的清算异常冷静（不为其辩解也不煽情，只记数字与机制），这与他写农民战争的克制一致——全书唯一被他允许渲染的，始终是文明成果的传递，不是任何一方的血。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人职业生涯里常见的"拿破仑时刻"：靠某个强项起飞，然后不断用同一个强项去解决所有问题，直到强项变成系统瓶颈。自证方法：写下自己最依赖的三项能力，再看最近三次失败里它们各自扮演的角色——如果每次都是同一项能力把事情做过头，那就遇到了自己的"将军得到法国、将军失去法国"。另一条链接更朴素：组织的"翻身期"与"治理期"需要的能力确实是两套，破局的人未必适合掌舵——让破坏者交棒给建设者，从来是革命之后最难的一步。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">总论卡</span>结论：历史的教训（全 11 卷的总清算）<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-gist"><em>☆ 卷旨：历史不保证进步，它只保管遗产——每一代人从里面取出多少，取决于每一代人自己。</em></div>
+        <div class="ch-blk"><h5>本卷讲了什么</h5><p>第十一卷末的《结论 历史的教训》十三章：踌躇、地球与历史、生物学与历史、种族与历史、性格与历史、道德与历史、宗教与历史、经济与历史、社会主义与历史、政府与历史、战争与历史、成长与衰退、真有进步吗？杜兰特脱离编年，把前 11 卷的全部素材提炼为文明通论。1968 年他以同题与阿里尔出版过独立单行本《历史的教训》，此为系列内的浓缩版。素材统摄苏美尔到工业革命，是全书真正的收笔。</p></div>
+        <div class="ch-blk"><h5>对全书论点的作用</h5><p>全部九个思维模型的最终装配车间：文明四要素（拆成十三个维度逐一清算）、遗产传递律（终章核心）、进步会计学（"真有进步吗"的答案）、宗教功能论（"只要有贫穷存在，就有神祇"）、自由—秩序钟摆（自由与平等的对冲）。抽掉它，11 卷是 11 部精彩的断代史；有了它，11 卷是一部论证。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>它是全书唯一一次让作者从叙事者变成论者——位置放在终卷之末、所有证据之后，结构上是"全部案情陈述完毕后的结案陈词"。 Durant 夫妇故意不把它写成结论的重复，而是写成方法论的蒸馏：教读者怎么用这套东西，而不只是讲了什么故事。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「历史大部分为猜测，其余则为偏见。」<span class="en">——踌躇</span></div>
+        <div class="ch-quote"><span class="star">★</span>「历史是色盲的，任何肤色的人都可以发展成一种文明（在任何有利的环境里）。」<span class="en">——种族与历史</span></div>
+        <div class="ch-quote"><span class="star">★</span>「"自然"对我们乌托邦中自由与平等的联盟不禁窃笑。因为自由与平等是势不两立的仇敌，一方占胜时，另外一方即死亡。」<span class="en">——生物学与历史</span></div>
+        <div class="ch-quote"><span class="star">★</span>「人类的罪恶可能是他兴起的遗迹，而不是他衰颓的污名。」<span class="en">——道德与历史</span></div>
+        <div class="ch-quote"><span class="star">★</span>「天堂与乌托邦，就像井里的吊桶：一只上升时，另一只就下降。宗教倾颓时，共产主义就兴起。」<span class="en">——宗教与历史</span></div>
+        <div class="ch-quote"><span class="star">★</span>「"只要有贫穷存在，就有神祇。"」<span class="en">——宗教与历史</span></div>
+        <div class="ch-quote"><span class="star">★</span>「战争是历史的常态，即使在文明或民主政治社会中也无法消除。在过去有记载的3421年中，只有268年未曾发生过战争。」<span class="en">——战争与历史</span></div>
+        <div class="ch-quote"><span class="star">★</span>「一个团体或一个文明衰败时，它并不是由于团体生命上神秘的限制，而是由于其政治或思想上的领导人对抗一种变革的挑战遭受失败所致。」<span class="en">——成长与衰退</span></div>
+        <div class="ch-quote"><span class="star">★</span>「文明就是人类的世代相传。因为人的生命由再生而超越了死亡，一个有生命的文化也会超越时空，把其遗产传给它的继承者。」<span class="en">——成长与衰退</span></div>
+        <div class="ch-quote"><span class="star">★</span>「一个伟大的文明不会全然死亡的。有些珍贵的成就，历经国家兴亡隆替的一切变化而仍然存在……这些都是人类历史的环扣。」<span class="en">——真有进步吗？</span></div>
+        <div class="ch-quote"><span class="star">★</span>「这里，我们想把进步定义为增加对生活环境的控制。」<span class="en">——真有进步吗？</span></div>
+        <div class="ch-quote"><span class="star">★</span>「假如教育即是文明的转移，则我们毫无疑问处在进步中。文明不是继承的，它必须由学习得来，而且每一代贵能推陈出新。假如这种转移中断100年，文明势将死亡，而我们也必须再变为野人。」<span class="en">——真有进步吗？</span></div>
+        <div class="ch-quote"><span class="star">★</span>「历史超越一切，历史是此遗产的创造与记录。进步是遗产的不断增加、保存、传送与利用。」<span class="en">——真有进步吗？</span></div>
+        <div class="ch-quote"><span class="star">★</span>「过去不是一个令人毛骨悚然的"恐怖蜡像馆"，它是一个天国的城市、一个心智开旷的原野。」<span class="en">——真有进步吗？</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>总论最诚实的地方是"踌躇"那一章：全书最敢下判断的作者，在结案陈词的开头先宣布 <span class="star">★</span>「历史大部分为猜测，其余则为偏见」，并让"历史是一个怪物"大摇大摆地出现在总结里——先把方法论地位降级，再把遗产论抬上来，这个顺序本身就是修辞策略：越是承认无法预测，越显得"传递遗产"这条唯一确定的责任沉重。最值得现代人重估的是自由与平等的对冲判断——杜兰特把它推到"一方获胜另一方即死亡"的极端，冷战后的读者容易当它是过时的保守主义；但看任何一次"公平优先还是活力优先"的组织争论，两只吊桶的比喻仍然锋利。它的边界在于：这本书写于 1815 年的知识射程内，两次世界大战的遗产断供、技术对人力的替代、生态约束，全部在这套"进步会计学"的账本之外。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>把"进步=存量增值"用到自己身上：一个人真正的进步不是这年感受更好，而是可传递的存量（能用的方法、结清的信用、教得会别人的经验）比去年厚。总论给普通人的年度自检就一句话：今年新增了什么"写下来、传出去、别人能接着用"的东西？如果答案是零——不管心情如何，这一年对"文明"的个人份额是亏损的。这是全书 827 万字落到一个普通人身上的最终形态。</p></div>
+      </div>
+    </details>
+    <div class="ch-sec-h" style="margin-top:26px">跨卷主线备忘（拆解者整理）</div>
+    <p>- <strong>斯多葛→基督教四站接力</strong>：卷二论断（芝诺到保罗一步之差）→ 卷三机制（"气"译为"灵"）→ 卷三现场（大马士革路上）→ 卷三成品（爱比克泰德"不知不觉中成为改信基督教的人"）。斯多葛的两套成因解释是分工不是矛盾：卷二讲源流（素材来自东方），卷一埃及章讲条件（国族精神崩溃时才吃得下去），中间用"哲学像堕落了的女儿回到宗教的怀抱"做粘接。
+- <strong>三种秩序原型</strong>（卷二/三/四）：自由、法律、信仰——希腊证明自由的创造力与自毁力，罗马证明秩序的耐久与僵化，教会证明信仰的黏合力与组织化的败坏。
+- <strong>解放双联剧</strong>（卷五/六）：南欧知性解放与北欧道德解放，一个共同的终点——以宽容始、以新不宽容终。
+- <strong>理性攻防三部曲</strong>（卷七/八/九）：裂缝（理性开始）→ 王座与开花（信仰仍居王位，果实结在国外）→ 批判（理性变成公共力量）。贯穿三卷的主题词以卷八"大争论"为准（卷七预告的"理性的成长"口径被作者自己修正）。
+- <strong>"理性时代"名号之争</strong>：卷七曾把此名号安给笛卡儿，卷八尾声把它从 18 世纪摘回来判给 17 世纪——引用须注明幕次表出自第八卷卷末。
+- <strong>资产阶级收获三级链</strong>（卷十/十一）：1789 利用农民不满破坏封建结构 → 1794 热月"资产阶级再次虏获大革命" → 卷末《结论·经济与历史》定谳。杜兰特对大革命的历史哲学，这一条最完整。
+- <strong>首尾扣环</strong>：卷一"柏拉图、恺撒与基督的三幕戏剧"→ 卷三基督、卷十一现代恺撒收场 → 总论回到卷一第一章的问题（文明是什么、会不会死），答案从"定义"升级为"遗产交棒"。</p>
+  </section>
+
+</main>
+
+<footer>
+  <b>信源构成</b>：原书中译本（A 级）100%——全部 208 条 ★ 引文均逐字取自天地出版社 2018 版 epub 全文，并经程序化全量源文件校验（0 处未命中）；无二手信源引文。版本核对经联网与本地 CIP 页双重核实。<br>
+  <div class="legend">
+    <span><span class="s">★</span> 原文引文（可直接引用）</span>
+    <span><span class="f">☆</span> 卷旨句（提炼，非原话，严禁加引号）</span>
+  </div>
+  <b>合规提示</b>：本笔记涉及宗教评价、革命叙事与"东方/西方"等表述，均属 1935–1975 年原著立场；摘引发布前须做敏感内容筛查，涉政与宗教争议段落不直接搬运，有平台限流风险。<br>
+  <b>生成</b>：基于拆解稿（骨架 / 思维模型 / 批判视角 / 逐卷精读）整合，单文件 HTML，可离线阅读。逐卷精读卡的引文以"卷"为单位成组，摘用时请保留出处标注。
+</footer>
+
+<script>
+  const links = Array.from(document.querySelectorAll('.ribbon a'));
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = map.get(e.target.id);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  document.querySelectorAll('main section').forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

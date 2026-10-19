@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>角落历史 · 读书笔记书架</title>
+<style>
+  :root{
+    --bg:#f5efe4; --paper:#fffdf8; --ink:#3b3226; --sub:#8a7a63;
+    --line:#e2d6c1; --accent:#a0522d;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Songti SC","Noto Serif SC",serif;
+    min-height:100vh; padding:48px 20px;
+  }
+  .wrap{max-width:720px;margin:0 auto}
+  header{text-align:center;margin-bottom:40px}
+  h1{font-size:28px;letter-spacing:4px;margin-bottom:10px}
+  header p{color:var(--sub);font-size:14px;letter-spacing:2px}
+  .shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+  a.book{
+    display:block;background:var(--paper);border:1px solid var(--line);
+    border-radius:6px;padding:22px 20px;text-decoration:none;color:var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  a.book:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(59,50,38,.12)}
+  .book .t{font-size:18px;margin-bottom:6px}
+  .book .s{font-size:12px;color:var(--sub);line-height:1.6}
+  .book .n{display:inline-block;margin-top:12px;font-size:11px;color:var(--accent);
+    border:1px solid var(--line);border-radius:3px;padding:2px 8px}
+  footer{text-align:center;margin-top:48px;color:var(--sub);font-size:12px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>角落历史 · 读书笔记书架</h1>
+    <p>翻历史的角落，捡被漏掉的人与事</p>
+  </header>
+  <div class="shelf">
+    <a class="book" href="./the-gods/">
+      <div class="t">《众神》</div>
+      <div class="s">四万年的人、物与信仰 · 六层逐章精读</div>
+      <span class="n">the-gods</span>
+    </a>
+    <a class="book" href="./selfish-gene/">
+      <div class="t">《自私的基因》</div>
+      <div class="s">道金斯 · 基因视角下的生命逻辑</div>
+      <span class="n">selfish-gene</span>
+    </a>
+    <a class="book" href="./story-of-civilization/">
+      <div class="t">《文明的故事》</div>
+      <div class="s">11 卷 + 总论卡 · 逐卷精读</div>
+      <span class="n">story-of-civilization</span>
+    </a>
+    <a class="book" href="./hongshu/">
+      <div class="t">《红书》</div>
+      <div class="s">荣格 · 潜意识的实验记录</div>
+      <span class="n">hongshu</span>
+    </a>
+    <a class="book" href="./taobi-ziyou/">
+      <div class="t">《逃避自由》</div>
+      <div class="s">弗洛姆 · 现代人为何逃离自由</div>
+      <span class="n">taobi-ziyou</span>
+    </a>
+    <a class="book" href="./planta-sapiens/">
+      <div class="t">《植物会思考吗？》</div>
+      <div class="s">植物智能的边界与证据</div>
+      <span class="n">planta-sapiens</span>
+    </a>
+    <a class="book" href="./zhaoliang-posui-zhixin/">
+      <div class="t">《照亮破碎之心》</div>
+      <div class="s">精神医学与人心的修复</div>
+      <span class="n">zhaoliang-posui-zhixin</span>
+    </a>
+  </div>
+  <footer>角落历史 · 读书笔记 · 2026</footer>
+</div>
+</body>
+</html>

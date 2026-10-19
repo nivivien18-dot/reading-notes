@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《红书》读书笔记 · 荣格</title>
+<style>
+  :root{
+    --paper:#f3e9d8; --paper-2:#efe2cc; --ink:#2c2620; --ink-soft:#5a4f42; --ink-faint:#8a7a66;
+    --accent:#9b3b2e;
+    --accent-2:#b8893a;
+    --line:#d8c8ab; --card:#fbf5e9;
+    --shadow:0 1px 2px rgba(60,40,20,.08),0 8px 30px rgba(60,40,20,.10);
+    --serif:"Songti SC","STSong","SimSun","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--serif); color:var(--ink); line-height:1.85;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%,rgba(184,137,58,.05),transparent 40%),
+      radial-gradient(circle at 80% 90%,rgba(155,59,46,.04),transparent 45%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:rgba(155,59,46,.18)}
+  .hero{position:relative;min-height:clamp(420px,72vh,760px);display:flex;align-items:flex-end;overflow:hidden;
+    background:linear-gradient(135deg,#3a2c1c 0%,#574027 45%,#7a5630 100%);}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.85) brightness(.78);}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(28,20,12,.15) 0%,rgba(28,20,12,.35) 45%,rgba(28,20,12,.82) 100%);}
+  .bookmark{position:absolute;top:0;right:clamp(20px,6vw,90px);z-index:3;width:46px;height:120px;background:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.35);}
+  .bookmark::after{content:"";position:absolute;bottom:-1px;left:0;width:0;height:0;border-left:23px solid transparent;border-right:23px solid transparent;border-top:18px solid var(--accent);}
+  .hero-inner{position:relative;z-index:2;padding:clamp(28px,6vw,72px);max-width:920px;color:#f6ecd9}
+  .hero-eyebrow{font-family:var(--sans);font-size:clamp(.7rem,2vw,.82rem);letter-spacing:.42em;text-transform:uppercase;color:var(--accent-2);margin-bottom:14px;font-weight:600;}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.4rem,8vw,5rem);line-height:1.05;letter-spacing:.04em;color:#fbf3e2;text-shadow:0 1px 0 rgba(0,0,0,.5),0 2px 18px rgba(0,0,0,.45);}
+  .hero .sub{margin-top:18px;font-size:clamp(1rem,3vw,1.4rem);color:#e8d8bd;font-style:italic;letter-spacing:.03em;}
+  .hero .meta{margin-top:22px;font-family:var(--sans);font-size:.82rem;color:#cdbb9c;letter-spacing:.04em;line-height:1.6;}
+  .ribbon{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,#2b2014,#3a2c1c);box-shadow:0 2px 14px rgba(0,0,0,.25);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
+  .ribbon ul{display:flex;gap:2px;list-style:none;padding:0 10px;margin:0;min-width:max-content;}
+  .ribbon a{display:block;font-family:var(--sans);font-size:.78rem;color:#d8c6a6;text-decoration:none;white-space:nowrap;padding:13px 16px;position:relative;letter-spacing:.05em;transition:color .2s,background .2s;}
+  .ribbon a::before{content:"";position:absolute;left:0;top:22%;height:56%;width:3px;background:var(--accent-2);opacity:0;transition:opacity .2s;}
+  .ribbon a:hover{color:#fff}
+  .ribbon a.active{color:#fff;background:rgba(155,59,46,.30)}
+  .ribbon a.active::before{opacity:1}
+  main{max-width:880px;margin:0 auto;padding:clamp(28px,6vw,64px) clamp(18px,5vw,40px) 40px}
+  section{margin-bottom:clamp(48px,9vw,84px);scroll-margin-top:64px}
+  .sec-tag{display:inline-block;font-family:var(--sans);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:4px;margin-bottom:14px;}
+  h2{font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;color:var(--ink);letter-spacing:.02em;margin-bottom:8px;line-height:1.25;}
+  h2 .en{display:block;font-family:var(--sans);font-size:.8rem;font-weight:400;letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase;margin-top:6px}
+  h3{font-family:var(--serif);font-size:1.22rem;color:var(--accent);margin:26px 0 10px;font-weight:700}
+  h4{font-family:var(--sans);font-size:.95rem;color:var(--ink-soft);margin:18px 0 6px;letter-spacing:.03em;font-weight:600}
+  p{margin:12px 0;color:var(--ink-soft);font-size:1.04rem}
+  .lead{font-size:1.12rem;color:var(--ink)}
+  strong{color:var(--ink);font-weight:700}
+  em{color:var(--accent)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:clamp(18px,4vw,26px);box-shadow:var(--shadow);margin:18px 0;}
+  .card.ribbon-left{border-left:5px solid var(--accent)}
+  .thesis{background:linear-gradient(135deg,#fbf3e2,#f3e6cf);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:clamp(22px,5vw,34px);box-shadow:var(--shadow);margin:22px 0;}
+  .thesis .q{font-size:clamp(1.15rem,3.4vw,1.5rem);line-height:1.6;color:var(--ink);font-weight:600}
+  .thesis .src{margin-top:14px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);letter-spacing:.04em}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-family:var(--sans);font-size:.9rem}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+  th{background:rgba(155,59,46,.07);color:var(--accent);font-weight:700;letter-spacing:.03em}
+  tr:hover td{background:rgba(184,137,58,.05)}
+  td b{color:var(--ink)}
+  ul.clean{list-style:none;margin:12px 0;padding:0}
+  ul.clean>li{padding:10px 0 10px 22px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean>li:last-child{border-bottom:none}
+  ul.clean>li::before{content:"❧";position:absolute;left:0;top:10px;color:var(--accent-2);font-size:.9rem}
+  ol.num{margin:12px 0 12px 1.2em;padding:0}
+  ol.num li{margin:10px 0;padding-left:4px;color:var(--ink-soft)}
+  ol.num li::marker{color:var(--accent);font-weight:700}
+  .model{border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow);padding:clamp(20px,4vw,28px);margin:22px 0;position:relative;overflow:hidden}
+  .model .no{position:absolute;top:-14px;right:14px;font-family:var(--serif);font-size:5rem;color:rgba(155,59,46,.08);font-weight:700;line-height:1}
+  .model h3{margin-top:0}
+  .model .src{font-family:var(--sans);font-size:.74rem;color:var(--ink-faint);letter-spacing:.05em;margin-bottom:8px}
+  .mech{background:rgba(184,137,58,.08);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .scenario{border-top:1px dashed var(--line);margin-top:14px;padding-top:14px}
+  .blind{border-left:4px solid var(--ink-faint);padding:14px 18px;margin:14px 0;background:rgba(138,122,102,.06);border-radius:0 8px 8px 0}
+  .blind.hard{border-left-color:var(--accent)}
+  .blind .tag{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .blind.hard .tag{color:var(--accent);font-weight:700}
+  .book{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .book:last-child{border-bottom:none}
+  .book .dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:9px;background:var(--accent-2)}
+  .book .dot.opp{background:var(--accent)}
+  .book .b-title{font-weight:700;color:var(--ink);font-size:1.02rem}
+  .book .b-meta{font-family:var(--sans);font-size:.76rem;color:var(--ink-faint);margin:2px 0 4px}
+  .book .b-why{font-size:.94rem;color:var(--ink-soft)}
+  blockquote{margin:14px 0;padding:14px 18px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.07);border-radius:0 8px 8px 0;font-style:italic;color:var(--ink);}
+  blockquote .en{display:block;font-style:normal;font-family:var(--sans);font-size:.82rem;color:var(--ink-faint);margin-top:8px;line-height:1.5}
+  .star{color:var(--accent);font-weight:700;margin-right:6px}
+  .ch-blk{margin:14px 0 0;padding:12px 14px;background:rgba(155,59,46,.035);border:1px solid rgba(155,59,46,.10);border-radius:6px}
+  .ch-blk h5{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:700}
+  .ch-blk p{font-size:.95rem;line-height:1.82;margin:0}
+  .ch-blk.think{background:rgba(184,137,58,.07);border-color:rgba(184,137,58,.18)}
+  .ch-blk.think h5{color:var(--accent-2)}
+  .ch-blk.life{background:rgba(90,79,66,.05);border-color:rgba(90,79,66,.13)}
+  .ch-blk.life h5{color:var(--ink-soft)}
+  .ch-sec-h{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;color:var(--ink-faint);margin:18px 0 2px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+  .ch-map td:first-child{white-space:nowrap;font-weight:700;color:var(--accent)}
+  details.ch{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:10px 0;overflow:hidden;box-shadow:0 1px 2px rgba(60,40,20,.05);}
+  details.ch[open]{box-shadow:var(--shadow)}
+  details.ch summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;align-items:baseline;gap:12px;font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--ink);transition:background .15s;}
+  details.ch summary:hover{background:rgba(184,137,58,.08)}
+  details.ch summary::-webkit-details-marker{display:none}
+  details.ch summary .ch-no{flex:0 0 auto;font-family:var(--sans);font-size:.72rem;font-weight:700;color:#fff;background:var(--accent);border-radius:5px;padding:3px 8px;letter-spacing:.03em;}
+  details.ch summary .ch-icon{margin-left:auto;color:var(--accent-2);transition:transform .2s;font-size:.9rem}
+  details.ch[open] summary .ch-icon{transform:rotate(90deg)}
+  .ch-body{padding:4px 18px 20px;border-top:1px solid var(--line)}
+  .ch-artifact{font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);margin:12px 0 4px;letter-spacing:.02em}
+  .ch-artifact b{color:var(--accent)}
+  .ch-gist{font-size:1.02rem;color:var(--ink);font-style:italic;margin:6px 0 12px}
+  .ch-quote{margin:10px 0;padding:10px 14px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.06);border-radius:0 6px 6px 0}
+  .ch-quote .en{display:block;font-family:var(--sans);font-size:.78rem;color:var(--ink-faint);margin-top:6px;line-height:1.5}
+  .ch-note{font-family:var(--sans);font-size:.78rem;color:var(--accent);margin-top:10px;letter-spacing:.02em}
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:34px clamp(18px,5vw,40px) 70px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);line-height:1.9;max-width:880px;margin-left:auto;margin-right:auto;}
+  footer b{color:var(--ink-soft)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 18px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend .s{color:var(--accent);font-weight:700}
+  .legend .f{color:var(--ink-faint)}
+  @media (max-width:560px){
+    .hero .meta{font-size:.74rem}
+    table{font-size:.82rem}
+    th,td{padding:9px 8px}
+    .book{flex-direction:column;gap:6px}
+  }
+  @media (max-width:560px){
+    .ch-map{display:block}
+    .ch-map thead{display:none}
+    .ch-map tr{display:block;padding:8px 0;border-bottom:1px dashed var(--line)}
+    .ch-map td{display:block;padding:3px 0;border:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=2000&q=80" alt="图书馆书架" onerror="this.style.display='none'">
+  <div class="bookmark" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Reading Notes · 角落历史</div>
+    <h1>红书</h1>
+    <div class="sub">Liber Novus · 一个人把自己沉进无意识十六年的现场记录</div>
+    <div class="meta">
+      [瑞士] C. G. 荣格 原著 · [英] 索努·沙姆达萨尼 编译 · 周党伟 译 · 机械工业出版社<br>
+      原稿 1914–1930 ｜ 首次公开 The Red Book: Liber Novus（W. W. Norton, 2009）
+    </div>
+  </div>
+</header>
+
+<nav class="ribbon" aria-label="目录">
+  <ul>
+    <li><a href="#about">关于本书</a></li>
+    <li><a href="#core">一句话核心</a></li>
+    <li><a href="#myths">认知误区</a></li>
+    <li><a href="#logic">六层逻辑</a></li>
+    <li><a href="#models">思维模型</a></li>
+    <li><a href="#critical">批判性视角</a></li>
+    <li><a href="#books">对读书单</a></li>
+    <li><a href="#chapters">逐章精读</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <section id="about">
+    <span class="sec-tag">About · 关于本书</span>
+    <h2>它到底是什么书<span class="en">What kind of book is this</span></h2>
+    <p class="lead">它不是理论专著，是荣格 1914–1930 年间亲手誊抄、绘制的私人幻象记录——用神话语言写的内心实验日志，加上一篇约七万字的学者导读。所以它<b>没有现成的论证骨架</b>，本笔记的骨架是拆解者重建的。</p>
+    <div class="card ribbon-left">
+      <h4>作者简介</h4>
+      <p>C. G. 荣格（Carl Gustav Jung，1875–1961），瑞士精神科医生，分析心理学创始人。1907–1913 年与弗洛伊德密切合作，1913 年决裂；决裂后进入本书所记录的「直面无意识」自我实验期。他视《红书》为自己后期全部著作的素材来源与核心。</p>
+      <h4>全书三「不是」</h4>
+      <ul class="clean">
+        <li><strong>不是心理学理论著作</strong>——它是原料。原型、集体无意识、个体化这些概念在这里以幻象、对话、绘画的形式原样出现，理论化是荣格后来在《心理类型》等书中完成的。</li>
+        <li><strong>不是一本写完的书</strong>——1930 年他突然中止，花体字誊抄停在中途，后记也没写完。未完成性是它自身的属性。</li>
+        <li><strong>不是神秘主义修行手册</strong>——他反复声明「我的道路不是你们的道路」。神秘经验在他这里是可被心理学描述的材料，不是发给读者的指令。</li>
+      </ul>
+      <h4>方法论三设定（决定后面一切）</h4>
+      <ol class="num">
+        <li>观察单位 = <strong>荣格本人的意识状态</strong>（n=1 的自我实验），不是样本，不是群体。</li>
+        <li>证据入口 = <strong>主动唤起的幻象、梦与内在对话</strong>，以及他事后对这些材料的评注（《审视》）。</li>
+        <li>立场 = <strong>记录而非论证</strong>。全书不提供外部证据，也不要求读者相信。</li>
+      </ol>
+      <h4>版本核对</h4>
+      <table>
+        <thead><tr><th>项</th><th>结论</th></tr></thead>
+        <tbody>
+          <tr><td>原稿</td><td><b>Liber Novus（拉丁语「新书」）</b>，红色皮革对开本手稿，创作期 1914（一说 1915）至约 1930；素材来源是 1913–1917 年的《黑书》日记</td></tr>
+          <tr><td>首次公开</td><td>2009 年 10 月，W. W. Norton 与 Philemon Foundation 出版影印＋英译本：Sonu Shamdasani 编，Mark Kyburz、John Peck、Shamdasani 译，附三附录与 1500 余条注释，404 页</td></tr>
+          <tr><td>衍生形态</td><td>2012 年 12 月 Norton 出 Reader's Edition 小开本（收全译文与导读，删去手稿影印）；其后多语种译本陆续出现</td></tr>
+          <tr><td>中译本</td><td>《红书》，荣格原著／沙姆达萨尼编译／<b>周党伟译</b>，机械工业出版社（华章分社），ISBN 978-7-111-55144-7，596 页。纸本 2016 年出版</td></tr>
+          <tr><td>体量</td><td>本笔记实测全文约 <b>45 万字</b>：导读约 7 万，第一卷约 9 万，第二卷约 19 万，《审视》约 7 万</td></tr>
+          <tr><td>结构</td><td>前言·致谢·导读·三则译者编者按 → 第一卷（序言＋11 章）→ 第二卷（序言＋21 章）→ 审视 → 后记 → 附录 A/B/C</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="core">
+    <span class="sec-tag">Thesis · 一句话核心</span>
+    <h2>全书终极论点<span class="en">The one-sentence core</span></h2>
+    <div class="thesis">
+      <div class="q">1913 年，38 岁的荣格在一无理论依托的状态下，主动关掉意识的开关，让无意识的意象自己说话，并把它们逐字记下来。他想证明：一个人的灵魂不是学来的，而是把自己沉进无意义、混乱、黑暗与罪恶感里，把这些东西当作有独立人格的他者与之对话，再让对立面——意义与荒谬、善与恶、思维与快乐、生与死——在碰撞中重新生出一个「终极意义」。代价是放弃当「正常人」、放弃任何榜样、必要时连自己的美德都抛弃。产物不是知识，是「成为你自己」。</div>
+      <div class="src">拆解者提炼 · 作者原话见下方 ★ 引文（第一卷《序言·来者的路》，A 级，中译本原文）</div>
+    </div>
+    <blockquote>
+      <span class="star">★</span>"灾难会降临在依照别人的方式为榜样而生活的人身上！生命与榜样相悖。如果你根据一个榜样去生活，那么你活出的就是榜样的生命，但是如果你不活出自己的生命，那么应该由谁活出你的生命？所以，活出你自己吧。"
+      <span class="en">第一卷·序言 来者的路</span>
+    </blockquote>
+    <blockquote>
+      <span class="star">★</span>"唯一的道路就是你自己的道路。"／"我的道路也不是你们的道路，因此我无法教给你们。路就在我们身上，不在诸神那里，不在说教中，更不在律法里。"
+      <span class="en">第一卷·序言 来者的路</span>
+    </blockquote>
+    <p><strong>三个反常识落点：</strong></p>
+    <ol class="num">
+      <li><strong>方法不是「理解」，是「承受」</strong>——★「去理解一个东西是一座桥梁，也是返回到道路上的可能性。但去解释一件事物是非常武断的，有时候甚至会带来谋杀。」</li>
+      <li><strong>「向内看」的结果不是平静，是崩解</strong>——★「如果你走向自己的灵魂，你将首先失去意义。你会相信自己已经陷入无意义中，陷入永恒的混乱中。你是正确的！」</li>
+      <li><strong>美德是要被抛弃的东西之一</strong>——★「如果你的美德阻碍你的救赎，请抛弃它们，因为它们已经成为你的魔鬼。被美德奴役无异于被邪恶奴役。」</li>
+    </ol>
+  </section>
+
+  <section id="myths">
+    <span class="sec-tag">Myths · 核心痛点</span>
+    <h2>六个至今流行的认知误区<span class="en">Six misconceptions</span></h2>
+    <div class="card">
+      <h3>误区一：这是荣格的心理学理论著作，读懂它就懂了分析心理学</h3>
+      <p>它是<b>原料</b>，不是成品。原型、集体无意识、个体化、阿尼玛这些概念在书里以幻象人物和对话的形式原样出现，没有被定义、没有被论证。荣格学派从业者自己也普遍建议先读《回忆·梦·思考》《人及其象征》打底。</p>
+    </div>
+    <div class="card">
+      <h3>误区二：写《红书》那几年，荣格精神失常了</h3>
+      <p>这是<b>至今未平的学术公案</b>。Anthony Storr 依据荣格自述「受到精神病的威胁」，判定那几年是精神病发作；沙姆达萨尼认为这个判断站不住。反证是：同期荣格照常执业（平均每天接诊约 5 名病人）、讲课、写作，1914–1918 年间还多次在瑞士军队服现役。这一条决定了读法——当病例读，内容是症状；当实验记录读，内容是方法。本笔记取后者，但<b>不替读者裁定</b>。</p>
+    </div>
+    <div class="card">
+      <h3>误区三：「向内探索」是温和的、疗愈的、舒服的</h3>
+      <p>书里写得毫不含糊：走向灵魂的第一步是失去意义。★「如果你走向自己的灵魂，你将首先失去意义」——他描述的是<b>结果</b>，不是<b>处方</b>。把它当疗愈书读的人，会在第四章《沙漠》就开始失望或受惊，而那正是作者设计好的第一个筛子。</p>
+    </div>
+    <div class="card">
+      <h3>误区四：书里的曼陀罗和插画是装帧、是配图</h3>
+      <p>绘画是<b>方法本身</b>。荣格给自己定的技术要求是「把情绪转译成意象」——后来命名为<b>主动想象（active imagination）</b>。图像是他处理情绪的载体，与文字同等重要。</p>
+    </div>
+    <div class="card">
+      <h3>误区五：它是一本完整的书</h3>
+      <p><b>它没有结论</b>。1930 年突然停笔，誊抄中断，后记只写了个开头。编者前言明确记载：「1930 年，荣格结束了自己的自我实验，并放下《红书》的创作，但他并未写完这部作品。」任何把它讲成「完整体系」的解读——包括本笔记的六层逻辑树——都是读者追加的。</p>
+    </div>
+    <div class="card">
+      <h3>误区六：荣格在教你一条可以照着走的路</h3>
+      <p>★「你在寻找道路？我提醒你不要追随我的道路，对你来说，它可能就是一条错误的道路。」★「我不是你的救世主、立法者和高级导师，你也不再是小孩子。」</p>
+    </div>
+  </section>
+
+  <section id="logic">
+    <span class="sec-tag">Logic · 底层逻辑</span>
+    <h2>六层逻辑推演<span class="en">Six-layer reasoning</span></h2>
+    <p class="lead">每层只留一个功能动词＋一条层结论。回答「这一层比上一层多解决了什么」。<b>此树为拆解者重建，荣格在书里没有这样排过</b>——书里的顺序是体验发生的顺序。</p>
+    <ol class="num">
+      <li><strong>断</strong>：1913 年与弗洛伊德决裂，理论依托失效，主动进入「我不知道」。时代精神（实用、价值、可证明）与深度精神（无意义、矛盾、不可证明）分裂——深度精神「将我带离对科学的信仰」，迫使他「回到最低下且最简单的事情上」。解决「凭什么放弃既有解释框架」。</li>
+      <li><strong>找</strong>：灵魂是<b>独立存在的生命</b>，不是「我」的心理功能。★「意象的世界是整个世界的一半。」解决「要找的东西到底是什么」。</li>
+      <li><strong>入</strong>：进入沙漠＝接受精神贫穷。<b>目的即局限</b>，聪明征服世界，单纯征服灵魂。解决「怎么才找得到」。</li>
+      <li><strong>衡</strong>：时代精神与深度精神都不神圣，★「只有平衡是神圣的」。意义与荒谬互为过渡，碰撞之处生出「终极意义」。解决「找到之后拿对立面怎么办」。</li>
+      <li><strong>杀</strong>：必须杀死自己身上的英雄、榜样、神，甚至美德——★「在英雄没有被杀掉之前，神是不可能出生的。」解决「为什么连好的东西也得杀掉」。</li>
+      <li><strong>生</strong>：终极意义「化身成意义，随后化身成荒谬，在意义和荒谬碰撞的电光火石之间，终极意义重获新生」。这就是后来的个体化。解决「杀完之后长出什么」。</li>
+    </ol>
+    <p><strong>补一层「回」</strong>：《审视》（Scrutinies）不属于递进链，是荣格<b>事后对自己的审校</b>——他回头把幻象里的人物与事件翻译成心理学语言。它是全书唯一一处「荣格作为心理学家」而非「荣格作为体验者」在说话的地方。</p>
+  </section>
+
+  <section id="models">
+    <span class="sec-tag">Models · 思维模型</span>
+    <h2>八个思维底层模型<span class="en">Mental models</span></h2>
+
+    <div class="model">
+      <div class="no">①</div>
+      <h3>精神贫穷：目的就是局限</h3>
+      <div class="src">来源：作者命题 · 第一卷第四章《沙漠》</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：目的让人高效，也让人只看见通往目的的那条路。荣格的反直觉论断是——目的不是效率工具，是一副眼罩。你越清楚自己要什么，能看到的世界越窄。解药叫「精神贫穷」：主动放弃目的，让自己处于「不知道要什么」的状态。</div>
+      <blockquote><span class="star">★</span>"我们把自己绑定到目的上，却没有注意到，实际上，目的就是局限，是的，它是对生命的排斥。"<span class="en">第一卷·第四章</span></blockquote>
+      <blockquote><span class="star">★</span>"聪明与目的连接在一起，单纯却对目的一无所知。聪明能够征服世界，但是单纯征服的是灵魂。"<span class="en">第一卷·第四章</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人把周末排满：周六上午送孩子上课，下午健身，晚上陪客户吃饭；周日处理家务、回消息、准备下周汇报。每一格都有目的，效率很高。到了周日晚，他说不清这两天到底发生了什么——因为每件事都是<strong>为了</strong>什么而做的，没有一件是<strong>作为</strong>什么被经历的。<br><br>换成精神贫穷的做法：留出一个下午，不安排任何目的，不许自己「顺便做点有用的事」。大多数人第一次这么做会坐立不安，因为目的被抽走之后，人不知道自己该是什么状态。<strong>这个坐立不安就是模型起作用的位置</strong>——被目的压住的东西会在这个空档里浮上来。<br><br>判据：你上一次「什么都不为」地待着，是什么时候？</div>
+    </div>
+
+    <div class="model">
+      <div class="no">②</div>
+      <h3>意象的半个世界</h3>
+      <div class="src">来源：作者命题 · 第一卷第一章《重新找回灵魂》</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：世界被切成两半——事实的那一半和意象的那一半。你经历了一件事，这是事实；这件事在你心里留下的图像与情绪的形状，这是意象。多数人只承认前一半。荣格的论断：只拿到事实的人，拿到的世界只有一半，另一半是空的。</div>
+      <blockquote><span class="star">★</span>"意象的世界是整个世界的一半。如果一个人拥有整个世界，却没有拥有世界的意象，那么他就只拥有这个世界的一半。"<span class="en">第一卷·第一章</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人换了工作，涨薪 40%。事实层面：好事。意象层面：他连续三周梦见自己在一间没有门的房间里。只算事实，他应该高兴；算意象，他的身体在说另一件事。<br><br>用法不是「解梦」，而是<strong>给事实配一次意象核对</strong>：这件事在我心里留下的画面是什么？宽敞还是逼仄？往上走还是往下沉？一个人不一定要对意象做什么处理，但至少要知道自己拿的是半个世界还是一整个。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">③</div>
+      <h3>灵魂作为他者：把它当人，跟它说话</h3>
+      <div class="src">来源：作者命题（第一卷第一、二章）＋ 提炼（全书方法）</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：不把内在声音当作「我的想法」来处理，而是当作<b>一个有独立人格的他者</b>，与之对话、争吵、被它反驳。荣格后来称之为主动想象。区别在于：把情绪当「状态」，你会去<strong>调节</strong>它；把情绪当「他者」，你会去<strong>听它要什么</strong>。</div>
+      <blockquote><span class="star">★</span>"因此，深度精神强迫我与我的灵魂交谈，要求我把他当作一个有生命力且独立存在的生命。"<span class="en">第一卷·第一章</span></blockquote>
+      <blockquote><span class="star">☆</span>全书反复出现的句式不是「我觉得」，而是「我的灵魂说……」——人称的改变就是技术的改变。</blockquote>
+      <div class="ch-note">⚠️ 这是荣格用在自己身上的技术，不是标准心理治疗流程。有情绪困扰的人应当寻求专业帮助，不要拿它替代治疗。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">④</div>
+      <h3>意义—荒谬振荡器</h3>
+      <div class="src">来源：作者命题 · 第一卷序言《来者的路》、第七章《谋杀英雄》</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：意义与荒谬不是敌人，而是<b>互为过渡</b>——意义走到极端变荒谬（最大的真理变成最大的谎言），荒谬走到极端又转回意义。真正恒久的不是二者中的任何一个，而是二者碰撞的那一下，他称之为「终极意义」。推论：任何让你觉得「绝对正确」的信念，都正处在变成荒谬的途中。</div>
+      <blockquote><span class="star">★</span>"其他神不能永生，唯有终极意义永不消失，它化身成意义，随后化身成荒谬，在意义和荒谬碰撞的电光火石之间，终极意义重获新生。"<span class="en">第一卷·序言</span></blockquote>
+      <blockquote><span class="star">★</span>"最高的真理只有一个，同时又很荒谬。"<span class="en">第一卷·第七章</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人笃信「只要努力就会有回报」，靠这句话撑了十年。第十一年，他发现有人没怎么努力却得到了，有人很努力却什么都没有。两个选项：彻底放弃这句话（转向荒谬），或者把信念硬化成教条（否认眼前事实）。<br><br>第三种是<strong>同时持有两端，观察它们碰撞的那一刻</strong>：「努力大概率有用，但此刻它没用。」这句话不漂亮，但比前两句更接近真实。要找的东西不在任何一端，而在能忍受两端拉扯的那段时间里。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑤</div>
+      <h3>谋杀英雄：反榜样原则</h3>
+      <div class="src">来源：作者命题 · 第一卷序言、第七章、第八章</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：榜样（英雄）给你一个可模仿的形状。荣格的论断：榜样救急，但榜样致命——<b>你活出来的是榜样的生命</b>。所以他在书里安排了一次象征性谋杀：杀死英雄，新的神才能出生。推论极其锋利：任何让你觉得「我只要像他那样就好了」的人，都是要被杀掉的对象，包括你自己身上那个「已经做得不错的人格」。</div>
+      <blockquote><span class="star">★</span>"在英雄没有被杀掉之前，神是不可能出生的。"<span class="en">第一卷·第八章</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人关注了三十个「自律博主」，每天看他们的作息表、读书清单、健身计划。三年下来收藏夹很满，生活没变——因为模仿提供的是<strong>形状</strong>，而形状不产生动力。<br><br>用法不是「别看榜样」，而是<strong>给模仿设一个到期日</strong>。学一个人的方法，学完就撤掉他；一旦发现自己开始复制他的口味、他的表达、他的人生节奏，那就是「榜样在活你的命」的信号。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑥</div>
+      <h3>美德会变成魔鬼</h3>
+      <div class="src">来源：作者命题 · 第一卷第三章《灵魂的恩宠》</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：美德一旦成为你的身份（「我是个好人」「我从不麻烦别人」），它就从工具变成主人——你会为了<strong>维持这个身份</strong>而做出损害自己也损害别人的事。判断标准不是善恶，而是「它是否仍然服务于你的生命」。</div>
+      <blockquote><span class="star">★</span>"如果你的美德阻碍你的救赎，请抛弃它们，因为它们已经成为你的魔鬼。被美德奴役无异于被邪恶奴役。"<span class="en">第一卷·第三章</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人在单位里是「从不拒绝的人」。同事找他帮忙他接，临时加班他顶，家里有事他扛，被所有人称赞靠谱。五年后他第一次说了「不」，全办公室的反应不是理解，是诧异——因为他们早已把他的「好」当成公共资源。<br><br>问题不在他帮了多少忙，在于<strong>「好人」已经成了他的身份，而身份不能谈判</strong>。判据：这条美德是你的身份（离了它你不知道自己是谁），还是你的选择（可以不这样做但你仍然是你）？前者才是会变成魔鬼的那种。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑦</div>
+      <h3>思维与快乐的交替律</h3>
+      <div class="src">来源：作者命题 · 第一卷第九、十、十一章</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：两种基本功能——思维（先觉）与快乐（当下满足）——同等重要，但<b>人不能同时处在两者中</b>，只能交替：处在其中一个时，就必须「不忠于」另一个。他补了一句关键区分：★「爱有视力，但快乐是失明的。」爱看向最远最完整的东西，快乐只要最近的那一个。</div>
+      <blockquote><span class="star">★</span>"一个人不能只靠先觉而活，也不能仅靠快乐。你需要二者，但你不能同时处在先觉和快乐中，你只能够交替处在先觉和快乐中。"<span class="en">第一卷·第九章</span></blockquote>
+      <blockquote><span class="star">★</span>"思想家厌恶情感，主要是因为他身上的情感让人厌恶。"<span class="en">第一卷·第九章</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人加班赶方案到凌晨两点，做完后立刻刷了两小时短视频，第二天早上又后悔。用道德语言说，这叫自制力差。用交替律说，这是<strong>思维的债在向快乐讨还</strong>——他连着十几小时只动用思维，快乐那一侧被压空了，压空的东西会以最粗糙的形式反弹回来。<br><br>用法不是「戒掉刷手机」，而是<strong>承认交替是规律</strong>：给专注的时段明确配上一段「不忠于思维」的时间——散步、发呆、什么都不产出——并且不在这段时间里计算收益。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑧</div>
+      <h3>死亡作为界限：有限性才让生命成立</h3>
+      <div class="src">来源：作者命题（第二卷第六章《死亡》、第一卷第五章）＋ 提炼</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：荣格在中年把「死亡」从终点事件改成<b>结构条件</b>：没有界限，生命就没有形状；无限不是恩赐，是会把人撕碎的东西。所以他反复强调限制的重要性——与无能共处、接受自己的最低处。</div>
+      <blockquote><span class="star">★</span>"没有死亡，生命将没有意义，因为漫长的时间会再次出现，并否认死亡的意义。生存，享受你的存在，你需要死亡，界限能够使你存在。"<span class="en">第二卷·第六章</span></blockquote>
+      <blockquote><span class="star">★</span>"学会和无能共处的人能学习到很多东西。它会引领我们重视最渺小的东西，知道自己的局限，这些都是更高的要求。"<span class="en">第一卷·第五章</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人三十五岁，发现自己不再能像二十五岁那样连熬三晚还生龙活虎。他有两个选择：否认（继续按旧节奏硬撑，直到身体替他按下停止键），或者接受界限（承认每天真正能专注的只有四小时，并据此重排生活）。<br><br>用法很具体：<strong>把「我做不到」从失败清单移到条件清单</strong>。做不到不是能力问题，是界限——而界限的功能是让剩下的部分有形状。</div>
+    </div>
+  </section>
+
+  <section id="critical">
+    <span class="sec-tag">Critical · 批判性视角</span>
+    <h2>盲区与落地坑<span class="en">Blind spots &amp; pitfalls</span></h2>
+    <h3>方法论盲区</h3>
+    <div class="blind hard"><div class="tag">硬伤</div><p><b>n=1，没有对照组。</b>全书是一个人在十六年里的自我记录。没有对照、没有重复程序、没有外部效度。它作为「荣格思想的发生学文献」价值极高，作为「你也该这么做」的证据强度为零。最有说服力的段落全部建立在「荣格本人撑住了」这个前提上——他撑住了，不代表这个方法安全。</p></div>
+    <div class="blind hard"><div class="tag">未决公案</div><p><b>精神病 vs 实验，至今没有裁定。</b>Storr 判定 1913–1917 年是精神病发作；沙姆达萨尼认为站不住。中译本「翻译出版说明」自己的官方口径是（★）：「作者的某些观点仍不免过于体现个人主观认识，偏颇、囿困之处在所难免，请读者在阅读时仔细斟辨，批判接受，客观继承。」出版方在第一页就在降调。</p></div>
+    <div class="blind"><div class="tag">精英主义</div><p>导读引用荣格原话（★）：「个体化只适用于少部分人，对于那些没有足够创造性的人而言，最好重新建立与社会集体相一致的价值观。」一套自称只适用于少数人的方法，被当成大众读物卖了近百年，还被包装成「低能量的人必读」。</p></div>
+    <div class="blind"><div class="tag">时代局限</div><p><b>性别框架是 1910 年代的。</b>★「如果你是男孩，你的神就是一位女人。如果你是女人，你的神就是一位男孩。」这正是阿尼玛／阿尼姆斯理论的原型现场，也预设了异性恋配对结构——它是 1910 年代欧洲的产物，不是心理事实。</p></div>
+    <div class="blind"><div class="tag">文化挪用</div><p>书中大量调用非西方材料——埃及、印度、中国丹道、美洲原住民（「红人」）——当作他个人心灵剧场的道具。这与「回到你自己」存在未解矛盾：<b>他的「自己」，装满了别人的神话</b>。</p></div>
+    <div class="blind"><div class="tag">出版造神</div><p>「世界十大神秘天书」「心理学的巅峰之作」这类营销话术，与荣格本人「我的道路不是你们的道路」方向相反。中译本里沙姆达萨尼的导读约 7 万字，与正文体量相当；读者买到的《红书》实际是<b>荣格＋沙姆达萨尼＋出版方营销</b>的三层合成物。</p></div>
+    <h3>普通人最容易踩的坑</h3>
+    <div class="blind"><div class="tag">坑一</div><p><b>把它当自助书照着做。</b>主动想象、与内在人格对话、主动进入无意义，是荣格在自己身上操作的，他有二十年临床经验和随时可用的专业支持。风险不是「做得不好」，而是情绪失控与解离。有情绪困扰、正在经历重大变故或有精神健康史的人，不应把本书当作自助材料。</p></div>
+    <div class="blind"><div class="tag">坑二</div><p><b>把梦和幻象当作预言或真相。</b>荣格被转述的立场是（★）：「梦的功能并不是愿望的满足，而是起平衡或补偿作用。」梦是补偿性材料，不是预言。第二卷里确实有大段幻象被写成近似预言（洪水幻象与一战的时间关系），最容易让读者滑向「我的梦在预示什么」。</p></div>
+    <div class="blind"><div class="tag">坑三</div><p><b>用「活出自己」给不负责任背书。</b>★「灾难会降临在依照别人的方式为榜样而生活的人身上」极易被拿去支持「我不管别人怎么想」。但荣格在<b>同一章</b>紧接着写（★）：「每个人都应该去寻找自己的路，一条通往团体之间互助友爱的路。」「活出自己」从来不等于「不管别人」。</p></div>
+    <div class="blind"><div class="tag">坑四</div><p><b>拿「美德会变成魔鬼」当放弃责任的借口。</b>这句话的前提是「阻碍你的救赎」，不是「让你不舒服」。不想再承担家庭责任、不想再守承诺的人援引这一句，等于把「我不想干」包装成「我在个体化」。</p></div>
+    <div class="blind"><div class="tag">坑五</div><p><b>以为读一遍就能懂。</b>荣格自己借隐士之口说过（★）：「一本书可以读很多遍，或许你已经烂熟于心，但尽管如此，当你再次阅读书中文字的时候，会出现某些新的东西。」只读正文不读《审视》，等于只看实验数据不看讨论部分。</p></div>
+    <div class="blind"><div class="tag">坑六</div><p><b>中译本的术语坑。</b>本书译法与中文荣格学界通行译法不同：<b>the self 译作「原我」</b>（学界常见「自性」）、<b>supreme meaning 译作「终极意义」</b>。写文章引用时直接引中译本原文并注明译本，不要自行换成「自性」。</p></div>
+  </section>
+
+  <section id="books">
+    <span class="sec-tag">Counterparts · 对读书单</span>
+    <h2>互补与对立<span class="en">What to read next</span></h2>
+    <h3>互补</h3>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《回忆·梦·思考》</div><div class="b-meta">荣格 / 阿尼拉·亚菲整理</div><div class="b-why">同一段经历的<b>非幻象版本</b>。荣格晚年口述的自传，用正常语言讲了《红书》里用神话语言讲的同一件事。读《红书》之前或卡住时读它。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《人及其象征》</div><div class="b-meta">荣格</div><div class="b-why">荣格晚年面向大众写的入门，是「理论化之后」的成品。想知道原型、梦、个体化到底指什么，看这本而不是《红书》。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《心理类型》</div><div class="b-meta">荣格</div><div class="b-why">《红书》里的思维／快乐、外倾／内倾，在这里成为可操作的理论。想知道荣格把原料炼成了什么，读这本。</div></div></div>
+    <h3>对立</h3>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《梦的解析》</div><div class="b-meta">弗洛伊德</div><div class="b-why">梦＝愿望的满足 vs 荣格的梦＝补偿与平衡。两人 1913 年决裂的核心分歧之一，对照读最能看清荣格在反什么。</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《Jung》</div><div class="b-meta">Anthony Storr</div><div class="b-why">批评性传记，持「那几年是精神病发作」的判断。与沙姆达萨尼的导读对读，是理解这桩公案的最短路径。</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《The Jung Cult》</div><div class="b-meta">Richard Noll</div><div class="b-why">主张荣格本质上是神秘主义先知而非科学家。<b>学界争议很大</b>，但属于绕不开的批判声音，用来对冲 2009 年的出版造神。</div></div></div>
+    <h3>对照</h3>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《查拉图斯特拉如是说》</div><div class="b-meta">尼采</div><div class="b-why">《红书》的语言与结构受它影响极深（跨越／桥／下行等词直接来自此书），第十一章还直接引用。读了它才知道荣格的句子是从哪里来的。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《浮士德》</div><div class="b-meta">歌德</div><div class="b-why">序言第一句「时代精神」的出处就是《浮士德》。荣格用「时代精神 vs 深度精神」这组对立，是在跟歌德对话。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《金花的秘密》</div><div class="b-meta">卫礼贤译 / 荣格评述</div><div class="b-why">荣格为中国丹道经典写的心理学评述，是理解他如何使用非西方材料的直接样本，也是「文化挪用」盲区的现场证据。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《红书》导读（本书内）</div><div class="b-meta">沙姆达萨尼 · 约 7 万字</div><div class="b-why">与正文同册。<b>先读它再读正文</b>，否则正文的意象无法定位。</div></div></div>
+  </section>
+
+  <section id="chapters">
+    <span class="sec-tag">Chapters · 逐章精读</span>
+    <h2>逐章精读<span class="en">Close reading, chapter by chapter</span></h2>
+    <div class="ch-sec-h">结构总图 · 各章到底在拆什么</div>
+    <p style="font-size:.92rem;color:var(--ink-soft);margin:8px 0 12px">暗线：从「拆掉外在依托」（目的、榜样、美德）<b>由外向内</b>，经下沉与裂开，最后回到整合者——荣格自己把它称作个体化。</p>
+    <table class="ch-map">
+      <thead><tr><th>序</th><th>章</th><th>处理／破损的对象</th><th>性质</th><th>在序列里的位置</th></tr></thead>
+      <tbody>
+        <tr><td>卷一·序</td><td>来者的路</td><td><b>时代精神 vs 深度精神</b></td><td>立场宣言</td><td>开宗明义：宣布「不教你，只讲我的路」</td></tr>
+        <tr><td>卷一·1–3</td><td>找回灵魂 / 灵魂与神 / 恩宠</td><td><b>灵魂</b></td><td>找回与对话</td><td>1↔2 对偶：单方面呼喊 → 双向对谈</td></tr>
+        <tr><td>卷一·4–5</td><td>沙漠 / 未来的地狱之旅</td><td><b>目的与意义</b></td><td>剥夺</td><td>4↔5 递进：抽掉目的 → 承受无意义</td></tr>
+        <tr><td>卷一·6–7</td><td>精神的分裂 / 谋杀英雄</td><td><b>英雄与榜样</b></td><td>破坏</td><td>6↔7 对偶：诊断内战 → 动手射杀</td></tr>
+        <tr><td>卷一·8–9</td><td>神的孕育 / 神秘·遭遇</td><td><b>对立面</b></td><td>孕育</td><td>7→8 因果扣环：英雄死，神才生</td></tr>
+        <tr><td>卷一·10–11</td><td>引导 / 终解</td><td><b>思维与快乐</b></td><td>整合</td><td>第一卷收束：交替律与「活出自己」</td></tr>
+        <tr><td>卷二·1–5</td><td>红人 / 城堡 / 卑微的人 / 隐士 / 逝去</td><td><b>低位与下限</b></td><td>下沉</td><td>与第一卷「向上」反向：往下走到最卑微处</td></tr>
+        <tr><td>卷二·6–11</td><td>死亡 / 神庙 / 第一天 / 第二天 / 咒语 / 蛋的打开</td><td><b>死亡与界限</b></td><td>裂开</td><td>6→11 递进：接受界限 → 打破外壳</td></tr>
+        <tr><td>卷二·12–14</td><td>地狱 / 献祭性的谋杀 / 圣愚</td><td><b>恶与愚</b></td><td>接纳</td><td>12↔13 对偶：承认邪恶 → 完成献祭</td></tr>
+        <tr><td>卷二·15–18</td><td>第二夜 / 第三夜 / 第四夜 / 三个预言</td><td><b>夜的序列</b></td><td>穿越</td><td>多 → 无 → 一的节奏，四夜构成完整周期</td></tr>
+        <tr><td>卷二·19–21</td><td>魔法的礼物 / 十字架的道路 / 魔法师</td><td><b>整合者</b></td><td>获得</td><td>全书枢纽：魔法师＝荣格后来自性原型的现场</td></tr>
+        <tr><td>审视</td><td>Scrutinies</td><td><b>全部前述材料</b></td><td>回看</td><td>首尾扣环：体验者 → 心理学家的自我审校</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.88rem;color:var(--ink-faint);margin:10px 0 4px">对偶组：1↔2（呼喊／对话）、6↔7（内战／射杀）、12↔13（邪恶／献祭）、15–17（三夜序列）。首尾扣环：卷一序言「不要跟随我的道路」→《审视》荣格回头给自己做心理学注解。<b>此表为拆解者重建，作者在书里没有这样排过。</b></p>
+
+    <details class="ch" open>
+      <summary><span class="ch-no">引子</span>引子<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>本节含两层：出版社的《翻译出版说明》，与落款"荣格（C.G.Jung），1957"的自述。出版说明交代引进缘起——荣格汉译稀少，因理论艰深、旁征博引，更因《红书》长期未刊，故理解其余著作始终缺一环；为便于研究，图片与图注被处理成对开蝴蝶页，并保留页下注、图注与原稿页码。荣格自述则说，那些年他一直在追寻内在的意象，此后一生的工作都只是对这股涌流做分类、科学阐述与整合。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>全书主张是《红书》乃荣格后期著作的源头。出版说明从接受史提出该主张——缺它则其余著作处处卡壳；荣格自述从作者本人确认，称那段经历是"神圣的起点，却已包含一切"。一外一内的双重证词把《红书》从"神秘手稿"重定为"第一手文献"，也为后文编者论证出版正当性预先铺好地基。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>本节置于《前言》之前，形成"出版方说明—作者自述—继承人说明"的三段递进，要解决的正是不久后《前言》无法自答的问题：凭什么说这本书重要、值得出版。先用荣格自己的话回答，再由荣格后人霍尔尼交代保管史与出版决策，后者才不致显得自说自话。末句"神圣的起点，却已包含一切"与《后记》"倾注16载的光阴"遥相呼应，是同一判断的早年与晚年两个版本。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“由于荣格最重要的著作《红书》尚未正式出版，所以人们在理解荣格的其他著作时总会遇到各式各样的困难。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“荣格在《红书》中使用大量隐喻的方式如实地记录自己的内心经历和思想过程，而且沿用柏拉图式的哲学对话形式。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我整个一生都在详尽阐述那些从无意识中迸发的内容，它们就像一条神秘的溪流朝我奔涌而来，几乎将我摧毁”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“后来的一切仅仅是进行外在的分类、科学的详尽阐述和将它们整合进生命中，而那个神圣的起点，却已包含一切。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>自述写于 1957 年，荣格八十二岁，属晚年回溯性自我叙述，可信度须打折。人到回顾一生时，倾向把散乱经历整理成有起点的叙事。更可疑的是"其他的一切皆源自这里"这一因果倒置：往往是先有后来的学术成就，才回头赋予早年经历以源头地位。但也不能判它失真——1913 至 1930 年间有大量同步记录（《黑书》）可与外部史料比对。出版说明里"批判接受，客观继承"的提醒，最该用在荣格对自己的这句评价上。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人到了一定年纪，也常给自己的经历找一个"起点时刻"——某次跳槽、某场病、某段关系，然后说后来的一切都从那儿开始。这种回溯式整理确有实用价值，能帮一个处在迷茫中的人从杂乱过往里拎出主线。但它也有副作用：一旦把某个时刻定为源头，之前的生活就被贬为铺垫，之后的选择则被解释成必然。更稳妥的态度是把这类叙述当成一种说法而非事实——值得留意讲述发生在什么时间与场合，因为人在不同处境下会讲出不同版本的起点，版本之间的变化所透露的，往往比任何单独版本都多。</p></div>
+      </div>
+    </details>
+
+    <details class="ch" open>
+      <summary><span class="ch-no">前言</span>前言<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>署名"乌尔里希·霍尔尼，C.G.荣格作品基金会，2009年4月"，是荣格后人对出版此书的说明。要点有四：1913 年荣格开始自我实验，持续至 1930 年，即"直面无意识"，其间发展出把情绪转译成意象的技术，先记入《黑书》，再把修订与评论用花体字誊入红皮《新书》并配图；1930 年中止创作，1959 年试图续抄而中断；荣格生前既未出版也未明令禁绝，只规定不得收入《荣格全集》，去世后由继承人协会保管，1983 年入保险箱；1990 年代后档案清查找到一整套草稿，包括《审视》，2000 年委托沙姆达萨尼编辑。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>前言为全书提供物质性的存在证明：读者手中的文字不是后人追述的传说，而是有手稿链可考的文本——黑书、手写与打印草稿、修改草稿、花体字抄本、拜恩斯抄本层层递进。更重要的是它给出出版正当性的论证：荣格"并没有把《红书》视为一个秘密"，书中多次出现"我亲爱的朋友"，说明它预设了读者；且荣格自陈后期作品素材皆来自直面无意识，故《红书》"已经超越私人的领域，成为他著作的核心"。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>前言上承《引子》、下启《导读》与三篇按语，位置由其所解决的问题决定。与《引子》的分工是：引子给出"作者自己说它重要"，前言给出"它确实存在且如何流传"，前者是价值判断，后者是事实链条，互补而非重复。与《导读》的衔接更直接——前言交代为何委托沙姆达萨尼，并强调"一名心理学史专家却能够将这部历史文献呈献给现代的读者"，而《导读》正是该委托的成品；前言中"1913年是荣格生命中关键的一年"，也正是《导读》展开叙述的起点。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“1913年是荣格生命中关键的一年。他在这一年开始进行一项自我实验，并一直持续到1930年，这项实验就是后来众所周知的'直面无意识'。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“他首先在《黑书》中记录自己的幻想，后来对这些文本进行修改，并加入对它们的思考，随后将修订后的内容用花体字誊抄到一本名为《新书》（Liber Novus）且用红色皮革封皮包着的书中”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“文本中有很多处包含'我亲爱的朋友'的话语，换句话说，它针对的是一名读者。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“作为直面无意识的记录，《红书》已经超越私人的领域，成为他著作的核心。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最值得推敲的是那句"他没有直截了当地拒绝出版，他仅仅是没有解决这个问题"——把当事人的沉默解释为悬置，从而为后人的出版决定开绿灯。从证据看，荣格的行为更接近消极回避：允许亚菲在传记中摘录却未推动刊行，1957 年还设下发表时间限制。后人用"它针对的是一名读者"来化解矛盾，说服力有限，写给特定对象并不等于同意公开发行。真正的转折其实是学术史条件的成熟。出版的必要性是后人建构的，并非荣格留下的遗嘱。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人家里常有一些不便处理的前人遗物——日记、信件、未完成的稿子，留着无用，弃之可惜。前言展示的正是一套处理这类遗物的决策逻辑：先看当事人有无明确的禁止表示，再看材料有无超出私人范围的价值，最后看有无合适的专业人手能把它放回原语境。可借鉴之处在于把"情感上舍不得"与"客观上值不值得公开"分成两个问题来讨论。面对类似选择时，若能把这两问分开判断，往往比单凭情绪做决定更少后悔；把决策过程拉长、让不同的人参与讨论，也确实能降低冲动处置的概率。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">导读</span>导读《新书——荣格之〈红书〉》<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>沙姆达萨尼撰，约六万字，是全书最重要的二手文本，把《红书》放回二十世纪初的文化与学术语境。"文化时刻"指出 1900 至 1920 年代文学、心理学与视觉艺术边界未分，作家写自动书写，心理学家研究灵媒，荣格的实验正是这一未分化状态的产物。"荣格是谁？"追溯其童年幻象、第一与第二人格的分裂、词语联想实验与情结理论，强调弗洛伊德并非唯一知识来源。"我的最艰难实验"详述 1912 年后无法诠释的梦、1913 年的血海幻象、退出精神分析运动，以及从 1913 年 12 月起在清醒状态下刻意引发幻象并进入其中的技术，腓利门此时登场。"《新书》的内容""生命的新泉""原我之路"梳理他如何把经验转译为学术概念：无意识的两层结构、人格面具与阿尼玛、积极想象、超越功能、个体化、原我。"《新书》的出版"追踪手稿从书房到 2009 年面世的过程，指出此前近一个世纪关于荣格的著述都未能参考这份记录。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>导读承担全书最重的一项论证：证明《红书》不是神秘呓语，而是一次有方法、有脉络、可被史料检证的实验。它把正文里突兀的人物——以利亚、莎乐美、腓利门、阿布拉克萨斯——接回荣格的个人史（童年的地下神庙之梦）、学术史（弗洛诺瓦的阈下意识研究、让内的自动书写、诺斯替文献）与时代史（一战与"大"梦）。有此铺垫，读者才能把《红书》读作心理学著作的胚胎而非启示录。它也修正了一个流传甚久的误解：荣格的思想并非从弗洛伊德那里派生而来。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>导读处在《前言》《致谢》之后、三篇按语之前，是"内容层"的总纲。与《前言》是承诺与兑现的关系——前言宣布委托，导读是交付的第一件成果。与三篇按语则是分工关系：导读负责历史与思想的来龙去脉，三篇按语分别负责语言转换与文本编排；若没有导读先交代荣格是谁、实验怎么做、黑书与花体字抄本是什么关系，按语中密集出现的"第二层""《黑书》顺序"等术语便无从落地。末句"导读绝非结语"明确把解释权交给正文与附录。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“荣格通过神话研究发现自己缺乏神话，因此他开始去了解自己的神话，即他自己的'个体差异'”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我不再使用任何诠释技巧来解释这个梦。想到那个年长的奥地利人，弗洛伊德便出现在了我的脑海里；想到骑士，我就想到了自己。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“从1913年12月开始，荣格继续他的自我实验：在清醒状态下刻意激发一个幻觉，接着进入这个幻觉，就像进入一部戏剧一样”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“《新书》呈现的是一系列的积极想象和荣格对其进行理解的尝试”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“此书的出版象征韵律诗中的一次停顿，为充分理解荣格的作品开创了一个新的纪元。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>导读极克制，但有一处跳跃：沙姆达萨尼反复强调荣格的自我实验与施陶登迈尔的魔法实验、希尔贝雷的半睡半醒观察"非常相似"，以此去神秘化。相似性确实成立，却只说明方法同源，不足以说明结论可靠——一批人用同一种方法产生的体验可以同样不可靠。另一处是对"预测性幻象"的处理：列出十二个被认为有预知性的幻象，又引荣格承认诠释可能是回溯性的，却未追问。真正有价值的不是他有没有预言能力，而是他为何那样诠释：把内在的崩解感理解为世界的崩解，本身就是一种自我保护。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在遇到难以承受的内在动荡时，也常不自觉地把它外投到环境上——觉得是整个行业在崩塌、整个圈子在变坏，而不是自己的状态出了问题。荣格的例子说明这种外投并非纯粹的自欺，它有时确实能让人熬过最难受的阶段，代价是延误了对自身状态的辨认。可自证的做法是事后回看：当初那些"外面的世界要完了"的判断，有多少真的应验在外部，有多少其实是自身处境的投射。另一可借用之点是他处理幻象的方法——不急着解释，先如实记下，隔一段时间再看。情绪最激烈时写下的判断，三个月后读起来往往像另一个人写的。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">中译者按</span>中译者按<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>周党伟撰。前半交代授权与缘起：沙姆达萨尼自十八岁起研究荣格，2003 年促成腓利门基金会成立，《新书》是该系列最重要的一册；中文授权直到 2014 年译者在伦敦随其研究时才取得。后半是翻译技术说明：荣格经历语言危机，交替使用报告式、反思式、浪漫式三种语体，译者不刻意译古、也不刻意现代化，只求行文连贯；三种语体被视为三种思维模式，译者试图用三种文体翻译模式呈现其互文结构。术语上 Self 译为"原我"，Individuation 译为"个体化"，Izdubar 统一为"吉尔伽美什"。最后逐一说明版面标记：{} 为副章、[2] 为《草稿》第二层评论、[1] 为回到《黑书》顺序、[HI000][Image000][OB000][BP000] 为各类图版及其原稿页码，fol. 与现代页码两套标注并行。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>本篇决定了中文读者实际看到的《红书》是什么样子，把一个多版本、多层级的未完成手稿转译成可阅读、可引用的固定版面。其中"第二层"概念的澄清尤为关键：荣格在同一段经历上叠加的评论与原始幻象并非同一种文本，若不区分，评论会被误当经历。术语选择同样影响理解方向——把 Self 译为"原我"而非"自性"，是在提醒读者这些概念与《荣格全集》中的用法并不完全对应，《新书》不能被全集的概念反向收编。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>本篇位于《导读》之后、《英译者按》之前，是"语言层"的第一道关口。与《导读》的分工是：导读铺陈德文原稿与英译本的生成史，本篇处理"再转一道"的问题——从德文与英文进入中文时会额外丢失什么、需要补什么。与《英译者按》则是同一批难题的两种解法：英译者按立原则（三种语体如何对应、圣经用钦定版），本篇落地到中文的具体取舍（书名、术语、标号）。本篇列出的各种标记此后在正文中反复出现，是翻阅第一卷、第二卷时离不开的读图工具。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“荣格在创作《新书》的过程中所经历的语言危机使得他在描述自己的内在经验时面临很大的困难，他甚至也认为自己的行为是疯狂的。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“他不断地交替使用不同风格的语言模式，在记录和分析时使用的语言形式各异，但在翻译的过程中，中译者并未刻意将书中的语言转译成古语，也未刻意迎合现代化趋势”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“三种语言风格代表三种思维模式，即报告式、反思式和浪漫式的语体风格交替出现，相互呼应，但绝非荣格刻意而为”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“由于荣格所使用的很多概念在中文中并没有既定的词汇与之对应，因此译者在翻译的过程中尽量传递荣格在其作品中的原始定义。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>本篇最诚实的句子是结尾"译者的学识和精力有限"，但这种谦辞掩盖了一个更实质的选择：译者决定在三种语体之间追求"行文的连贯和一致性"。这恰是《英译者按》所警惕的做法——英译者明言"不能让它变得比原文更加流畅"。荣格刻意让三种语体互相冲撞，流畅化会把这种冲撞抹平；中文版在此处的取舍，实际上让《新书》比德文原稿更接近一部"统一的书"，代价是削弱了文本内部不协调的张力。"原我"与"自性"两种译法并存，也说明中文荣格学界至今未就核心术语达成一致。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在读译著时，通常只关心故事与观点，很少留意译者按。但译者按恰恰决定了所读文本与自己之间隔了几层玻璃：术语怎么定、引文从哪个版本转、异文如何处理，都会改变最终读到的意思。可自证的做法是，遇到关键概念时翻回译者按看定名理由，再比对另一译本的译法——两种译名的差异处，往往正是这个概念最不好把握的地方。同样的道理适用于日常工作中的转述：把别人的话转给第三个人时，会不自觉加入自己的措辞习惯，把原本尖锐的表达磨平；保留原话、另附自己的理解，比把两者混成一段"更通顺"的转述更少失真。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">英译者按</span>英译者按<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>马克·凯博斯、约翰·派克、索努·沙姆达萨尼合撰。开篇点出荣格写《新书》时经历语言危机：深度精神挑战他按时代精神使用语言，他原有的表述能力无法解释自己为何说出这样的话，被迫把自己在此类场合所说的话理解为"疯狂"。译者声明，翻译这些记录时"一直把他视作一位普通人"，既不现代化也不古化。核心内容是三种文学语体——如实报告幻象与内在对话、稳固敏锐的概念化、预言式或浪漫狂热的风格——它们在同一章内交叉渗透，构成巴赫金意义上的复调；第一层叙述遭遇，第二层以抒情与说教的方式评论该遭遇，"在荣格的作品中，这种结构是独一无二的"。三种语体之间是"内部互译或重评"的关系。此外讨论圣经译本的选择，以及荣格后来把《审视》之前所有第二层的狂热话语都归于腓利门这一事实。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>本篇从语言学角度论证《新书》为什么必须被当作严肃作品来读：它的难读不是因为语无伦次，而是因为三种语体的张力是有意为之、并随经历累积不断加码的实验。它还纠正一个阅读惯性——不能拿《荣格全集》的成熟概念去套《新书》，因为全集的概念（如逻各斯与爱洛斯的对立）"太过条理清晰而无法与《新书》中概念性和抒情-语言性的语体划等号"。这等于划出边界：《新书》是原料，全集是加工品，不能用成品的规格衡量原料。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>本篇夹在《中译者按》与《编者按》之间，是"语言—版本"序列的中间一环。与《中译者按》是同题异构：两篇面对同一批难题（三种语体、圣经引文、术语统一），英译在前、中译在后，构成转译链的顺序说明；中译者按明言"将《新书》的德文本与英译本深入比较"，等于声明以英译者的处理为工作底本之一。与《编者按》则是分层互补：本篇讲语言层（语体、互文、神圣的疯狂、复调），编者按讲物质层（采用哪份手稿、哪一层的修改被收录）。前者解释文本为什么长成这样，后者解释为什么选中这一版。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“在翻译荣格从第一次世界大战前就开始连续记录16载的与自己内在人物的意象遭遇时，我们一直把他视作一位普通人”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“荣格的任务是找到一种语言，而不是使用现成的语言。预言式和概念性的语体本身可以被视为描述性语体的转译。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“《新书》是通过互文的方式创作出来的。从行文方式的角度上看，这本书的修辞方法来源于内部互译或重评的交相呼应结构。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“原始的经验使话语得以旋转，从而使此书开篇就变得生动起来。语言也下到地狱，来到死者的世界，它能让一个人失声，也能让一个人恢复说话的能力。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最有价值的判断，是把荣格的语言危机定性为"找不到现成语言"的处境，而非神秘体验的副作用。由此引申一处值得质疑：译者说三种语体"并非是蓄意为之"，同时又说这种结构"在荣格的作品中独一无二，更不是一种暂时的编排"——两句之间存在张力。若完全非刻意，其独特性只能归因于经历本身；但编者按证实他数十年间不断修改语言，"非刻意"至少在修订阶段站不住。另一点：译者引荣格后来把第二层狂热话语"都归于腓利门"，这其实是事后归因，用来降低说出那些话的责任。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在描述一次强烈的情绪经历时，往往也遇到"语言不够用"：说"有点生气"太轻，说"整个人崩溃了"又太重，于是绕来绕去说不清楚。荣格的例子提示了一种办法——允许自己用不同调子的语言分头去说，先用平实的句子把经过记下来，再用夸张的、比喻的句子把感受写出来，两种写法不必统一成一种风格。可自证的做法是隔一段时间回看这两段：平实的部分通常经得起复查，夸张的部分更容易暴露当时真正在意的是什么。此外，事后把说过的过激话归给"当时状态不好"，与荣格把它们归于腓利门机制相同；这能保全体面，却也挡住了追问。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">编者按</span>编者按<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>沙姆达萨尼撰，说明当前版本编排的依据。先列全部现存手稿：《黑书》2至5、手写与打印草稿、修改草稿、花体字抄本、拜恩斯抄本、耶鲁手稿等，《审视》另有《黑书》5至6与 1916 年《向死者的七次布道》印刷本。编排原则是：以拜恩斯抄本修订版与花体字抄本新抄本为基础，《审视》用打印稿，最后三十页全用《草稿》，并逐句比对。不同手稿的主要差异出现在"第二层"，这些修改代表荣格对幻想的心理学意义在持续深入理解，故所有版本都是作品本身的一部分，重要异文收入脚注。接着说明编辑标记：{} 分副章、[2] 标第二层、[1] 标回到《黑书》顺序。最后论证《审视》应作为《新书》的一部分收录：《黑书》内容与第二卷在同一天接续，文中两处提及"这本书的前一部分"，情节前后勾连。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>本篇是全书文本合法性的技术担保，回答读者必问的问题：这部书从未完成、版本众多，凭什么这样排？答案是逐句比对加公开异文，把编辑决策摊开供检验。它还提出一个对理解《审视》至关重要的论点——若没有阅读《第一卷》和《第二卷》，《审视》中的故事将变得毫无意义；反之前两卷的某些情节只有在《审视》中才变得清晰。这把《审视》从"附录"提升为"必要的第三部分"，改变了全书的阅读顺序要求。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>本篇位于三篇按语之末、正文《第一卷》之前，是进入正文前的最后一道说明。与《英译者按》是分层互补（语言层与物质层，详见上节）。与后面正文的关系是工具性的：本篇确立的 {}、[1]、[2] 标记法与"第二层"概念，是翻阅第一卷、第二卷时必须随身携带的钥匙；没有它，正文中突然插入的评论段落与跳回《黑书》顺序之处会显得莫名其妙。此外，本篇用整节论证《审视》属于《新书》，等于为全书末尾那七万字提前发放通行证。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“《新书》是一部未完成的手稿集，我们尚不清楚荣格打算如何将它写完，他将如何出版这部作品，抑或他是否想过将其付梓。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“不同手稿之间的主要变化出现在文本的'第二层'，这些修改代表荣格对幻想的心理学意义在不断地进行理解。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“腓利门再次出现，并指导荣格如何与自己的灵魂、死者、神和魔鬼建立关系。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“如果一个人没有阅读《第一卷》和《第二卷》，《审视》中的故事也将变得毫无意义。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最值得肯定的是它承认"这部书的文本可以有很多组合方式"，并把自己的编排称为"当前版本编排背后编者的逻辑依据"而非唯一正解。但取舍标准带有倾向性：选用早期手稿段落的标准是"是否能够帮助读者理解当时发生的事情"，这实际上优先照顾叙事连贯与心理可读性，而非文本的物质完整性。编者自己也说全部出版"是我们未来的任务"——这意味着当前版本是一场不可避免的裁剪，读者看到的《新书》在相当程度上是沙姆达萨尼的《新书》。至于用两处内证论证《审视》归属，力度中等。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在整理任何一份多版本材料时——改了十几遍的稿子、几个同事各自记的会议记录、同一场合的多张照片——都会遇到同样难题：以哪一版为准。编者按给出的办法有两条可借用：一是明确说明选了哪一版、为什么选，把标准写出来而非默默决定；二是把被舍弃的异文以脚注形式保留，让别人能检验这个决定。可自证的做法是，在最终定稿里留一处版本说明，哪怕只有几行，也能避免日后再翻旧账时说不清当初为什么这样处理。另一层启示在于：承认自己那份只是"当前的编排逻辑"而非唯一正解，往往比宣称找到了唯一正确的版本更经得起追问。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·序</span>第一卷·序言 来者的路<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>荣格以 1913 年 10 月的洪水幻象为引爆点，记录自己被「深度精神」从「时代精神」手中夺走的过程。时代精神重实用、重证明、重价值，深度精神却逼他放弃判断力、放弃科学的自豪，转而供奉一个叫「终极意义」的东西。全章以三方对话展开：时代精神不断质疑，深度精神逐条驳斥，他人性中的软弱与骄傲在中间求饶。中段插入 1913—1914 年的洪水、冰冻、血海三个幻象，把私人体验与世界局势钉在一起。结尾落到对「未来的人」的嘱托：路在每个人自己身上，他拒绝充当救世主和立法者。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉它，全书就没有「为什么必须这样写」的合法性说明，后面所有的幻象会被当成一份病例，而不是一种被许可的认识方式。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第一章构成「方法—事件」的对偶：序言只给原则——不解释、不教人、神是意象；第一章立刻把原则落到一次具体的崩塌上。两者又首尾扣环：序言说「路标已经倒下，我们前方都是未被开拓过的道路」，第一章开头接的正是同一个时间点——1913 年 10 月，他人生中最重要的时刻；同一件事被取景两次，一次是公开宣言，一次是私人自白。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“但是，终极意义就是来者的路、道和桥梁。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“路标已经倒下，我们前方都是未被开拓过的道路。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“去理解一个东西是一座桥梁，也是返回到道路上的可能性。但去解释一件事物是非常武断的，有时候甚至会带来谋杀。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“唯一的道路就是你自己的道路。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“全书的方法论契约在这儿签定：允许理解，禁止解释；允许交出一条路，禁止把路变成律法。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>荣格一边宣布「没有人，也没有任何东西能够证明我所讲的内容正确与否」，一边用大量圣经引文和幻象权威给自己的话加持——拒绝证明本身成了一种更高的修辞策略。更麻烦的是「活出你自己」与「献祭不可避免」之间的张力：如果路完全是个人的，那「必须献祭」的必然性从何而来？他把一个可观察的心理过程（自我膨胀到顶后的崩解）直接说成了宇宙律令，这一步没有论证。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>上班的人照着别人的职业路径走，头衔、薪资一样不缺，某天夜里却空得慌，因为路径是别人的。在群里不敢说话的人，把长期沉默当成性格内向，其实是在替别人的标准活着。可以自己验：连续一周记录每个决定出自谁的标准。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·1</span>第一卷·第一章 重新找回灵魂<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>四十岁、功成名就之际，恐惧取代欲望，洪水幻象抓住了他。他被迫向「我的灵魂」喊话，承认自己此前把灵魂当成学术对象来评判和谈论，而那套东西其实是一具死气沉沉的系统。全章的核心论证是一次力比多的掉头：欲望从外部对象撤回自身，人才抵达灵魂；而灵魂的财富以意象的形式存在——拥有整个世界却不拥有世界的意象，只拥有半个世界。结尾的警告是：物质的欲望会把灵魂变成野兽，养出恶龙和魔鬼。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉它，「灵魂」就只是一个词，既不知道它指什么，也不知道它为什么首先是「丢失」的，全书失去「重新找回」这个动作的起点。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第二章构成「找回—对话」的递进：本章只是单方面呼喊，并以「我已丢失自己的灵魂」作结；第二章才让灵魂真正开口，把单向倾诉变成双向对谈。与第二章又形成判据线的延续：本章把意象定义为世界的一半，第二章才能顺理成章地说「梦是灵魂发出的具有引导性的话语」。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“我评判他和把他变成一个科学研究对象。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我必须意识到，我已丢失自己的灵魂。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“一个人的欲望摆脱掉其他外部的事物之后，他才到达灵魂所在的地方。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“意象的世界是整个世界的一半。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“灵魂不是被找到的实体，而是欲望掉头之后剩下的那一半世界；丢掉它的方式，恰恰是把一切都变成可评判的对象。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这里的论证有个没处理干净的循环：他说要在「欲望」那里而非「欲望的对象」上找到灵魂，可欲望本身总是关于某物的，所谓纯粹的欲望更像欲望受挫后的空转。更要紧的是，他把中年危机——目标达成后的失重——直接命名为宇宙性的灵魂事件，跨度太大，中间那一步靠的是修辞而不是推理。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>做小生意的人天天盯着流水，某天关店后坐在空店里发呆，那阵发呆比流水更像他自己。刷手机的人刷到深夜，放下手机那一刻的空落落，正是欲望对象退场、欲望本身裸露出来的瞬间。可以自己验：把想要的东西列一张单子，对每一项追问「要它是为了什么」，追到第五层还剩下的那个东西，就是他在说的意象。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·2</span>第一卷·第二章 灵魂与神<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第二夜，他向灵魂倾诉，发现她在梦中以小孩或少女的形象出现，由此提出全章最硬的命题：神的意象随人的生命阶段翻转。你是男人，神就是少女；你是成人，神就往上升；你还停在孩子状态，你的神就会死在他自己手里。中段插入「心的知识」的讨论——它不在书上，也不从老师口中讲出，只能靠活出生命的全部获得，包括那些自己从未活过的部分。结尾推向基督：不是成为基督徒，而是成为基督。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉它，全书就缺了「神是什么」的心理学定义，后面杀英雄、杀西格弗雷德的行动将无处落脚。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第三章构成「定义—代价」的对偶：本章给出「神＝随人的成熟度转移的意象」这一结构，第三章紧接着追问这个结构的代价——走向灵魂首先要失去意义，爱也是可怕的。与第一章则是递进：从「灵魂在哪里」推进到「灵魂里的神是谁」。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“我彷徨了很多年，时间之久，以至于我都忘记了自己还有灵魂。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“梦是灵魂发出的具有引导性的话语。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“心的知识不在书上，也不是从老师的口中讲出来，而是从你身上生长出来”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“如果你是男人，你的神就是一位少女。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“神是人的成熟度投在灵魂里的对位意象；人把自己活得越完整，神就越往上升，人若停在孩子状态，神就死在他手里。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「神随人的阶段翻转」这套对称设计太整齐，整齐到像图解而非经验——男人配少女、女人配男孩、男孩配女人，三组对位更像后来阿尼玛／阿尼姆斯理论的事后投射。更值得质疑的是「你也应该活出邪恶」这条要求：他只用一句「幸福只能决定幸福本身」就放过了，完全没有处理它与任何伦理边界的冲突。极端要求配轻飘论证，是这一章最不平衡的地方。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>上班的人在三十五岁前后突然对曾经热爱的行业毫无感觉，那不是堕落，是原来那尊神——升职、被认可——已经随他长到了头，该换了。带娃的人把全部意义押在孩子身上，等于把自己的神留在摇篮里等他长大。可以自己验：想想三年前让自己兴奋的事，现在为什么无聊。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·3</span>第一卷·第三章 灵魂的恩宠<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第三夜，他被迫把能想起的梦如实写下来，并被要求往无意义里走。核心论证是：走向灵魂首先要失去意义，混乱与无意义是秩序和意义之母，二者结合才能生出「圣童」，也就是超越意义与无意义的终极意义。中段处理恐惧与怀疑——恐惧会做出对灵魂不利的证明——并提出一条锋利的主张：美德若阻碍救赎就必须抛弃，被美德奴役无异于被邪恶奴役。结尾是沉默六夜之后深度精神的命令：看着你的深度，向它祈祷，唤醒死者。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉它，全书就没有「为什么往下走必然伴随崩解」的说明，后面沙漠与地狱两章都会被读成单纯的受苦。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第四章构成「失去意义—进入沙漠」的递进：本章把失去意义确立为方法上的必经阶段，第四章立刻把它空间化为一片贫瘠的沙漠，并用「等待」作为失去意义之后唯一被允许的动作。与第二章则是对偶：第二章讲神的意象之美，本章补上它的暗面——神是可怕的，爱也是可怕的。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“如果你走向自己的灵魂，你将首先失去意义。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“混乱和无意义是秩序和意义之母”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“但是你要知道爱也是可怕的。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“如果你的美德阻碍你的救赎，请抛弃它们，因为它们已经成为你的魔鬼。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“恩宠不是安慰，而是被允许失去意义；能扛住无意义，才配得到新的意义。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「美德成为魔鬼」这句锋利但危险：荣格没有给出区分该抛弃的美德与该守住的美德的标准，只说阻碍救赎的。那么救赎由谁判定？还是灵魂——于是判断权被整个交给了他刚刚承认自己「一点也不信任」的那个对象。这是全章最大的循环论证，也是它最像宗教、最不像分析的地方。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>在群里不敢说话的人，通常不是没想法，而是把「不冒犯别人」这条美德守成了枷锁。上班的人守着靠谱的名声，连一次合理的拒绝都不敢说，靠谱就从资产变成了魔鬼。可以自己验：找出一条自己绝不破的规矩，问它去年替自己挡掉了什么。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·4</span>第一卷·第四章 沙漠<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第六夜，灵魂把他带入「我自己原我的沙漠」。他随即诊断沙漠的成因：不是脱离世事太久，而是把欲望从人和事上撤走之后，思想趁虚而入，人变成了自己的思想，原我因而荒掉。全章最关键的动作只有一个字——等待；灵魂对他「我要在这里做什么」的追问，只回以「等待」，他称之为一句非常残忍的话。后半用古人入沙漠的意象作证：灵魂的所在地就是一片孤寂的沙漠，而言语本身即是创造性行为。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉它，全书就没有「贫瘠是方法而不是故障」的正当性，之后所有的枯竭期都会被误读为失败。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与紧随其后的「沙漠中的经历」构成「地点—驻留」的对偶：本章只给出沙漠这个空间和等待这条律令，下一段把它变成一次有日期、有对话、有结果的驻留。与第五章又是扣环关系：本章说没有人能够免于等待，第五章的开篇就是等待到期——夜里空气里充满声音，深度精神爆发。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“第六天夜里，我的灵魂把我带到沙漠中，来到我自己原我的沙漠。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“只有当原我是沙漠的时候，才是真正的孤独。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我的灵魂，我要在这里做什么？但是我的灵魂跟我说：「等待。」我听到一句非常残忍的话。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“如果你说这里不是灵魂的所在，那么它就不是。如果你说它是，它就是。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“沙漠不是惩罚，是思想退场之后原我露出的本来面目；等待是唯一不能用技巧绕过的技术。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「如果你说它是，它就是」这一句几乎把全书的实在论拆掉了：如果灵魂的所在完全由表述决定，那前面二十多页关于深度精神客观性的宣称就都成了修辞。荣格在实在论与唯名论之间反复横跳，此处跳得最明显。他既需要深度精神是真实的力量，又需要语言能创造真实，两者无法同时成立。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>刷手机的人最怕的不是忙，是排队、等电梯那三分钟的空。做小生意的人遇上淡季，坐在店里的第一反应是掏手机把时间填满，而不是坐着。可以自己验：连续十天，每天留十五分钟不碰任何屏幕、不设任何目的，记录前三天有多难熬。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·4附</span>第一卷·第四章附 沙漠中的经历<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>这是 1913 年 12 月 11 日、沙漠中第 25 个夜晚的一次独立幻象段落。他两手空空来到灵魂面前，抱怨路长、口渴、看不到前方，灵魂三次驳回：我不是你的母亲；你的时候还未到；通往真理的道路只向那些没有目的的人开放。全章的核心论证是目的与生命的对立——目的就是局限，是对生命的排斥。后半立起聪明与单纯的对偶：聪明征服世界，单纯征服灵魂。结尾是征服蔑视之后，沙漠开始变绿。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉它，「沙漠」就只剩一个比喻，没有一次真实的、有日期的枯坐作为证据，第四章那条「等待」的律令会变成空话。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第四章构成「空间—驻留」的对偶，是第四章的延长线；与第五章则是引信式的扣环：本章结尾「我就很接近自己的灵魂了……不久我便看到这片沙漠开始变绿」，第五章开篇紧接的就是「当沙漠开始生机盎然的时候，很多奇怪的植物都长了出来」——绿色被直接接成了疯狂。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“难道你仍然不知道通往真理的道路只向那些没有目的的人开放？”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我们把自己绑定到目的上，却没有注意到，实际上，目的就是局限，是的，它是对生命的排斥。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你写这本书不是为了满足自己的虚荣心，而是为了和我说话？”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你越聪明，你的单纯就越愚蠢。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“枯坐二十五夜换来的不是答案，是把「目的」这个器官摘掉；目的摘掉之后，蔑视也无处附着。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「目的即局限」是全章最有价值的一句，但荣格把它推到了不成立的极端：如果任何目的都是对生命的排斥，那么他写《红书》这部意图明确的手稿本身也是排斥。他没有回应这个自指。另外，灵魂的三次驳斥全靠反问完成，反驳力来自语气而非论证——「你是在贪图享乐，你的耐心呢？」这种句式说服的是情绪，不是理智。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>上班的人把周末排满亲子班、健身课、充电课，周一比周五更累，因为每件事都带着目的。带娃的人陪孩子时想着「这能培养什么能力」，陪伴当场变成任务。可以自己验：挑一件平时必做的事，这次不设任何目标地做一遍，看过程中的紧绷是否下降。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·5</span>第一卷·第五章 未来的地狱之旅<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>全篇最长、意象最密的一章。他顺着灰色岩壁滑入巨大深度，蹚过漫到脚踝的黑水，依次看见血淋淋的人头、受伤者与被杀者、巨大的黑色圣甲虫、深水中闪耀的红太阳、遮住阳光的成千上万条蛇，最后是一道持续良久的血河。中段立起判据：疯狂即神圣，而真正的分界是平衡——只做到一头、未做到另一头的人才叫病态。后半把幻象译成 1914 年的时局：深度中的来者就是谋杀，被杀的是白肤金发碧眼的英雄；人们杀掉兄弟，是因为还不敢把刀刺向自己。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉它，全书就没有「深度确实是可怕的」这一实证，前面所有关于献祭、无意义的说法都停留在口头。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第四章及「沙漠中的经历」组成「上行—下行」的对偶：沙漠是干燥、无水、向上的曝晒，地狱是黑水、泥污、向下的沉陷，两章合起来把灵魂世界的温度两极占满。与第六章构成「看见—承受」的递进：本章他还能问「我看到的是什么」，第六章已经在吼「走向地狱就意味着变成地狱」，观察者变成了当事人。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“我看到黑暗的溪流上有一颗血淋淋的人头”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“如果你进入灵魂的世界，你就像一个疯子，你的医生会把你视为病人。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“时代精神不神圣深度精神也不神圣，只有平衡是神圣的。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我自己既是一个谋杀者又是一个被谋杀的人，是祭品也是献祭者。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“地狱之旅的价值不在意象有多恐怖，而在它逼出一条判据：神圣与病态的分界不是内容，是两头能不能都做。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「平衡即神圣」是全书的承重墙，也是最经不起压的部分：它由谁、在何时判定？正处在失衡中的人恰恰最没有判断力，而已经平衡的人又不需要这条标准。另外，荣格用 1914 年的欧战去「证实」自己的幻象，这一步是事后附会——洪水梦确实早于战争，但把战争读成自己梦境的兑现，是把时间上的先后升格为因果。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>在群里不敢说话的人一旦开口，往往冲到另一个极端，发言特别冲，那是长期压抑后的反弹，不是平衡。上班的人要么彻底躺平、要么通宵冲刺，两态之间缺的正是他说的「两头都做」。可以自己验：连续两周记录自己在哪件事上走了极端。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·6</span>第一卷·第六章 精神的分裂<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第四夜，他在沙漠的路上被无形的生物改变外形，与灵魂展开一场越吵越崩的对话。灵魂说「我的光明不在这个世界上」，他怒吼「我不知道有其他的世界」；灵魂说「没有言语」，他反问那是不是可以肆意沉浸在荒谬中。对话最终崩成一句模棱两可的「那是内战」。幻象随之落到具体动作：他向王子射出毒箭，自己既是谋杀者又是被谋杀的人。结尾两句收束全章：一切过于古老的事物都变得邪恶，神逾越巅峰之后就会生病。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉它，前面五章所说的「分裂」就只是描述，没有一次人格层面真实崩解的现场记录，全书失去「精神到底怎样裂开」的样本。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第五章构成「看见—承受」的递进：第五章还在说「我看到的是什么」，本章已经化为「走向地狱就意味着变成地狱」。与第七章「谋杀英雄」构成「内战—执行」的对偶：本章只把谋杀说成自己身上的内战，并且明确说「我不知道这意味着什么」，第七章立刻让它落到具体对象西格弗雷德身上，并给出谋杀之后的大雨与花园。与第四章又形成扣环：两章都以沙漠之路为场景，第四章还在问「我要在这里做什么」，本章已经在这条路上被变形。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“走向地狱就意味着变成地狱。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我的光明不在这个世界上。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你的言语是对自己撒谎，而不是对我。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“当一个神不再是生命之道，他必须悄然倒下。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“分裂不是思想的冲突，是人与自己的对话失去了共同世界；当灵魂否认言语，剩下的就只有内战。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>全章最诚实的一句是「你的言语是对自己撒谎，而不是对我」——它等于承认整场对话可能只是自言自语的两半。荣格没有顺着这条线怀疑下去，反而继续把灵魂当作独立存在来追问，这是全书最明显的一次自相矛盾，却也是它最动人的地方：他把一个很可能是自我分裂的心理事件，坚持当作与另一个存在的相遇来记录。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>上班的人在会议室点头称是、回到工位骂自己没骨气，那两半都是自己。带娃的人白天温柔耐心、夜里对孩子发火，那股火其实是冲自己发的。可以自己验：下次内心吵得最凶的时候，把两边的话各写一行，会发现两边用的词都是自己平时说的。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·7</span>第一卷·第七章 谋杀英雄<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第二夜的幻象：荣格与一位年轻人在黎明的高山设伏，向乘着人骨战车疾驰而下的西格弗雷德开火，英雄应声倒地，他在倾盆大雨中逃亡，自认为必须自杀才能解开谋杀之谜。深度精神用"最高的真理只有一个，同时又很荒谬"一句话解除了他的紧张，第二个幻象随即涌现：彩光笼罩的花园，宣告他已"通过犯罪获得新生"。随后是层层释义——神会衰老，所以需要被战胜以获得重生；白昼与黑夜互需，意义与荒谬互需；西格弗雷德是德意志的英雄原型，也是荣格自己"理想化的力量和效率"（注5），杀死他既是个人层面的废黜优势功能，也是对民族命运的预演。章末以基督死后下阴间、化为反基督的意象，预告新神的到来。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这一章，全书就只剩对旧价值的口头批评，而没有那声亲手扣动的扳机——新神诞生所需的一切后续都悬空了。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>第六章结尾已预演"一个无名之辈突然出现，举起武器朝王子射去"，第七章正是这颗子弹的正式击发，两章是预言与兑现的扣环。它与第八章"在第二天夜里"直接对偶，同一夜的前后两幕：一杀一孕，死亡与孕育共用同一个时间框架。本章埋下的"基督进入阴间、披上反基督外衣"的意象，要等到第十一章"变成基督"才被回收。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“最高的真理只有一个，同时又很荒谬。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我们的神希望被战胜，因为他们需要重生。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“就像白昼需要黑夜一样，黑夜也需要白昼，因此意义需要荒谬，荒谬也需要意义。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“这就是为什么我宁愿杀掉自己，也不愿意将西格弗雷德杀掉。但是我想和一位新的神一起生活下去。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“杀死的不是别人，正是自己身上那个供人模仿的完美版本。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>荣格把这一枪同时读成个人心理事件（废黜优势功能）与德意志民族的命运预兆，两种读法之间没有给出任何逻辑桥梁，全凭深度精神背书——这样的解释几乎不可证伪。更值得警惕的是"我们的神希望被战胜"：它把弑神说成神的内在需要，等于替谋杀者预先开脱。若任何杀戮都能被论证为"旧神要求重生"，这套框架就可能沦为暴力的美学包装，而荣格对此毫无防御。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人大多在心里供着一位"人生模板"：某个同龄佼佼者、某位行业标杆，照着对方的路径规划自己的每一步。可以自行验证：把自己"最想要的生活"逐条写下来，逐条追问这是自己想要的，还是想成为的那个人想要的——通常会发现清单上有一半条目经不起第二问。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·8</span>第一卷·第八章 神的孕育<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>承接第七章的第二夜。深度精神以长篇颂词宣告"即将到来之人"已被接收，随后荣格展开本章的正面论证：新神是相对的、歧义的，绝不能在绝对的美、善与神性中找到，因为生命本身既美好又可憎。由此牵出一连串意象：基督死后必须下阴间变成反基督；身上的死者能够变成蛇，蛇将消灭今天的王子；不要做英雄，要做聪明人；地狱的著名定义——当深度带着一切来到面前、而人还不拥有能力之时；最后落到核心命题：英雄不死，神不可能出生，神的父亲是欲望、母亲是原我，人要在孤独中腾空自己，让神进来。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>没有它，第七章的谋杀只剩一片废墟——正是它把废墟定义为子宫，给出全书神观的正面表述：一位相对的、歧义的神。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>开头"在第二天夜里"与第七章严丝合缝，两章是同一夜的连续两幕。章内"这些蛇将会消灭你们今天的王子"回指第七章的死；"只有英雄们才说自己无所畏惧，但你知道英雄身上都发生了什么"则是对第七章的直接结算。结尾"如果你陷入孤独……你的神将会把你带到他人的神那里"把门推开，为第九章与以利亚、莎乐美的遭遇备好入口条件——孤独正是这场遭遇的门票。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“我明白新神是相对的。如果神是绝对的美和善，那么他将如何包含丰富的生命？”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“没有什么比玩弄歧义容易，也没有什么比活出歧义艰难。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“在英雄没有被杀掉之前，神是不可能出生的。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你的欲望就是神的父亲，你的原我就是神的母亲，但是儿子是新神，是你的主人。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>"新神是相对的"说起来漂亮，却没有回答：相对的边界在哪里？如果一切对立面都该纳入神，那么"歧义之神"与"任意的神"如何区分？荣格区分了玩弄歧义与活出歧义，判断标准却始终悬空。另外，他一面警告"没有什么比做英雄更危险"，一面以深度精神的传话人身份写下整卷启示录——他似乎没有意识到，这个位置本身就在制造一个新的英雄、新的模仿对象。第九章他不得不写下"你无法模仿我"，可见后来他自己也嗅到了这层风险。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人被训练成只承认生活"美善"的一半：正能量、体面、进步，无聊与怨恨一律被视为应当清除的故障。可以自行验证：连续一周如实记下每天出现的无聊、嫉妒和愤怒，不修饰不解释——通常会发现这些被驱逐的内容并未消失，而是换个时间以更强的浓度回来。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·9</span>第一卷·第九章 神秘·遭遇<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第一夜（"有一天夜里"）：荣格在黑暗深处遇见老人以利亚与盲眼少女莎乐美，脚边盘着黑蛇。他按最坏的传说揣度莎乐美——杀死施洗约翰的女人——却震惊于先知与"血腥的恐惧"竟然合一。他夺路而逃，回头自问：英雄是被谁谋杀的？莎乐美爱我吗？我爱她吗？释义部分随之展开：神秘戏剧的场景是内心的火山口；以利亚是先觉（有远见而无能量），莎乐美是快乐（有能量而盲目），蛇是第三原则，代表二者在人身上被分开又相连的方式；思想家厌恶情感，是因为他自己的情感已经腐烂在暗处；章末荣格惊愕地发现自己在花园里爱上了莎乐美。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>没有它，第八章的"歧义之神"始终是神学玄谈——是它把歧义拆成人人可对照的两种心理功能及其失衡，全书的形上命题由此获得心理学地基。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>从本章起，第九、十、十一章构成连续三夜的神秘剧：遭遇（被谜团击中）—引导（被以利亚授课）—终解（被转化），是一套完整启蒙仪式的三幕。以利亚那句"我们都是真实的，不是象征"反转了此前各章荣格以"象征"驯化幻象的惯性。黑蛇则承接第七章"蛇消灭王子"与第五章太阳与黑蛇之战，把蛇从背景意象升为主角。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“我所看到的这部戏剧就是自己的戏剧，而非你的。这是我的秘密，不是你的。你无法模仿我。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我们都是真实的，不是象征。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你只能够交替处在先觉和快乐中，同时遵守优势法则，也就是说，当你处在其中一个时，就要不忠于另一个。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“愿思维的人接纳自己的快乐，情感的人接纳自己的思想，这样才能带领人走到道路上。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>必须承认荣格的诚实：他明说整套先觉/快乐的图式是"对我而言"的视角产物——思维型的人画出的"快乐"必然带着恐惧与污名。这份自反性是本章的优点，也是它的软肋：由立场最不中立的人来定义中立，结果更像格言而非可检验的操作。他没有处理的问题是：交替的节律由什么决定？如果只能靠"优势法则"默会地把玩，普通人的实践依据仍然空缺。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在职场里大致分两派：靠逻辑与计划说话的人鄙夷"感情用事"，靠直觉与关系说话的人嘲笑"想太多"。可自行验证：留意身边那位最讲逻辑的人如何评价自己的情绪——十有八九是"没什么好说的"，而这些被略过的不起眼情绪，往往正是他失眠或暴饮暴食的出处。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·10</span>第一卷·第十章 引导<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第二夜：荣格重回以利亚的房前，坦承是"昨天留在你家里的渴望"把他带来。水晶中涌出圣母抱圣童、持钥匙的彼得、火圈中的佛陀、多臂女神等意象；以利亚向他传授本章核心：不知就是有罪，人躲不过自己的律法；思想不是"我"，而是身外之物，像世界上的树木和动物。莎乐美拥住他，宣称二人是兄妹、母亲是玛利亚，荣格再度陷入"你们是象征"的抗拒。释义部分层层推进：承认渴望才能活出自己的生命；英雄必须被谋杀，因为所有人都在像猴子一样模仿他；先觉与快乐结合会涌现"第三者"，即圣子、终极意义；思想是自然事件，人无法占有它。最后一头强壮的狮子从他面前跑过。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>没有它，前九章只是一串待解读的幻象；"把思想当作身外之物"与"承认自己的渴望"这两个操作，是神秘经验通向后来分析心理学的关键一桥。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>第九章是被动遭遇，本章标题"引导"表明以利亚由谜团变为导师，三幕剧从第一幕进入第二幕。第九章留下的钩子（莎乐美"你会爱上我的"）在此兑现为拥抱与兄妹相认；章末"一头强壮的狮子从我面前跑过"预告第十一章"我是狮子的面孔"；水晶中"庄严的圣母抱着圣童"则是第十一章圣童双手握双蛇的预演。以利亚那句"你的思想不过就像是你身外世界的树木和动物"，直接给出了后来所谓"心灵的客观性"的雏形。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“但是如果你不活出自己的生命，谁又能够活出你的生命？”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“英雄的意象便是利用模仿的贪欲为所有年龄阶段的人设立的，因此英雄必须被谋杀掉，因为我们所有人都在像猴子一样模仿他。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“如果你想创造自己，那么你就不能从最美好和最崇高的地方开始，而是要从最低劣和最底层的地方开始。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“思想是自然的事件，你无法占有它们，也不能彻底理解它们的意义。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>"思想是身外之物"是全书最可操作的洞见，但它与本章另一主题——承认自己的渴望——之间存在未调和的张力：如果思想像森林里的动物一样不属于我，凭什么"渴望"又算我的、还要为它负责？荣格事实上把内在内容分成两类，一类要去认同、一类要认同，却没有给出统一的归属标准。这个裂缝后来被"原我"概念草草覆盖，本章内部它只是被并列，而非被解决。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人最容易把"我的观点"当成"我本人"：被反驳一条意见，反应如同被人攻击，非驳倒对方不可。可自行验证：把自己最强烈的一个观点写成一段文字放上几天，再像点评陌生人的文章那样逐条挑它的毛病——多数人会发现自己根本下不去手，而这个下不去手的瞬间，正是需要练习的"身外之物"距离。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷一·11</span>第一卷·第十一章 终解<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第三夜，全卷最长的一章，论证可分四步。第一，荒原石壁上黑白双蛇恶战，黑蛇占优而后退，且头与上半身变白——对立面相互渗透，胜负并不单向。第二，山顶太阳神庙，以利亚缩小为侏儒迷魅，引他去找智慧之泉；空间随即倒转，山顶与阴间火山口竟是同一处，"这里和那里像是同一个地方"。第三，水晶幻象：农夫的长筒靴、踏平城市的巨足、受难的基督、右手白蛇左手黑蛇的圣童；受伤的黑蛇缠住荣格，他张开双臂、拥有狮子的面孔，莎乐美高呼"我看到光了！"——盲眼的快乐获得视力。第四，释义收束：外部战争是内部冲突的外化；人无法被英雄拯救，而要变成基督，完成自我牺牲的神秘；爱有视力，快乐失明；两条原则在新神（孩子）手中合一，神在人身上诞生。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>没有它，第一卷只是一场未完成的私人仪式——是它把个人幻象与欧洲战争接通，宣布神不是来拯救人的英雄，而是在个体身上诞生的新的结合，全卷论点在此合龙。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>本章至少执行三重回收。其一，双蛇之战是第五章太阳与黑蛇之战的重演，正文自己说明"我从这场战斗中看到一个重复出现的幻象"。其二，侏儒迷魅回收第七章的西格弗雷德——按注释，迷魅正是瓦格纳《指环》中把西格弗雷德抚养大的侏儒，英雄神话在此从"被杀"完成到"被消化"。其三，"在英雄死后，我们生活的驱力没有了模仿的对象"直接结算第七章谋杀的后果。三幕剧本身在此完成遭遇—引导—终解的仪式，而"人无法被英雄拯救，而是变成基督"回应第七章"基督进入阴间，变成地狱"，把第一卷首尾扣死。章末"神秘通过意象向我显示我以后应该过什么样的生活"则把收尾变成对第二卷的交接。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“如果你被激怒去对抗自己的兄弟，你要想到这是你被激怒去对抗自己身上的兄弟”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“深度属于这个神秘，即人无法被英雄拯救，而是变成基督”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我看到一位新神，还是一个孩子的他已经将全部的魔鬼收入自己的手中。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“神秘通过意象向我显示我以后应该过什么样的生活，我没有要神秘向我显示任何恩赐，因为我还要把它们都赢回来。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>本章最惊人之处，是把一战解释为集体内在冲突的外化、人类被迫走的自我牺牲之路，甚至说"你想要战争，这很好"。作为心理学命题它有解释力，道德风险却很清楚：把屠杀解释成"必经的神秘"，等于在事后赋予灾难以意义，从而在无形中豁免了决策者的责任——荣格完全没有处理这一步。此外，"内部冲突是外部灾难的来源"逻辑上不可证伪：战争爆发可证内在分裂，战争不爆发也可解释为分裂潜伏。作为箴言它有力，作为论断它越过了心理学能够担保的边界。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人随时能观察到"外部冲突的内在投影"：看到立场相反的内容，第一反应不是理解而是拉黑、举报或写长文驳斥，仿佛对面那个人就是自己身上不被允许的那一半。可自行验证：写下最反感的一类人身上最刺眼的三个特质，再诚实地核对——多数人会发现，自己至少在一个特质上只是程度较轻的同款。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·序</span>第二卷·序言 犯错者的意象<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>此章在本版中存留的文字只有两段《耶利米书》题词与三条编者注，正文以手稿图版呈现。两段题词指向同一件事：有人冒神之名说话，所讲的异象并非出于神，而是"出于自己的心思"。编者注进一步把这条古代判词接到荣格自己的问题上：基督向世界呈现无意识内容的形式已被宣布对所有人有效，于是个体的幻想失去价值，甚至被视为异端。把《耶利米书》放在第二卷门口，等于先给自己判一个假先知的罪名，再开始往下写。手稿原题作"彷徨中的冒险"，点明这一卷的性质不是教义，而是没有保证的游荡。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>没有这一章，全书就少了一个自我定位：荣格是在明知自己可能就是"犯错者"的前提下，仍坚持以个体意象为唯一权威。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第一卷序言《来者的路》成对偶：第一卷问路从何来，第二卷承认走这条路的人可能是骗子。一个迎接来者，一个引来审判，两卷序言合成"路"与"错"的双入口。它同时是第三卷《审视》的伏线——先承认会犯错，之后才有被审视的资格。向下则统辖第二卷全部章节。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“他们使你们存有虚幻的希望；他们所讲的异象是出于自己的心思，不是出于耶和华的口。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“做了梦的先知，让他把梦述说出来；但得了我话语的先知，该忠实地传讲我的话。禾秆怎能和麦子相比呢？”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“个体的所有幻想已经变得没有价值，甚至被视为异端邪说……先知耶利米的告诫也是如此。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“题词的锋刃不是指向不信者，而是指向“用自己的异象冒充普遍启示”的人，荣格把自己列入其中。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这里的自我指控并不彻底。荣格引用耶利米，却把判词转成了勋章：既然个体幻想必然被当成异端，那么被当成异端反而成了真实性的证据。这是一个方便的循环，它让"犯错"从需要检验的风险变成不可证伪的身份。真正的问题——如何区分幻觉与启示——被题词提出，却未被回答，全书此后的每一章都在补这个洞。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人常有这样的时刻：凭直觉做了一个重大判断，事后证明错了。把"这个判断可能出错"写在决定之上，比事后辩解更接近诚实——承认会犯错不等于放弃判断，只是给判断留出被推翻的余地。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·1</span>第二卷·第一章 红人<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>荣格身穿绿外套站在城堡最高塔楼等待，一个全身赤红的骑马者循等待而来，两人就基督教、严肃、快乐反复辩难。荣格先把他当魔鬼、当异教徒，红人则讥其迷信、太德国化、只会从字面理解经典。辩至深处，红人摘下面具自陈"我就是快乐"。随后是一大段反思：魔鬼即快乐，快乐即魔鬼；严肃对待魔鬼不是倒向它，而是与它达成理解，从而接受自己的另一种立场。双方各让一步——魔鬼接受部分严肃，荣格接受部分快乐——绿外套上长出叶子。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就少了"快乐"这一半：深度精神若只剩严肃与受难，个体化就退化成苦行，"生命要完整"失去支点。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第一卷第六章《精神的分裂》呼应：那里分裂被宣告，这里分裂被命名为一个可以对话的具体人格。它也是第一卷第九章《神秘·遭遇》的余波——神秘中被蛇缠住、流血的激情，在此降格为一场可以谈判的对话。向后直接供料给第二章：原文明言"你从魔鬼那里获得的东西，也就是快乐，带领你进行冒险"，构成"获得快乐—被快乐带去冒险"的递进，第一章是燃料，第二章是行程。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“你认为我是魔鬼。不要急着下判断。哪怕你不知道我是谁，也可以和我交谈。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“兄弟，你没有认出我？我就是快乐！”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“严肃对待魔鬼并不意味着倒向他那一侧，也不是变成魔鬼，更确切地说是达成一种理解。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“接受快乐永远是一件危险的事情，但快乐能将我们带回生命和它令人失望之处，从而我们的生命才变得完整。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>论证有一处滑移：从"我的快乐是我的魔鬼"跳到"快乐就是魔鬼"，是个别经验被普遍化。荣格自己也迟疑（"我为此彷徨一周，担心自己思考的还不够"），却未解决，只以"火是魔鬼的元素"这类比喻收场，比喻在此替代了论证。更可疑的是隐含预设：凡是令人忘我的东西都必须被严肃赎回，否则即为邪恶。这个清教徒式的前提从未被论证，却被用来判定一切快乐。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在长期加班后突然想买一件无用之物、想请一天假，第一反应常是"不该这样"。把这种冲动当作需要谈判的对象，而不是必须压制的敌人，往往比一味自律更可持续——允许快乐存在，同时给它一个不伤人的位置。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·2</span>第二卷·第二章 森林中的城堡<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第二个夜晚，荣格在黑暗森林中迷路，借宿于沼泽中央一座古堡，主人是整夜埋在书里的老学者。夜里一位面容苍白的少女进入房间，自称是被父亲出于爱而囚禁的女儿，要求荣格承认她是真实的人。荣格先讥之为小说陈词滥调，随即认出这正是神秘中的莎乐美，承认她的瞬间即是解救，她消失处留下一堆玫瑰花。后半章的反思落在两处：一是阿尼玛——最具男性特质的男人拥有的是女性特质的灵魂，接受它才有完整；二是为"陈词滥调"翻案——千年口传的传说里藏着人类终极真理。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就少了"接受自己身上被鄙视的那一半"的具体操作案例，"结合对立"会停在抽象命题上。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第一卷第九章《神秘·遭遇》首尾扣环：原文明言"我在那里遇到的莎乐美和以利亚变成生活中的老学者和他面容苍白且被囚禁起来的女儿"，神秘人物被降格为通俗小说人物，这是第一卷高潮意象遭第二卷"翻译"的关键一步。向前承接第一章，红人给的快乐把人推入冒险；向后递给第三章，此番冒险尝到的"生命的呆板和平庸"正是下一章要沉到底的"卑微"。章末"通往未来的路带领你进入地狱"又扣回第一卷第五章《未来的地狱之旅》。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“你要知道：我被陈词滥调施了魔法。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“因为童话就是小说的大母神，比你这个时代最热门的小说都具有普遍效力。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“最具有男人特质的男人拥有的是一个具有女性特质的灵魂。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“灵魂需要的是你的愚蠢，而非你的智慧。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>对陈词滥调的翻案很有力，却顺手取消了判断力的位置：如果陈腐形式就是真理的容器，那么任何滥情套话都可以自称"千年口传的终极真理"，不再有办法区分。荣格在同一章里既嘲讽老学者的学究气，又主张平凡即神圣，两者的界限没有被划定。此外，少女获救的条件是"被承认为真实"，这实际上把无意识内容的有效性交给了意识的认可，与第一卷"臣服于无意识"的立场存在未被察觉的张力。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人对自己身上"不够硬气"的部分——爱哭、念旧、怕冲突——常感到羞耻，并习惯藏起来。试着在安全的场合把它说出来，往往会发现身边人并不因此轻视，反而更愿意接近。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·3</span>第二卷·第三章 卑微的人<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第三个夜晚，荣格在冰雪覆盖的乡野与一个独眼、满脸伤疤、衣衫破烂的失业锁匠同行。此人牢骚满腹，把电影杂技当作精神刺激，把谋杀国王当作自由的消息，夜里在客栈咳血而死，血沾在荣格手上。后半章反思是主干：贫穷的同伴把荣格带到深度，没有深度就没有高度；人必须在最低处活出平凡的生命，才能意识到自己的原我，而高度只负责改变。结尾转向月亮——灵魂的栖息地在月亮之上，故灵魂走向死亡；荣格选择在外在死亡、在内部生活下去。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就少了"高度必须以深度为代价"这条法则，第二卷此后的一切下沉（隐士、逝去、死亡）都失去衡量标准。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第一卷第七章《谋杀英雄》对偶：英雄已被谋杀，留下的不是新人，而是这个病肺、失业、崇拜暴力的流浪汉，即英雄死后人类实际的模样。它与第二章构成一组反比——第二章把崇高的莎乐美降为小说少女，第三章把卑微的流浪汉升为通往深度的向导，一降一升共同完成价值倒转。向前，它是第一章快乐所驱动的冒险抵达的底部；向后，流浪汉之死是第六章《死亡》的第一次预演，而"月亮—灵魂—死亡"的线索直接铺向第四、五章的沙漠与太阳。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“他把我带到深度中，我能在这里看到高度。没有深度，我就不会有高度。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你不再是一个站在高山上的人，而是鱼群中的一条鱼，青蛙中的一只青蛙。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“是我们遭受的痛苦，而不是我们喜欢的事物，让我们解开这些谜。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我走进内在的死亡，发现外在的死亡比内在的死亡好。因此，我选择在外部死亡，在内部生活下去。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最刺眼的是叙述姿态：同情与轻蔑并行。一边说"我需要他"，一边把对方的电影趣味、政治幻想逐条记录为平庸的证据。若"在低谷时应与周围人没有区别"是真命题，那么这种记录的姿态本身就违背了它。其次，"集体死亡"与"个体死亡"的区分缺乏判据：凭什么说沉入集体就是存在、走向单一就是改变？这组对立更像几何对称的需要，而非从经验中得出的结论。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在医院陪护时，会遇到大量被主流叙事视为"没内容"的人。试着听一个人把话说完，往往能听到自己生活里缺失的那一面。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·4</span>第二卷·第四章 隐士·逝去I（第1日）<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第四个夜晚，荣格循沙上足迹走入沙漠深处，在画着红十字标记的土坯茅屋中见到一位隐士，膝上放着希腊文福音书。两人辩的是如何读书：隐士说文字的序列不止一重含义，重读时精神已变，便有新东西。他自述曾是亚历山大里亚的雄辩家，被自己织成的文字之网困住，犯过的致命错误是把逻各斯当作无生机的概念；而约翰的贡献恰是把逻各斯的含义带下来给人。后半章以散文诗写隐士与太阳、沙漠、花园，并论"文字成为神"的功能：文字是抵御无限的保护性魔法。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就少了意义如何从固定的神圣文本转移到活着的人这一关键转换，个体化的认识论基础不成立。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第一卷第四章《沙漠》扣环：第一卷的沙漠是荣格自己被剥空的贫瘠，第二卷的沙漠被外化为一个可对话的历史人物（公元3世纪亚历山大里亚的阿谟尼乌斯）。它在第三章的"最低处"之后上升为"最干燥处"。与第五章构成严格的两日对偶：第一日听讲、入住岩石墓穴、睡去；第二日醒来、看见圣甲虫与赫利俄斯、被斥为撒旦并驱逐。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“文字的组合不是只有一重含义，但人们为了获得清晰明确的语言，倾向于仅赋予文字的序列一重含义。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“裴洛把逻各斯视为毫无生机的概念，夺去生命力，甚至是神圣的生命。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“文字是一种保护性的魔法，让你可以对抗无限这个魔鬼，因为无限会将你的灵魂撕碎并抛洒在风中。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“不是从文字下降到人，而是从文字上升到人：这就是黑暗的理解。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>多重含义说有一个未处理的后果：如果文本的含义随读它的人的精神变化而无限增殖，那么"误读"这个概念就不成立了，也就无法解释隐士自己为何称早年的文字崇拜是"致命错误"。错误预设了标准，而标准正是多重含义说所取消的东西。此外，关于《约翰福音》与神圣人物的讨论，荣格采取的是纯粹的象征—心理学读法，把道成肉身读作"含义下降到人"；这作为心理学诠释自洽，却把文本的历史与信仰维度整体悬置。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人重读一本少年时读过的书，常会发现看到的完全是另一本书。文本一字未变，变的是读它的人——这说明理解力的一部分来自经历。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·5</span>第二卷·第五章 逝去Ⅱ（第2日）<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第二日清晨，荣格在墓穴中醒来，梦见四匹白马拉着赫利俄斯的太阳车螺旋上升。他想晨祷而不得其词，只对着圣甲虫、岩石与大地喃喃祝祷，感到整个沙漠充满生命，石头在对他说话。中午再访隐士，隐士讲述自己如何被一位老人从埃及诸神一步步引向基督，并主张各宗教本质相同、后来的形式都是早期含义的呈现，自己仍在福音书中寻找"还未出现的含义"。当荣格建议他离人类更近一些，隐士突然认出他是撒旦，怒而驱逐，荣格退回"遥远的20世纪"。章末反思判定：隐士逃入沙漠寻找自己，却只在事物中寻找含义，而多重含义只能在自己身上找到。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就少了"含义的来源是人而非文本"这一结论，此前关于文字的全部讨论都会停在隐士的立场上。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第四章构成同场景的两日对偶：第一日由隐士主讲、荣格受教并以墓穴安眠收尾，第二日荣格反过来质疑、被斥为撒旦并被驱逐。它承接第三章"在外部死亡、在内部生活"的选择——墓穴中睡过千年、梦中见日出，正是这一选择的执行。向前扣第一卷第四章《沙漠》与第九章《神秘·遭遇》的太阳意象，向后直接交棒第六章《死亡》："逝去"是死亡的前厅。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“他愤怒地跳起来，朝我冲了过来。但我身处遥远的20世纪。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“严格来讲，宗教的本质是相同的，每一种后来宗教的形式都是早期含义的呈现。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你将会变得越来越空洞，因为极大的满足和极大的空洞是一样的。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“因为含义的多重性不是同时刻赋予的，而是含义的承前启后。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>荣格对隐士的审判来得太快。隐士刚说完自己在寻找"还未出现的含义"，转头就被判定为把意义投射到事物上、逃避自己——但这两件事可以同时为真：在事物中寻找，本来就是某些人找到自己的方式。荣格用一个已经得出的结论去裁掉一个仍在过程里的人，论证上占了便宜。章末"我吃掉地球，吞下太阳，变成一棵绿树"的收束十分突兀，更像意象的强行和解，而非讨论自然得出的结果。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在一个岗位待久了，常抱怨环境单调。在考虑换地方之前先问一句"过去一年自己变了多少"，往往会发现环境的贫乏与自身的停滞是同一件事的两面。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·6</span>第二卷·第六章 死亡<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>叙述者向北走到世界尽头的灰色低地，在最后的沙丘上遇见一个"心脏从来没有跳动过"的黑暗之人，与之并肩观看庞大的死者队伍顺洪流回归过去、被撕成黑色碎片并消融于乌云；随后黑色大海裂开，血与火交织的红光从中升起，一个新的太阳滚过脚下又坠入深处。幻象结束后，文本把这一幕接到1914年战争爆发上，说时代珍视的各种善德正在逐条翻转为邪恶。下半章转入两个论断：魔鬼不在身外，它就在人的美德背后，是美德不可或缺的内容；生与死必须在同一个存在中保持平衡。章末落到最低贱的画面——不是英雄式战死，而是在粪堆中、在母鸡的咯咯声里苟死，经历三夜出生恐惧之后，丛林般的笑声响起，生命又开始躁动。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就失去"黑暗与死亡必须被接受、不能被善恶判断驱逐出去"这条起点性前提，后面第八章神之致病与第十一章神之重生都没有立足之处。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>本章开出一个"以夜计日"的节律：结尾写"出生的恐惧连续袭击我三个晚上，在第三天夜里"，而第七、八、九、十一章都以"第三天夜里"或明确的夜次推进。与第五章是视角倒转——第五章是自外向内的审视，本章是自高处向最低处的下降，先看血海再看新太阳。它同时兑现第一卷第五章"未来的地狱之旅"那则旧幻象，却给它加上具体日期（1914年1月2日），把私人幻象钉进历史时间。向后看，它铺开第七章：正因为叙述者已经降到动物性的出生层面，第七章才可能从一堆理想废墟上长出一棵绿树——"变绿"是这次死亡的同一件事的另一面，而不是另一次开始。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“「我知道，你是冰和终结，你是石头冰冷的沉默，山上最高处的雪，你是外在空间中最冷的冰霜。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「我看到时代的美德所变成的邪恶，你的温和如何变成冷酷，你的善良变成残酷，你的爱变成恨，你的理解力变成疯狂。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「若要生命完整，需与死亡达成平衡。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「死亡开始成熟，而人们需要死亡才能够收获果实。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“魔鬼不是道德的敌人，而是道德结构内部的一半；拒绝它的人会被它以扭曲的形式接管。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“结尾的降格是有意为之：真正的重新开始不是壮烈的，而是难堪、肮脏、可笑的。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最薄弱的一步，是把私人幻象与1914年战争直接对齐。幻象在前、战争在后时它是预言；两者同期或实际难分先后时，它更像回溯性解释。文本没有处理这个时序问题，于是"必须理解黑暗"的迫切性在论证上是从外部历史事件借来的，而不是从心理材料中推出的。第二处是论证层面的滑动：前半段"界限使你存在"是心理学的、原则上可检验的；后半段"新太阳从血海中升起"是宇宙论的、不可检验的，两者被并置而未加区分。第三，"美德与邪恶是一对兄弟"只有断言，没有判据——怎样区分接纳黑暗与向令人厌恶的东西投降？这一模糊在后文反复出现，始终没被清理。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人在一段时间里同时保留所有旧角色——旧的工作身份、早已枯竭的社交义务、明明失效却不愿承认的自我评价——日程会被填满到没有任何空隙，新东西挤不进来。此时主动终止其中一项，比如退出一个长期空转的群组、承认某段关系已经结束，短期会有明显的失落和空荡，但腾出的时间与注意力通常很快被更有生命力的事接管。这个过程可以自行验证：列出十件长期占用时间却不产生价值的事，选一件彻底终止，记录随后两周的精力分布，多数人会观察到波动之后出现的富余。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·7</span>第二卷·第七章 早期神庙的遗迹<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>幻象始于一片开满花的草原，叙述者遇到结伴而行的两个人：发胖变老的修道士阿谟尼乌斯和头发花白、衣衫褪色的红骑士，二人对他惊恐地划十字。随后是一场互诉式的审判：阿谟尼乌斯承认，正是当初那句"要离人近一些才能明白更高的秘密"使他偏离——他建起修道院，把《圣经》抛在脑后，经商、酗酒、追女人；红人也承认，正是关于舞蹈的说法使他变得严肃，最后他在祭坛前起舞，全城跟着起舞，只能逃进荒野。两人彼此依附却从不友好，各自滑进自身理想的反面。之后叙述者发现自己全身长满绿叶，成为一棵树：不再需要世界和精神，只是变绿、开花、枯萎。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就少了"任何被当真的理想都会滑向自己的对立面、而且无法避免"这一环，后面 endoscopic 对神的处理也就失去了前提。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第六章构成严格的降—升对偶：第六章把人降到粪堆，第七章从废墟上长出绿树。本章开头那段感官狂欢（酒醉的笑声、女人的笑声、跺脚声、.'est格尔 Edited）正是对第六章死亡冰冷的反向接续，两段互为倒转。往前看，它接回第一卷沙漠中那位隐士阿谟尼乌斯，把他从"独居的智慧者"改写成"被一句话推倒的人"，是对第一卷的一次清算。往后看，本章把两个旧的同行者清退出场，为第八章那个从未出现过的异教巨人吉尔伽美什腾出位置，人物谱系是一次换血而非延续；结尾叙述者独自向东方游荡，道路直接交给第八章开头那座挡路的荒山。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“「走开，撒旦！」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「那又怎样？即使是魔鬼，也是必需的，否则就无法获得人们的尊重。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「相信自己真的活在理想中或活出理想的人，会受到宏大的幻觉之苦，表现的就像一个精神病人一样。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「理想也是一种工具，它是人可以放下任何时间在黑暗的道路上举起的火把。但在白天举着火把东奔西跑的人都是傻瓜。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“两个人讲的是同一件事：一句听上去正确的话，落到另一个人身上会长出具象后果。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“叙述者变成树，意味着放弃“应该成为什么”，接下来只能面对恰好出现的东西。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>本章以喜剧处理严重问题，但对称性太整齐反而削弱说服力：两个人被安排成完全相同的结构——被一句话诱发、偏离本行、无可挽回地滑入反面。这更像修辞安排，而不是两段各自独立的心理过程。更值得质疑的是结论：从理想会滑向反面，推论出不该活在任何一种渴望里，这一步是跳跃的。作为一种暂时退守自有价值；当作普遍结论，等于用一种病理换来另一种病理。叙述者自己也承认问题在于执着于理想本身——这种彻底性在叙述中又被美化了。还有一层未处理的责任归属：把自己堕落的原因完全记在别人的一句话上，是把选择外部化了。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人久信"只要足够拼命就会被看见"，于是常年加班、承揽额外工作；几年后发现升迁并未发生，身体先垮了，这时信念通常不是被修正，而是被整条翻转为"一切努力都无意义"，随即彻底躺平——这是信念滑向对立面，不是信念消失。反向也成立。可以自行验证：写下三条长期坚持且从未口头动摇过的信念，看它们在近年是否都以某种方式实现了自己的反面，多数人会承认至少有一条如此。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·8</span>第二卷·第八章 第一天<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>叙述者东行时被荒山挡住，穿过半边如炽铁、半边如冰的道路，在山顶遇上迎面而来的吉尔伽美什——长着牛角、手持双刃斧的巨人。巨人急切询问通往西方世界即冥界的路，想知道太阳是否沉入那片可以使它复活的不朽之地。当叙述者以现代宇宙学作答——地球是圆的、绕日运行、人永远到不了太阳——巨人先压抑愤怒与恐惧，随后认定没有可以使太阳复活的土地，把自己的斧头在石头上砸碎，向落日扔去碎片，崩溃如孩童。两人在火堆旁彻夜长谈，主题是两种真理：一种来自对外在的认知，一种来自内在。叙述者承认科学既是致人跛足的毒药，也夺走了信仰的能力。后半的解释段落把这个遭遇读作内在冲突的外化，并要求人不要僭越神的那一半。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就没有"把神当作真实的、可与之谈判的对方，而不是当作一个观念"这条操作原则；第九至十一章的拯救与孵化也就没有对象可言。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>本章直接接续第七章结尾的东行，但第七章是独自前行，本章开头却是"一座荒凉的山挡住了我的道路"——不是前进，而是被阻挡；同时从东面急匆匆迎来的，正是一个追赶落日的人。两人方向严格相反：一个要上升、要光，一个要下沉、要回到母亲的源头。这是对偶，也预告第九章的角色反转。本章的逻各斯段落回应第二卷第四章对理性的讨论（编者注已指出对应位置）。在序列上它占"第一天"，与第九章"第二天"、第十一章"第三天夜里"构成一组计数结构。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“「我是人，我永远不能到达太阳那里，永远无法不朽。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「我们的真理来自对外在的认知，你们神父的真理来自内在。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「科学已经将我们信仰的能力剥夺了。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「我们这样生活，一只脚踏在冰中，另一只脚踏在火中，其他的就听天由命！」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「外在的对立是我内在对立的意象。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“两种真理的对立不在真假，而在取向：一个朝向外在的被测定者，一个朝向内在的被经验者。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“知识使人跛足，强光使人失明——两者都不是完满，而是彼此致残的两半。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最有价值也最可疑的一步，是"外在的对立是我内在对立的意象"这个等式。作为读法它有启发；但推到极端，所有他者都被解为自身的一部分，现实中不可化约的他人就在框架里消失了，伦理也随之缩水为自我关系——把一种解释框架当成唯一解释，正是这里的问题。第二，对称性设计过于完美：失明与跛足、晦暗与清明一一对应，结构精确得像预先布置的网格，反而削弱了遭遇本身的偶然与恐怖。第三，"科学是毒药"这整套隐喻承担了过重的论证分量：科学确实改变人与世界的关系，但说它导致了巨人式的崩溃，中间缺少任何可验证的环节。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人在理性训练上很强，遇事习惯分析、核对数据、列出风险，却在亲密关系里笨拙得像不识字；另一个人直觉敏锐、善于感知气氛，该做决定时却长期犹豫、给不出理由。两人互相需要也互相致残：直接模仿对方通常无效，因为各自的优势正是各自的盲区。可以自行验证：找出两项明显擅长的能力，写出它们走向极端时的反面（例如严谨的反面是刻板、灵活的反面是失据），检查是否恰好是自己长期缺失的那一部分。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·9</span>第二卷·第九章 第二天<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>巨人整夜僵硬地躺着，叙述者在山脊上踱步权衡：向西方求助不可能，向东方求助则危险又无望。傍晚的对话确认这条路走不通之后，内部浮起一个念头——救他的办法不在外力，而在改变他的性质：如果接受他是幻想，他就会轻得像羽毛。叙述者据此把他背起，随即被风托起，越过那条半边炽热半边冰冷的痛苦之路，途中再遇第七章那两人（此时被称作"古代所谓的遗骸"），避开制造最强毒药的城市，抵达一座隐居的房屋；最后把巨人压缩成鸡蛋大小放进口袋，让他能在屋内得到治愈。解释段落把这一幕读作一次操作：幻想是另一种真实，神在人内部而不是外部，因此重量消失。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就少了最关键的一条方法：把心理内容承认为内在的真实，而不是当作客观事实或当作无物。这也是全书与单纯神秘体验记录之间的分界线。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>标题上的"第二天"与第八章"第一天"结成双联画：第八章结束于巨人被击倒，第九章开始于他整夜僵硬地躺着，叙事时间严丝合缝。角色关系由第八章的对峙翻转为负托：原来追问太阳的人变成背负者，原来强大的追问者变成被背者。第七章被逐出的两个喜剧人物在此以"遗骸"身份再度出现，是一次回收——他们不再是困扰，只是路边被惊动的旧物。就整个序列说，本章完成从击倒到救助的转折，并留下结尾那句"把蛋放在你的面前，这是神最初的形式"，直接交给第十章的咒语。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“「我并不是说你完全不是真实的，而是说你像幻想一样真实。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「你已经变得很轻，比羽毛还要轻。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「我的神得救了。他正是通过别人认为是致命的方式得到拯救，也即是把他称为一种虚构的幻想。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「把神置于我们之外会使一切都变得沉重，而神在我们之内，一切重量都会变轻。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“减负的方式不是把难题挪近，而是改变对它的归类：一旦认作内在图像，重量随之消失。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“本章的关键不是一个人背起另一个人，而是位置的转移：原以为是外在重压的，其实是尚未占为己有的部分。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>操作看似漂亮，却藏着循环：先宣称他是幻想，随后把变轻当作证据——而变轻发生在接受这一说法之后，前提是信念，结果被误当成验证。作为内心操作的描述没问题，作为论证就是循环。第二处隐患在伦理：既然承认某物为幻想可以减轻负担，那么现实的苦难是否也能靠重新归类清除？文本虽没这么说，但这个推论就在旁边游荡而未被堵住。第三，叙述者把巨人压缩成蛋塞进口袋的动作带着明显的操作性甚至得意，与"爱他敬重他"的宣称之间存在落差；这处不和谐恰恰是本章最诚实的地方——承认对方是内在图像，同时也意味着获得了对他的处置权。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人长期被一件事压着：劝长辈改变生活方式、敦促某个机构改进服务、说服伴侣接受某个观念。直接用力几乎总是失败，而且越用力越累。另一种尝试是：先承认沉重感来自自己对"必须说服对方"的认同，而不是来自对方的态度，再把目标从改变对方调整为不再指望改变对方，主观负重通常会明显减轻，而对外行为可以完全不变。可以自行验证：选一个长期消耗精力的劝说对象，暂停一切劝说两周，只记录自己的负重感受，多数人会观察到交谈质量反而上升。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·10</span>第二卷·第十章 咒语<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>这是全部材料里唯一几乎全由祈祷式短句构成、不由论述推进的一章。叙述者先摊开一组互相矛盾的角色——"我是他的母亲，一个卑微的少女""我是细心的父亲""我是牧羊人""我是神圣的动物""我是来自东方的智者""我又是蛋"；接着是一串成对的对立谓语，把神说成同时是永恒的空洞与永恒的充满、永恒的黑暗与永恒的光明、永恒的下与永恒的上。后半转为催请与呼唤，最后落到一份极其具体的祭品清单：为了给神腾出位置，献祭贵人与年轻人和老人，划开自己的皮肤，抛弃父母，抛弃所有神，践踏律法，扔掉剑，穿上女人的衣服，砸碎盔甲，把最远的目标和最近的目标交换。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就少了"孵化本身就是工作，神不是自己长出来的"这一环：神的重生需要持续投入与时间，而不是一次性的领悟。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>形式上这是对前一章散文的彻底断裂，但与第九章结尾严格衔接：那里写的是"在一个孤独的地方，用古老的方式吟唱咒语：把蛋放在你的面前，这是神最初的形式"，本章正是这段祈祷的展开。它也回收了第七章关于理想的主题——本章罗列的祭品，正是第七章所说那些曾经支撑人的最高价值的清单，现在被逐条放弃。编者注指出，这批成对的对立谓语与本书后部《审视》中阿布拉克萨斯的特质同构。在序列上它是四步中的第三步：第八章击倒、第九章负托、第十章孵化、第十一章出壳。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“「他是永恒的空洞和永恒的充满。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「一道从未发出的光。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「最终我们发现你在蛋中。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「相对于这一点，亵渎是什么？我宁愿亵渎神，这样，我至少有一个神可以亵渎，但亵渎一个口袋中的蛋是不值得的。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“一连串自我称号同时摊开，等于把一个人在不同位置上扮演过的全部身份都放在神的旁边。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“祭品清单的力量在于具体：被放弃的不是抽象的东西，而是名誉、武器、伦理边界这些最实在的东西。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这章重复的句法在效果上接近催眠，读者容易被这种庄重感说服，而不是被论证说服——形式在这里替代了论证，这是方法上的可疑之处。第二，"一个无法亵渎的神"是全章最锐利的一句，但本章自身的语调恰恰推翻了它：如果神已经小到可以放进口袋，那么连篇累牍的夸张赞美在心理上更像一种补偿——对象越是不堪一击，越需要盛大的称呼来抵销。这处张力没有被处理。第三，祭品清单把放弃统一写成了虔诚，但其中几项更像对既有伦理承诺的单方撤销；把它们一并神圣化，等于为撤退提供仪式性的正当化。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人决定认真做一件长期拖延的事——写一本书、练一门乐器、转换一种生活方式——最初的阶段几乎必然是一片空白：形式上什么都还没成形，外部毫无回报，只有每天重复、看不见进展的劳作。这时有效的做法通常不是激励自己，而是明确写下这一次放弃了什么：哪些晚间时间、哪些娱乐、哪些原先默认的社交参与，并一次次确认这些放弃换来的究竟是什么。可以自行验证：连续三十天每天投入一小时到一件尚无产出的事上，每天记一行当天实际做了什么，三十天后重读，多数人会发现痕迹本身比成果更能支撑继续。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·11</span>第二卷·第十一章 蛋的打开<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第三天夜里叙述者跪在地毯上小心打开蛋，类似烟雾的东西冒出，完全痊愈的吉尔伽美什站在面前，四肢健全、看不到受伤痕迹，并诵出一长串自我颂歌，收束于"我是谁？我完全就是太阳"。然而一阵无法直视的光过后，地毯上只剩空蛋壳，一切依旧平整真实。解释段落随即把这场上升翻到反面：神上升，人下降；创造神时把全部力量给了他，叙述者自身被抽空，陷入寒冷的物质空洞。下半章由此转入关于善与恶的长篇论述：把力量投进形态的人会被自己的善耗尽，若要松开这种形态，只能用恶来消解，因为善不能溶解善。最后指出造出的神并非存在于外部现实，而在精神领域，就像长大离家的孩子；结局落在"自然好玩又可怕"上。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就失去"每一次真正的上升都伴随一次下降"这条结构：被造物带走力量，创造者必然被抽空，这是检验一切提升是否真实的标准。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第六章形成首尾扣环：第六章里新的太阳是从外部黑色血海中升起又坠落的宇宙事件，本章的太阳则是从托在掌中的蛋里孵出的内在事件——同一个"太阳"，一次被写成世界灾变，一次被写成心理重构。第七章的主题也在此回归：那时的理想废墟，现在成了神的胞衣与残破的蛋壳——凡是新的东西站起来的地方，总留下一堆不可回收的残渣。倒数上，第九章末把蛋放在面前、第十章孵化、本章打开，三步咬合。结尾"他上升，我却下降"直接把下一章地狱打开（编者注亦指出下一章中荣格发现自己身处地狱）。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“「我是谁？我完全就是太阳。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「他上升，我却下降了。神被我征服之后，他的力量便传到我的身上。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「我们不寻求统治。我们想要生活，我们想要光和温暖，因此我们需要你的生命。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“「没有恶，你根本无法生活。」”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“神一旦被造成，就不再需要作者的养护；停留在他的光里，等于继续消耗自己尚未活出的那部分。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“本章把恶从道德类别挪进了功能分类：它是唯一能松开一个已经凝固的形状的溶剂。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>"只能用恶消解善"这个说法锋利，也危险。作为内在心理的描述它成立：一个被自己的善耗尽的人确实需要某种外力来松开自己。但"没有恶，你根本无法生活"一旦从心理层面滑到人际层面，就成了为伤害他人提供正当性的句子，而文本没有为这条界限作任何限定：什么时候这是松开自我的苦药，什么时候只是伤人的托词？第二，"善会不知不觉变成恶"的推演很准，但被当作善人必然变坏的规律来叙述，其实只在过度固化的人这个子集上成立。第三，结尾对"神作为独立作品"的处理过于轻巧：既然这个客体只存在于精神世界，那么作品不再需要我们与我们仍对它负有责任之间的张力，被过早抹平了。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人完成一件长期工程——主持一个多年的项目、把一个孩子养大、写完一本书——之后的几周里，常会突然袭来一阵空落和没劲，而不是想象中的解放。这种状态无法用庆祝填补，因为它是长期投入被抽走之后留下的缺口。可以自行验证：在一件重要的事收尾后的第二天，不安排任何庆祝或总结，只做一件具体的手工活——做饭、修理一件东西、走一段长路——多数人会发现这类动作比一场庆功宴更能让人回到身体里。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·12</span>第二卷·第十二章 地狱<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>承接第十一章"蛋的打开"中吉尔伽美什化为太阳升起，叙述者随即坠入地下墓室：少女以鱼钩刺进魔鬼的眼睛，一个声音宣告"胜利属于愿意牺牲的人"。由此展开论证——造神必然同时造出等量的空洞与恶，逃避恶的人造不出神。恶最宝贵的是它的眼睛，即它对充满的渴求；剜掉它，美反而不复存在，所以人唯一能献出的是自己的意志。章末落到人际：真正令人吃惊的不是战争与残杀，而是人们相信自己彼此亲近、理解并相爱。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>一句话：这章提供了"恶不是待清除的残余，而是造神的对称物"这一伦理支点，抽掉它，后面所有"接受最低下的部分"都失去根据。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>它与第十一章是同一事件的两面：神升天、"我"被抽空下沉，本章把下沉坐实为地狱，兑现第一卷第五章"未来的地狱之旅"的预告。与第十三章构成"看—做"的递进：本章只看见恶并拒绝伤害它，第十三章把接纳推进为行为——吃下祭肉。章末"为了我的神，我也想要邪恶"是一句立誓，到第十八章灵魂带回战争、屠杀而叙述者答"我接受"时被再度兑现。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“想要创造永恒充满的人也将创造出永恒的空洞。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我不惜一切代价想要自己的神，因此我也想要自己的邪恶。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“最重要的是不要伤害他的眼睛，因为如果邪恶看不到且不再渴望，那么最美的事物将不复存在。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“让人感到吃惊的应该是人们相信他们相互很亲近，理解并爱着对方。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“恶不是神的失败品，而是神之形成的对价；人对恶的恐惧其实是对自己创造力的恐惧。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>荣格在这里跳了一步：从"创造必生对立"这一心理观察，直接跳到"所以我必须想要邪恶"的伦理决断，前者是描述，后者是命令。中间的桥是"意志"——他只肯献出意志，不肯碰魔鬼的眼睛，这是精算的取舍，而非纯粹的承担。章末更成问题：把人际隔膜直接等同于战争与屠杀的根源，从"我不理解你"到"人们相互残杀"之间缺了整整一层社会机制，他用意象的强度代替了论证。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人常给自己找一个"讲得通的痛"：把一段停滞、一次失败说成"命中该有这一劫"。这类说法的功能不是解释，而是把无法承受的空洞变成有形状、有名字的东西。荣格说的是它的另一面——人本能地回避那个讲不通的部分，恰恰是回避让它保持力量；承认"这就是我的空洞"，空洞才不再以命运、以他人的形式反复出现。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·13</span>第二卷·第十三章 献祭性的谋杀<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>阴森山谷中躺着一具被残杀的女童尸体，蒙面女子命令叙述者剖出肝脏，继而要他切下一片吃下去；他在拒绝、辩解、恶心到几乎昏厥之后照做。蒙面者摘下面纱，自称"我是你的灵魂"。释义说明：被杀死的是"圣童和神的形态的意象"，吃下祭肉意味着把原本注入神的原初力量收回灵魂；人必须先承认自己与这桩罪行共谋，才能借助收回的力量摧毁神的意象，与神分离。章末转向反抗：神圣像疾病闯进有序生活。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>一句话：这章把"接受恶"从态度变成必须弄脏自己的行为，确立了全书最反直觉的命题——与神分离（而非合一）才是灵魂得救的条件。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>它与第十二章构成"拒绝伤害—主动吞食"的递进：上一章保住魔鬼的眼睛，这一章吞下神的祭肉，两次取舍合起来才完成"既不要恶的眼，也不要神的形"。它与第一卷第七章"谋杀英雄"同构而升级：那里杀的是英雄这一自我理想的认同，这里杀的是刚被生出的神本身；第十七章插图注又回到"谋杀英雄"、让阿特马维克图回归，形成跨卷扣环。它与第十四章是体裁上的急转：本章最暴烈的神话层，下一章突然降为图书馆里与管理员的闲谈。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“你是一个人，而这个罪行就是人犯下的。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“只有一种赎罪的方式：贬低自己并将之吃掉。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我是你的灵魂。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“借助收回自己生命的力量摧毁神的形态的意象，从而使自己和神分离。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“献祭的对象不是别人，是人自己造出来的那个完美意象。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最值得质疑的是"共谋"的定义：把集体归属直接换算成个人罪责。这在心理上有效，在逻辑上是滑坡——人对一切人类罪行负有无限责任，而无限责任等于无法行动的责任。荣格随后又用"不要回头，也不要后悔"给这份责任设限，前后矛盾：先要求担下全部，又要求不为担不下的人哀叹。此外，他把厌恶感只当作必须熬过的门槛，没有问：如果厌恶本身就是灵魂投出的否决票呢。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人都有一种"我已经给这件事定性了"的心理结构：一次差错发生后，比起弄清它，人更急于配上一个能接受的说法——"那时候太年轻""大家都这么干"。这类说法的作用是把行为收编进自我形象，使自我不必改动。荣格的判断是反的：真正的改变要求承认"这就是我做的"。区别在于身体感受——解释完成时人感到释然，承认完成时人感到不适。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·14</span>第二卷·第十四章 圣愚<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>叙述者走进图书馆，向管理员索要托马斯·肯皮斯的《效法基督》，二人就此辩论：宗教是否过时、尼采是否更真实、人需要的究竟是优越感还是自卑。管理员推崇尼采，叙述者反驳说尼采的话是说给仍需要解放的人听的，"我知道人们需要自卑，而非优越"。释义转向效法基督本身的困难：基督是道路不是目标，完全效法他意味着不效法任何人；思维与时代的先知互相冲突，无法在心中结合，只能"交替活出来"，于是决定下沉到低处和日常生活。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>一句话：这章把"效法神圣"改写为"活出自己的生命"，为后三夜的下沉给出方法论——思维解决不了的，交给生活。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>它是"四夜"序列的第一夜（草稿中题为"第九次冒险第一夜"），与第十五章"第二夜"直接咬合：本章借到书，下一章拿着这本书走进厨房，空间与人物逐级下降。它与第十三章构成神话层/日常层的对偶：第十三章在幻象中杀死神的意象，本章在日常知识层处理同一个问题——基督教这个"神的意象"还能不能留。它回应第十一章"神是我们的外部作品，不再需要我们的帮助"；章末"回到简单生活的时刻"，正是第十五章被关进疯人院的预演。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“你当然可以离开基督教，但基督教不会离开你。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我相信我最近已经发现我们也需要为那些被逼到角落中的人寻找到一种真理”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我知道人们需要自卑，而非优越。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“在思维走到无法思考的时候，便是回到简单生活的时刻。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“效法一个典范的终点，是发现自己不效法任何人。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这章最诚实的地方是承认"我的立场并非完全清晰"。但也正因如此，它对尼采的批评是软的——把一种哲学的适用范围还原为受众的心境特征，属于回避正面交锋。更要紧的是那个矛盾：一边说要效法基督，一边论证基督没有效仿任何典范，所以真正的效法就是不效法。推理成立，但它掏空了"效法"这个词——借《效法基督》所做的铺垫其实只是给自己找一个下行的起点，而非论证。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人遇到困难时，常会去找一套"别人是怎么扛过来的"参照：某本处世书、某个被反复引用的榜样。这类参照真正起作用的时刻，往往不是照着做的时候，而是发现照着做根本行不通的时候——正是那一刻，人开始按自己的处境重新想办法。荣格点破的是：参照物的功能是把人带到自己做决定的位置，然后失效；把它当成答案本身，才是卡住的原因。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·15</span>第二卷·第十五章 第二夜<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>叙述者走进图书馆隔壁的厨房，与厨娘闲谈；读《效法基督》时，一群死者（自称以西结与再洗礼派教徒）涌进来要赶往耶路撒冷朝圣，说自己在真信仰中死去却不得安息，因为他们没有活出自己的动物性。他当众斥退他们，被围观者当成疯子送进疯人院，教授诊断为"宗教妄想狂"。释义转向"死者"这一主题：未被活出的过去、被抛弃的旧意象、历史上的亡灵都挤在身后那道薄墙里；拯救意味着在爱的律法下恢复被压抑的低下之物，向后向内看。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>一句话：这章提出贯穿全书的核心概念——未被活出的生命会以"死者"的形式回来索取，个体化不仅是向内的，也是向后的。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>它与第十四章是同一场景的左右分岔：第十四章选右门进图书馆（思维），本章走左门进厨房（情感），正文随后明说"右侧是我的思维，左侧是我的情感"。与第十六章构成"死者—疯狂"的递进：本章的死者还是有名字有形象的人物，第十六章的死者已化为无形象的混乱大潮。它与第十三章遥相呼应：那里吃下祭肉以救灵魂，这里说"未被拯救的死者在数量上已经超越活着的基督徒"，两处都在算一笔未清偿的账。往后则扣住第十七章那句"喝下鲜血，这样你就能够讲话了"。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“你不能和我们一起，因为你有肉体。而我们是死者。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“走开，魔鬼，你没有活出自己的动物性。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“新的拯救永远是恢复以前失去的内容。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“在内在的世界中，解释不起作用，就像你在外在世界中不能使用解释让大海消失一样。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“疯人院这一场是全书的诊断反转：判定疯狂的不是医学，而是社会能否容纳。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>"动物性"在这里获得完全正面的道德含义——动物公正、守序、忠于同类。这是修辞需要，不是动物行为学；荣格拿"动物"当尺子量人的僭越，却并不打算认真对待这把尺子。更成问题的是历史论述：把个人被压抑的内容与人类历代亡灵混为一谈，规模相差几个数量级，论证上却靠"你的生命就像大海中的一滴水"这样的比喻抹平。于是伦理结论悬空——那件"隐藏着的奇怪工作"永远无法完成，也无法被检验。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人会发现，那些当年被绕过去的旧事——一句没说清的话、一段草率结束的关系——并不会因为不再提起而消失，它们会以反复出现的情绪、不断重演的处境回来。荣格所说的"死者"指向的正是这种结构：被绕过去的经历没有变成过去，而是保持为一种持续的要求。区别在于归因——人常把这种反复归给运气或他人，荣格要求把它读成自己的未完成事项。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·16</span>第二卷·第十六章 第三夜<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>灵魂要求叙述者承认并欢迎自己的疯狂，理由是"生命自身没有规则"。他在疯人院与一艘夜航汽船之间来回摆动，邻床的愚人自称既是尼采又是基督；墙上浮现血红的太阳与十字架上的蛇，海里升起一棵树冠直达天堂、树根直插地狱的树。释义展开四个命题：言语是空洞与充满的交融，因而是神的意象，也最容易织成"地狱般的网"；这个时代的神要借人的精神诞生；必须接受自己最低下的部分；只要生命之树在生长，善恶之分便失效。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>一句话：这章给出全书的认识论底线——确定性不如怀疑，怀疑不是通往结论的中途状态，而是生长本身的标志。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>它是四夜的中点，也是"夜"的最深处：第十五章的混乱还由"死者"的人物群构成，本章把人物彻底溶掉，只剩"全能的夜间大潮"，第十七章再从这个无形状的深处重新长出一个具体形象（大地之子、黑色之人）——三夜构成"多—无—一"的节奏。它与第二卷第十章"咒语"相扣：那里是言语的施用，这里是言语的反噬；与第十二章扣环：恶的眼睛问题被转写成言语问题。章末"追寻最高处的人会找到最深处"，与第十八章的"回到小而真实的花园"反向收束。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“你想去接受一切，那么请也接受疯狂吧。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我们的生命就是我们寻求的真理。只有我的生命才是真理，而且真理至上。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“在言语中，空洞和充满交融在一起。因此言语是神的意象。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“坚定不移地站在怀疑中是一朵真正的生命之花。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“善恶之分只在生长停止时才会重新出现——判断力往往是停滞的产物。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>"怀疑即生长"这个命题漂亮，但判据是循环的：怎么知道自己在生长？因为还能怀疑；怎么知道该不该怀疑？因为生长需要它。缺一个独立于怀疑本身的指标，它就容易被用来为任何犹豫辩护，包括逃避决断。同样成问题的是"最低下的部分"：他在《草稿》里把它说成"房角的基石"，即最低的即是最高的——这取消了"低"的位置。本章因此暗含自我消解：一边要求接受卑贱，一边把卑贱重新神圣化。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在拿不定主意时，会急于问出一个明确答案，问完照做，事后却说不清为什么这么做。荣格的判断相反：能一直停在"我还没想清楚"而不急着要结论的人，往往才是真正在推进的人；急着要结论的人通常只是想结束那种不适。区别在于，前者把问题继续带着走，后者用答案把问题封起来。当然这有代价——长期不给结论也会让生活停摆，荣格没处理这条边界。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·17</span>第二卷·第十七章 第四夜<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>第四夜从厨房中醒来开始，叙述者把书还给管理员，绿色窗帘后现出《帕西法尔》的场景：克林格索尔、昆德丽、安福塔斯与帕西法尔全都是他自己；他脱下层层历史盔甲，自己洗脚洗手，重新穿上便服走回自己。释义论"愚弄"与"他者"：只认同自身的一半会让另一半饥饿，人真正的受愚弄发生在自己身上。随后他呼唤"大地之子"——双性、不洁、最被拒绝者，用不洁的水为自己施洗，拥抱黑色之人。结尾落在耶稣受难日。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>一句话：这章把前三夜的"接受"推到最难点——接受不是接受崇高，而是接受自己身上那个可笑、不洁、被拒绝的部分。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>它是四夜的收束：第十五章向外处理死者，第十六章向下处理混乱，本章向内处理他者，三层合一后才有"我把自己分成两半，再用自己把自己结合在一起"。它与第十四章首尾扣环：第十四章说要效法基督，本章说"我们在耶稣受难日使我们身上的基督完整"，从模仿到完成，中间的桥正是第十五章那句"打破你身上的基督"。它与第一卷第七章"谋杀英雄"直接扣环：插图注明"这是阿特马维克图的回归"，当年被拒绝的英雄这次以大地之子的卑贱形态回来。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“不能愚弄自己的人将会被别人愚弄。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“在肯定中，并不是所有的否定都是真的，但在否定中，所有的肯定都是谎言。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“在神进入到我的生命中的时候，为了神，我回到贫穷。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“不真实的东西是真实的，真实的东西是不真实的。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“人最不愿承认的不是自己坏，而是自己可笑。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最有力的洞见是"自我愚弄"：人之所以被别人愚弄，是因为先需要有人替自己完成那个不敢承认的荒谬。但荣格对"天赋"的处理显出限度——把天赋说成外在于人的自然现象、以携带者的个性为代价存活，这解释了创造者的自我消耗，也提供了一个过顺手的开脱：一切失败都可归给"天赋吃了我的个性"。更紧的是自指问题："在否定中，所有的肯定都是谎言"本身就是一个肯定，它是否也成了谎言？本章恰恰建立在对立项互相翻转的修辞上，缺少一个让翻转停下来的锚点。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人都有一套讲得通的说法，用来说明为什么是别人、环境或时机把自己送到了这一步。荣格所说的"自我愚弄"指的正是这套说法的功能：它主要不是用来骗别人，而是让人不必看见自己主动留在某个位置上的那部分原因。有意思的是，越是把自己讲得无辜的人，越容易被明显靠不住的人和事说服——因为需要一个外部角色来承担自己不敢承认的判断。把说法里的"别人"换成"我"，看它还讲不讲得通，就能验证。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·18</span>第二卷·第十八章 三个预言<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>1914年2月22日，灵魂潜入洪水深处，分批带回人类遗留的一切：武器与战争垃圾、刻着魔法符号的迷信物、杀兄弟与用孩子献祭等暴行、传染病与灾难，最后是全部古代文化的宝藏。叙述者一一接受，直到宝藏超出他的掌握，灵魂遂说"要知足，并谦卑地耕耘自己的花园"。释义点明灵魂给出的是三样东西——战争的残酷、魔法的黑暗、宗教的礼物；叙述者承认无法构思即将到来的规模，于是用刀切掉一切超出理解范围的诠释，回到赤裸、贫乏与最渺小的现实。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>一句话：这章为全书立下认识的边界——接受一切之后必须自我设限，因为在无限面前，"拥有一切也是一无所有"。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>它是十二至十七章的收账：第十二章"我也想要自己的邪恶"在这里被逐条兑现为对战争、屠杀的"我接受"，首尾扣环。同时它是对第一卷第五章"未来的地狱之旅"的反转——那里预告下地狱，这里预言未来却拒绝说出内容，只讲"来者的路"。它也让第十七章末尾张开的深渊重新关上：大地把所藏的东西还回来，本章清点一遍后主动退回花园；它又是第十九章"魔法的礼物"的前奏，三预言中的第二样随即成为下一章主题。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“她给我三种东西：战争的残酷、魔法的黑暗和宗教的礼物。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“要知足，并谦卑地耕耘自己的花园。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“拥有一切也是一无所有。保留一点点，那么你就拥有一些。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“知者了解自己，这是他的限度。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“这一章的方法论是减法：不是懂得更多，而是承认自己能懂的很少。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最值得质疑的是三预言的可信度结构：荣格先说"我只能讲出来者的路"，接着用"我在颤抖""没有语言能够理解它"把内容彻底悬置——一个不可陈述的预言既无法被证伪，也无法被使用。写于1914年2月让战争一条显得惊人；但把战争、魔法、宗教并列为"混乱的释放与捆绑"的三种形态，是粗糙的时代诊断：战争是集体事件，魔法是实践，宗教是制度，三者被拉平到同一个名下，靠的是修辞而非分析。此外，收尾的"耕耘自己的花园"引自伏尔泰，原意是对形而上学的拒斥，荣格却用它结束一场形而上学的探索——这个借用是反讽式的。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人面对海量信息时，常有一种"不看完就不安心"的冲动：收藏、订阅、囤积课程，最后什么都没真正用上。荣格的判断是，这种不安不是因为知道得少，而是因为想守住的东西太多——当可及的范围远大于可支配的注意力，人就只剩焦虑。他的办法不是提高效率，而是主动削减范围：承认有一整片领域与自己无关，然后把确定的一小块做好。难点在于削减会让人产生"我正在落后"的感觉，所以多数人宁可继续囤积。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·19</span>第二卷·第十九章 魔法的礼物<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>灵魂先让叙述者听见左耳的铃声，宣告厄运将至，随后递给他一件礼物：一根黑色的小树枝，形如蛇，有两颗珍珠般的眼睛，颈上套着一圈金环，是一根魔法的小树枝。收下它要付的代价不是爱或人性，而是"慰藉"——既包括给出的慰藉，也包括收到的慰藉，等于主动交出安慰他人与被他人安慰这两条人情通道。叙述者以科学的立场抗拒，灵魂则逼他承认科学与生命并不等同，理性之外还有他尚不理解、也没有资格评判的东西。章末转为一段幻视：一位孤独者在天地之间独自熬煮治愈的药，人群围着他催逼拯救，孤独者最终拒绝扮演救世主，倒掉药剂，画面随之反转，四风散开，清晨将至。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书就失去了魔法的价码——"获得力量必先交出慰藉"这一交换条件，后面第二十一章关于魔法的一切讨论都无从计价。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>本章承接第十八章《三个预言》里灵魂列出的三件礼物（战争的残酷、魔法的黑暗、宗教的礼物）：第十八章只预告，本章交付第二件，紧随的第二十章《十字架的道路》交付第三件，两章是并列兑现而非递进。三章内部构成严格对偶：本章通篇是"黑魔法"（章末校注记为"黑魔法变成白魔法"），第二十章开首便是黑蛇沿十字架爬升、受伤、入体、出口变白；本章的药锅对外（为他人熬药），第二十章的火对内（自我吞噬）。与第一卷的扣环在于物件：黑色树枝是第一卷第九章《神秘·遭遇》中盘在以利亚脚边的那条黑蛇的实物化，而它要到第二十一章才被明确认作"我的灵魂"。与《审视》的呼应在于图式：本章"上方很强大，下方很强大，双重力量合一"的上下二力合一，正是《审视》中成对原则的预演。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“魔法并不简单，它需要牺牲。“（5770）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你必须为这根黑色的树枝牺牲慰藉，包括你给出的慰藉和你收到的慰藉。“（5790）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“道路的本质是魔法，就像祈求和祈祷一样。“（5870）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“但为了人类，我放弃成为救世主。“（5960）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“魔法的价格不是道德，而是放弃“被安慰”与“安慰人”的双重资格；不付这一笔，第二卷后半部所有关于力量的说法都只是空头支票。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最需要指出的问题在章末。孤独者宣称抛弃药剂、屈从和祈祷，让众人"将自己从自己的拯救中救出来"，看上去拒绝了救世主的位置；但叙述者随即把这段幻视完整记录下来，作为一次有效的转化经验——"放弃拯救"被悄然折算成了更高一级的成就。荣格没有处理这个自我豁免，这是全书反复出现的一个漏洞。其次，"牺牲慰藉"这个设定的验证标准始终缺失：凭什么认定交出慰藉换来的是力量，而不是单纯的变冷？文本给出的凭据只是"难以忍受的紧张感"这类内在感觉，而内在感觉恰恰是荣格自己在别处要求悬置的对象。这两处叠加，使本章的论证带有一层不易察觉的循环：先规定无法验证者为魔法，再用无法验证来证明它是魔法。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在接手一件难度明显更高的工作之前，可以先做一次可自行验证的记账：连续两周不向任何人诉苦、也不接受任何安慰，只是把想说的话写下来，到期后回看这些记录，判断自己的判断力是变得更清晰还是变得更僵硬。这个做法对应章中的交换：先量出自己愿意交出的那部分，再决定要不要伸手去接。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·20</span>第二卷·第二十章 十字架的道路<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>开首是幻视：黑蛇沿木十字架向上爬时受伤，钻进被钉十字架者的体内，从他口中出来时已经变白，盘在死者头上如冠，光闪过，太阳从东方升起。全章主体是八节箴言体论述，核心命题是"走向自己的人要爬下去"——人若不肯把最危险的武器对准自己就不会上升，必须先承受下降、献祭、被自己的贪婪之火焚烧这一过程。荣格把基督被钉十字架读作心理学图式：最伟大的力量终被自身最低下的部分（无能）钉死，并以此批评尼采式先知"想从太阳般的大山子宫中喷发而出"的冲动。中段提出内在自由只能通过象征创造，区分符号与象征，并规定象征成形时善恶必须先行结合。末段推进到一个两难：意志与意图只能把现在塞进未来的位置，从而停住生命的进程，所以未来只能违反意志和意图地长出来，要做到这一点就需要魔法——本章以"需要魔法"作结，把自己交给下一章。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这章，全书只剩下向上的冲动而没有"必须先向下爬"这条方法论，第二十一章里的一切对立结合也就失去了操作路径。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第十九章构成镜像：第十九章给的是物件（黑色树枝）和"交出慰藉"的价码，本章给的是路径（十字架）和"交出自我"的下降运动；前一章的药锅在此被改写为自我焚烧的火，同一过程换了道德符号。本章兑现第十八章三件礼物中"宗教的礼物"这一件。作为引子，本章末句"我独自来到一个居住着一位魔法师的遥远国度"直接把叙述者送上第二十一章的乡间小路，三章连成"收礼—走路—见人"的递进。与第一卷的关系上，第3节让"伟大的救世主"沿基督的道路被自己的无能钉死，把第一卷第七章《谋杀英雄》中杀死英雄的行为改写成杀死先知的雏形——被杀的对象小了，被杀的却是仍长在自己身上的东西；而"他的灵魂比躯体先死"一句直接引自查拉图斯特拉序言，荣格据此把尼采的结局读作不肯下降的后果。通向《审视》的台阶也在此：本章末段为魔法正名，紧接着的第二十一章第4节开头"现在还没有动静，世界还未开始，混沌还未被分开"，校注明示与《审视》第一次布道的开头相连。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“走向自己的人，要爬下去。“（6053）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“还未把最危险的武器对准自己的人不会上升，想要上升的人必须向下爬，再把自己吊回来，把自己拉到献祭的地方。“（6055）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“当然，人可以使用强有力的行动获得外在的自由，但人只能通过象征创造内在的自由。“（6061）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“在新的时代产生古老的事物就是创造。“（6073）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“本章把基督被钉十字架整体转写成一条下降程序：先自伤，再被自身之火吞尽，最后由最低下的无能去钉死最高大的精神。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>本章最值得质疑的是对尼采的处理。荣格用尼采后来的崩溃反证其方法错了，属于拿结局倒推过程，而崩溃的原因可能只是生理性的。更要命的是一处内部矛盾：第12节已经承认意志和意图会停住生命的进程，那么"必须向下爬"这条命令本身算不算一种意图？如果算，它就停住了它想启动的东西；如果不算，它又凭什么被下达。荣格绕开了这个自指。此外，第7节"语言若是符号便毫无意义、若是象征便意味着一切"这个二分过于干净：书中大量出现的"如尼文""曼德拉草""卡皮里"这类专名既不是可译的符号，也不真的是活的象征，更像靠博学权威维持的暗语，荣格没有给这第三种语言留位置。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在想转行或改做一件陌生的事时，往往会先写一份完整计划再动手；按本章的说法次序是反的——先承受"爬下去"的那一段，路径才会成形。可自行验证：连续一个月，每天记下自己在当前工作中最不愿承认的三件无能之事，一个月后回看，判断这些记录是否比事先写好的计划更能决定下一步怎么走。这对应章中"最伟大的力量被自身最低下的部分钉死"的次序。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">卷二·21</span>第二卷·第二十一章 魔法师<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>长途寻访之后，叙述者在开满郁金香的乡间小屋见到老魔法师腓利门和他的妻子博西斯：两人只在园中浇花，法器早已收进柜中，看上去只是退休老人。长谈的结论是，魔法无法被理解、无法被传授、也无法被学习，人能知道的只是它的消极内容；魔法属于非理性，理性越完备就越不需要它，而主动向混乱敞开的人则必须借它去走自己想不出的路。随后叙述者认出腓利门真正了不起的地方在于他不是救世主：他不牧羊，不让人吞噬他，也不许人吸食他的话，因为"人并不一定是羊"。接着是一连串内在操作——把灵魂认作蛇并与她对谈，让神与魔鬼结合导致一切运动停止，再从洞里拽出撒旦对峙，据此辨明"静止是神性的生命"后放他回去。卡皮里随后从地下被唤出，替他砌成一座无接缝的铁塔，又递上一把剑，要他砍断象征大脑缠绕的卡皮里，即砍断自己赖以思考的根系。以利亚把莎乐美交给他作为酬报，他接受了她代表的快乐，却拒绝她代表的占有式的爱，并把她还给世界。他被悬挂在生命之树上三天三夜，得到刻着"爱是永存不息的"的金皇冠，直到爱与生命被判为两件必须分开的事。最后一节用蛇讲的童话完成让位：承认有一个比自己更强的"儿子"，交出王冠，自己退回孩童与孕妇的位置；神随之升天离去，全章落在"试金石就是与自己独处"这一句上。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>抽掉这一章，全书就失去了"不成为救世主"这个核心决断——此前所有的下降都会重新被读成通往神化的阶梯。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>本章是第十八章《三个预言》的合流处：战争（"他们刚刚去世，在我们嗜血欧洲的子宫中休息"）、魔法（腓利门的园子）、宗教（基督作为他正午的客人）三件礼物被并到同一座花园里。它与第十九、二十章构成"物件—过程—人格"的三级推进：第十九章的魔法是一件收到的礼物，第二十章把它内化为下降与自我焚烧，本章则把它人格化为一个拒绝成神的老人。首尾扣环有三处：其一，第一卷第九章《神秘·遭遇》里的以利亚与莎乐美在此重新出现，文本明写"循环已经完成，神秘的大门已经再次打开"，这条线从卷一埋到卷二末才收回；其二，本章第4节开头"现在还没有动静，世界还未开始，混沌还未被分开"，据校注直接连到《审视》第一次布道的开头；其三，章末神离场后"我已经找回我的原我"与"我必须将中世纪的部分补上"，正是《审视》开篇那段自我拷问的起手式。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“我做的很简单，就是同情。“（6134）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“魔法既不能传授也不能学习。想学习魔法的想法是非常愚蠢的。“（6226）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“因为你相信人的尊严，人并不一定是羊。“（6350）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“缠绕就是你的疯狂，而剑可以击败疯狂。“（6648）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“一切的起点都是爱，但事物的存在都是生命。“（7122）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“试金石就是与自己独处。“（7292）”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“全章真正的命题不是“魔法是什么”，而是“谁有资格承载它”：把魔法安放到一个浇花的退休老人身上，等于把它从技术降格为共处方式。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+<div class="ch-quote"><span class="star faint">☆</span>“末段把解决从“获得”翻转为“让位”——先交出手中的王冠，工作才真正开始。”<span class="en">章旨提炼 · 非原话，请勿加引号引用</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最该质疑的是结尾的"让位"。全章用六节篇幅把叙述者抬到铁塔顶端、加冕、拿到金皇冠，最后又派一个"儿子"来索取性命并升天，理由是"创造者必须成为孩子"。这在结构上太像一个精心安排的双赢：既完成了神化，又通过声明被夺走而免于自封为神的责难。荣格没有处理这里的不对称性。其次是"魔法就是一切无法理解的东西"这个定义的自我封闭：任何反驳都能被归入"你还不理解"，这条定义因此不可证伪，与其说是理论不如说是豁免条款——有意思的是叙述者自己说漏了嘴，"我承认在这里我没有什么可以思考"，但荣格没有顺着追问。还要指出一处失控：叙述者辱骂自己生出的"儿子"为蝾螈、蜥蜴、私生子，骂得越凶，越说明象征在这里已经不听使唤；荣格处理多余意象的常用办法是把它骂走，而不是安放好，本章同时给出的"人并不一定是羊"才是真正有力的那一步。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在向经验更丰富的人求助时可以留意一件事：真正有用的人往往不给答案，只把问题还回来，让求助者留在自己的疑惑里；可以自行验证的做法是，请教之后分别记下对方给出的具体建议条数和反问回来的问题条数，两者的比例大致能区分"喂答案"和"留疑惑"这两种帮助方式。另一件可验证的事关于砍断卡皮里：现在的普通人在同一件事上反复思考而毫无进展时，可以试着把这件事从脑子里移出二十四小时，只做体力劳动，到期后再回来，比较前后两个结论是否一致。这对应章中的操作次序——先切断根系，再谈思考，而不是反过来。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">审视</span>审视<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>《审视》约七万字，是荣格对自己 1913 年以来幻象的回顾性评论，与第二卷末尾相接。开篇即是对"自我"的激烈审判：他站到自己的自我面前，历数其虚荣、敏感、怯懦、报复心与对名声的奢求，扬言用老虎钳收紧、扒皮、拔舌，直到自我折磨的快乐消退。随后是与灵魂的对话：灵魂已随神升天、变得像太阳，说他"离得真远"；荣格在黑烟中申说对孤独与疯狂的恐惧，并权衡信仰与知识——"如果我们今天仍然想有强烈的信仰，那么我们会回到儿童的早期"。中段，灵魂要他搭建熔炉，把老旧破损之物投入火中更新，叮嘱"触摸大地，把你的手压在物质上"；火之幻象降临，死者从耶路撒冷归来索要光，腓利门遂开始《向死者的七次布道》，论普累若麻、个体化原则、神与魔鬼同属一体、阿布拉克萨斯、爱洛斯之火与生命之树。结尾，以利亚与莎乐美为"一与多"争执，荣格宣称"不再有任何无条件的服从"；最后腓利门在花园中遇见蓝色的影子，即西门·马格斯与海伦。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>《审视》是把第一卷、第二卷的幻象经验提炼为可陈述思想的那一层，全书缺它便只是一连串无法解释的意象。它提供几个关键命题的文本依据：个体化原则被表述为万物的本质，"我们死于自己的未分化"；善与恶被置于同一神性之内，阿布拉克萨斯"用相同的话和相同的行动制造真理和谎言，善与恶，光明与黑暗"；人与神的关系被重新谈判，从服从转为有条件的服务。它也是《向死者的七次布道》的载体——这篇 1916 年的文本是荣格生前唯一私下印行过的《红书》相关作品，其宇宙论直接通向后来对炼金术的研究与《答约伯书》。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>《审视》位于第二卷第二十一章《魔法师》之后、《后记》之前，起点就是第二卷的终点：编者按已说明，第二卷末尾荣格的灵魂随重生之神升天，他认定腓利门是骗子并回到"自我"，《审视》正是从"直面自己的自我"开始，而《黑书》内容也在同一天接续，因此它不是补录，而是同一部作品的第三段。与《后记》是时间上的对照：《审视》写于 1915 至 1917 年间，是当事人在事件进行中的理解；《后记》写于 1959 年，是四十年后的收尾，两者并置让人看到同一段经历的两种说法。与《附录B：评论》同属"第二层"的评论文字，一前一后，说明"边经历边解释"这个动作贯穿全书。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“我是什么？我的自我是什么？我一直假定我是自己的自我。而它现在站到我面前，我站在我的自我之前。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你有很可笑的敏感、自以为是、不真实、猜忌、悲观、怯懦、对自己不诚实、恶毒和报复心”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我们就是普累若麻本身，因为我们是永恒和无尽的一部分。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“你的本质是分化，而非你的思维。因此你一定不能去追求你认为是相异的事物，而是你自己的本质。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“人不再是神的奴隶，他在神面前有了尊严。他是神无法割舍的臂膀，不再向神屈服。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最需警惕的是荣格把这些内在对话当作心灵的客观事实，而它们同时也完全可以被读作文学作品——他有意识地采用柏拉图式对话与《神曲》式的结构，编者与译者都已指出。第二层号称是对第一层幻象的"解释"，但解释本身往往又生成新的幻象（腓利门登场、布道开始），与其说是答案，不如说是同一过程的延续。其次，七次布道把"个体化原则"从叔本华处借来后一举提升为宇宙本体论原则（"这个原则是万物的本质"），是把心理学概念外推为形而上学，中间缺少论证。再者，结尾"不再无条件服从神"被写成道德成就，读来更像长期孤独者在与内在权威重新划分权力：先控诉诸神贪婪，再要求对方付出代价，最后以"神宽恕了你"收场。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在深夜自责时，常出现一个类似的"内在审判者"：它罗列缺点、翻旧账、不肯放过。荣格的处理方式不是压制这个声音，而是把它写成对话，让它把话说完——这一点有可操作的价值。一个人试着把对自己的批评逐条写下来，通常会发现其中一部分指向真实的缺陷，另一部分只是情绪性的夸大；区分这两者的过程，就是荣格所说的"分化"。另一个可自证的例子对应"不再无条件服从"那一节：一个人长期按外部标准（父母的期待、单位的规矩、行业的惯例）行事，某天开始要求这些标准给出回报；这种谈判往往先带来内疚与焦虑，然后才慢慢形成新的约束自己的方式。值得注意的是，谈判之后的约束通常比之前更有弹性，也更少怨气。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">后记</span>后记<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>全文不足三百字，写于 1959 年，出现在《花体字抄本》第 190 页，用正常书写而非花体字写成，且在一个句子的中间突然中断。荣格说：为这部作品倾注十六载光阴，1930 年与炼金术的邂逅使他离开它；最终的结束在 1928 年到来，好友卫礼贤寄来《黄金之花的秘密》，"书中的内容找到它们自己进入现实的道路，所以我不再继续创作了"。他承认"对于肤浅的人而言，它像疯狂之作"，若没能吸收原始经验的力量，它也可能变成一部完整的作品。末句是"我知道进行这项工作非常不适合，但不管有多少工作和动摇，我都会保持对它的忠诚"，句子在此断掉。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>后记是荣格本人对《红书》的最后一次定性，也是全书最直接的自我辩护。它给出两个关键事实：此书从未完成，且他知道自己不会完成；他并不否认其"像疯狂之作"的外观，只是拒绝以疯狂为由否定内容。更重要的是它交代了中断的真实原因——不是才尽，而是找到了另一套语言（炼金术）来承接同样的经验。这使《红书》的定位更清楚：它是原始经验的直接记录，炼金术研究是这些经验的概念化延续，两者是同一项工作的两个阶段。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>后记位于《审视》之后、三则附录之前，处在正文最后一页，位置本身有意味：1959 年荣格重拾此书、续写后记时也是中途搁笔，文本的物理中断与全书的未完成状态恰好重合。与《审视》是时间对照——《审视》是 1915 至 1917 年间当事人在事件进行中的理解，后记是四十年后的收尾，并置可见同一段经历的两种说法：当年他说"我害怕随着孤独而来的是疯狂"，晚年只说"我知道进行这项工作非常不适合"。与附录则是交接：后记说 1930 年转向炼金术，附录 A 的曼陀罗草图与"普天大系"正是这段转向前后的图像产物；文字未能完成的部分，交给图版与草稿去呈现。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“我为这部作品倾注16载的光阴，而1930年与炼金术的邂逅使我离开了它。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“对于肤浅的人而言，它像疯狂之作。如果我没能够吸收原始经验的强大力量，它也可能已经成为一部完整的作品。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我一直知道这些经验包含某些宝贵的内容，我只知道用'宝贵的'方式把它们写下来”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我知道进行这项工作非常不适合，但不管有多少工作和动摇，我都会保持对它的忠诚”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最耐人寻味的是"最终的结束在 1928 年到来"与"1930 年与炼金术的邂逅"两个时间点并不一致。把结束提前到 1928 年（卫礼贤寄书那年），等于说是中国炼金术文本先给了他出口，两年后才正式转向；这个微调透露出他需要外部契机来解释中止，而不愿承认是写不下去。另一可议之处是"如果我没能够吸收原始经验的强大力量，它也可能已经成为一部完整的作品"——隐含前提是：完整意味着危险，未完成反而是安全阀。用"不完整"为文本辩护，既是实情，也方便他回避另一种可能：无法完成是因为这套经验本就没有尽头。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人手头多半有一两件搁置多年的事——写到一半的稿子、练到一半的技能、计划了却没做成的项目。对这些事，常见的两种态度是强迫自己收尾，或者彻底否认它有过价值。后记提供了第三种说法：承认它没完成，同时说明为什么停在这里、停下的那段时间去了哪里。这种交代的好处在于把"未完成"从失败重新描述为转向。可自证的做法是给搁置的事写一小段说明：当初想做什么、为什么停、这段经历后来用在了哪里；写下来之后，那件事就不再是一笔悬着的欠账。另外，人在不同时期对同一件事给出的中止理由往往不一致，理由的变化本身所透露的，常比理由的内容更多。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">附录</span>附录三则<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>三则附录性质各异，共同构成正文之外的原始材料仓。附录 A 是图版说明：1917 年 8 至 9 月的七幅曼陀罗草图、来自《黑书 7》的"利物浦之梦"城镇规划草图、"普天大系"草图及其符号释义，以及荣格 1955 年写给瓦尔特·科尔蒂的长信，逐项解释画面中法涅斯、阿布拉克萨斯、生命之树与七枝烛台的构造。附录 B 是《修改的草稿》中的评论：把以利亚读作逻各斯、莎乐美读作爱洛斯，逐一解释房子、水晶、井、蛇、夏娃与圣母、基督与佛祖、儿童期的解决之道，并指出"抛弃儿童期就意味着不再对迄今为止有效的道德观有情绪的或习惯的依赖"。附录 C 是《黑书 5》1916 年 1 月 16 日的宇宙学草图，为"普天大系"的初始版本：普累若麻、个体化原则、阿布拉克萨斯、唯一的恒星之神、灵魂作为调停者。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>三则附录把《红书》从"一本书"还原为"一批材料"。附录 A 证明图像与文字是同一项工作的两面——荣格在写幻象的同时也在画它们，1955 年的长信更显示他四十年后仍能逐项解释画面构造，说明这些图不是装饰。附录 B 意义最大：它证明荣格在记录幻象的同时就在做心理学解释，所谓"第二层"不是事后追补，而是与经验同步的思考；它也示范了《审视》中那套评论手法的早期形态。附录 C 则给出《向死者的七次布道》宇宙论的直接前身，说明荣格 1916 年初这套思想已经成型，《审视》中的表述是对它的整理而非原创。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>三则位于《后记》之后，是全书的收尾。与《后记》是交接与补偿：后记说到 1930 年转向炼金术、文本未能完成，附录随即以图版、草稿与评论把"未能进入正文"的材料呈现出来，等于把中断之处续上另一条线索。与《编者按》则是承诺的兑现——编者按说过"每一个手稿层都非常重要且有趣，将它们全部出版是我们未来的任务"，附录正是这句话在当前版本中的落地方式：正文之外，至少让读者看到曼陀罗草图、评论草稿与宇宙学草图这三种不同性质的原始层。三则的排列也自成逻辑：图像—评论—宇宙论，从可见的图形到抽象的解释。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“很难强迫意象发声。但它如此具有隐喻性，所以它应该说话。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“逻各斯和爱洛斯是两种基本的心灵力量，形成一对对立，彼此依赖。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“他必须接受自己灵魂中被压抑的部分，他必须爱自己的劣势，甚至是自己的恶习”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“我将上和下绑在一起，我将神和动物绑在一起，我身上一部分是动物，另一部分是神，第三部分是人。”<span class="en">原文引文 · 中译本</span></div>
+<div class="ch-quote"><span class="star">★</span>“不要逃离阿布拉克萨斯，不要寻找他。你能感受到他的强迫，但不要抗拒他，这样就才能够活下去，赎回自己。”<span class="en">原文引文 · 中译本</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>附录 B 最有价值，也最需警惕。它证明"第二层"与经验同步，这是硬材料；但解读方法带有循环论证的风险——先假定以利亚是逻各斯、莎乐美是爱洛斯的化身，再从人物行为中"读出"该原则，于是任何细节都能被解释：失明被读作"不完整与主要品质的缺失"，向左的运动被读作"不受意识意志控制"。这种对号入座式的解码在证据上无法被反驳，也就无法被验证。附录 C 则揭示一个顺序问题：1916 年 1 月的宇宙论草图与七次布道高度同源，说明文本在书中的先后不等于思想发生的先后，不应把《审视》读成从经验到理论的单线演进。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>现在的普通人在做复盘时，也常采用两层写法：先记下发生了什么，隔一段时间再补一层"这说明什么"。附录 B 的价值在于示范这种写法的间距效应——同一件事，当天写和三个月后写，得出的解释往往差别很大，而差异本身比任何一种解释都更接近实情，因为人的状态变化被记录在两种说法之间了。可自证的做法是保留原始记录不涂改，另起一层写解释，而不是把解释直接改进原记录里。另一可借用之处是提问方式：不必接受"以利亚代表理性、莎乐美代表情感"这类具体对应，但当同一类内心冲突反复出现时，问一问冲突双方各自代表什么需求，通常比直接判断谁对谁错更能推动事情往前走。</p></div>
+      </div>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  <b>信源构成</b>：A 级 = 中译本 epub 全文（机械工业出版社／华章，周党伟译，实测约 45 万字），全部 ★ 引文出自此源，并已用微信读书同一译本的热门划线（359 条）交叉校验；B 级 = 英文维基百科《The Red Book (Jung)》条目、斯坦福／堪萨斯城图书馆书目、国家出版发行信息公共服务平台及高校图书馆书目记录（原版与中译本出版信息）；C 级 = 网络书评与导读类文章，仅作常识对照，不作引文来源。<br>
+  <b>覆盖率说明</b>：全书 49 节（含副文本与附录）已全部纳入逐章精读；其中第二卷《序言·犯错者的意象》在 epub 中仅存题词与编者注，正文为手稿图版，故该节无荣格原文可引，已在相应折叠块内标注。<br>
+  <div class="legend">
+    <span><span class="s">★</span> 原文引文（中译本逐字，可直接引用，注明译本）</span>
+    <span><span class="f">☆</span> 章旨句（提炼，非原话，严禁加引号）</span>
+  </div>
+  <b>合规提示</b>：涉及民族心理与历史评价的章节（如第一卷第七章）、宗教议题与精神健康内容，公开平台发布前须做敏感内容筛查；不得把本书内容包装成心理治疗方案、疗愈方法或自助指导。<br>
+  <b>生成</b>：基于拆解稿（骨架 / 思维模型 / 批判视角 / 逐章精读）整合。单文件 HTML，可离线阅读。
+</footer>
+
+<script>
+  const links = Array.from(document.querySelectorAll('.ribbon a'));
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = map.get(e.target.id);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  document.querySelectorAll('main section').forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

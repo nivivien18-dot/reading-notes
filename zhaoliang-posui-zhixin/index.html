@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《照亮破碎之心》读书笔记</title>
+<style>
+  :root{
+    --paper:#f3e9d8; --paper-2:#efe2cc; --ink:#2c2620; --ink-soft:#5a4f42; --ink-faint:#8a7a66;
+    --accent:#9b3b2e;   /* 书签朱红 oxblood */
+    --accent-2:#b8893a; /* 暖金 muted gold */
+    --line:#d8c8ab; --card:#fbf5e9;
+    --shadow:0 1px 2px rgba(60,40,20,.08),0 8px 30px rgba(60,40,20,.10);
+    --serif:"Songti SC","STSong","SimSun","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--serif); color:var(--ink); line-height:1.85;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%,rgba(184,137,58,.05),transparent 40%),
+      radial-gradient(circle at 80% 90%,rgba(155,59,46,.04),transparent 45%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:rgba(155,59,46,.18)}
+
+  .hero{position:relative;min-height:clamp(420px,72vh,760px);display:flex;align-items:flex-end;overflow:hidden;
+    background:linear-gradient(135deg,#3a2c1c 0%,#574027 45%,#7a5630 100%);}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.85) brightness(.78);}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(28,20,12,.15) 0%,rgba(28,20,12,.35) 45%,rgba(28,20,12,.82) 100%);}
+  .bookmark{position:absolute;top:0;right:clamp(20px,6vw,90px);z-index:3;width:46px;height:120px;background:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.35);}
+  .bookmark::after{content:"";position:absolute;bottom:-1px;left:0;width:0;height:0;border-left:23px solid transparent;border-right:23px solid transparent;border-top:18px solid var(--accent);}
+  .hero-inner{position:relative;z-index:2;padding:clamp(28px,6vw,72px);max-width:920px;color:#f6ecd9}
+  .hero-eyebrow{font-family:var(--sans);font-size:clamp(.7rem,2vw,.82rem);letter-spacing:.42em;text-transform:uppercase;color:var(--accent-2);margin-bottom:14px;font-weight:600;}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.4rem,8vw,5rem);line-height:1.05;letter-spacing:.04em;color:#fbf3e2;text-shadow:0 1px 0 rgba(0,0,0,.5),0 2px 18px rgba(0,0,0,.45);}
+  .hero .sub{margin-top:18px;font-size:clamp(1rem,3vw,1.4rem);color:#e8d8bd;font-style:italic;letter-spacing:.03em;}
+  .hero .meta{margin-top:22px;font-family:var(--sans);font-size:.82rem;color:#cdbb9c;letter-spacing:.04em;line-height:1.6;}
+
+  .ribbon{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,#2b2014,#3a2c1c);box-shadow:0 2px 14px rgba(0,0,0,.25);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
+  .ribbon ul{display:flex;gap:2px;list-style:none;padding:0 10px;margin:0;min-width:max-content;}
+  .ribbon a{display:block;font-family:var(--sans);font-size:.78rem;color:#d8c6a6;text-decoration:none;white-space:nowrap;padding:13px 16px;position:relative;letter-spacing:.05em;transition:color .2s,background .2s;}
+  .ribbon a::before{content:"";position:absolute;left:0;top:22%;height:56%;width:3px;background:var(--accent-2);opacity:0;transition:opacity .2s;}
+  .ribbon a:hover{color:#fff}
+  .ribbon a.active{color:#fff;background:rgba(155,59,46,.30)}
+  .ribbon a.active::before{opacity:1}
+
+  main{max-width:880px;margin:0 auto;padding:clamp(28px,6vw,64px) clamp(18px,5vw,40px) 40px}
+  section{margin-bottom:clamp(48px,9vw,84px);scroll-margin-top:64px}
+  .sec-tag{display:inline-block;font-family:var(--sans);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:4px;margin-bottom:14px;}
+  h2{font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;color:var(--ink);letter-spacing:.02em;margin-bottom:8px;line-height:1.25;}
+  h2 .en{display:block;font-family:var(--sans);font-size:.8rem;font-weight:400;letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase;margin-top:6px}
+  h3{font-family:var(--serif);font-size:1.22rem;color:var(--accent);margin:26px 0 10px;font-weight:700}
+  h4{font-family:var(--sans);font-size:.95rem;color:var(--ink-soft);margin:18px 0 6px;letter-spacing:.03em;font-weight:600}
+  p{margin:12px 0;color:var(--ink-soft);font-size:1.04rem}
+  .lead{font-size:1.12rem;color:var(--ink)}
+  strong{color:var(--ink);font-weight:700}
+  em{color:var(--accent)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:clamp(18px,4vw,26px);box-shadow:var(--shadow);margin:18px 0;}
+  .card.ribbon-left{border-left:5px solid var(--accent)}
+  .thesis{background:linear-gradient(135deg,#fbf3e2,#f3e6cf);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:clamp(22px,5vw,34px);box-shadow:var(--shadow);margin:22px 0;}
+  .thesis .q{font-size:clamp(1.15rem,3.4vw,1.5rem);line-height:1.6;color:var(--ink);font-weight:600}
+  .thesis .src{margin-top:14px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);letter-spacing:.04em}
+
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-family:var(--sans);font-size:.9rem}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+  th{background:rgba(155,59,46,.07);color:var(--accent);font-weight:700;letter-spacing:.03em}
+  tr:hover td{background:rgba(184,137,58,.05)}
+  td b{color:var(--ink)}
+
+  ul.clean{list-style:none;margin:12px 0;padding:0}
+  ul.clean>li{padding:10px 0 10px 22px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean>li:last-child{border-bottom:none}
+  ul.clean>li::before{content:"❧";position:absolute;left:0;top:10px;color:var(--accent-2);font-size:.9rem}
+  ol.num{margin:12px 0 12px 1.2em;padding:0}
+  ol.num li{margin:10px 0;padding-left:4px;color:var(--ink-soft)}
+  ol.num li::marker{color:var(--accent);font-weight:700}
+
+  .model{border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow);padding:clamp(20px,4vw,28px);margin:22px 0;position:relative;overflow:hidden}
+  .model .no{position:absolute;top:-14px;right:14px;font-family:var(--serif);font-size:5rem;color:rgba(155,59,46,.08);font-weight:700;line-height:1}
+  .model h3{margin-top:0}
+  .model .src{font-family:var(--sans);font-size:.74rem;color:var(--ink-faint);letter-spacing:.05em;margin-bottom:8px}
+  .mech{background:rgba(184,137,58,.08);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .scenario{border-top:1px dashed var(--line);margin-top:14px;padding-top:14px}
+  .k{font-family:var(--sans);font-size:.82rem;color:var(--accent);letter-spacing:.04em;font-weight:700}
+
+  .blind{border-left:4px solid var(--ink-faint);padding:14px 18px;margin:14px 0;background:rgba(138,122,102,.06);border-radius:0 8px 8px 0}
+  .blind.hard{border-left-color:var(--accent)}
+  .blind .tag{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .blind.hard .tag{color:var(--accent);font-weight:700}
+
+  .book{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .book:last-child{border-bottom:none}
+  .book .dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:9px;background:var(--accent-2)}
+  .book .dot.opp{background:var(--accent)}
+  .book .b-title{font-weight:700;color:var(--ink);font-size:1.02rem}
+  .book .b-meta{font-family:var(--sans);font-size:.76rem;color:var(--ink-faint);margin:2px 0 4px}
+  .book .b-why{font-size:.94rem;color:var(--ink-soft)}
+
+  blockquote{margin:14px 0;padding:14px 18px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.07);border-radius:0 8px 8px 0;font-style:italic;color:var(--ink);}
+  blockquote .en{display:block;font-style:normal;font-family:var(--sans);font-size:.82rem;color:var(--ink-faint);margin-top:8px;line-height:1.5}
+  .star{color:var(--accent);font-weight:700;margin-right:6px}
+
+  details.ch{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:10px 0;overflow:hidden;box-shadow:0 1px 2px rgba(60,40,20,.05);}
+  details.ch[open]{box-shadow:var(--shadow)}
+  details.ch summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;align-items:baseline;gap:12px;font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--ink);transition:background .15s;}
+  details.ch summary:hover{background:rgba(184,137,58,.08)}
+  details.ch summary::-webkit-details-marker{display:none}
+  details.ch summary .ch-no{flex:0 0 auto;font-family:var(--sans);font-size:.72rem;font-weight:700;color:#fff;background:var(--accent);border-radius:5px;padding:3px 8px;letter-spacing:.03em;}
+  details.ch summary .ch-icon{margin-left:auto;color:var(--accent-2);transition:transform .2s;font-size:.9rem}
+  details.ch[open] summary .ch-icon{transform:rotate(90deg)}
+  .ch-body{padding:4px 18px 20px;border-top:1px solid var(--line)}
+  .ch-artifact{font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);margin:12px 0 4px;letter-spacing:.02em}
+  .ch-artifact b{color:var(--accent)}
+  .ch-gist{font-size:1.02rem;color:var(--ink);font-style:italic;margin:6px 0 12px}
+  .ch-quote{margin:10px 0;padding:10px 14px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.06);border-radius:0 6px 6px 0}
+  .ch-quote .en{display:block;font-family:var(--sans);font-size:.78rem;color:var(--ink-faint);margin-top:6px;line-height:1.5}
+  .ch-note{font-family:var(--sans);font-size:.78rem;color:var(--accent);margin-top:10px;letter-spacing:.02em}
+
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:34px clamp(18px,5vw,40px) 70px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);line-height:1.9;max-width:880px;margin-left:auto;margin-right:auto;}
+  footer b{color:var(--ink-soft)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 18px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend .s{color:var(--accent);font-weight:700}
+  .legend .f{color:var(--ink-faint)}
+
+  .ch-blk{margin:14px 0 0;padding:12px 14px;background:rgba(155,59,46,.035);border:1px solid rgba(155,59,46,.10);border-radius:6px}
+  .ch-blk h5{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:700}
+  .ch-blk p{font-size:.95rem;line-height:1.82;margin:0}
+  .ch-blk.think{background:rgba(184,137,58,.07);border-color:rgba(184,137,58,.18)}
+  .ch-blk.think h5{color:var(--accent-2)}
+  .ch-blk.life{background:rgba(90,79,66,.05);border-color:rgba(90,79,66,.13)}
+  .ch-blk.life h5{color:var(--ink-soft)}
+  .ch-sec-h{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;color:var(--ink-faint);margin:18px 0 2px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+  .ch-map td:first-child{white-space:nowrap;font-weight:700;color:var(--accent)}
+
+  @media (max-width:640px){
+    .hero .meta{font-size:.74rem}
+    table{font-size:.82rem}
+    th,td{padding:9px 8px}
+    .book{flex-direction:column;gap:6px}
+    table.resp{display:block;overflow-x:auto;white-space:nowrap}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=2000&q=80" alt="图书馆书架" onerror="this.style.display='none'">
+  <div class="bookmark" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Reading Notes · 角落历史</div>
+    <h1>照亮破碎之心</h1>
+    <div class="sub">病态不是人性的例外，而是读懂人性的最短路径</div>
+    <div class="meta">
+      [美]卡尔·戴瑟罗思 著 · 吴承瀚 译 · 湖南文艺出版社·博集天卷 2024 · 饶毅序<br>
+      原版 Projections: A Story of Human Emotions（Random House, 2021）· 作者为 2026 年诺贝尔生理学或医学奖得主
+    </div>
+  </div>
+</header>
+
+<nav class="ribbon" aria-label="目录">
+  <ul>
+    <li><a href="#about">关于本书</a></li>
+    <li><a href="#core">一句话核心</a></li>
+    <li><a href="#myths">认知误区</a></li>
+    <li><a href="#logic">六层逻辑</a></li>
+    <li><a href="#models">思维模型</a></li>
+    <li><a href="#critical">批判性视角</a></li>
+    <li><a href="#books">对读书单</a></li>
+    <li><a href="#chapters">逐章精读</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <span class="sec-tag">About · 关于本书</span>
+    <h2>它到底是什么书<span class="en">What kind of book is this</span></h2>
+    <p class="lead">它是<b>文学非虚构</b>，不是专著、不是科普。作者用五年（2015–2020）在实验室与精神科急诊室的间隙写成；斯坦福官方对它的定位是"这不是一本科普书，这是一部文学作品"。六章六个急诊病例，章与章之间没有论证递进，靠一条"经线／纬线"的编织隐喻兜住整体——所以骨架必须自己重建。</p>
+    <div class="card ribbon-left">
+      <h4>作者简介</h4>
+      <p>卡尔·戴瑟罗思（Karl Deisseroth），1971 年生，斯坦福大学 D.H. Chen 教授（生物工程 + 精神病学与行为科学）、霍华德·休斯医学研究所研究员。2005 年开创光遗传学基本方法，2013 年开发 CLARITY 组织透明化技术。<b>2026 年 10 月 5 日</b>与彼得·黑格曼、格奥尔格·内格尔共同获诺贝尔生理学或医学奖，理由是"光门控离子通道与光遗传学"。他同时是斯坦福医院精神科急诊的一线医生——本书是他的第一部作品，也是目前唯一一部。</p>
+      <h4>全书三"不是"</h4>
+      <ul class="clean">
+        <li><strong>不是</strong>科普或科学专著——光遗传学在书里是工具与隐喻，不是主题。作者自陈："写作是我一辈子热爱的事……它一直被掩盖在科学和医学之下。"</li>
+        <li><strong>不是</strong>病例集——斯坦福官方称书中为"虚构化的故事（fictionalized stories）"；《科学》的评语是"事实与虚构、现实与想象、伤害与欲望的混合体"。</li>
+        <li><strong>不是</strong>治疗指南或自助书——每一章记录的是急诊级的重症，作者反复强调"科学不应该过度以转化为目标"。</li>
+      </ul>
+      <h4>方法论三设定（决定后面的一切）</h4>
+      <ol class="num">
+        <li>观察单位 = <strong>单个神经元与神经联结</strong>，不是脑区、不是人格、不是社会处境。</li>
+        <li>证据入口 = <strong>急诊室病例 + 小鼠光遗传学实验 + 文学</strong>；三者并列，不判真伪，只问功能。</li>
+        <li>立场 = <strong>医生与病人织在同一块布上</strong>。作者不站观察者席位，他承认自己"主观多于客观"。</li>
+      </ol>
+      <h4>版本差异（务必知道，否则会拆错）</h4>
+      <p>原版七章（Storehouse of Tears／First Break／Carrying Capacity／Broken Skin／The Faraday Cage／Consummation／Moro），中译本<b>六章并改用疾病名作章标题</b>，两版章序不对齐：原版第 5 章"The Faraday Cage"对应中译本<b>第四章 精神分裂症</b>（出版方试读章已证实）。原版主打病例之一在中译本六章中未见对应，疑为原版第 3 章"Carrying Capacity"未被保留——<b>待核实</b>。本笔记按中译本六章拆解。</p>
+    </div>
+  </section>
+
+  <!-- ============ CORE ============ -->
+  <section id="core">
+    <span class="sec-tag">Thesis · 一句话核心</span>
+    <h2>全书终极论点<span class="en">The one-sentence core</span></h2>
+    <div class="thesis">
+      <div class="q">这本书不是讲"精神疾病有多惨"，而是把精神科急诊当成一台天然实验装置——大脑某一处坏掉时，被藏起来的结构就暴露出来；<em>所以病态不是人性的例外，而是读懂完整人性的最短路径</em>。</div>
+      <div class="src">作者原话 · 前言 · 微信读书划线 408 人</div>
+    </div>
+    <blockquote>
+      "如同一块布被磨损后，底下的线和它的隐藏结构就会暴露在外一样，基因发生突变并失去作用后，我们反而能借此推断突变部分的脱氧核糖核酸(DNA)原本的功能，<b>通过损坏的过程，理解、还原事物完整的模样</b>。"
+      <span class="en">中译本原文 · 前言（A 级）</span>
+    </blockquote>
+    <p>全书最锋利的一句其实不是关于病人，是关于医生的——它把"共情"从美德改造成了方法：</p>
+    <blockquote>
+      "即便他承受着极大的病痛折磨，他的经线和我的经线其实也并在一起……而在这块织布上，他的病痛也就是人性的一部分而已。"
+      <span class="en">前言 · 微信读书划线 708 人，全书第一热句（A 级）</span>
+    </blockquote>
+    <p><strong>扎心落点</strong>：如果病痛属于人性的一部分，那么"他们疯了"这个句式从来就不成立——成立的只是"这一处先坏了"。</p>
+  </section>
+
+  <!-- ============ MYTHS ============ -->
+  <section id="myths">
+    <span class="sec-tag">Myths · 核心痛点</span>
+    <h2>四个至今流行的认知误区<span class="en">Four misconceptions the book dismantles</span></h2>
+
+    <div class="card">
+      <h3>误区一：这是"诺奖得主写的脑科学科普"</h3>
+      <p><b>流行版本</b>：2026 年 10 月诺奖落地后，本书被顺势包装成"读懂光遗传学的入门书"。<br>
+      <b>错在哪</b>：光遗传学在书里是工具与隐喻，不是主题。作者二十年前的第一志愿就是写作。<br>
+      <b>作者怎么破</b>："写作是我一辈子热爱的事，有机会时，我总想回到写作上，只是多年来它一直被掩盖在科学和医学之下。"（前言，238 人划线）；"科学不应该过度以转化为目标，甚至不应该过度地以探索疾病相关的问题为目的。"（前言，221 人划线）</p>
+    </div>
+
+    <div class="card">
+      <h3>误区二：抑郁症 = 悲伤太多，哭出来就好了</h3>
+      <p><b>流行版本</b>：抑郁是情绪过量，宣泄即可缓解。<br>
+      <b>错在哪</b>：临床上最重的抑郁患者恰恰<b>哭不出来</b>——因为哭泣需要"希望"与"脆弱"同时在场，而重度抑郁里希望已经消失。<br>
+      <b>作者怎么破</b>："他已经没有任何希望可以质疑，未来已经不存在……那时没有眼泪，月光下没有答案——只剩一条发咸的海水消退后留下的干枯河床。"（第一章，270 人划线）</p>
+    </div>
+
+    <div class="card">
+      <h3>误区三：主观感受只是进化的副产品、是"赠品"</h3>
+      <p><b>流行版本</b>：真正重要的是行为与生存，心情是附加的噪音。<br>
+      <b>错在哪</b>：大脑要在进食、睡眠、社交、安全之间不断取舍，没有统一标尺就无法决策——主观感觉正是那把标尺。<br>
+      <b>作者怎么破</b>："主观感觉——比如说感觉好或者感觉差——可能是大脑内在经济系统的金融工具，能让许多不同范畴的正面和负面感觉，从进食、睡眠、性生活到生命本身，全都转换为同一个通用货币。"（第一章，128 人划线）</p>
+    </div>
+
+    <div class="card">
+      <h3>误区四：精神科医生是客观的外部观察者</h3>
+      <p><b>流行版本</b>：医生诊断病人，立场在病人之外。<br>
+      <b>错在哪</b>：精神科没有影像指标可依据，"除了病人的表达和我们自己的，没有别的东西可以测量"。<br>
+      <b>作者怎么破</b>："那次意外教会了我'先入为主'是多么危险。我们必须和人直接接触，才能真正找到任何近乎人性的东西。"（前言，220 人划线）英文书评另记其原话：精神病学的核心挑战是"从病人的视角去感知并体验那些非惯常的现实"——<b>待核实</b>。</p>
+    </div>
+  </section>
+
+  <!-- ============ LOGIC ============ -->
+  <section id="logic">
+    <span class="sec-tag">Logic · 底层逻辑</span>
+    <h2>六层逻辑推演<span class="en">Six-layer reasoning</span></h2>
+    <p class="lead">每层只留：一个功能动词 + 一条层结论 + 推论。回答"这一层比上一层多解决了什么问题"。</p>
+    <div class="card">
+      <p><b>前提层</b>：观察单位 = 单个神经元与神经联结；证据来源 = 斯坦福精神科急诊的真实病例 + 小鼠光遗传学实验 + 文学；立场 = 医生与科学家双身份，文学与科学同为认知工具，不判真伪只问功能。</p>
+    </div>
+    <table class="resp">
+      <tr><th style="width:14%">层</th><th style="width:12%">动词</th><th style="width:38%">层结论</th><th>推论</th></tr>
+      <tr><td><b>1 定点</b></td><td><b>测</b></td><td>光遗传学让"某个细胞 ↔ 某个行为"成为可测的因果关系</td><td>科学的进展几乎总是从测量开始；先能开、能关，才谈得上机制。用光而非氧气把能量转成信息（微生物视蛋白）</td></tr>
+      <tr><td><b>2 拆解</b></td><td><b>拆</b></td><td>一个看似整块的内在状态，可以被拆成彼此独立的特征，各由不同神经环路控制</td><td>焦虑 ≠ 一件事：呼吸急促与风险回避由不同纤维束分管。"就此，一个复杂的内在精神状态已经被拆解为独立的特征"</td></tr>
+      <tr><td><b>3 定价</b></td><td><b>换</b></td><td>大脑给一切好坏定一个统一汇率，主观感觉就是这套内在经济系统的通用货币</td><td>VTA 多巴胺负责偏好与主观感觉，外侧下丘脑负责生存行为，二者可分离；BNST、杏仁核、缰核各管一段</td></tr>
+      <tr><td><b>4 溯源</b></td><td><b>问</b></td><td>这些机制之所以长这样，是演化留下的临时补丁，不是最优设计</td><td>线粒体曾是外来微生物；镰刀型细胞杂合子抗疟；洞穴鱼在黑暗中失去眼睛；"除非从演化视角来阐述，否则生物学的一切都说不通"</td></tr>
+      <tr><td><b>5 反推</b></td><td><b>显</b></td><td>正因为系统坏过，我们才知道它原本怎么工作——破碎是显影剂</td><td>基因突变 → 推断该基因原功能；脑桥受损 → 暴露展神经的职责；闭锁综合征 → 暴露第六对脑神经是"边界上的哨兵"</td></tr>
+      <tr><td><b>6 归位</b></td><td><b>并</b></td><td>病人的经线与医生的经线织在同一块布上，所以病痛属于人性，不属于"他们"</td><td>医生的自我保护没有正式流程；累积病例到一定数量，一次经历足以击垮医生的内在自我。终局落在伦理：点亮几个细胞就能诱发攻击，我们该怎么办</td></tr>
+    </table>
+    <p>递进关系：<b>能不能测</b> → <b>测的是不是一整块</b> → <b>不同块怎么比较取舍</b> → <b>为什么是这套而不是最优解</b> → <b>那怎么知道完整版长什么样</b> → <b>知道了之后，我们彼此是什么关系</b>。</p>
+  </section>
+
+  <!-- ============ MODELS ============ -->
+  <section id="models">
+    <span class="sec-tag">Models · 思维模型</span>
+    <h2>七个思维底层模型<span class="en">Mental models</span></h2>
+    <p class="lead">标注规则：<b>作者命题</b> = 文中有原话可查；<b>提炼</b> = 从论证结构反推，责任在拆解者。</p>
+
+    <div class="model">
+      <div class="no">①</div>
+      <h3>坏掉的显影法</h3>
+      <div class="src">来源：作者命题（前言原话"通过损坏的过程，理解、还原事物完整的模样"）</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：想知道一件东西原本怎么工作，就等它坏一次——坏在哪儿，哪儿的职责就自己暴露出来了。完好时所有零件一起运转，谁也看不见谁在干什么。</div>
+      <p><b>为什么成立</b>：完整系统里没有对照组。缺口本身就是信息：缺口的形状 = 那个零件的形状。</p>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">
+        <p><span class="k">处境</span>：一个人长期提不起劲，交代的事能拖就拖，周末只想躺着。</p>
+        <p><span class="k">常规做法（低效）</span>：给自己贴道德标签——懒、矫情、不上进；然后靠打鸡血和自责硬撑，撑几天又垮。</p>
+        <p><span class="k">模型问法</span>：不问"我这个人哪里不行"，改问"具体是哪一个功能掉线了"。</p>
+        <p><span class="k">诊断动作</span>：把它拆成能观察的小项——睡眠、食欲、注意力、能不能想象下周的事——逐项打勾。</p>
+        <p><span class="k">模型判断</span>：如果"对未来的想象"整块消失（书里那句"未来是一堵白墙"），那不是性格缺陷，是一个<b>特定功能失效</b>；道德评价在这里完全打错了靶子。</p>
+        <p><span class="k">破局动作</span>：停止用意志力语言覆盖生理故障，改为针对具体掉线项去调整或求助。</p>
+      </div>
+    </div>
+
+    <div class="model">
+      <div class="no">②</div>
+      <h3>痛苦的定价权</h3>
+      <div class="src">来源：作者命题（第三章原话"我们随时都能放下快乐，但是我们无法同样轻易地忽视痛苦"）</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：快乐可以随手放下，痛苦放不下——所以痛苦比快乐更能指挥行为。一个人长期泡在说不清的难受里时，会主动制造一种尖锐、可控、自己理解得了的新痛，去替换那个模糊的旧痛。</div>
+      <p><b>为什么成立</b>：旧痛来自过去，不可控也不可解释；新痛是自己按下的开关，能被控制，于是带来短暂的掌控感。</p>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">
+        <p><span class="k">处境</span>：一个人明知道深夜翻旧账、刷负面新闻、找茬吵架会让自己更难受，还是停不下来，事后又后悔。</p>
+        <p><span class="k">常规做法（低效）</span>：骂自己"就是爱内耗""太作了"，然后发誓下次不看了。</p>
+        <p><span class="k">模型问法</span>：这个动作做完之后，我<b>得到</b>的是什么？</p>
+        <p><span class="k">诊断动作</span>：分别记下"做之前的不适"和"做之后的感受"，对比两者的性质。</p>
+        <p><span class="k">模型判断</span>：得到的不是快乐，是把一团模糊的难受换成一种尖锐、具体、可控的难受——这是<b>自我调节</b>，不是自毁倾向，也不是性格缺陷。</p>
+        <p><span class="k">破局动作</span>：把这个动作保留下来、换掉载体——冷水洗脸、出门快走十分钟、把一件极小的具体事做完。同样是"制造一种可控的新刺激"，但不再对自己收费。</p>
+      </div>
+    </div>
+
+    <div class="model">
+      <div class="no">③</div>
+      <h3>通用货币</h3>
+      <div class="src">来源：作者命题（第一章原话"全都转换为同一个通用货币"）</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：大脑没法拿"睡眠时长"和"被人尊重"直接比大小，所以它把所有好坏都折成同一种感觉——"好"或者"差"——再来决定做什么。</div>
+      <p><b>为什么成立</b>：行为要在多个需求之间不断取舍，没有统一标尺就无法决策。</p>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">
+        <p><span class="k">处境</span>：一个人明知道该睡了还刷手机到两点，明知道要攒钱还是下了单。</p>
+        <p><span class="k">常规做法（低效）</span>：归因于"自控力差"，立 flag、设闹钟、删 App，反复失败。</p>
+        <p><span class="k">模型问法</span>：此刻大脑在拿哪两样东西<b>兑换</b>？</p>
+        <p><span class="k">诊断动作</span>：写下"我现在的感觉"和"我刚刚放弃了什么"。</p>
+        <p><span class="k">模型判断</span>：不是意志力输给了诱惑，是大脑按当时的<b>汇率</b>把"立刻的舒缓"定得比"明天的状态"高；汇率是可以被改的——睡眠剥夺本身就会抬高即时奖励的汇率。</p>
+        <p><span class="k">破局动作</span>：<b>先改汇率，再谈自控</b>。手机放到够不着的地方，第二天要做的事提前变成已经付过钱的约定；而最有效的一步是先补睡眠——它是调汇率最快的手段。</p>
+      </div>
+    </div>
+
+    <div class="model">
+      <div class="no">④</div>
+      <h3>演化的临时补丁</h3>
+      <div class="src">来源：作者命题（第二章：镰刀型细胞杂合子抗疟、洞穴鱼失去眼睛、"除非从演化视角来阐述，否则生物学的一切都说不通"）</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：很多看起来是缺陷的特征之所以没被淘汰，要么是因为它在另一个环境里是优势，要么它只是修补时留下的疤。</div>
+      <p><b>为什么成立</b>：自然选择只管当下能不能活到繁殖，不管设计是否优雅。</p>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">
+        <p><span class="k">处境</span>：一个人总嫌自己想太多、太敏感、容易紧张，一直想把这毛病改掉。</p>
+        <p><span class="k">常规做法（低效）</span>：报课练钝感、逼自己"别想了"，结果越压越敏感。</p>
+        <p><span class="k">模型问法</span>：这个特征在<b>什么环境</b>里是有用的？</p>
+        <p><span class="k">诊断动作</span>：回想有哪些场合，自己正是因为想太多而躲过了一次麻烦。</p>
+        <p><span class="k">模型判断</span>：敏感不是故障，是一套在不确定环境里高灵敏度的预警系统，代价是<b>误报率高</b>。</p>
+        <p><span class="k">破局动作</span>：不删掉这个特征，给它加一道<b>复核环节</b>——警报响起后强制延迟一段时间再行动，把误报率降下来，而不是把报警器拆了。</p>
+      </div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑤</div>
+      <h3>自我的边界就是皮肤</h3>
+      <div class="src">来源：作者命题（第三章：皮肤与大脑同源于外胚层；"怒发冲冠"是最古老的哺乳动物内在状态）</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>："我"不延伸到皮肤之外。皮肤是守卫，也是最脆弱的地方——边界被侵犯时的那阵发紧、发热、后背发麻，是哺乳动物最古老的一种警报。</div>
+      <p><b>为什么成立</b>：外胚层同时长出了皮肤和大脑，边界感和自我感本就同源。</p>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">
+        <p><span class="k">处境</span>：一个人被同事当众抢了功劳，当场一句话说不出来，回家越想越气，反复复盘"我当时该怎么怼回去"。</p>
+        <p><span class="k">常规做法（低效）</span>：把这件事当成一次辩论失败，苦练话术，下次仍然当场卡壳。</p>
+        <p><span class="k">模型问法</span>：我当时的<b>身体</b>反应是什么？</p>
+        <p><span class="k">诊断动作</span>：定位那阵脖子后背发紧、发热——那是边界警报，不是理亏。</p>
+        <p><span class="k">模型判断</span>：说不出话不是因为没理，是<b>警报占满了带宽</b>；把保卫边界和赢得争论混为一谈，才让自己两头都输。</p>
+        <p><span class="k">破局动作</span>：只把边界那件事本身说出口（"这句话是我做的"），不追求当场赢下辩论。两件事分开办。</p>
+      </div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑥</div>
+      <h3>没有感觉的事，大脑不存</h3>
+      <div class="src">来源：作者命题（第六章：痴呆症里记忆与快感缺失一起崩塌；缰核可为原本无价值的事物打上价值标记）</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：一件事如果没能让你真的有感觉，大脑就没有理由为它付存储费——所以记不住。</div>
+      <p><b>为什么成立</b>：记忆成本高，价值由感觉来标记。</p>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">
+        <p><span class="k">处境</span>：一个人觉得日子过得飞快，一年到头说不出记住了什么。</p>
+        <p><span class="k">常规做法（低效）</span>：买手账、拍照打卡、强迫自己每天记录，坚持两周放弃。</p>
+        <p><span class="k">模型问法</span>：这一天里，有没有<b>任何一件事</b>让我真的有感觉？</p>
+        <p><span class="k">诊断动作</span>：允许自己在某件事上多停一会儿、多看一眼，而不是赶着把清单划完。</p>
+        <p><span class="k">模型判断</span>：记不住不是记忆力的问题，是那件事确实没产生感觉，大脑拒绝为它付费——记再多也没用。</p>
+        <p><span class="k">破局动作</span>：与其记录更多，不如让少数几件事真的有感觉——<b>把清单砍短，把其中一件做完整</b>。</p>
+      </div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑦</div>
+      <h3>医生也会碎</h3>
+      <div class="src">来源：作者命题（第一章原话："医学训练过程中并没有一个正式的操作规范流程，专门用来保护暴露在这些极端负面事件下的医生的心理状态"）</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：长期替别人扛痛苦是会磨损的，而这套磨损没有防护流程；累积到一定数量，一次单一经历就足以击垮一个人。</div>
+      <p><b>为什么成立</b>：书里说得很直白——"当累积的病例数量还比较少的时候，一次单一经历足以像暴风一般，击垮这个医生的内在自我。"</p>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">
+        <p><span class="k">处境</span>：一个人长期照顾生病的家人，渐渐发现自己越来越麻木、越来越容易烦躁。</p>
+        <p><span class="k">常规做法（低效）</span>：自责"我怎么这么不孝顺"，然后硬撑，撑到爆发，爆发后再自责。</p>
+        <p><span class="k">模型问法</span>：我是不是坐在一个<b>没有补给的位置</b>上？</p>
+        <p><span class="k">诊断动作</span>：把"麻木"当成一个需要处理的状态信号，而不是道德缺陷。</p>
+        <p><span class="k">模型判断</span>：麻木是长期暴露后的自我保护机制，不是人品问题；把它道德化只会延迟处理。</p>
+        <p><span class="k">破局动作</span>：把固定离开的时间排进日程（哪怕一小时），并且明确认定——<b>补给本身就是照护工作的一部分</b>，不是偷懒。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CRITICAL ============ -->
+  <section id="critical">
+    <span class="sec-tag">Critical · 批判性视角</span>
+    <h2>盲区与落地坑<span class="en">Blind spots &amp; pitfalls</span></h2>
+
+    <h3>方法论盲区</h3>
+    <div class="blind hard"><div class="tag">硬伤 1 · 物种跳跃</div><p>全书最重的因果证据——"提升多巴胺神经元活动可诱发类躁狂、抑制可逆转 Clock 突变小鼠的类躁狂""激活社交相关细胞可抑制饥饿小鼠的进食"——全部来自小鼠。作者自己也留了口子："从我遇到埃米莉的那天起算，我在神经科学上花了整整十五年时间，才得到一个答复，而且<b>也仅仅是个答复而已</b>。"但叙事把这两层焊死了：读者读完会以为"人类抑郁症的机制已被解释"，实际只是"存在一条可类比的小鼠通路"。《书单》书评直接点名：作者过度强调光遗传学。</p></div>
+
+    <div class="blind hard"><div class="tag">硬伤 2 · 虚构化，边界不可查</div><p>斯坦福官方说法是书中用了"虚构化的故事"；《科学》的评语是"事实与虚构、现实与想象、伤害与欲望的混合体"。读者无法分辨哪句是病人原话、哪句是作者的文学投射、哪个人是几个人合成的。在"纪实非虚构"的契约下，这是结构性硬伤——不是某一句可疑，是整本书的可核查性被关闭了。</p></div>
+
+    <div class="blind hard"><div class="tag">硬伤 3 · 神经还原论，社会层缺位</div><p>几乎每个困境都收束到细胞与神经联结。贫困、劳动强度、家庭内部的权力关系、移民与少数族裔处境，在书里被压缩成触发背景。当作者写"文明进化快于生物进化"时，他看见的是错配；但他没有继续问：是哪一个文明、哪一种安排，让这套配置变成灾难。</p></div>
+
+    <div class="blind"><div class="tag">代价 4 · 演化解释不可证伪</div><p>"为什么精神疾病没被自然选择淘汰"——作者给了镰刀型细胞、洞穴鱼、杂合子优势等一堆类比，通篇是"或许""可能""也许"。这是<b>推测的堆叠</b>，不是结论。书的文学性让这些推测读起来比它们实际的证据强度更硬。</p></div>
+
+    <div class="blind"><div class="tag">代价 5 · 双重权威叠加</div><p>作者同时是技术发明者、主治医生、2026 年诺奖得主。读者很难在"文学判断"和"科学结论"之间做出区分——书里最动人的句子（"痛苦比快乐更能指导行为"）其实是一个<b>临床直觉加一个类比</b>，不是实验结论。</p></div>
+
+    <div class="blind"><div class="tag">结构盲区 6 · 六章并列，没有递进</div><p>六章六个病，章与章之间没有论证推进，靠"经线／纬线"的编织隐喻兜住整体。中译本相较原版七章还可能少了一章（原版第 3 章未见对应，<b>待核实</b>），本就松散的结构更松。</p></div>
+
+    <h3>普通人最容易踩的坑</h3>
+    <div class="blind"><div class="tag">坑 1 · 拿大脑机制当免责声明</div><p>读完最容易滑向的一句话是：既然是神经环路的问题，那我改不了。反向证据就在书里——作者明确写过内在状态和价值体系是可以改变的，恐惧可以减退、痛苦可以转变。机制解释的是"为什么难"，不是"所以不可能"。</p></div>
+    <div class="blind"><div class="tag">坑 2 · 拿演化解释给自己下诊断</div><p>"我这样是演化留下来的""高敏感是生存优势"——把需要专业评估的状态，用一套听起来很科学的语言自我解释掉，从而推迟求助。这是本书最容易造成的实际伤害。</p></div>
+    <div class="blind"><div class="tag">坑 3 · 美化受苦</div><p>"痛苦比快乐更能指导行为"被读成"所以痛苦更高级、更深刻"，于是开始为长期受苦赋予意义，甚至舍不得放手。原文讲的是驱动力的<b>不对称</b>，不是价值的排序。</p></div>
+    <div class="blind"><div class="tag">坑 4 · 拿急诊级重症当自己的镜子</div><p>书里写的是精神科急诊——自杀风险、闭锁综合征、T 细胞淋巴瘤伪装成精神病、死亡率最高的进食障碍。普通人拿自己的低落去对照，会过度病理化日常情绪：把一周的心情不好读成"我的未来是一堵白墙"。</p></div>
+    <div class="blind"><div class="tag">坑 5 · 用"我理解你的机制"替代"我在听你说话"</div><p>书里最有用的一条其实是反面教材：精神科每个诊断标准都建立在语言之上。一旦学会用机制去解释身边的人（"你这是多巴胺的问题"），就很容易停止倾听——而作者自己说，"我们必须和人直接接触，才能真正找到任何近乎人性的东西"。</p></div>
+  </section>
+
+  <!-- ============ BOOKS ============ -->
+  <section id="books">
+    <span class="sec-tag">Counterparts · 对读书单</span>
+    <h2>互补与对立<span class="en">What to read next</span></h2>
+
+    <h3>互补</h3>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《正午之魔》</div><div class="b-meta">安德鲁·所罗门 · 抑郁症的第一人称与文化史</div><div class="b-why">补本书最缺的两块：<b>患者第一人称</b>与<b>社会/文化维度</b>。戴瑟罗思写的是诊室里的病人，所罗门写的是抑郁者自己怎么活。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《行为》</div><div class="b-meta">罗伯特·萨波斯基 · 行为的多层解释</div><div class="b-why">把一个行为为什么发生分成四层时间尺度（几秒前／几天前／一生／百万年进化），正好补上本书<b>只有最后一层</b>的缺口。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《大脑传》</div><div class="b-meta">马修·科布 · 神经科学三千年</div><div class="b-why">补学科史上下文：让"光遗传学为什么是革命"落到一条真实的脉络里，而不是一个诺奖光环。</div></div></div>
+
+    <h3>对立 / 对照</h3>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《疯癫与文明》</div><div class="b-meta">米歇尔·福柯</div><div class="b-why">疯癫是<b>社会建构</b> vs 疯癫是<b>大脑疾病</b>——两套框架正面对撞。先读本书再读福柯，才不会被单一框架带走。</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《错把妻子当帽子》</div><div class="b-meta">奥利弗·萨克斯 · 同为"医生写病例"的传统</div><div class="b-why">萨克斯不碰分子机制，纯靠现象学描述仍抵达同样的人性深度——恰好反证本书的细胞级解释<b>不是唯一路径</b>，也不必然更深刻。</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《当呼吸化为空气》</div><div class="b-meta">保罗·卡拉尼提 · 同为斯坦福医师的文学非虚构</div><div class="b-why">一本向内写自己将死，一本向外写病人求生（本书推荐人之一 Lucy Kalanithi 是其遗孀）。对照着读，"医生的自我"这块会被照得很亮。</div></div></div>
+  </section>
+
+  <!-- ============ CHAPTERS ============ -->
+  <section id="chapters">
+    <span class="sec-tag">Chapters · 逐章精读</span>
+    <h2>逐章精读<span class="en">Close reading, chapter by chapter</span></h2>
+    <div class="legend">
+      <span><span class="s">★</span> 原文引文（可直接引用；未能核对原版者标「待核实」）</span>
+      <span><span class="f">☆</span> 章旨句（提炼，非原话，严禁加引号）</span>
+    </div>
+
+    <div class="ch-sec-h">结构总图 · 六章到底在拆什么</div>
+    <p style="font-size:.92rem;color:var(--ink-soft);margin:8px 0 12px">作者说这本书是「编织」而不是论证——六章之间没有明示的递进，靠前言的经线／纬线隐喻兜住。但把六章的<b>破损对象</b>排一排，会露出一条暗线：它其实在沿着「自我这台机器」，<b>从外壳拆到内核</b>。</p>
+    <table class="resp ch-map">
+      <thead><tr><th>序</th><th>章</th><th>破损的对象</th><th>性质</th><th>在序列里的位置</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>前言</td><td>—</td><td>装方法论</td><td>先把「织布」装进读者脑子，否则后面会散</td></tr>
+        <tr><td>1</td><td>抑郁症</td><td><b>时间感（未来）</b></td><td>功能太少</td><td>刻度的一端</td></tr>
+        <tr><td>2</td><td>躁狂症</td><td><b>强度调节（多少）</b></td><td>功能太多</td><td>刻度的另一端，与第一章成对偶</td></tr>
+        <tr><td>3</td><td>边缘型人格障碍</td><td><b>边界（自我／他人）</b></td><td>边界破损</td><td>枢轴：从「量的失调」转向「结构的破损」</td></tr>
+        <tr><td>4</td><td>精神分裂症</td><td><b>现实检验（真／假）</b></td><td>外壳破损</td><td>与第三章成对偶，拆完外壳</td></tr>
+        <tr><td>5</td><td>厌食症</td><td><b>仲裁（自我 vs 自我需求）</b></td><td>内核第一层</td><td>自我第一次自己动手</td></tr>
+        <tr><td>6</td><td>痴呆症</td><td><b>自我本身</b></td><td>内核消失</td><td>收束：回到起点，与第一章扣成环</td></tr>
+        <tr><td>7</td><td>后记</td><td>—</td><td>主语转移</td><td>从「他」到「我」再到「我们」</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.88rem;color:var(--ink-faint);margin:10px 0 4px">三组对偶：<b>1↔2（太少／太多）</b>、<b>3↔4（边界／现实）</b>、<b>5↔6（内战／消亡）</b>。首尾扣环：<b>第一章「未来消失」→ 第六章「回到起点」</b>。此表为拆解者重建，作者在书里没有这样排过——中译本把原版文学标题全换成疾病名，反而让这条暗线更容易看见。</p>
+
+    <details class="ch" open>
+      <summary><span class="ch-no">前言</span>经线与纬线<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-artifact">核心物证：织布隐喻——<b>经线</b>是结构锚点（已编织的过去／正编织的现在／尚未编织的未来），<b>纬线</b>是每个人经历的具体琐事。</div>
+        <div class="ch-gist">这本书的方法论只有一句：通过损坏的过程，理解、还原事物完整的模样。</div>
+        <div class="ch-blk "><h5>本章讲了什么</h5><p>作者先交代为什么写这本书：他想当作家，这个念头被科学和医学掩盖了二十年。然后用织布设下全书方法论，声明自己的双重身份（斯坦福精神科急诊医生 + 光遗传学发明者），并预先拦掉一种误读——这不是一本科普书。他讲了一次「先入为主」的教训：带着预设判断病人，结果错了。最后落下立场：病人的病痛是人性的一部分，不属于「他们」。</p></div>
+        <div class="ch-blk "><h5>对全文论点的作用</h5><p>承担全书的<b>许可功能</b>：先把「医生的共情」从美德改写成方法，再把「文学」从装饰改写成认知工具。没有它，后面六章会被读成病例集或脑科学入门。全书唯一的方法论句也出自这里。</p></div>
+        <div class="ch-blk "><h5>结构用意</h5><p>放在最前做两件事：一是<b>预防误读</b>（先声明不是科普、不是治疗指南）；二是<b>装兜底装置</b>——六章之间没有论证递进，唯一的整体性是那块织布，读者必须先在脑子里装上它，否则读到第三章就会散架。它也是唯一以「我」为主角的一章：中间六章主角全是病人，后记主角才回到「我们」。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>"即便他承受着极大的病痛折磨，他的经线和我的经线其实也并在一起……而在这块织布上，他的病痛也就是人性的一部分而已。"<span class="en">前言 · 微信读书划线 708 人（全书第一热句）</span></div>
+        <div class="ch-quote"><span class="star">★</span>"如同一块布被磨损后，底下的线和它的隐藏结构就会暴露在外一样……通过损坏的过程，理解、还原事物完整的模样。"<span class="en">前言 · 划线 408 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"科学不应该过度以转化为目标，甚至不应该过度地以探索疾病相关的问题为目的。"<span class="en">前言 · 划线 221 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"那次意外教会了我「先入为主」是多么危险。我们必须和人直接接触，才能真正找到任何近乎人性的东西。"<span class="en">前言 · 划线 220 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"写作是我一辈子热爱的事，有机会时，我总想回到写作上，只是多年来它一直被掩盖在科学和医学之下。"<span class="en">前言 · 划线 238 人</span></div>
+        <div class="ch-quote"><span class="star">☆</span>"前言真正在做的事，是给「医生的共情」找一个不尴尬的位置：不是美德，是方法。"<span class="en">拆解者提炼，非原话</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「通过损坏理解完整」是整个现代科学最通用的推理方式：基因敲除、脑损伤定位、工程故障分析，全是同一个动作。但它有一个很少被说破的前提——它要求你先相信「完整版」和「损坏版」是同一台机器，只是少了一个零件。如果损坏引发的不是「少一块」而是<b>全系统重构</b>（大脑确实会代偿、会重塑），那「反推」就不成立，你得到的只是这个系统的另一种稳定态。有意思的是，作者自己在第二章就承认大脑会「神不知鬼不觉地重塑」——那正是反推法的边界。一本书在前言立起自己的方法，又在第二章亲手划出它的适用范围，这是很诚实的做法。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>人判断一台机器、一段关系、一个组织，几乎全靠它<b>坏的那一次</b>。电梯困人一次，你才知道它的应急系统什么样；一个平时极温和的人暴怒时露出的那一面，往往才是他真实的优先级排序。我们对「完整」的认识，绝大多数是从破损处获得的——这不是猎奇，这是我们唯一能看清结构的方式。反过来说也成立：<b>从没坏过的东西，你其实并不真的了解它</b>。一段从未经历任何冲突的关系，你并不知道它的承重在哪。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第一章</span>抑郁症<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-artifact">核心物证：<b>26 岁的马泰奥</b>，怀孕的妻子死于车祸，他是司机，八周后坐在急诊室说「不知道我为什么哭不出来」；另一条线是脑桥肿瘤的小女孩安迪——<b>第六对脑神经（展神经）</b>只有一根神经、一块肌肉、一件工作，正因为它简单，总是第一个报警。</div>
+        <div class="ch-gist">抑郁症不是悲伤太多，是「未来」这个功能掉线了——未来变成一堵白墙，连哭泣都被省掉了。</div>
+        <div class="ch-blk "><h5>本章讲了什么</h5><p>作者从「哭不出来」这个细节拆哭泣这个动作：眼泪<b>不是悲伤的直接输出</b>，它需要希望与脆弱同时在场。马泰奥的「未来」变成一堵白墙，连几分钟后的事都想象不出来；既然没有未来可以期待或惧怕，身体就省下了挣扎的力气，连哭泣也一起省掉。科学部分：主观感觉是大脑内在经济系统的<b>通用货币</b>，VTA 多巴胺负责偏好与主观感觉，外侧下丘脑负责生存行为，两者可以分离。</p></div>
+        <div class="ch-blk "><h5>对全文论点的作用</h5><p>这是六个病例里唯一<b>从「缺失」出发</b>的，它立下全书最基础的一条判断：精神疾病的第一现场不是情绪强度，而是<b>某个具体功能的掉线</b>。它给后面五章定下拆解单位——不问「这个人怎么了」，问「哪个功能没了」。</p></div>
+        <div class="ch-blk "><h5>结构用意</h5><p>放在第一章，因为它是刻度<b>最少</b>的一端。抑郁是功能的减少（未来、哭泣、希望一并消失），躁狂是功能的过量。把两端相邻排放，先让读者站在一端再去另一端，中间的「正常宽度」才被撑开。另一个考量：抑郁是所有人自以为懂的病，正好用来破除「悲伤太多、哭出来就好」这个最流行的误区——开篇就用读者的成见做靶子。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>"当我问他关于未来的计划时，他的眼前只有虚空。他连未来几分钟的事都无法预见，未来如同一堵看不见的、无法突破的、无形无相的白墙。"<span class="en">第一章 · 划线 75 人；出版方目录页亦引</span></div>
+        <div class="ch-quote"><span class="star">★</span>"哭泣发生的那一刻，其实是悲伤的眼泪和更神秘的快乐的眼泪发生了奇妙混合。当我们同时感受到希望与脆弱时，我们才会流泪。"<span class="en">第一章 · 划线 810 人（全书第二热句）</span></div>
+        <div class="ch-quote"><span class="star">★</span>"他已经没有任何希望可以质疑，未来已经不存在，所以也不值得去思考，或者惧怕。那时没有眼泪……只剩一条发咸的海水消退后留下的干枯河床。"<span class="en">第一章 · 划线 270 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"希望会消耗我们的注意力和感情，当希望不复存在的时候，省下挣扎的力气，连哭泣都省去，或许才是最好的应对方式。"<span class="en">第一章 · 划线 208 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"主观感觉——比如说感觉好或者感觉差——可能是大脑内在经济系统的金融工具……全都转换为同一个通用货币。"<span class="en">第一章 · 划线 128 人</span></div>
+        <div class="ch-quote"><span class="star">☆</span>"抑郁最可测量的指标不是情绪强度，是「还能不能想象下周三」。"<span class="en">拆解者提炼，非原话</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>最反直觉的是那句<b>「希望会消耗资源」</b>。我们习惯把希望当作免费的、正面的，把绝望当作失败。但如果希望是一项持续消耗注意力的生理开销，那么「不再希望」就可能是身体在做<b>止损</b>——冷酷，但功能性的节能。这解释了两件常见却总被误读的事：一、为什么劝人「往好处想」会适得其反——你在要求他重启一个他已经付不起开销的功能；二、为什么抑郁的人常被说成「懒」——那不是动机不足，是预算被砍了。作者把抑郁从道德范畴搬到了经济范畴，这一章真正的锋利在这里。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>加班到第三个月的那个周末，朋友发来消息：「下个月去海边吧，我把酒店订了。」你盯着那行字，脑子里生不出任何画面——不是不想去，是「下个月」这三个字在你这里<b>已经没有内容了</b>。你回了个「再说吧」。这就是小型的、可逆的「未来白墙」：不是悲伤，是<b>想象未来这个功能临时掉线</b>。同理，高压期里你会突然对一向喜欢的事失去兴趣，不是你变了，是那台机器把非必要开销全停了。<br><br>哭泣那条也很好验证：葬礼上哭不出来的人，往往在两周后洗碗时听到一首歌突然崩掉。因为那一刻，希望（我还能被触动）和脆弱（我承认我失去了）<b>终于同时在场</b>——眼泪要的两个条件，悲伤本身从来不够。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第二章</span>躁狂症<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-artifact">核心物证：<b>亚历山大</b>。他并未亲历 9/11，脑海里却长出一对父女罹难的完整细节并开始向家人叙述——「他的大脑已经神不知鬼不觉地开始重塑」；作者用阿克泰翁被自己的猎犬撕碎的神话对照自己：手里拿着中世纪工具的精神科医生。</div>
+        <div class="ch-gist">躁狂是一次大脑自我升级的失控版本——表现为增强，代价却由身体和社会一起承担。</div>
+        <div class="ch-blk "><h5>本章讲了什么</h5><p>作者讲躁狂的临床表现：<b>睡眠需求真的下降、精力与表现真的提升</b>，直到灾难降临。科学部分：光遗传学提升多巴胺神经元活动可诱发类躁狂，抑制多巴胺活动可逆转 Clock 基因突变小鼠的类躁狂；锂盐对人类双相有效。演化部分：为什么这种配置没被淘汰——镰刀型细胞杂合子抗疟、洞穴鱼失去眼睛，缺陷可能是另一种环境里的优势，或只是修补留下的疤。</p></div>
+        <div class="ch-blk "><h5>对全文论点的作用</h5><p>给全书装上<b>演化视角</b>，它是第四章（妄想为何在物种层面有意义）与全书「不完美为何被保留」的论证底座。更重要的是它抛出一个尖锐问题：如果一种状态在某些维度上表现为<b>增强</b>，那「病」的边界画在哪？作者的答案被推给了外部——是制度与规矩决定了这种配置能不能存活。</p></div>
+        <div class="ch-blk "><h5>结构用意</h5><p>紧接抑郁的「过少」，这里是「过量」，构成全书第一组对偶。它也是唯一一章把评判权明确交给环境（社会留不留得下这种配置），为后面从「个体大脑」向「集体」过渡铺路。神话题词在这里第一次起大作用（阿克泰翁 = 被自己的创造物反噬），一直回响到后记的技术伦理——<b>这是全书埋得最长的一条伏笔</b>。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>"文明的进化速度远快于生物的进化速度。"<span class="en">第二章 · 划线 144 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"从某种角度来看，那就是一个人提升的表现，但是灾难最终降临在许多人身上。对亚历山大来说，他生错时间，生错地点。"<span class="en">第二章 · 划线 90 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"现代社会的内在制度和规矩已经限制了躁狂的发展，如同孵化中的主宰者被困在自己破了个口子却已经逐渐硬化的茧里……它奋力想要挣脱，翅膀因此被撕裂。"<span class="en">第二章 · 划线 40 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"人类的不完美，或许恰好可以帮助我们在这个世界上立足。"<span class="en">第二章 · 划线 80 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"除非从演化视角来阐述，否则生物学的一切都说不通。"<span class="en">第二章 · 划线 34 人（转引多布然斯基 1973）</span></div>
+        <div class="ch-quote"><span class="star">☆</span>"这一章真正锋利的不是「躁狂是什么」，而是「社会留不留得下这种配置」。"<span class="en">拆解者提炼，非原话</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「文明的进化速度远快于生物的进化速度」是全书最锋利的一句社会学断言：我们身上大量配置是为<b>另一种环境</b>调校的——对糖的渴望、对风险的过度警觉、对社会排斥的极度敏感，都是旧环境的解。但这里有个必须点破的陷阱：演化解释是<b>最难证伪的一类解释</b>，任何性状都能事后编出一个「曾经有用」的故事，而故事之间无法比较优劣。作者在全书里对演化解释反复使用「或许」——这既是诚实，也是这个工具本身的软肋。读这一章时，「或许」两个字值得每次都看见。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>连续三天赶一个方案，你睡四个小时却异常清醒、话多、觉得自己什么都能搞定，效率曲线的确上去了。这就是微型躁狂：<b>短期是超能力，长期是借债</b>，而账单由身体和关系来付。几乎所有「冲刺文化」都在合法地利用这一段——deadline 前一周的产能奇迹被当成常态来要求，代价被推迟到下个季度。<br><br>另一个更好验证的：一个团队里总有个人，想法比所有人多、推进速度快，但在流程里处处撞墙。他不是能力问题，是这个环境给他留的通道太窄。同一个人换到节奏更快的组织，同样的配置就成了核心优势。「他生错时间，生错地点」——这句话放在职场上几乎可以逐字套用。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第三章</span>边缘型人格障碍<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-artifact">核心物证：<b>19 岁的亨利</b>。被发现裸身在公交车车厢过道打滚，说自己想象在吃人；手臂上一道道浅浅的、复原得很好的伤痕，他<b>故意露给医生看</b>。入院主诉其实是父亲那句话：「如果你要自杀的话，别在家里自杀。你妈妈会怪我。」</div>
+        <div class="ch-gist">自伤不是求死，是把不可控的旧痛换成可控的新痛——一次失败的自我调节。</div>
+        <div class="ch-blk "><h5>本章讲了什么</h5><p>作者从皮肤讲起：皮肤与大脑同源于<b>外胚层</b>，边界感与自我感同源；「怒发冲冠」是哺乳动物最古老的内在状态之一，是边界被侵犯的警报。核心机制：快乐随时能放下，痛苦放不下，<b>所以痛苦更能指挥行为</b>。患者追求的不是死亡，而是「有作用的、能被控制的、能被理解的」强烈负面情绪——用尖锐而可控的新痛，替换童年那种不受控制又无法解释的旧痛。神经层面：以<b>缰核</b>为中心的环路可以在原本无价值的事物上赋予价值标记。另有一条方法论：医生被病人诱发的负面情绪本身就是诊断工具。</p></div>
+        <div class="ch-blk "><h5>对全文论点的作用</h5><p>全书提供<b>通用机制</b>的一章。第一章讲缺失，第二章讲过量，第三章第一次给出一条跨章节都能用的定律——<b>痛苦的定价权高于快乐</b>。这条定律会在第五章（自我能否决饥饿）、第六章（最后留下的是最原始的抓握）反复回响。它也把「医生的主观感受」正式合法化为数据。</p></div>
+        <div class="ch-blk "><h5>结构用意</h5><p>处在六章正中间，是<b>枢轴</b>。前两章是「多少」的问题，从这一章起转向「边界」问题：自我与他人、内在与外在的分界线在哪。它是全书从「量的失调」转向「结构的破损」的转折点。它也是把「医生被卷入」写得最明确的一章——亨利故意展示伤痕，把医生变成了反应的一部分，直接呼应前言那句「经线并在一起」。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>"我们随时都能放下快乐，但是我们无法同样轻易地忽视痛苦。或许正因为如此，比起快乐，痛苦更容易成为指导行为的强大力量。"<span class="en">第三章 · 划线 112 人（本章第一热句）</span></div>
+        <div class="ch-quote"><span class="star">★</span>"患者因此会去拼命追求另一种强烈的负面情绪，只要它是有作用的，能被控制的，能被理解的。"<span class="en">第三章 · 划线 144 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"自伤行为可能揭示了边缘型人格障碍患者内心的负面状态……引入一种新的、尖锐的、新鲜的痛苦，而这种痛苦是可被控制和可被理解的，不是童年时那种不受控制又无法解释的感觉。"<span class="en">第三章 · 划线 30 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"如果一个人在起点处已经存在某种精神上的痛苦，他的每一个行动都是为了减少或分散这种痛苦，这个人会变成什么样子？"<span class="en">第三章 · 划线 128 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"三天留院期好像是算命算出来的，因为这个数字背后没有任何医学或精神病学支持。"<span class="en">第三章 · 划线 165 人</span></div>
+        <div class="ch-quote"><span class="star">☆</span>"亨利要的不是伤口，是一个自己能按下的开关。"<span class="en">拆解者提炼，非原话</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「我们随时都能放下快乐，但是我们无法同样轻易地忽视痛苦」是全书的行为学钥匙。它解释了一大类看上去非理性的事：为什么一句批评的效力远大于十句表扬；为什么损失带来的痛苦需要两倍收益才能抵消（行为经济学的损失厌恶，很可能就是这条神经不对称在群体层面的投影）。但更值得注意的是后半句：<b>患者追求的是「能被理解的」痛苦</b>。这说明人能忍受的痛苦强度远超想象，前提是这个痛苦<b>讲得通</b>。真正让人崩溃的从来不是痛的强度，是痛的无意义——这是这一章最深的一层，也最容易被「自伤」这个表层话题盖住。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>明知明天要早起，还是刷手机刷到两点。表面是拖延，实际是<b>替换</b>：白天那种说不清的、弥漫的、不知从哪来的难受，被换成一种清晰、可控、自己选的代价——「我困，我知道为什么困，我随时能放下手机」。后者的痛更尖，但它讲得通，而且开关在自己手上。人宁可要一个自己按得动的小痛，也不愿要一个按不动的大痛。<br><br>再比如：办公室里被当众说了一句，整天的状态就毁了，而当天早上得到的三句夸奖一条也记不住。这不是玻璃心，是两套系统的权重本来就不一样——快乐可以随手放下，痛苦必须被处理。理解这一点，你就知道为什么「多夸夸就好了」是一种无效的好意。</p></div>
+        <div class="ch-note">⚠️ 风险提示：本章含自伤的具体描写。涉自伤细节与方法的内容在各平台均属高危，会触发限流或下架。以上「现实链接」已刻意避开任何具体方式，只保留可公开讨论的动机结构。</div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第四章</span>精神分裂症<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-artifact">核心物证：<b>温妮</b>，知识产权律师，17 岁那年淋巴瘤化疗、缓解 12 年；兄弟 AJ 与 Nelson，威斯康星九月的湖边。她开始担心邻居用卫星天线读取她的想法，于是拆墙、拆天花板，要给自己造一个<b>法拉第笼</b>。脊椎穿刺的细胞学报告给出了真正的答案：罕见高度非典型淋巴细胞，T 细胞淋巴瘤。</div>
+        <div class="ch-gist">妄想有时是身体疾病递交的第一份报告；而「我们共同享有的现实」并不因为被共享就是真的。</div>
+        <div class="ch-blk "><h5>本章讲了什么</h5><p>作者由此展开三层：一、<b>现实是被协商出来的，不是被发现的</b>；二、自我的统一感是<b>回溯搭建</b>的，思维的秩序与行为的控制一样虚幻，都只是神经在填补空缺；三、躯体疾病会伪装成精神病——这是最实用的临床提醒。还有集体层面：一部分人持有不切实际的信念，是整个物种正在健康运作的标志。</p></div>
+        <div class="ch-blk "><h5>对全文论点的作用</h5><p>把「破碎」的镜头从个体大脑推到了<b>现实本身</b>。前三章都在问「这个人哪里坏了」，这一章问「你们共享的那个『正常』，凭什么是真的」。它给全书装上认识论的一层，也让「病态是读懂人性的路径」第一次有了哲学重量：如果现实的共识只是共识，那么偏离共识的人<b>未必是唯一出错的那个</b>。</p></div>
+        <div class="ch-blk "><h5>结构用意</h5><p>第三、四章是第二组对偶：第三章是<b>边界</b>（自我／他人），第四章是<b>真／假</b>（自我／现实）。两章合起来把「自我」这台机器的外壳拆完，第五、六章才进到内部。同时它是最实用的一章——「躯体疾病会伪装成精神病」这个提醒，是全书<b>唯一一条可以直接救命的临床知识</b>，放在中段正好作为阅读回报。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>"我们共同享有的现实不是真实的，它只是被共同享有而已。"<span class="en">第四章 · 划线 75 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"虚构的思想序列是以回溯的方式搭建和安装的。我们思维的秩序，与我们对行为的控制一样虚幻。两者都只是被合理化了，只是神经在填补过去的空缺。"<span class="en">第四章 · 划线 48 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"脑脊液，滋养着大脑和脊髓……它的盐分浓度恰到好处，和我们的鱼类祖先一样，还带有一点葡萄糖——我们身体里的古老海洋总是带着一丝甜味。"<span class="en">第四章 · 划线 126 人（本章第一热句）</span></div>
+        <div class="ch-quote"><span class="star">★</span>"从集体角度来说，更有意义。一部分人持有不切实际的信念，是整个物种正在健康运作的标志。"<span class="en">第四章 · 划线 30 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"Hegel made famous his aphorism that all the rational is real and all the real rational; but there are many of us who, unconvinced by Hegel, continue to believe that the real, the really real, is irrational…"<span class="en">原版 Ch.5 The Faraday Cage 开篇题词（出版方试读章，A 级）· 中译本对应译文待核实</span></div>
+        <div class="ch-quote"><span class="star">☆</span>"温妮造法拉第笼的方式，和她打赢官司的方式是同一套——她一直在用自己最擅长的东西自救。"<span class="en">拆解者提炼，非原话</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「共同享有 ≠ 真实」有两副面孔。温和的一面：共识是<b>协作工具</b>，不必为真，只要够用。锋利的一面：任何时代的常识都可能只是当时当地多数人的错觉，而指出它的人会被首先归类为异常。问题在于，这两副面孔在<b>当下这一刻无法分辨</b>——一个坚信自己被卫星监控的人，和一个超前于时代的观察者，在此刻的行为表现高度相似，差别只在事后才兑现。作者没有回避这个不舒服的地方，他把问题留在了那里。这是全书最诚实的一处留白。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个办公室里所有人都默认「周末回消息是正常的」，只有新来的人觉得不对。按人数算，他是唯一的异常；按事实算，他是唯一没被磨平的人。反过来看也一样：一个人坚信某个机会万无一失，周围所有人都在劝他——共识站在多数那边，但这一次多数是对的。<br><br>所以我们真正缺的不是「服从共识」或「怀疑共识」的原则，而是分辨<b>此刻是哪种情况</b>的能力——而这种能力通常只有事后才兑现。这大概就是作者说「一部分人持有不切实际的信念是整个物种健康运作的标志」的意思：代价由个体承担，收益由群体拿走。这句话读起来很美，落到具体的人身上很疼。</p></div>
+        <div class="ch-note">⚠️ 风险提示：原版主打病例之一为「远离故土的维吾尔族女性」，在中译本六章中未见对应（疑为原版 Ch.3 Carrying Capacity，待核实）。涉民族与地缘内容不得搬运至公开平台。</div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第五章</span>厌食症<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-artifact">核心物证：<b>埃米莉与索尼娅</b>。索尼娅严重脱水，每天清晨跑十四五公里，那一天只喝了咖啡、吃了几根胡萝卜，「因为时间不够」。</div>
+        <div class="ch-gist">进食障碍是「自我」与「自我需求」之间的一场内战——大脑召集成千上万的神经元，硬生生把饥饿压了下去。</div>
+        <div class="ch-blk "><h5>本章讲了什么</h5><p>作者的定位极其直白：「在精神病学乃至整个医学领域，我没有发现比进食障碍更神秘的疾病。」事实层面：把并发症与自杀计入，<b>厌食症是所有精神障碍里死亡率最高的疾病</b>。机制层面：这是自我与自我需求之间的一场内战。关系层面：病人与疾病之间存在一种<b>伙伴关系</b>，时而碾压、时而敌对、时而坦诚；没有药物能治愈它，就像没有药物能消除朋友或敌人，但言语可以触碰到它。自我层面：自我 = 记忆 + 处世原则的融合体，前额叶与压后皮层负责创造「路径」并导航。</p></div>
+        <div class="ch-blk "><h5>对全文论点的作用</h5><p>把「自我」从背景推到了<b>被告席</b>。前四章里自我都还是受害者（被抑郁掏空、被躁狂放大、被边界困扰、被现实欺骗），这一章里自我自己动手——它有能力否决身体最底层的命令。这把全书论点推到了最硬的版本：如果「我要不要」能压过「我要活」，那「自我」就不是欲望的总和，而是一个<b>可以审判欲望的机构</b>。</p></div>
+        <div class="ch-blk "><h5>结构用意</h5><p>倒数第二章，是从「外壳」进入「内核」的第一步：前四章拆自我与外界的关系（未来、强度、边界、现实），这一章拆自我与自身需求的关系，最后一章拆自我本身。它也是全书情感最克制的一章——作者在这里承认「十五年，也仅仅是个答复而已」，这是他唯一一次明确标出自己知识的边界，正好放在收尾前，给最后的痴呆章留出余味。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>"在精神病学乃至整个医学领域，我没有发现比进食障碍更神秘的疾病。甚至在整个生物学里，也没有比这更大的谜团了。"<span class="en">第五章 · 划线 45 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"厌食症会带来非常多的风险。如果将并发症，包括与饥饿相关的器官衰竭，以及自杀都计算在内，厌食症是所有精神障碍里死亡率最高的疾病。"<span class="en">第五章 · 划线 28 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"虽然没有药物可以治愈这两种疾病，就像没有药物可以消除朋友或敌人一样，但是言语可以触碰到它们，就像人与人之间的接触一样。"<span class="en">第五章 · 划线 42 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"这是我看到的根本性冲突：一场自我与自我需求之间的征战。"<span class="en">第五章 · 划线 30 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"心灵不会因为地点或时间而改变，而这是多么珍贵的一件事；与自我的稳定性和确定性相比，世俗的损失显得微不足道。"<span class="en">第五章 · 划线 136 人（本章第一热句）</span></div>
+        <div class="ch-quote"><span class="star">★</span>"最终病人在全脑范围内，召集了足够庞大的神经细胞群，硬生生地将饥饿压了下去。"<span class="en">第五章 · 划线 32 人</span></div>
+        <div class="ch-quote"><span class="star">☆</span>"厌食症里，「我要不要」战胜了「我要活」——这是人类特有的、也是最贵的一种胜利。"<span class="en">拆解者提炼，非原话</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「没有药物可以消除朋友或敌人」——把疾病当成人际关系来写，是本书最反医学直觉的一步。它暗示一件事：对这类病，「治愈」（消灭对方）可能从来就不是合适的目标，因为对方<b>已经长进了自我结构里</b>。「康复」不是把病赶走，是重新谈一份关系。这与主流医学的「根治」叙事正面冲突，但它解释了为什么这类病复发率极高：你赶走的是一个室友，不是细菌。它也顺带解释了病人的矛盾态度——「同时被憎恨和被拥护」，只有在把疾病当成一段关系时才说得通。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>为了赶完一个项目，你已经三天没正经吃过一顿饭，饿过头之后反而不饿了——你赢了一次。这只是<b>程度问题</b>，机制是同一套：前额叶的「我要把这个做完」压过了下丘脑的「我需要能量」。差别只在：健康版本是短期的、可逆的、<b>有终止条件的</b>；病态版本没有终止条件。所以判断标准从来不是「能不能忍」，而是「<b>什么时候停</b>」——有没有一个我自己认的退出条件。<br><br>另一个更日常的：坚持一个原则（不求助、不迟到、不说不）到明显损害自己的地步，事后回头看，那场「胜利」的代价往往比它保护的东西更贵。人非常擅长为自我的一致性付出睡眠、健康和关系——这是人类特有的能力，也是最贵的一种。</p></div>
+        <div class="ch-note">⚠️ 风险提示：本章涉进食障碍的具体行为细节（热量、运动量、催吐）。此类内容在平台侧属易触发限流的敏感健康内容，搬运须去掉具体数字与方法。以上「现实链接」只谈动机结构，不含任何具体做法。</div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第六章</span>痴呆症<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-artifact">核心物证：<b>诺曼先生</b>，几乎不再主动说话，被催促时一次也只说一两个音节。医生伸手开门、已经看见走廊时，身后传来一个完整的句子——「这将会是一个漫长的夜晚。」那是他说的最后一句话。</div>
+        <div class="ch-gist">痴呆不是记忆丢失，是「自我」被一层层剥回出生时的状态——最后剩下的，是那个要抓住点什么的孩子。</div>
+        <div class="ch-blk "><h5>本章讲了什么</h5><p>作者讲痴呆的本质：不是记忆丢失，而是<b>心灵本身的丧失</b>——记忆不只存事件，还存感觉、情感、知识，以及设定人生方向的价值观，这一切被一并抹去。快感缺失与记忆损害互相加重：没有引发感觉的经验，大脑没有理由存它。婴儿反射在痴呆中<b>回归</b>：莫罗反射（身体突然下降或加速时手臂反射性举起），灵长类婴儿的救命动作，是我们在树上爬的祖先留下的遗产。最后一句提醒：精神科的每个诊断标准都建立在语言之上，而这一章的病人几乎不说话。</p></div>
+        <div class="ch-blk "><h5>对全文论点的作用</h5><p>全书的终点，也是「破碎即显影」这一方法论的<b>最强演示</b>：退行把后来加装的一切一层层剥掉，最后露出的那个抓握反射，是我们这个物种最古老的一层。它把论点推到最极端的一句——「我们的终点也是我们的起点」——并且反过来给前言的「经线」一个闭环：过去、现在、未来三条线，最后一章只剩下最早的那一条。</p></div>
+        <div class="ch-blk "><h5>结构用意</h5><p>放在最后，因为它是<b>唯一不可逆</b>的病。前五章都隐含着「还有可能回来」的余地，这一章没有。结构上它是全书的收束：从第一章「未来消失」到第六章「回到起点」，六章首尾扣成一个环。它也承担了全书的语气转换——前五章医生还在解释、还在干预，这一章医生只能站在门口听那一句话。<b>作者把最强的文学效果留到了最后。</b></p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>"随着神经纤维的损耗，原始的自我终于暴露在外，她发出属于自己的声音，伸出双手去寻求安全感，去寻找一个实际早已死去的母亲。"<span class="en">第六章 · 划线 70 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"痴呆意味着心灵本身的丧失。记忆储存人生旅途中的感觉、情感和知识……它也建立了设定人生道路的界限和方向的价值观，而痴呆患者的这一切被一并抹去。"<span class="en">第六章 · 划线 42 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"婴儿反射在痴呆症中再次回归。这是进化论为灵长类婴儿的生存而编排的动作：莫罗反射……这是我们在树上爬的祖先遗留下的产物。"<span class="en">第六章 · 划线 36 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"我们的人生旅途、我们的快乐、我们的价值观，都坐落在这条可以被切断的细线上。它承载着我们记忆的联结，它是我们自我的投射。"<span class="en">第六章 · 划线 48 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"我们无能为力，我们的终点也是我们的起点，同样充满无助和未知。"<span class="en">第六章 · 划线 55 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"这将会是一个漫长的夜晚。"<span class="en">出版方／电商目录页引述（B 级）· 中译本原文页码待核实</span></div>
+        <div class="ch-quote"><span class="star">☆</span>"这章最狠的不是遗忘，是「退回去」——一辈子的涂层褪尽，底下那个婴孩一直都在。"<span class="en">拆解者提炼，非原话</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>我们习惯把人生想象为单向积累：经验叠加在经验上，自我越来越厚。痴呆展示的是相反的事实——<b>那层厚度是有载体的</b>，载体坏了，涂层就一层层掉，而且掉的顺序与装上去的顺序相反：最后学会的先丢，最古老的最后丢。这引出一个让人不舒服的问题：如果「我」是一层一层加上去的东西，那么剥到最后剩下的那个，算不算<b>更真的「我」</b>？作者的答案倾向于是——「原始的自我终于暴露在外」。但也可以反过来读：那个最底层的抓握反射是所有人共有的、最没有个人性的东西。所谓「最真的自我」，可能同时也是「最不像我的自我」。作者没有处理这个悖论，他选择了抒情。这是全书文学性压过论证性的一处。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>几乎每个人都见过这个现象的缩小版：极度疲惫、高烧、或深夜被惊醒的那一秒，成年人那一整套体面、克制、讲道理的反应会瞬间失效，剩下的只有最原始的那几种——要被抱、要安全感。那一秒里露出来的，是你两三岁时的配置。<br><br>再比如：老人在晚年突然只肯吃某几样童年食物、只说方言、只认得某个早已去世的人。旁人说是「糊涂了」，其实是<b>后期加装的那几层先掉了</b>，最底下那层还完好。它提示一件日常就能用的事：人对「我是谁」的确信是有物理载体的，而不是一份抄在别处的备份。这个事实既让人安心（它不会因为你想不通而消失），也让人不安（它会因为别的东西而消失）。</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">后记</span>三条黑暗道路<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-artifact">核心物证：光遗传学实验——开启大脑深处的少数几个细胞，就能诱导出具体的暴力攻击行为；用全息光点激活通常只对垂直条纹反应的细胞，小鼠会表现得好像眼前真有垂直条纹。</div>
+        <div class="ch-gist">能点亮几个细胞就诱发攻击的技术，把伦理问题提前到了技术成熟之前——社会必须先想清楚，而不是事后追赶。</div>
+        <div class="ch-blk "><h5>本章讲了什么</h5><p>作者把这个能力摊开，问它意味着什么。然后给出三条「深藏在森林中的黑暗道路」：我们的科学进程、我们对抗暴力的形式、我们对自身意识的理解。制度层面的结论：我们建立的社会不应该赋予任何一个人完全的权力，必须在个人、机构、政府所有层面上形成制约机制。他也为基础研究辩护：最重要的发现往往在计划之外，不能用对秩序和控制的欲望来完全规划科学进程。最后回到书名：缺陷和错误的本质，与疾病本身一样，会照亮和揭示真理。</p></div>
+        <div class="ch-blk "><h5>对全文论点的作用</h5><p>完成了一次<b>主语的转移</b>：全书从「他」（病人）讲到「我」（医生），最后落到「我们」（社会）。前面六章建立的所有理解——大脑可以被精确操控、行为有细胞层面的开关、痛苦有高于快乐的定价权——在这一章全部变成了<b>权力问题</b>。它把书名里的「照亮」翻出了第二重含义：被照亮的不只是病人，还有握着手电筒的人。</p></div>
+        <div class="ch-blk "><h5>结构用意</h5><p>它不是总结，是<b>升级</b>。总结会把六章收拢成一个结论；后记把六章的副产品（技术能力）推成一个新问题，让全书在开放而不是闭合中结束。这个选择在结构上有风险——读者期待收尾，却得到一个更大的问题——但它与全书的方法论一致：理解是为了看见更多，不是为了结案。<b>一本拒绝结案的书，用拒绝结案的方式结尾。</b></p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>"这是三条深藏在森林中的黑暗道路。这本书中的故事都分别触及了这三条道路……这三条路分别是：我们的科学进程、我们对抗暴力的形式，以及我们对自身意识的理解。"<span class="en">后记 · 划线 30 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"我们建立的社会，不应该赋予任何一个人完全的权力，对他完全信任；我们必须在所有层面上都形成制约机制，包括个人、机构和政府。"<span class="en">后记 · 划线 24 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"缺陷和错误的本质，与疾病本身一样，会照亮和揭示真理。"<span class="en">后记 · 划线 33 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"科学，像歌曲和故事一样，是人类交流对话的自由形式之一。"<span class="en">后记 · 划线 52 人</span></div>
+        <div class="ch-quote"><span class="star">★</span>"然而，我们不能用自己对秩序和控制的欲望来完全规划科学进程……它表明了支持基础研究的重要性。"<span class="en">后记 · 划线 48 人</span></div>
+        <div class="ch-quote"><span class="star">☆</span>"后记把全书从「理解病人」推到了「我们配不配拥有这项技术」——这是书名「照亮」的另一半含义。"<span class="en">拆解者提炼，非原话</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这一章真正的问题不是「我们能不能做」，而是「<b>谁会先做、做完之后规则才赶到</b>」。技术史上几乎所有案例都是这个顺序：能力先落地，伦理后追赶，中间那段由最早的使用者定义默认规则。作者给出的答案是「制约机制」——但这本身也值得追问：制约机制是为了防止权力被滥用，还是为了让权力<b>可持续</b>？如果答案是后者，那么这场伦理辩护就建立在功利之上，而不是原则之上。换句话说，我们设限不是因为操控他人是错的，而是因为不设限的话这套系统会垮——这两者的道德分量完全不同。作者没往下走，但这是这一章留下的真问题。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>你手机里那个推荐系统，已经在做一件<b>结构上相同</b>的事：它不需要理解你，只需要找到几个能改变你下一步行为的触发点，然后反复按。它按的不是神经元，是注意力——粗糙得多，但逻辑完全一致：找到开关 → 施加刺激 → 观察行为改变 → 校准。而规则（未成年人模式、算法备案、推送限制）全部是在这套能力铺开多年之后才到的。<br><br>更普遍的一层：任何「能精准影响他人选择」的工具出现时，第一批使用者都会把它用在<b>最有效而不是最正当</b>的地方。这不是道德问题，是激励结构问题——所以作者才把答案压在「制约机制」上，而不是「让好人来用」上。这个判断对今天几乎所有新技术都适用。</p></div>
+      </div>
+    </details>
+
+    <div class="ch-sec-h">读完这一遍，可以带走的三个判断</div>
+    <div class="ch-blk"><h5>01</h5><p><b>先问「哪个功能掉线了」，而不是「这个人哪里不行」。</b>全书六个病例，没有一个能用道德词汇描述准确。这不是宽容，是精度问题。</p></div>
+    <div class="ch-blk"><h5>02</h5><p><b>痛苦比快乐更有定价权。</b>它能解释一大类「明知没好处还去做」的行为——人在换一种讲得通的痛，而不是在追求快乐。</p></div>
+    <div class="ch-blk"><h5>03</h5><p><b>我们对「完整」的认识几乎全部来自破损处。</b>从没坏过的东西，你并不真的了解它——包括你自己。</p></div>
+  </section>
+
+</main>
+
+<footer>
+  <b>信源构成</b>：A 级（中译本原文，微信读书全书热门划线，逐条可核对 + 出版方试读章英文原文）约 80%；B 级（严肃书评与出版方物料转引：Publishers Weekly、Booklist、Science、Stanford Medicine、Penguin Random House、当当／百科目录页）约 20%。英文原句仅在能取得原版原文时并列，未取得者只给中文，不回译、不编造。<br>
+  <div class="legend">
+    <span><span class="s">★</span> 原文引文（可直接引用；未能核对原版者标「待核实」）</span>
+    <span><span class="f">☆</span> 章旨句（提炼，非原话，严禁加引号）</span>
+  </div>
+  <b>合规提示</b>：第三章（自伤）、第五章（进食障碍具体行为）属平台高危健康内容，涉细节与方法不得搬运；第四章涉及的民族与地缘病例不得搬运至公开平台；原版与中译本的章序差异、被删章节判断均标注「待核实」，引用前请核对纸本。<br>
+  <b>生成</b>：基于四份拆解稿（骨架 / 思维模型 / 批判视角 / 逐章精读）整合，参考 book-skeleton-dissection 与 book-distiller 方法。单文件 HTML，可离线阅读。
+</footer>
+
+<script>
+  const links = Array.from(document.querySelectorAll('.ribbon a'));
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = map.get(e.target.id);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  document.querySelectorAll('main section').forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

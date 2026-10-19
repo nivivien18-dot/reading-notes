@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="《植物会思考吗？》（Planta Sapiens）读书笔记：一句话核心、六个认知误区、六层逻辑推演、九个思维模型、四个批判盲区、对读书单，以及前言与九章逐章六层精读。">
+<title>《植物会思考吗？》读书笔记 · 角落历史</title>
+<style>
+  :root{
+    --paper:#f3e9d8; --paper-2:#efe2cc; --ink:#2c2620; --ink-soft:#5a4f42; --ink-faint:#8a7a66;
+    --accent:#9b3b2e;   /* 书签朱红 oxblood */
+    --accent-2:#b8893a; /* 暖金 muted gold */
+    --line:#d8c8ab; --card:#fbf5e9;
+    --shadow:0 1px 2px rgba(60,40,20,.08),0 8px 30px rgba(60,40,20,.10);
+    --serif:"Songti SC","STSong","SimSun","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--serif); color:var(--ink); line-height:1.85;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%,rgba(184,137,58,.05),transparent 40%),
+      radial-gradient(circle at 80% 90%,rgba(155,59,46,.04),transparent 45%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:rgba(155,59,46,.18)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:clamp(420px,72vh,760px);display:flex;align-items:flex-end;overflow:hidden;
+    background:linear-gradient(135deg,#3a2c1c 0%,#574027 45%,#7a5630 100%);}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.85) brightness(.78);}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(28,20,12,.15) 0%,rgba(28,20,12,.35) 45%,rgba(28,20,12,.82) 100%);}
+  .bookmark{position:absolute;top:0;right:clamp(20px,6vw,90px);z-index:3;width:46px;height:120px;background:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.35);}
+  .bookmark::after{content:"";position:absolute;bottom:-1px;left:0;width:0;height:0;border-left:23px solid transparent;border-right:23px solid transparent;border-top:18px solid var(--accent);}
+  .hero-inner{position:relative;z-index:2;padding:clamp(28px,6vw,72px);max-width:920px;color:#f6ecd9}
+  .hero-eyebrow{font-family:var(--sans);font-size:clamp(.7rem,2vw,.82rem);letter-spacing:.42em;text-transform:uppercase;color:var(--accent-2);margin-bottom:14px;font-weight:600;}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.4rem,8vw,5rem);line-height:1.05;letter-spacing:.04em;color:#fbf3e2;text-shadow:0 1px 0 rgba(0,0,0,.5),0 2px 18px rgba(0,0,0,.45);}
+  .hero .sub{margin-top:18px;font-size:clamp(1rem,3vw,1.4rem);color:#e8d8bd;font-style:italic;letter-spacing:.03em;}
+  .hero .meta{margin-top:22px;font-family:var(--sans);font-size:.82rem;color:#cdbb9c;letter-spacing:.04em;line-height:1.6;}
+
+  /* ---------- RIBBON NAV ---------- */
+  .ribbon{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,#2b2014,#3a2c1c);box-shadow:0 2px 14px rgba(0,0,0,.25);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
+  .ribbon ul{display:flex;gap:2px;list-style:none;padding:0 10px;margin:0;min-width:max-content;}
+  .ribbon a{display:block;font-family:var(--sans);font-size:.78rem;color:#d8c6a6;text-decoration:none;white-space:nowrap;padding:13px 16px;position:relative;letter-spacing:.05em;transition:color .2s,background .2s;}
+  .ribbon a::before{content:"";position:absolute;left:0;top:22%;height:56%;width:3px;background:var(--accent-2);opacity:0;transition:opacity .2s;}
+  .ribbon a:hover{color:#fff}
+  .ribbon a.active{color:#fff;background:rgba(155,59,46,.30)}
+  .ribbon a.active::before{opacity:1}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:880px;margin:0 auto;padding:clamp(28px,6vw,64px) clamp(18px,5vw,40px) 40px}
+  section{margin-bottom:clamp(48px,9vw,84px);scroll-margin-top:64px}
+  .sec-tag{display:inline-block;font-family:var(--sans);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:4px;margin-bottom:14px;}
+  h2{font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;color:var(--ink);letter-spacing:.02em;margin-bottom:8px;line-height:1.25;}
+  h2 .en{display:block;font-family:var(--sans);font-size:.8rem;font-weight:400;letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase;margin-top:6px}
+  h3{font-family:var(--serif);font-size:1.22rem;color:var(--accent);margin:26px 0 10px;font-weight:700}
+  h4{font-family:var(--sans);font-size:.95rem;color:var(--ink-soft);margin:18px 0 6px;letter-spacing:.03em;font-weight:600}
+  p{margin:12px 0;color:var(--ink-soft);font-size:1.04rem}
+  .lead{font-size:1.12rem;color:var(--ink)}
+  strong{color:var(--ink);font-weight:700}
+  em{color:var(--accent)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:clamp(18px,4vw,26px);box-shadow:var(--shadow);margin:18px 0;}
+  .card.ribbon-left{border-left:5px solid var(--accent)}
+  .thesis{background:linear-gradient(135deg,#fbf3e2,#f3e6cf);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:clamp(22px,5vw,34px);box-shadow:var(--shadow);margin:22px 0;}
+  .thesis .q{font-size:clamp(1.15rem,3.4vw,1.5rem);line-height:1.6;color:var(--ink);font-weight:600}
+  .thesis .src{margin-top:14px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);letter-spacing:.04em}
+
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-family:var(--sans);font-size:.9rem}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+  th{background:rgba(155,59,46,.07);color:var(--accent);font-weight:700;letter-spacing:.03em}
+  tr:hover td{background:rgba(184,137,58,.05)}
+  td b{color:var(--ink)}
+
+  ul.clean{list-style:none;margin:12px 0;padding:0}
+  ul.clean>li{padding:10px 0 10px 22px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean>li:last-child{border-bottom:none}
+  ul.clean>li::before{content:"❧";position:absolute;left:0;top:10px;color:var(--accent-2);font-size:.9rem}
+  ol.num{margin:12px 0 12px 1.2em;padding:0}
+  ol.num li{margin:10px 0;padding-left:4px;color:var(--ink-soft)}
+  ol.num li::marker{color:var(--accent);font-weight:700}
+
+  .model{border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow);padding:clamp(20px,4vw,28px);margin:22px 0;position:relative;overflow:hidden}
+  .model .no{position:absolute;top:-14px;right:14px;font-family:var(--serif);font-size:5rem;color:rgba(155,59,46,.08);font-weight:700;line-height:1}
+  .model h3{margin-top:0}
+  .model .src{font-family:var(--sans);font-size:.74rem;color:var(--ink-faint);letter-spacing:.05em;margin-bottom:8px}
+  .mech{background:rgba(184,137,58,.08);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .scenario{border-top:1px dashed var(--line);margin-top:14px;padding-top:14px}
+
+  .blind{border-left:4px solid var(--ink-faint);padding:14px 18px;margin:14px 0;background:rgba(138,122,102,.06);border-radius:0 8px 8px 0}
+  .blind.hard{border-left-color:var(--accent)}
+  .blind .tag{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .blind.hard .tag{color:var(--accent);font-weight:700}
+
+  .book{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .book:last-child{border-bottom:none}
+  .book .dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:9px;background:var(--accent-2)}
+  .book .dot.opp{background:var(--accent)}
+  .book .b-title{font-weight:700;color:var(--ink);font-size:1.02rem}
+  .book .b-meta{font-family:var(--sans);font-size:.76rem;color:var(--ink-faint);margin:2px 0 4px}
+  .book .b-why{font-size:.94rem;color:var(--ink-soft)}
+
+  blockquote{margin:14px 0;padding:14px 18px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.07);border-radius:0 8px 8px 0;font-style:italic;color:var(--ink);}
+  blockquote .en{display:block;font-style:normal;font-family:var(--sans);font-size:.82rem;color:var(--ink-faint);margin-top:8px;line-height:1.5}
+  .star{color:var(--accent);font-weight:700;margin-right:6px}
+
+  /* ---------- 逐章精读：六层块 ---------- */
+  .ch-blk{margin:14px 0 0;padding:12px 14px;background:rgba(155,59,46,.035);border:1px solid rgba(155,59,46,.10);border-radius:6px}
+  .ch-blk h5{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:700}
+  .ch-blk p{font-size:.95rem;line-height:1.82;margin:0}
+  .ch-blk.think{background:rgba(184,137,58,.07);border-color:rgba(184,137,58,.18)}
+  .ch-blk.think h5{color:var(--accent-2)}
+  .ch-blk.life{background:rgba(90,79,66,.05);border-color:rgba(90,79,66,.13)}
+  .ch-blk.life h5{color:var(--ink-soft)}
+  .ch-sec-h{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;color:var(--ink-faint);margin:18px 0 2px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+  .ch-map td:first-child{white-space:nowrap;font-weight:700;color:var(--accent)}
+
+  details.ch{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:10px 0;overflow:hidden;box-shadow:0 1px 2px rgba(60,40,20,.05);}
+  details.ch[open]{box-shadow:var(--shadow)}
+  details.ch summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;align-items:baseline;gap:12px;font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--ink);transition:background .15s;}
+  details.ch summary:hover{background:rgba(184,137,58,.08)}
+  details.ch summary::-webkit-details-marker{display:none}
+  details.ch summary .ch-no{flex:0 0 auto;font-family:var(--sans);font-size:.72rem;font-weight:700;color:#fff;background:var(--accent);border-radius:5px;padding:3px 8px;letter-spacing:.03em;}
+  details.ch summary .ch-icon{margin-left:auto;color:var(--accent-2);transition:transform .2s;font-size:.9rem}
+  details.ch[open] summary .ch-icon{transform:rotate(90deg)}
+  .ch-body{padding:4px 18px 20px;border-top:1px solid var(--line)}
+  .ch-artifact{font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);margin:12px 0 4px;letter-spacing:.02em}
+  .ch-artifact b{color:var(--accent)}
+  .ch-gist{font-size:1.02rem;color:var(--ink);font-style:italic;margin:6px 0 12px}
+  .ch-quote{margin:10px 0;padding:10px 14px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.06);border-radius:0 6px 6px 0}
+  .ch-quote .en{display:block;font-family:var(--sans);font-size:.78rem;color:var(--ink-faint);margin-top:6px;line-height:1.5}
+  .ch-note{font-family:var(--sans);font-size:.78rem;color:var(--accent);margin-top:10px;letter-spacing:.02em}
+  .risk-low{color:#5b7a3a}.risk-mid{color:var(--accent-2)}
+  .pick td:first-child{color:var(--accent);font-weight:700}
+
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:34px clamp(18px,5vw,40px) 70px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);line-height:1.9;max-width:880px;margin-left:auto;margin-right:auto;}
+  footer b{color:var(--ink-soft)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 18px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend .s{color:var(--accent);font-weight:700}
+  .legend .f{color:var(--ink-faint)}
+  a.inline{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(155,59,46,.35)}
+  a.inline:hover{border-bottom-color:var(--accent)}
+
+  @media (max-width:560px){
+    .hero .meta{font-size:.74rem}
+    table{font-size:.82rem}
+    th,td{padding:9px 8px}
+    .book{flex-direction:column;gap:6px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=2000&q=80" alt="植物与绿意" onerror="this.style.display='none'">
+  <div class="bookmark" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Reading Notes · 角落历史</div>
+    <h1>植物会思考吗？</h1>
+    <div class="sub">智能不是大脑的产物 — 我们只是找错了准入条件</div>
+    <div class="meta">
+      [西]帕科·卡尔沃 Paco Calvo、[英]纳塔莉·劳伦斯 Natalie Lawrence 著 · 高天羽 译 · 湖南科学技术出版社·博集天卷 2025 年 1 月<br>
+      原版 Planta Sapiens: The New Science of Plant Intelligence（The Bridge Street Press, 2022 / W. W. Norton, 2023）
+    </div>
+  </div>
+</header></header>
+
+<!-- ============ RIBBON NAV ============ -->
+<!-- 每加一个 section，就在此同步加一条 <li><a href="#id">。锚点 id 与下方 section id 一一对应 -->
+<nav class="ribbon" aria-label="目录">
+  <ul>
+    <li><a href="#about">关于本书</a></li>
+    <li><a href="#core">一句话核心</a></li>
+    <li><a href="#myths">认知误区</a></li>
+    <li><a href="#logic">六层逻辑</a></li>
+    <li><a href="#models">思维模型</a></li>
+    <li><a href="#critical">批判性视角</a></li>
+    <li><a href="#books">对读书单</a></li>
+    <li><a href="#chapters">逐章精读</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <span class="sec-tag">About · 关于本书</span>
+    <h2>它到底是什么书<span class="en">What kind of book is this</span></h2>
+    <p class="lead">这是一本<strong>研究纲领的公开辩护词</strong>，不是教科书，也不是文献综述。全书一半篇幅在回应同行的攻击，一半在正面铺设论证。所以它的骨架必须从「争议史」里读出来，而不只是从目录里读出来。</p>
+    <div class="card ribbon-left">
+      <h4>作者简介</h4>
+      <p>帕科·卡尔沃（Paco Calvo），西班牙穆尔西亚大学科学哲学教授，<strong>最小智能实验室（MINT Lab）</strong>主任。他出身哲学而非植物学，本人自称「学术上的混血儿」——这正是他敢问那些内行不问的问题的原因。第二作者纳塔莉·劳伦斯（Natalie Lawrence）是科学史博士、作家兼插画家。</p>
+      <h4>版本核对（三个容易搞错的点）</h4>
+      <ul class="clean">
+        <li><strong>中译本书名不是副标题的直译</strong>：它是把<strong>原版第五章的章名 Do Plants Think? 提上来当了书名</strong>。原版是「论断 + 设问」，中译本把设问提到了封面、把论断藏进了正文。</li>
+        <li><strong>章序完全对齐，无删节</strong>：前言／序章／三部九章／后记／致谢，与原版一一对应。</li>
+        <li><strong>英版另用过一个副标题</strong>：Unmasking Plant Intelligence。本笔记以通行的 The New Science of Plant Intelligence 为准。</li>
+      </ul>
+      <h4>全书三「不是」（作者开宗明义写在前言里）</h4>
+      <ul class="clean">
+        <li><strong>不是</strong>一本已经证明了「植物有智能」的书——它自己交待了关键实验未能复制。</li>
+        <li><strong>不是</strong>一种新的万物有灵教——作者明确拒绝「鼓吹自然崇拜」。</li>
+        <li><strong>不是</strong>一本科普猎奇书——它是一部有争议史、有对手、有举证责任的研究纲领。</li>
+      </ul>
+      <h4>方法论三设定（决定后面一切）</h4>
+      <ol class="num">
+        <li>判据 = <strong>三条横线</strong>：预见性／灵活性／目标导向。占一条就不能再叫「反射」。</li>
+        <li>证据入口 = <strong>可重复设计的实验</strong>，不是延时影像好不好看。</li>
+        <li>立场 = <strong>举证责任在我</strong>——作者原话：「说到植物的智能，我很乐意承担举证的责任。」</li>
+      </ol>
+    </div>
+  </section>
+
+<!-- ============ CORE ============ -->
+  <section id="core">
+    <span class="sec-tag">Thesis · 一句话核心</span>
+    <h2>全书终极论点<span class="en">The one-sentence core</span></h2>
+    <div class="thesis">
+      <div class="q">智能不是大脑的产物，是「一套能订立目标、整合多源信息、并据此预测将来」的身体装置运转起来的产物。植物换了一整套硬件——维管束代替神经元、生长代替行走、挥发性有机物代替语言——跑的却是同一套软件。我们之所以看不见，不是因为植物没在做事，而是我们一直把「看上去像不像动物」当成了智能的准入条件。</div>
+      <div class="src">判据出处：第 3 章「分清适应与认知」· 三条横线</div>
+    </div>
+    <blockquote>
+      「适应」通常是指对特定输入的自动反应。因为在演化史上的巨大优势，它已经被编入了遗传密码。它是反应性的，必须有刺激才会发生，并且每一次的反应都大致相同。……其中是没有多少灵活性的，只有一种被遗传固化的机制。
+      <span class="en">——《植物会思考吗？》第 3 章，★ 可核对原文</span>
+    </blockquote>
+    <blockquote>
+      它还有预见性，能使生物针对将来的环境变化做出最佳选择。它更有灵活性，能对各种不同的因素做出反应，并有着各种不同的表现。它还是目标导向的，其目标是改变环境或生物自身状态，而不仅仅是被动反应。
+      <span class="en">——同上，★ 可核对原文。这三条横线是全书唯一的判据</span>
+    </blockquote>
+    <p><strong>最反常识的落点有三</strong>：①不是植物像动物，而是我们对智能的定义太窄——可以按「能做什么」而不是「用什么做的」来定义神经系统；②植物甚至可能不需要内部模型，只靠读变量的相对变化率就够了；③这不是一本「植物很有趣」的书，是一本「伦理学要扩张」的书。</p>
+  </section>
+
+<!-- ============ MYTHS ============ -->
+  <section id="myths">
+    <span class="sec-tag">Myths · 核心痛点</span>
+    <h2>六个这本书专门要拆的成见<span class="en">Six misconceptions the book dismantles</span></h2>
+    <div class="card">
+      <h3>误区一：植物行不行，看它动不动</h3>
+      <p>流行版：植物扎在地里不动，所以没有行为、没有智能。作者先搬《企鹅心理学词典》里「行为」的定义——<em>泛指行动、活动、反应、动作、过程、操作等的笼统名词，简言之就是生物可被测量的一切反应</em>——随即反问：一株含羞草的蜷缩或一株捕蝇草的合拢，难道不能在最低限度上被定义成一种「可被测量的反应」？然后他把 Patricia Churchland 的原话整个倒过来念了一遍：她说扎根了蠢一点也没关系；作者说，<strong>假如你能自由移动，你就可以纠正自己的错误。而即使你在地里扎了根，不断生长和改变体态也是调节自身以适应环境的主要手段</strong>——一动不动恰恰意味着不能试错、必须第一次就选对。这不是更不需要智能，而是更需要。</p>
+    </div>
+    <div class="card">
+      <h3>误区二：植物的「聪明」都是拟人化的想象</h3>
+      <p>流行版：植物生理学家 Lincoln Taiz 在《纽约客》里那句——<em>对数据的过度解读、目的论、拟人化、哲学化以及不着边际的瞎想</em>。作者的第一反应居然是同意，然后指出批评方自己才是动物中心主义的那一方：<strong>构成智能证据的并不是行为的速度</strong>；「吊诡的是，批评者指责我们搞动物中心主义，其实他们自己的态度才是动物中心主义的。」这不是回避，是把举证责任接了过来。</p>
+    </div>
+    <div class="card">
+      <h3>误区三：植物只是在「适应」，不是在「认知」</h3>
+      <p>流行版：攀缘、开花、防御，全是自然选择写死的自动反应。第 3 章整章就是这一场官司，证人是三组实验——含羞草的习惯化可维持 28 天、豌豆的联想性条件反射、玉米幼苗在 Y 形迷宫里避开「邻居被触碰过」的那一侧溶液。最硬的一条：<em>经过训练，有些植物将明亮的光线和肥沃的土壤联系了起来……再将植物移栽到两者并无联系的环境中去，它们的这个经验依然存在。</em></p>
+    </div>
+    <div class="card">
+      <h3>误区四：要花大力气才能看见植物在动，所以这个「动」是人为催出来的</h3>
+      <p>流行版：延时摄影把植物加速得像动物，这是视觉骗局。作者承认采样有代价，然后反过来指出延时漏掉的比揭示的多：<strong>每分钟拍一张相片，意味着你将错失植物 59/60 的行为，而且植物的动作并不总是缓慢的</strong>。他养的那株被命名为「尤塞恩·博尔特」的菜豆能在几分钟内抓住一根杆子，快到延时影像反而抹掉了它。</p>
+    </div>
+    <div class="card">
+      <h3>误区五：植物没有痛觉，所以吃素在道德上是干净的</h3>
+      <p>流行版：这是素食伦理框架的地基。作者自己承认每次公开演讲，第一批举手提问的总是吃素的人。但他不用「植物会痛」硬顶，而是翻转举证责任：<em>但我们同样无法假定它们没有</em>。他明确拒绝滑向「植物有知觉所以素食和吃肉一样糟」——他的推进方式是把问题从「能不能吃」改写成「谁的善更重要」。</p>
+    </div>
+    <div class="card">
+      <h3>误区六：植物是资源——固碳器、粮食机器、太空任务的补给包</h3>
+      <p>流行版：气候模型里植物是「被动的固碳实体」，火星任务里植物是饲料。作者的批评对象非常明确：<em>包括植树在内的诸多实际方案，似乎都只是一块块徒劳无益的创可贴，盖不住下面那个巨大深刻的问题</em>。他反对的是「植树免责」，不是「树可以种」——这两件事在日常讨论里天天被混为一谈，而且两边都拿它当武器。</p>
+    </div>
+  </section>
+
+<!-- ============ LOGIC ============ -->
+  <section id="logic">
+    <span class="sec-tag">Logic · 底层逻辑</span>
+    <h2>六层逻辑推演<span class="en">Six-layer reasoning</span></h2>
+    <p class="lead">每层只留一条层结论。判断标准只有一个：这一层比上一层多解决了什么。承重墙在 L4 与 L5。</p>
+    <ol class="num">
+      <li><strong>L1 障碍层</strong>：看不见植物，不是眼睛的问题。植物盲是<strong>演化造成的视觉预算分配</strong>（视网膜每秒产 1000 万字节，清醒脑每秒只加工 16 比特，只有 0.00016% 能进意识）叠加<strong>文化遗留的「存在巨链」</strong>（植物只比矿石高一级）。这一层不拆掉，后面四层读者根本不会接受。 <span style="font-family:var(--sans);font-size:.78rem;color:var(--ink-faint)">〔第 1 章〕</span></li>
+      <li><strong>L2 方法层</strong>：要看见，就得把时间当杠杆——达尔文的玻璃板、延时摄影、高速摄影、针孔相机。但每一种工具都会反过来塑造所见。<strong>方法不是中性的，方法决定了你能看见多少种智能。</strong> <span style="font-family:var(--sans);font-size:.78rem;color:var(--ink-faint)">〔序章、第 2 章〕</span></li>
+      <li><strong>L3 现象层</strong>：植物确实做出了定位、抉择、预判、风险评估、记忆、学习、亲属识别、跨物种通信。这些不是修辞，是可重复设计的实验对象。 <span style="font-family:var(--sans);font-size:.78rem;color:var(--ink-faint)">〔第 3 章〕</span></li>
+      <li><strong>L4 机制层</strong>：支撑这些现象的不是奇迹，是一套物理装置：<strong>动作电位沿维管束传导 + 与动物同源的化学信号分子（GABA、谷氨酸、乙酰胆碱、血清素、多巴胺、褪黑素）+ 遍布全身的层级网络</strong>。名字叫不叫「神经系统」不重要，功能在不在才重要。 <span style="font-family:var(--sans);font-size:.78rem;color:var(--ink-faint)">〔第 4 章〕</span></li>
+      <li><strong>L5 理论层</strong>：把动物认知科学的两套工具移植过来：<strong>Friston 的预测加工／自由能原理</strong>（贵版本：植物有内部模型，靠最小化「惊异」驱动行为）与 <strong>Gibson 生态心理学 + τ 理论</strong>（便宜版本：不需要模型，直接从变量的相对变化率里读出「还有多久接触到」）。两个版本并存，是这本书真正的方法论诚实。 <span style="font-family:var(--sans);font-size:.78rem;color:var(--ink-faint)">〔第 5、6 章〕</span></li>
+      <li><strong>L6 后果层</strong>：如果 L4 的硬件和 L5 的软件都成立，就没有理由继续把「主观体验」锁死在神经元和中枢里。由此产生两条不可逆后果：<strong>伦理上</strong>，植物可能是「闭锁综合征」式的存在；<strong>技术上</strong>，植物做事的方式（生长即运动、控制分布式铺满全身、结构本身就承担计算）能反过来重造机器人与行星探测。 <span style="font-family:var(--sans);font-size:.78rem;color:var(--ink-faint)">〔第 7、8、9 章〕</span></li>
+    </ol>
+    <p><strong>树的形状</strong>：L1–L2 是清障与方法，L3–L4 是证据与硬件，L5 是理论，L6 是外推。只要承认「植物有能远距离传导兴奋信号的整合网络 + 信息在根与芽之间被统筹」，第三部关于觉知的跳跃就只是程度问题而不是类别问题。反过来，若 L4 塌了（维管系统只是管道，不是整合网络），L6 的伦理主张就只是抒情。</p>
+  </section>
+
+<!-- ============ MODELS ============ -->
+  <section id="models">
+    <span class="sec-tag">Models · 思维模型</span>
+    <h2>九个可以拿走就用的思维模型<span class="en">Mental models</span></h2>
+    <p class="lead">按「能不能看见 → 看见了怎么判 → 判据背后是什么机制 → 这套机制还能用到哪」排。每条先给运转机制，再给作者原文依据，最后是破局演示——把模型接回现在普通人的真实处境。</p>
+    <div class="model">
+      <div class="no">①</div>
+      <h3>注意力预算：看不见不等于不在发生</h3>
+      <div class="src">作者命题（第 1 章）＋ 威廉·詹姆士（作者引路人）· ★ 可核对原文</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：人的视觉不是摄像机，是一份有配额的预算。视网膜每秒产出的数据超过 1000 万字节，清醒的大脑每秒只加工 16 比特——<strong>全部感官数据里只有 0.00016% 能进入意识</strong>。这份配额被演化史预先切好了：会动的、有威胁的、带社会信息的自动拿大头，不动的绿色背景几乎拿不到。所以「植物盲」不是态度问题，是硬件层面的预算结果。</div>
+      <blockquote><span class="star">★</span>“这种过滤在本质上是由我们的演化史塑造的，是被我们的祖先面对的那些问题所决定的。”<span class="en">第 1 章 · A 级</span></blockquote>
+      <blockquote><span class="star">★</span>“最近有人估算，我们的眼睛每秒生产的数据超过1000万字节，而大脑在清醒状态下每秒只加工16比特。也就是眼睛生产的全部数据，只有0.00016%为有意识的大脑所用。”<span class="en">第 1 章 · A 级</span></blockquote>
+      <blockquote><span class="star">★</span>“数以百万计的物体……出现在我的感官中，却始终没有正式进入我的体验。为什么？因为我对它们不感兴趣。我的体验是我同意关注的东西……我们每一个人，都通过对事物的关注，选择了自己想要居住的宇宙。”<span class="en">威廉·詹姆士 · A 级</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人在工位上坐了一上午，中午刷到一条短视频吐槽「电梯广告为什么越来越吵」，他点头称是。可这一天里他记不住任何一个同事换过什么发型、前台绿植什么时候被挪了位置——但他能在半夜三点的楼道里，仅凭一句咳嗽声就立刻辨认出是哪位邻居。<br><br><strong>模型给的用法</strong>：当你发现自己对某件长期存在的事「一直没注意」，第一反应不该是「我很迟钝」，而是问一句——<strong>这件事是不是压根没拿到我的注意力配额？</strong> 配额是可以改的，方式叫「同意关注」。一个人愿意每天花三分钟盯着窗台上那盆植物看，两周后他看到的东西会完全不同——不是植物变了，是配额变了。</div>
+    </div>
+    <div class="model">
+      <div class="no">②</div>
+      <h3>三条横线：怎么判断一件事是「自动反应」还是「在下判断」</h3>
+      <div class="src">作者命题（第 3 章）· ★ 可核对原文 · 全书唯一真正锋利的工具</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：一件事到底是被写死的反射，还是包含了某种「判断」，用三条横线去卡：<strong>①有没有预见性</strong>——它在事情发生之前就动了吗；<strong>②有没有灵活性</strong>——换个环境、换个组合条件，反应会不会变；<strong>③有没有目标导向</strong>——它是在改变环境或自身状态，还是仅仅被触发一下。三条里占一条，就不能再简单地叫它「反射」了。</div>
+      <blockquote><span class="star">★</span>“它还有预见性，能使生物针对将来的环境变化做出最佳选择。它更有灵活性，能对各种不同的因素做出反应，并有着各种不同的表现。它还是目标导向的，其目标是改变环境或生物自身状态，而不仅仅是被动反应。”<span class="en">第 3 章 · A 级 · 三条横线就在这一段里</span></blockquote>
+      <blockquote><span class="star">★</span>““适应”通常是指对特定输入的自动反应。……其中是没有多少灵活性的，只有一种被遗传固化的机制。这意味着适应不需要动用多少处理能力。”<span class="en">第 3 章 · A 级 · 对照面</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个带娃的人每天早上的流程是：闹钟响 → 穿衣服 → 热奶 → 送幼儿园。这套流程顺得像膝跳反射——快，代价是你无法真正地控制或修改它。这就是「适应」。<br><br>然后有一天幼儿园通知停课一天。同一秒，整套流程崩了：他站在客厅中间，要重新决定今天谁请假、要不要改当天的安排、冰箱里的菜够不够顶一天午餐。这就是「认知」：<strong>没有事先写好的答案，必须在多种信息来源之间做整合，并为一个还没发生的结果做取舍。</strong><br><br><strong>模型给的用法</strong>：想知道自己某个习惯到底是「自动」还是「自主」，不要问它熟不熟练，问它<strong>遇到没遇到过的组合时会怎样</strong>。三条横线里只要占了一条——尤其是「在后果发生之前就动了」——那就说明里面是有判断成分的，可以改；三条全不占，那就别指望靠意志力改，改的是环境触发器，不是你。</div>
+    </div>
+    <div class="model">
+      <div class="no">③</div>
+      <h3>时间倍率：你怎么观测，就决定了你看见什么</h3>
+      <div class="src">作者命题（第 2 章）· ★ 可核对原文</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：所有观测工具都不是中性的过滤器，而是<strong>一台把时间压缩或拉伸的机器</strong>。达尔文在玻璃板上描下根尖经过的点点，植物的运动变得可见了；延时摄影把几小时压成几秒；高速摄影把一瞬间拉长到几秒。但每一次换算都有代价：<strong>每分钟拍一帧，等于丢掉植物 59/60 的行为</strong>——它既可能夸大，也可能漏掉。</div>
+      <blockquote><span class="star">★</span>“每分钟拍一张相片，意味着你将错失植物59/60的行为，而且植物的动作并不总是缓慢的。”<span class="en">第 2 章 · A 级</span></blockquote>
+      <blockquote><span class="star">★</span>“它们就在我们眼皮底下做到了意外而神秘的事情，就算我们布置好相机也没用。”<span class="en">第 2 章 · A 级 · 作者实验室里那株被命名为“尤塞恩·博尔特”的菜豆</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人每隔半年才认真打量一次自己的父母：这次回去发现他们走路慢了、把体检报告藏起来了、厨房里多了一个从没见过的药盒。这不是「突然变老」，而是<strong>他的采样频率太低，把所有渐变都看成了突变</strong>。反过来也一样：天天盯着孩子写作业的人，会觉得孩子「怎么一点长进都没有」——用一天的分辨率去量以季度为单位的变化，看到的全是噪声。<br><br><strong>模型给的用法</strong>：遇到「突然觉得不对」或「一直觉得没变化」这两种感觉，别急着下结论，先问一句——<strong>我用的时间分辨率，跟这件事本身的时间尺度匹配吗？</strong> 很多关系里的判断误差不是看错了，是采样周期设错了。</div>
+    </div>
+    <div class="model">
+      <div class="no">④</div>
+      <h3>试错权不对称：不能重来的那一方，必须第一次就算准</h3>
+      <div class="src">作者命题（第 1、3 章）· ★ 可核对原文 · 全书最漂亮的一次概念倒转</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：Patricia Churchland 说「假如你在地里扎了根，那么蠢一点也没有关系」——因为不用移动就不用导航。作者把这句话整个翻过来：<strong>正因为不能移动，植物才更必须有智能</strong>。动物走错路可以掉头重来；植物把能量投错了方向，根系已经长到那里了，收不回来。所以有一条铁律：<strong>指导植物生长的信息必须是关于未来的信息。</strong></div>
+      <blockquote><span class="star">★</span>“假如你能自由移动，你就可以纠正自己的错误。而即使你在地里扎了根，那么不断生长和改变体态也是调节自身以适应环境的主要手段。”<span class="en">第 1 章 · A 级 · 作者正面反驳 Churchland</span></blockquote>
+      <blockquote><span class="star">★</span>“他指出，植物做什么都慢，一旦出错了就不可能再试一次。它们只有一次机会做出正确选择，因此最好第一次就选对。”<span class="en">第 3 章 · A 级 · 同事阿里埃勒·诺沃普兰斯基的版本</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人可以在手机上花两百块买错了课程，退掉、换一个，代价接近于零，所以他敢「先试试看」。同一时间，同一个人在要不要为了一份工作搬去另一个城市这件事上犹豫了半年——不是因为这件事比两百块更重要才犹豫，而是因为<strong>这一件事不能被撤回</strong>：房子、孩子的学校、配偶的工作、父母的距离，全都被这一次移动钉死了。<br><br><strong>模型给的用法</strong>：拿到一个决定，先问一句——<strong>这件事我能试错几次？</strong> 能试错多次的，决策成本就该压到最低；只有一次机会的，就该把「预测」的成本加上去，包括问问别人的经验、多等一个周期、把不可撤回的部分拆出来单独谈判。<strong>把这两种事按同一种方式处理，是普通人最常犯的决策错误——要么在可撤回的事上纠结太久，要么在不可撤回的事上凭感觉。</strong></div>
+    </div>
+    <div class="model">
+      <div class="no">⑤</div>
+      <h3>定义重锚：不看它是什么做的，看它能做什么</h3>
+      <div class="src">作者命题（第 4 章）· ★ 可核对原文</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：一个东西算不算「神经系统」，有两种定义法：<strong>按零件定义</strong>（必须有神经元、必须有中枢）和<strong>按功能定义</strong>（能不能快速、远距离地传导电信号，并据此协调整个身体的反应）。作者的立场是按第二种——因为按零件定义会把章鱼、甚至把你自己的某些部分排除在外。动物有专门的呼吸／消化／循环／神经四大系统，植物同样有这四项功能，只是摊在不同的结构上。</div>
+      <blockquote><span class="star">★</span>“换言之，我们可以用一个系统能做什么来定义它是不是神经系统，而不是只看这些功能由哪些细胞和组织来实现。我们不必把植物说成绿色的动物，也能使用“神经系统”这几个字。”<span class="en">第 4 章 · A 级</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人在招人，简历上写着「某某大厂三年经验」，面试全程答得漂亮。另一个人没上过大厂，但在两家小公司各自独立把一条业务线从零做到别的部门离不开。按「零件定义」只有前者合格；按「功能定义」，后者已经证明了他能在没有现成资源的条件下把事跑起来。<br><br><strong>模型给的用法</strong>：评估一个人、一个工具或一个方案时，试一次把锚点从「它是什么出身／什么牌子／什么来路」换到「<strong>它已经证明能把哪件事做成了</strong>」。这个换位几乎总是更准，但有一条必须守住的边界：功能定义只适用于已经有了可验证结果的情况。履历空白的新人、没跑过任何东西的新方案，把功能定义安上去就变成了赌博。<strong>锚点换了，举证责任没有换。</strong></div>
+    </div>
+    <div class="model">
+      <div class="no">⑥</div>
+      <h3>预测机器：行为的目标是「让意外尽量少发生」</h3>
+      <div class="src">Karl Friston 框架（第 5 章）· ★ 可核对原文</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：大脑不是被动接收信息的器官，而是一台不断向下预测、再用实际输入校正的机器。它不喜欢「惊异」——实际发生的事偏离预测越远，惊异越大。为了把惊异压到最小，生物只有两招：<strong>知觉推断</strong>（改自己对世界的模型，让它更贴合实际）与<strong>主动推断</strong>（动手去改世界，让实际更贴合模型）。第 5 章拿根系躲盐做例子：根系记录的是一路上的<strong>盐度梯度</strong>——被「盐分在降低」的趋势吸引，对「绝对值低但趋势在升高」的土块兴趣有限。走错方向 → 惊异长期居高不下 → 换路线。</div>
+      <blockquote><span class="star">★</span>“当两者相互一致、风险很低时，它们就可以放松。而一旦出现不一致，植物就会受到刺激并深入探索，寻找与它们的预测相吻合的区域。”<span class="en">第 5 章 · A 级</span></blockquote>
+      <blockquote><span class="star">★</span>“和我们一样，它们也是能够自我纠正的预测机器。”<span class="en">第 5 章 · A 级</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人长期睡前的流程是刷手机到睁不开眼，第二天靠闹钟活着，然后一整天都在犯困。这件事每天都发生，所以他以为这就是自己的体质。翻译成预测机器的语言：他的身体模型预测「今晚大约十二点半睡」，实际行为却在十二点半之后继续——偏差每天都在发生，但太小、太慢性，以至于惊异从没高到逼他动手。<br><br><strong>模型给的用法</strong>：你手上有两个旋钮，绝大多数时候只用了一个。改模型——承认「我确实不是那种能熬夜的人」；改环境——把手机充电器挪到客厅，物理性地切断路径，这才是主动推断。<strong>真正要警惕的是第三种情况</strong>：偏差长期存在，但你既没改模型也没改环境，系统就会把它记为「正常」，从此不再报警。有些不适不是因为没有偏差，而是因为你已经学会了不去预期它。</div>
+    </div>
+    <div class="model">
+      <div class="no">⑦</div>
+      <h3>τ：不要读绝对值，读相对变化率</h3>
+      <div class="src">David Lee（爱丁堡大学）原始出处，作者移植（第 6 章）· ★ 可核对原文</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：想知道一个正在逼近的物体还有多久接触到自己，<strong>不需要知道距离，也不需要知道速度</strong>——只要读「它在我视网膜上的影子变大的速度」就够了。把影子大小除以它变大的速率，得到的量叫 τ（tau），它与「还有多久接触」直接成比例。塘鹅就是这么做的；作者把它移植给植物：菜豆旋转的卷须也是在读相对变化——<strong>它不停地改变自己和杆子的相对位置，从而产生可读取的信息流</strong>。</div>
+      <blockquote><span class="star">★</span>“这种预期没有任何神秘或者牵涉计算的成分：仅仅是物理环境和感觉的互动，以及感觉对相对变化的觉察，就足够提供所有必要的信息了。”<span class="en">第 6 章 · A 级</span></blockquote>
+      <blockquote><span class="star">★</span>“光照引起的兴奋并不取决于具体的光照量，而取决于与之前光照量的差别。”<span class="en">第 6 章 · A 级 · 达尔文父子《植物的运动本领》</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人想判断「这份工作还值不值得做下去」，最常见的做法是试图评估绝对值：薪水在城里算什么水平、公司在行业里排第几。这些数字他永远问不全。换成相对变化率会立刻变得可读：三年前每周能学到一件新东西，现在三个月都没有一件 → <strong>扩张速率在下降</strong>；去年指标涨 10% 团队扩两人，今年指标涨 30% 团队裁一人 → <strong>趋势在反向</strong>；比他早来一年的人去年买了房、今年在偷偷投简历 → <strong>别人读到的同一份相邻信息</strong>。<br><br><strong>模型给的用法</strong>：面临「这个值不值得继续」时，别再收集那些你永远问不全的绝对值，改去读三件事——<strong>它与自己的过去相比是变大还是变小了、变化的速率是在加速还是减速、以及跟你处境相近的人正在往哪个方向动</strong>。</div>
+    </div>
+    <div class="model">
+      <div class="no">⑧</div>
+      <h3>环境界与可供性：同一个东西对不同的人，是完全不同的东西</h3>
+      <div class="src">Jakob von Uexküll / J. J. Gibson 生态心理学（第 7 章）· ★ 可核对原文</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：两个概念打包出现。<strong>环境界（Umwelt）</strong>：每种生物活在自己那份由感官能力划定的世界里，世界上存在什么，取决于它能接收什么。<strong>可供性（affordance）</strong>：感知一个物体时，感知到的从来不是「这个东西本身」，而是「这个东西对我能做什么」——同一块石头，对成年人是「可投掷」，对老鼠是「可躲藏」，对猫是「可掩埋猎物」。植物也在这套逻辑里：一株藤本感知到的不是一根杆子，而是可供攀爬；杆子太粗它卷不住，就不再大费周章。</div>
+      <blockquote><span class="star">★</span>“环境的可供性就是环境可以给予动物的东西，这些东西可能好也可能坏。……其中包含了动物和环境的互补性。”<span class="en">第 7 章 · A 级 · 吉布森自己的定义</span></blockquote>
+      <blockquote><span class="star">★</span>“一株藤本感知到的也不是一根杆子，而是沿着它攀爬的可能。”<span class="en">第 7 章 · A 级</span></blockquote>
+      <blockquote><span class="star">★</span>“也许那些植物是自愿被驯化的，因为这条路上有着舒适的生活和难以想象的繁殖机会。”<span class="en">第 7 章 · A 级 · 推到人自己身上</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一套位于地铁口三十分钟的小房子，在三个人眼里是三种不同的东西：对每天通勤四小时的年轻人，可供性是<strong>休息权</strong>；对每周要在家接三次跨国会议的人，硬伤是隔音，可供性是<strong>能不能开会</strong>；对把父母接过来同住的人，真正的问题是没有电梯，可供性是<strong>父母能不能独自出门</strong>。<br><br><strong>模型给的用法</strong>：任何争执，先花三十秒把双方各自的「可供性」说清楚——<strong>这个东西对我具体能做什么／不能做什么</strong>。这一步做完，大多数争论会立刻从「你到底是不是有毛病」降级为「原来你要的不是这个」。剩下真正难的部分才是取舍。</div>
+    </div>
+    <div class="model">
+      <div class="no">⑨</div>
+      <h3>分布式控制：没有首领，也不耽误把事做成</h3>
+      <div class="src">作者命题（第 4、6、7、9 章）· ★ 可核对原文 · 书里没有单独章名，是隐藏线索</div>
+      <div class="mech"><strong>运转机制（人话版）</strong>：这是「为什么植物不需要大脑也能有智能」的最终答案。<strong>①控制是摊开的</strong>：章鱼一半以上的神经元在八条腕足里，每条腕足可以独立处理信息；藤本也一样，感知和决策发生在卷须尖端。<strong>②形态本身就在算</strong>：植物不需要把信息汇总到一个中枢再统一下发指令，它一边长一边调节——结构就是计算的一部分。<strong>③换个思路可以取消整类问题</strong>：机器人学正在抄这一点，「何必移动才能到 B？你可以从 A 直接长到 B」。</div>
+      <blockquote><span class="star">★</span>“也许植物的“心灵”向世界延伸的方式，就是克拉克想象中我们的心灵向智能手机、铅笔和乐高积木延伸的方式。”<span class="en">第 7 章 · A 级 · 克拉克“延伸心智”的植物版本</span></blockquote>
+      <blockquote><span class="star">★</span>“假如你正在A处、想去B处，你的一个做法是直接从A处长到B处去。换言之，你可以到达B而不必离开A。”<span class="en">第 9 章 · A 级 · 取消问题而不是解题</span></blockquote>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个家庭里最常见的一种架构是「一个人统一决策」：钱怎么花、孩子几点睡、周末去哪，都由某个人拍板再往下通知。这个架构在两个条件下会失效：一是拍板的人不在现场（出差、加班），二是信息量超过一个人能处理的范围（同时要管装修、孩子升学、老人生病）。改为分布式之后：各人有各人的授权区间，谁在场谁决定，超出区间才上报。代价是「统一度」下降，换来的是<strong>不会因为某一个节点失效就整体停摆</strong>。<br><br><strong>模型给的用法</strong>：判断一个系统该不该保持中心化，标准不是哪种更好，而是<strong>失效代价</strong>。中心化的好处是整齐，代价是单点故障。</div>
+    </div>
+    <h3>附：九个模型的适用边界（防止滥用）</h3>
+    <table>
+      <thead><tr><th>模型</th><th>什么时候用得上</th><th>什么时候别用</th></tr></thead>
+      <tbody>
+        <tr><td><b>M1 注意力预算</b></td><td>你确信某件事一直存在，但自己一直没看见</td><td>别拿它当懒的借口——配额可以主动重分配</td></tr>
+        <tr><td><b>M2 三条横线</b></td><td>判断一个系统（含你自己）里有没有真正的判断成分</td><td>别拿它评价单次行为，它衡量的是一类反应</td></tr>
+        <tr><td><b>M3 时间倍率</b></td><td>判断一件事是渐变还是突变</td><td>换了分辨率之后如果没有差别，说明真没差别</td></tr>
+        <tr><td><b>M4 试错权不对称</b></td><td>为一个重大、不可撤回的决定分配决策成本</td><td>别把本来可撤回的事也按“只能一次”处理，会白白僵住</td></tr>
+        <tr><td><b>M5 定义重锚</b></td><td>评估一个已经有可验证结果的对象</td><td>对没有历史的新对象别用，会变成赌博</td></tr>
+        <tr><td><b>M6 预测机器</b></td><td>长期不适却说不清原因</td><td>别用它解释单次意外，那个本来就该意外</td></tr>
+        <tr><td><b>M7 τ 相对变化率</b></td><td>判断值不值得继续、要不要止损</td><td>别用它做精确预测，它只给方向和节奏</td></tr>
+        <tr><td><b>M8 可供性</b></td><td>双方都在评价同一件东西却吵不起来</td><td>别用它回避真正的取舍——说清楚可供性之后还是要选</td></tr>
+        <tr><td><b>M9 分布式控制</b></td><td>系统常因单点失效而停摆</td><td>别在对统一标准要求极高的场合用（如用药剂量、财务合规）</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+<!-- ============ CRITICAL ============ -->
+  <section id="critical">
+    <span class="sec-tag">Critical · 批判性视角</span>
+    <h2>盲区与落地坑<span class="en">Blind spots &amp; pitfalls</span></h2>
+    <p class="lead">这一节不复述书里讲了什么，只做三件事：找它的盲区、找读者最容易踩的坑、给一份把它放回书架的对读书单。</p>
+    <h3>四个方法论盲区</h3>
+    <div class="blind hard"><div class="tag">硬伤</div><p><strong>举证责任接下来了，但没有完成</strong><br><br>这本书最值得尊敬的品质是它主动接过举证责任：“<span class="star">★</span>说到植物的智能，我很乐意承担举证的责任。”（第 2 章）然后在第 3 章给自己泼了冷水：“<span class="star">★</span>我们在MINT实验室的研究就没有复制出莫妮卡团队对巴甫洛夫式条件反射的成果，但对这一点我们还要继续研究。”第 4 章又重复了一遍。<br><br><strong>严重性在于这一件事的位置</strong>：植物能做联想学习是全书论证链条上的关键一节。如果这一节拿不掉，第二部那套关于植物内部模型的说法就少了一条腿。作者把未复制的事实如实写了出来（这一点非常体面），但处理方式是把它包进「这个领域还很年轻、还有很多问题」的乐观叙述里——读者很容易在这段温暖的话里忽略掉，自己刚刚被告知支柱是晃的。<strong>他把未复制的事实如实写了出来，之后却仍维持了同样的结论强度。这一节应当被读者自己折价。</strong></p></div>
+    <div class="blind hard"><div class="tag">硬伤</div><p><strong>判据号称物种中立，实际仍是从动物那边搬来的</strong><br><br>第 3 章用「习惯化」「联想学习」「风险评估」作为植物有认知的证据。这三个词全部来自脊椎动物的行为学。移植时必然出现一个问题：<strong>如果植物在这几项上表现得不像动物，这算证据不足，还是算范式不适用？</strong><br><br>作者的处理方式是：每次不像，他就归因于时间尺度。植物动作慢，所以实验要以天计而不是以分钟计；植物不出声，所以只能靠化学信号去读它的反应。<strong>每一个单独归因都说得通，但合在一起就构成了一个万能的逃生口：任何阴性结果都可以被「时间尺度不同」解释掉。</strong><br><br>这不是作者不诚实——他明确列出了两个极端：“<span class="star">★</span>在这个问题上有两个极端：一个是拟人倾向，也就是在毫不相干的事物中看见我们自己；另一个是人类中心主义，也就是拒绝承认我们和其他生命形式之间存在联结。”但他给不出<strong>仲裁条款</strong>——即出现什么样的实验结果，他就承认「这不是认知，只是适应」。没有这一条，三条横线就从判据退化成了修辞。</p></div>
+    <div class="blind"><div class="tag">代价</div><p><strong>理论层装了两套互相拆台的引擎</strong><br><br>第 5 章把植物装进 Friston 的预测加工框架：植物有内部模型，行为是被「把惊异降到最小」驱动的。第 6 章立刻换成 Gibson 的生态心理学＋τ，并明确说不需要模型、不需要计算：“<span class="star">★</span>这种预期没有任何神秘或者牵涉计算的成分：仅仅是物理环境和感觉的互动，以及感觉对相对变化的觉察，就足够提供所有必要的信息了。”<br><br>这两条路在认知科学里是有名的对手阵营。作者把它们并列为「贵版本 vs 便宜版本」，看起来很公允，但他没有回答一个致命的问题：<strong>如果 τ 那条便宜的路就够了，那第 4 章费力搭建的「植物神经系统」、第 5 章费力搬来的预测加工，还剩多少必要性？</strong><br><br>读者该注意这个裂缝：这本书仿佛在同时向两个不同的人群说话——向认知科学界证明植物够格进入他们的框架，向普通读者证明植物不用复杂机制也够聪明。两种话都对，但不能同时是主路。</p></div>
+    <div class="blind"><div class="tag">代价</div><p><strong>从「认知」跳到「有感受」，中间那一层被跳过去了</strong><br><br>这是全书最大、也被处理得最仓促的一次跳跃。前三章证明的是<strong>认知</strong>（能处理信息、能主动发起调整、能把多来源的信息灵活组织成行为）。第八章要讲的是<strong>感受</strong>（知道疼、有主观状态、能受苦）。这两个词在哲学上隔着一道著名的鸿沟，作者用两个办法跨了过去：<br><br>①<strong>把门槛降到细胞层面</strong>——引入 Arthur Reber 的细胞意识论：“<span class="star">★</span>雷伯主张，意识在整个生命之树中无处不在，因为内心体验是生命的固有特征。”<br>②<strong>把测量交给尚未定论的技术</strong>——引入 Tononi 与 Koch 的整合信息理论（IIT）及其「放和收」（zap and zip）测量法，然后提议做一个「植物 IIT」分支。<br><br>两步都有外部支持，也都在哲学界争议很大。而它们共同的代价是<strong>解释力的稀释</strong>：如果连细菌和大肠杆菌都有主观体验，那么「有意识」这个谓词就不再能区分任何东西了——它就是「活着」的同义词。作者在第九章里自己触摸到了这个反驳：“<span class="star">★</span>即使植物有知觉的可能性微乎其微，我们也需要认真思考。我们再也不能对和它们的互动中产生的伦理后果视而不见了。”<br><br>注意这里他用的是<strong>可能性</strong>，不是事实。他没有证明植物有感受，他证明的是<strong>「我们已经不能再假定它们没有」</strong>。这个结论的强度，和短视频里那句「植物也有意识哦」的强度，差着很远。</p></div>
+    <h3>普通人最容易踩的五个坑</h3>
+    <p style="font-size:.95rem">这些坑的共同来源：把书里的某个<strong>论证步骤</strong>当成了<strong>生活结论</strong>。</p>
+    <div class="blind"><div class="tag">坑 1</div><p><strong>把「植物有认知」听成「植物有人格」，于是开始给绿萝放音乐</strong><br><br>书的最后一节自己开了这个口子：“<span class="star">★</span>这样一想，它们似乎更像是一位伴侣，而不仅仅是装饰了。”这句话很美，但它开启的门通向一整条产业链：给植物听音乐的播放器、号称能和植物对话的传感器、「植物情绪」APP。<strong>请注意：作者给出的盆栽体验清单是「反常的化学信号、奇怪的光照模式、人工的环境地貌」——他说的确实是那些化学与光照的干扰，不是说植物需要你的语音陪伴。</strong><br><br><strong>避坑动作</strong>：想知道家里的植物是不是不太好，最有效的三个读数还是老三样——<strong>叶子有没有发软发黄、盆土干湿的节奏是不是变了、有没有新叶在长</strong>。这三条比任何共情都准。</p></div>
+    <div class="blind"><div class="tag">坑 2</div><p><strong>一听到「植物可能有感知」，就推论「那吃素也一样不道德」</strong><br><br>这是这本书被传播最广、也最容易变形的一个推论。作者在第八章开头承认，他的公开演讲每次都会让素食听众动摇。但<strong>他没有给出这个推论</strong>。他的实际推进方向完全不同，是把问题本身换掉了：“<span class="star">★</span>但我们同样无法假定它们没有。”以及更关键的一步：“<span class="star">★</span>我们不必先弄清楚「身为一株植物是什么感觉」再去关心它们遭受的苦难。”<br><br>也就是说：作者的结论不是「你不可以吃植物」，而是「<strong>你不能再用一个廉价的理由（它们不会痛）来免除自己的思考</strong>」。这两句话差别极大。<br><br><strong>避坑动作</strong>：不要把这本书当成「吃素的二次许可」，也不要当成「素食的崩塌证明」。它挑战的是<strong>免责理由的质量</strong>，不是餐桌上的选择。</p></div>
+    <div class="blind"><div class="tag">坑 3</div><p><strong>拿「延时摄影看起来很聪明」当判据</strong><br><br>这是 Lincoln Taiz 那派批评的真实落点，也是最容易被普通读者越过的一条：<strong>画面给不出辩护</strong>。延时摄影让人惊呼，是因为它把时间尺度调到了人眼的舒适区；这不构成任何关于机制的证据。真正的判据只有三条横线，外加<strong>可重复、可被别人独立做出</strong>的实验。作者自己在第 2 章承认延时摄影会漏掉 59/60 的行为——也就是说，它既可能夸大，也可能漏掉。<br><br><strong>避坑动作</strong>：看到一个让你觉得「哇，它好像在思考」的视频，先问一句：<strong>这个行为在环境变了之后还会出现吗？它在事情发生之前就动了吗？</strong> 两个都答不上来，那只是好看。</p></div>
+    <div class="blind"><div class="tag">坑 4</div><p><strong>拿「分布式控制」给自己的甩手当成理论背书</strong><br><br>第 7、9 章讲的分布式的确有说服力：章鱼的信息加工散在八条腕足里，植物的决策发生在卷须尖端，没有一个中心首领也能把事做成。但把它搬进日常，很容易变成：<strong>「既然不用集中决策，那我不管也行。」</strong> 书里没有任何地方支持这个推论。植物能做分布式，前提是<strong>每一个局部都能真的读到它需要的那份信息</strong>（继而才能本地决策）。一个什么都读不到的局部，授权给它只会带来事故。<br><br><strong>避坑动作</strong>：下放决定之前先问一句——<strong>这个节点手里有没有它做这个决定所需的信息？</strong> 有，就可以下放；没有，下放就是甩锅。</p></div>
+    <div class="blind"><div class="tag">坑 5</div><p><strong>把「植树固碳」当成气候问题的解</strong><br><br>第 9 章是全书政治性最强的一章，也是最容易被摘出去变成口号的一章。作者的批评对象非常明确：把植物当作「被动的固碳实体」，然后指望用速生林抵消碳排放。“<span class="star">★</span>包括植树在内的诸多实际方案，似乎都只是一块块徒劳无益的创可贴，盖不住下面那个巨大深刻的问题。”<br><br><strong>请注意这句话的力度边界</strong>：他反对的是「植树免责」，不是「树可以种」。这两件事在日常讨论里天天被混为一谈，而且两边都拿它当武器。<br><br><strong>避坑动作</strong>：下次再听到「种 XX 棵树就能中和碳排放」这种句式，先问三个问题——<strong>种的是什么树种、种在哪、三十年后这些树还在不在</strong>。三个问题里有任何一个答不上来，那句口号就不成立。</p></div>
+    <div class="thesis">
+      <div class="q">这本书值得读，但不是因为它证明了植物有智能——它没有，并且在书里如实交代了没有。它真正做成的事有三件：把「适应 vs 认知」讲成了可操作的三条横线；把「人可能看不见植物」从态度问题改造成了注意力的预算问题；把科学家之间的真实论战整段放了进来。而它没做成、也承认没做成的事只有一件：<strong>关于感受，它只交付了可能性，没有交付事实</strong>。</div>
+      <div class="src">一句话总评</div>
+    </div>
+  </section>
+
+<!-- ============ BOOKS ============ -->
+  <section id="books">
+    <span class="sec-tag">Counterparts · 对读书单</span>
+    <h2>互补与对立<span class="en">What to read next</span></h2>
+    <h3>A. 互补（读了能补上这本书缺的那半）</h3>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《植物的欲望》</div><div class="b-meta">The Botany of Desire · Michael Pollan</div><div class="b-why">卡尔沃本人推荐过这本。它从“植物想要什么”的另一端讲同一件事，讲植物如何反过来塑造了人的欲望与农业。缺了这一半，你会以为关系只是单向的</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《纠缠的生命》</div><div class="b-meta">Entangled Life · Merlin Sheldrake</div><div class="b-why">本书讲根系与菌根网络只用了一节，而这是它的地基。Sheldrake 把真菌那一半讲透了，读完再看本书第 1 章“树联网”那段会有完全不同的分量</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《章鱼的心灵》</div><div class="b-meta">Other Minds · Peter Godfrey-Smith</div><div class="b-why">本书第 7 章“向头足类学习”整节依赖这本书。它回答了本书没有回答的问题：<strong>当意识器官分布在全身，“一个主体”到底是什么意思</strong></div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《延伸心智》《预测中的心智》相关论述</div><div class="b-meta">Andy Clark</div><div class="b-why">本书第 5 章的“延伸认知”“预测性加工”全部来自他。卡尔沃在爱丁堡与他共用过办公室——读原文的用处是，你能看清哪些是被植物那边改造过的，哪些是原样搬来的</div></div></div>
+    <h3>B. 对立 / 反驳（要反对意见，读这些）</h3>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《Plants neither possess nor require consciousness》(2019)</div><div class="b-meta">Lincoln Taiz、David Alkon、Andreas Draguhn 等</div><div class="b-why"><strong>必读</strong>。这是本书第 4、8 两章全都在回应的那一派。当作<strong>对手版本</strong>读，这本书才会有立体感</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《Debunking a myth: plant consciousness》(2020)</div><div class="b-meta">Mallatt、Blatt、Draguhn、Robinson、Taiz</div><div class="b-why">上一本的续作。第 8 章里作者正面反驳的两条论证（“信息加工能力 ≠ 主观体验”与“植物没有必要演化出意识”）就出自这里</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《植物知道生命的答案》</div><div class="b-meta">What a Plant Knows · Daniel Chamovitz</div><div class="b-why">同一话题的另一条路：作者是植物遗传学家，<strong>承认植物能整合信号，但坚决反对由此推出意识</strong>。本书第 4 章存下了他那句反问：<span class="star">★</span>“那么这可以证明植物有智能吗？就要看你说的“智能”是什么意思了。”</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《The First Minds》(2019)</div><div class="b-meta">Arthur Reber</div><div class="b-why">立场很反常：它比卡尔沃更激进（连细菌都有意识），<strong>却一开始把植物排除在外</strong>。第 8 章记录了两人就此的来回。读它能看清“反动物中心主义”这件事本身也有边界</div></div></div>
+    <h3>C. 对照（把这本书放回它自己的谱系）</h3>
+    <div class="book"><div class="dot"></div><div><div class="b-title">达尔文《攀缘植物的运动和习性》(1865)、《植物的运动本领》(1880，与弗朗西斯·达尔文合著)</div><div class="b-why"><strong>这本书的真正主角是达尔文</strong>。卡尔沃九章里引用他七次，读这两本原始著作你会发现，“回旋转头运动”“根脑假说”这些被视为前沿的东西，一百六十年前就摆在那里了</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">A. Desmond &amp; J. Moore《Darwin》</div><div class="b-why">本书多处达尔文的生平细节（1837 年笔记本 B 上那棵最早的生命之树手绘、1862 年卧床期间在窗台观察黄瓜卷须的那一段）都出自这本传记</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">J. C. 博斯《Plant Response》(1906)</div><div class="b-why">Bose 是本书第 4 章的英雄，也是植物电生理学的起点。第 9 章结尾那个“用巨型帐篷给树木做麻醉再移植”的故事，全书最动人的一处</div></div></div>
+  </section>
+
+<!-- ============ CHAPTERS ============ -->
+  <section id="chapters">
+    <span class="sec-tag">Chapters · 逐章精读</span>
+    <h2>逐章精读<span class="en">Close reading, chapter by chapter</span></h2>
+    <div class="ch-sec-h">结构总图 · 各章到底在处理什么对象</div>
+    <p style="font-size:.95rem;color:var(--ink-soft);margin:8px 0 12px">原版目录是整齐的顺序排比，作者从未说明九章之间有递进关系。但把每一章<strong>处理的对象</strong>排成一列，会浮出一条清楚的暗线：<strong>这本书其实是绕着「时间」这个维度走了一圈。</strong></p>
+    <table class="ch-map"><thead><tr><th>单元</th><th>处理的对象</th><th>性质</th><th>在序列里的位置</th></tr></thead><tbody><tr><td>前言</td><td>「认识你自己」这件事的边界</td><td>立态度：既开放又节制</td><td>起点：先承认自己带偏见</td></tr><tr><td>序章 让植物睡着</td><td>一株被麻醉的含羞草</td><td>一个能当场演示的事实</td><td>钩子：用可执行的东西开局，不用抒情开局</td></tr><tr><td>1 植物盲</td><td>为什么看不见</td><td><strong>障碍层</strong>（演化 + 文化）</td><td>第一部：清障</td></tr><tr><td>2 寻求植物的视角</td><td>拿什么工具看</td><td><strong>方法层</strong>（时间倍率）</td><td>第一部：给工具</td></tr><tr><td>3 聪明的植物行为</td><td>看见了什么</td><td><strong>现象层</strong> + 判据（适应 vs 认知）</td><td>第一部：交证据与判据</td></tr><tr><td>4 植物的神经系统</td><td>这些现象靠什么硬件跑</td><td><strong>机制层</strong></td><td>第二部：承重墙之一</td></tr><tr><td>5 植物会思考吗</td><td>贵版本理论（预测加工）</td><td><strong>理论层 A</strong></td><td>第二部：承重墙之二</td></tr><tr><td>6 生态学上的认知</td><td>便宜版本理论（τ 与生态光学）</td><td><strong>理论层 B</strong>（与 A 互为对手）</td><td>第二部：自我倒转</td></tr><tr><td>7 做一株植物是什么感觉</td><td>植物的主观世界是什么样</td><td>认识论 → 现象学</td><td>第三部：外推之始</td></tr><tr><td>8 植物的解放</td><td>那我们对它负有什么义务</td><td><strong>后果层（伦理）</strong></td><td>第三部：最难的一跃</td></tr><tr><td>9 绿色机器人</td><td>反过来，它做事的方法能改造技术吗</td><td><strong>后果层（技术 + 政治）</strong></td><td>收束：把植物从资源改成行动者</td></tr><tr><td>后记 海马体的育肥场</td><td>「怎么思考」这件事本身</td><td>回到起点</td><td>首尾扣环：回到前言的偏见问题</td></tr></tbody></table>
+    <div class="ch-sec-h" style="margin-top:22px">三组对偶</div>
+    <ul class="clean"><li><strong>1 ↔ 2</strong>：一个是「为什么看不见」，一个是「用什么才能看见」。同一件事的两面，缺一面都不成立。</li><li><strong>3 ↔ 4</strong>：现象与硬件。第三章列出植物做了什么，第四章回答靠什么做的。这两章之间如果有缝隙，全书的论证就断在这里。</li><li><strong>5 ↔ 6</strong>：贵版本与便宜版本。<strong>这是全书的暗伤，也是它最诚实的地方</strong>——作者提出了两套互相对立的理论框架，却始终没说哪一套是主路（详见第 6 章「发散思考」）。</li></ul>
+    <div class="ch-sec-h" style="margin-top:22px">首尾扣环</div>
+    <ul class="clean"><li><strong>前言的「翁法洛斯综合征」 ↔ 后记的「海马体育肥场」</strong>：两章讲的其实是同一件事——人是怎样被自己的框架困住的。前言从空间上讲（德尔斐神庙自称世界肚脐），后记从教育上讲（过度教育把年轻心灵绕在栅格上）。<strong>一头一尾同构，都在说「跳出框架」是这本书真正要你做的事。</strong></li><li><strong>序章的问题 ↔ 第 8 章的半个答案</strong>：序章结尾问「到底是什么被关上了」（被麻醉的植物失去了什么），第 8 章给出的答案不是解释，而是承认——<strong>我们确实不知道那里面有什么被关上了</strong>。序章那个漂亮的把戏，最后通向的是谦逊。</li><li><strong>隐藏的统一项：时间</strong>。前言里达尔文的「思想小道」（每天早晚两次散步）→ 第 2 章的时间倍率（延时/高速）→ 第 3 章植物节奏慢 vs 环境变化快（两种论证，结论相同）→ 第 6 章 τ（接触时间的相对度量）→ 第 9 章生长机器人（正因为慢，才不用轮子）。<strong>「换时间尺度看」是这本书唯一贯穿始终的方法。</strong></li></ul>
+    <p style="font-size:.88rem;color:var(--ink-faint);margin:12px 0 4px">原版目录是整齐的顺序排比，作者从未说明九章之间有递进关系。<b>此表为拆解者重建，作者在书里没有这样排过。</b></p>
+    <div class="ch-sec-h" style="margin-top:26px">十二个单元 · 每单元六层</div>
+    <details class="ch" open>
+      <summary><span class="ch-no">前言</span>前言 · 德尔斐的「认识你自己」<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>作者交代了自己为什么会走到这个题目上：2006 年读到一本从神经元角度谈植物的书，2007 年在斯洛伐克参加植物神经生物学学会的会议后被彻底迷住，此后二十年去了从伦敦、爱丁堡、纽约到印度、中国、巴西、智利、澳大利亚，甚至毛里求斯的雨林。但他真正的转折点是 2019 年在<strong>德尔斐</strong>参加的一场思想家聚会——那里是古希腊人自称的「世界肚脐」（翁法洛斯）。他站在阿波罗神庙废墟前，看着那句据说刻在墙上的「认识你自己」，意识到一件事：<strong>一个人只有了解了他者，才能认识自身</strong>。最后他给这本书定下了两条边界：既不狭隘地无视科学正在揭示的可能，也不开创一种新的万物有灵教。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>前言贡献的不是论据，是<strong>这本书的诚实契约</strong>。它提前告诉读者两件事：这本书会挑战你；但作者不会顺着兴致滑到泛灵论去。后面九章里所有「我没有过度解读」的申辩，源头都在这四页里。抽掉前言，读者就失去了判断作者在什么地方克制、在什么地方放手的标尺。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>放在第一篇的作用是<strong>先处理读者本人，再处理植物</strong>。第一章要讲的是「植物盲」——但如果你不先承认自己可能也带着偏见，那么第一章就会变成指责读者的说教。前言用德尔斐这个自嘲式的故事（包括作者本人也在一场思想者的盛会里），把偏见变成了「我们共有」的东西。<strong>它买的不是说服力，是读者愿意继续往下读的心情。</strong></p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“多年来，我一直在试着理解一类与我们相差很大的生物的体验：我想要揭开植物智能的本质。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“一个人只有了解了他者，才能认识自身。我们必须去思考与我们截然不同的生物的体验，无论它们是多么原始或多么复杂。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“谨慎是必需的：无论你是对植物拥有智能的说法深表怀疑，还是对其他生命形式拥有超自然智慧的理论热切相信，都要谨慎地拓展思维。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“我既不想狭隘地无视科学正在揭示的惊人可能，也不想开创一种新的万物有灵教，鼓吹自然崇拜。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“我们有没有聪明到能理解植物有多聪明？或许还可以追问一句：我们有没有这个勇气？”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>达尔文最强的工具不是仪器也不是标本，是他每天早晚两次在同一条砂石小路上的行走——他把那条路命名为自己的「思想小道」。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>前言里最值得停下来的是结尾那个问句。"我们有没有聪明到能理解植物有多聪明？"——把这句话里前后两个"聪明"分开读，会发现它不是修辞：<strong>如果答案是否定的，我们连"自己答不出来"这件事都看不出来。</strong>这在科学哲学里有个对应的说法：用一套工具去评估这套工具自身的适用边界，永远是不可靠的。</p><p>作者显然意识到了这一点，所以他的解法不是论证，是<strong>二十年里把自己扔进不同学科</strong>（哲学 + 心理学 + 植物生物学，他在爱丁堡一年里同时进了三个系）。这是用"让自己变成学术上的混血儿"来绕开自指陷阱，是一个有效的办法，也是一个极其难复制的办法。<strong>前言没有说出来的那句话是：这本书的方法论，比它的结论更值得学。</strong></p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>任何人都可以在自己身上当场验证前言里的那个机制：</p><p>找一个你一直认定"我肯定做不到"的事——公开讲话、学一门乐器、和不熟的人搭话。然后问自己：<strong>我这个判断，是基于试过的经验，还是基于"我在类似场合表现不好"的记忆？</strong></p><p>多数情况下答案是后者。而在这种情况下，你用来判断自己的那套工具，恰恰是产生这个判断的那套经验——它不可能给你一个超出自身范围的结论。前言给的出路只有一条：<strong>借用别人的工具</strong>。去问一个完全不同背景的人怎么做这件事，或者干脆换一个环境再试一次。不是因为你缺毅力，是因为你缺样本。</p></div>
+        <div class="ch-note">★ 为可核对的原文引文（中译本，逐字比对原书）；☆ 为拆解者提炼的章旨句，非原话，严禁加引号引用。</div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">序章</span>序章 · 让植物睡着<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>2019 年 8 月 9 日，作者在毛里求斯的一间讲堂里，当着一群观众用玻璃钟罩、棉垫和麻醉剂把<strong>一株含羞草</strong>麻醉了。过程是：先把含羞草放进钟罩（一碰就蜷缩），放进浸透麻醉剂的棉球，罩起来。近一小时后请一位观众上台轻抚它——<strong>纹丝不动</strong>。几个月后他在格拉纳达一家叫「一楼」的酒吧里重演，对象换成<strong>捕蝇草</strong>，这次还接了电极直播电信号：麻醉前触碰有清晰电压峰值，麻醉后屏幕上拉出一条直线。</p><p>然后作者开始收网：植物能被麻醉，而同一剂药也能麻醉人和猫；<strong>连细菌都能被麻醉</strong>，甚至线粒体、叶绿体也对麻醉剂敏感。更深一层：不是人类发明了麻醉剂给植物用，而是<strong>植物本来就在自己合成这些物质</strong>（受伤时释放乙烯，缺水根须释放乙醇、乙烯和二乙烯醚）。最后他抛出了一个与这个问题直接相关的句子：一株植物能像动物一样在短时间内陷入沉睡，是不是意味着它还有一种平常的「清醒」状态？</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>序章贡献了<strong>全书唯一的、可以当场演示的东西</strong>。后面的所有论证都要靠实验设计、靠引用、靠类比；只有这一个，任何人都能在自家厨房里重复（作者甚至在第 4 章附了做法：买一株捕蝇草、几根电极线、一只放大器，抹一点导电胶）。</p><p><strong>它同时提前埋好了第 8 章的钩子</strong>：麻醉到底关掉了什么？这个问题序章问出来，要到全书倒数第二章才被回答一半，而答案是否定的。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>放在第一章之前，起的是<strong>破除直觉</strong>的作用。要论证植物有智能，最大的阻力不是证据不足，而是读者心里那句"植物又不是动物"。作者的处理很聪明：他不先讲道理，而是先让你看一个<strong>明显违反直觉的现象</strong>——一株植物能被兽医用来麻醉猫狗的药麻醉。</p><p>注意他用料的顺序：先是含羞草（观众熟悉），再是捕蝇草 + 电极（有数据），然后才铺开"连细菌都能被麻醉"的演化纵深。<strong>这是一个标准的先易后难坡度：从一个把戏开始，到一个横跨三个域的生物学事实。</strong></p><p>末尾还有一个容易被略过的设计：<strong>他没有替读者下结论</strong>。先把一个事实摆出来（植物能被同一剂药麻醉），再把它倒过来（那些药本来就是植物造的），最后才把问题抛回给读者。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“既然一株植物能像动物一样在短时间内陷入沉睡，这是不是意味着，它还有某种平常的「清醒」状态？”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“「麻醉」（anaesthesia）这个词的词源是希腊语的「anaisthēsía」，意思是「没有知觉」或「无法感知」。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“简单地说，就是麻醉剂会使植物停止对环境做出它们一贯的反应。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“或许更准确的说法应该是反过来：那些能麻醉植物的药物，也能麻醉我们，因为植物其实能自己制造那些化学物质。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这些物质会在应激的时候释放，比如当一株植物受伤时，它就会向组织中释放乙烯之类的麻醉物质。当一条根须脱水时，它会释放三种麻醉剂：乙醇、乙烯和二乙烯醚。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“可以说，只要是有生命的东西都能被麻醉。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“就连种子被麻醉了都会暂停发芽。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“被关在黑暗实验室中的锦葵能准确预测日出的方位，每天夜里它都会忠诚地将叶片转到原本应该出现太阳的方向。要等到大约三四天后，它们才会变得有些不知所措（就像我们大多数人一样）。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“它们是植物界中被宠坏的叭儿狗，被规训成只能在清洁的人造环境中生存，受不了竞争或是艰苦。……而野生藤本拥有黑帮老大一般粗粝的街头智慧，它们有成熟的关系网络，盟友和敌人都很多。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>序章真正打掉的直觉不是"植物不会动"，而是"植物没有清醒状态"——会睡着的东西，理论上就有醒着的样子。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>序章里最容易被一带而过、但其实是全书最锋利的一处反转：<strong>不是人类的医学发明了麻醉剂去对付植物，而是我们借走了植物本来就在合成的化学物质。</strong> 书里列的那一长串——可卡因来自古柯叶、百里酚来自百里香、丁香酚来自丁香、奎宁来自金鸡纳树、毛地黄毒苷来自毛地黄——等于把整部药理学史倒过来讲了一遍。由此推出的一条推论作者写了但没展开：既然植物在应激时释放这些挥发物（包括乙烯），那么大规模受压的植物群落与藻类向大气释放这些东西，<strong>对气候的影响也许本该被算进模型里去</strong>。</p><p>这条线索在第 9 章讲植物与气候时没有接回来——第九章谈的是固碳，没有回头处理"受压植物释放什么"。这是全书为数不多的、自己丢掉了的一条线。</p><p>另一处值得盯着的是家养藤本与野生藤本的对照。作者把它写成了一段非常好笑的比喻（被宠坏的叭儿狗 vs 黑帮老大），但它其实是一条<strong>严肃的方法论警告</strong>：他在 MINT 实验室里用的恰恰是被人类选育过千百代的菜豆。他自己在第 7 章承认了这一点。<strong>也就是说，这本书有一部分证据，是拿"叭儿狗"去论证"街头智慧"的。</strong></p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>序章的结构——“先让你看到一个明显违反直觉的现象，再解释”——本身就是个可以随手用的工具，而且适用于任何人：</p><p>想让一个人改变某个根深蒂固的看法（家里长辈对某种食物的偏见、同事对一个方案的抵触、伴侣对某个安排的坚持），<strong>讲道理几乎总是最慢的那条路</strong>。快得多的是：先制造一个他没法否认的、具体的小现场——让他亲眼看到一次反例，哪怕很小。争论赢不了直觉，现场可以。</p><p>反过来也一样成立：<strong>如果你发现自己在跟人反复讲道理讲了三轮还没用，问题多半不是对方顽固，而是你还没给他任何一个可以看的环境。</strong></p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">一</span>第一章 · 植物盲<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>作者先给了三组普通人可以直接自己验证的现象：一是他每年到中学做演讲时玩的游戏——给学生看年度野生摄影师竞赛的获奖照片，问哪里奇怪。答案从来没人找到：<strong>竞赛里动物分了「哺乳类」「鸟类」「两栖类和爬行类」「无脊椎动物」好几个类别，而植物和真菌——生命之树上两个完全不同的界——被塞进同一个条目「植物和真菌」</strong>。二是他让自己校园里的本科生估计校园有多少种植物，大部分说十种左右，大胆的说四十种，<strong>实际有五百多种</strong>。三是认知科学里的「注意瞬脱」实验：先给一组人看动物、另一组看植物，紧接着再看一滴水——先看动物的人看见那滴水的概率低得多。</p><p>然后讲为什么会这样。分两层：<strong>感官层</strong>（William James 的引文；有人估算眼睛每秒产 1000 万字节数据，清醒的大脑每秒只加工 16 比特，也就是只有 0.00016% 能进入意识；这份预算是演化切好的）和<strong>文化层</strong>（洛夫乔伊讲的「存在的巨链」：上帝—天使—人—大型动物—啮齿类—昆虫—植物—矿物，植物的位置只比石头高一级；连 20 世纪著名的生态心理学家吉布森都这样主张，他索性写道：植物「缺乏感觉器官和肌肉」）。</p><p>最后一节标题叫「背景中的绿色」，作者去了邱园（全世界最著名的植物园）皇家植物园。入口处的邱园壁画是用 1987 年那场风暴刮倒的树木做的木质浮雕——<strong>但这幅由植物身体构成的画里，三分之二都是动物，植物只是背景。</strong></p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章负责回答「为什么需要这本书」。如果植物盲只是态度问题，那解决办法是「多讲点植物的知识」就行。作者要证明的是：<strong>它是一套硬件＋文化的双重过滤，光靠意志力改不掉，必须先承认它的存在，然后才好重新分配注意力。</strong> 这一章同时也交出了全书最有说服力的一个事实：植物占了濒危物种的八分之一，并且构成了地球大多数生态系统的基础。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它的位置是<strong>第一道也是唯一一道「先修课」</strong>：不打赢这一场，第三章的实验证据读者根本不会看进去。它与第二章构成明确对偶——<strong>一个是为什么看不见，一个是拿什么才看得见</strong>。它还暗埋了两颗后来才响的子弹：一是注意瞬脱实验里那个「先看动物的人更容易漏掉后面的东西」，到第六章会变成 τ 理论里「注意力也是一种有限资源」的同类论调；二是邱园壁画这个例子，到第九章讲气候变化时会以另一种形式回来——<strong>即便在以植物为中心的机构里，植物也只是背景。</strong></p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“数以百万计的物体……出现在我的感官中，却始终没有正式进入我的体验。为什么？因为我对它们不感兴趣。我的体验是我同意关注的东西……我们每一个人，都通过对事物的关注，选择了自己想要居住的宇宙。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这种过滤在本质上是由我们的演化史塑造的，是被我们的祖先面对的那些问题所决定的。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这项竞赛中包含了「环境中的动物」和「动物肖像」，还有「两栖类和爬行类」「哺乳类」「鸟类」和「无脊椎动物」等展现有趣行为的类别。还有一个类别叫作「植物和真菌」。你发现古怪之处了吗？动物，虽然只占地球物种中微小的一部分，却受到了全方位的关注。而植物和真菌，这两个在生命之树上全然不同的界别，却被捆绑成了一个条目。从来没有一个学生注意到这一点。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“最近有人估算，我们的眼睛每秒生产的数据超过1000万字节，而大脑在清醒状态下每秒只加工16比特。也就是眼睛生产的全部数据，只有0.00016%为有意识的大脑所用”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“相比首先看到植物的人，首先看到动物的人看见那一滴水的概率要低许多。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这就是「存在的巨链」（the Great Chain of Being），它将世上的一切事物串联成一套价值体系，从最低到最高依次排序。一件事物的价值格外倚重其中的动物品质，尤其是它体现了多少人性”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“植物缺乏感觉器官和肌肉，它们构成的环境对知觉和行为的研究来说无关紧要。……植物一般来说没有多少活力，它们不会移动，没有行为，它们缺乏神经系统，也没有感觉。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“演化并没有按照从简单到复杂的线性模式创造生物，它也没有创造一套层次越高，智能就越强大的等级制。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>植物盲这个说法本身就是个医疗隐喻：把「看不见」说成「盲」，等于预先假定它该被治好。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>第一章有两个地方值得盯着不放。</p><p>第一个是刚才那条 ☆：<strong>「植物盲」这个词本身偷偷塞进了一个未经论证的「应该」</strong>。整章证明了「我们看不见植物」，但没有证明「我们应该看得见植物」。作者给出的理由是审美性的——「如果能想出办法克服它们，我们对周围世界的欣赏会大大增加」。这个理由很弱。<strong>真正有力的理由要到第九章才出现</strong>：植物不只是审美的对象，它是气候系统的参与者，继续看不见它是有实际代价的。也就是说，<strong>第一章的真正说服力来自第九章，而第九章在书的最后。</strong></p><p>第二个是注意瞬脱实验的一个替代解释。作者的解读是「植物占用的注意力较少，使人能解放脑力关注其他事物」。但同一个实验结果也可以反过来读：<strong>也许不是植物占用的加工资源少，而是植物被加工得更快、更自动</strong>——完成得快，所以留出了余量。这两种解释在其他心理学文献里是不同的结论，作者只取了对自己有利的那一种，没有交代另一种的存在。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>任何人都可以在下一次开会（或家庭聚餐）结束时当场验证这一章：</p><p>散会后随便拉三个人问一句——<strong>「会议室墙上挂的是什么？」</strong> 三个人里通常有两个答不上来，哪怕他们刚在里面坐了一个半小时。然后改问——<strong>「刚才谁说了什么让你不舒服的话？」</strong> 三个人全部记得一清二楚。</p><p>同一段时间，同一批人，有两样东西被记住了、另一样被整个删掉。差别不在于事物本身的大小远近，而在于它是<strong>会动的、带社会信号的</strong>，还是<strong>静态的背景</strong>。这不是记性问题，是预算问题。而这一章真正有用的地方在于，它提醒你：预算虽然切好了，但威廉·詹姆士那句「我的体验是我同意关注的东西」意味着<strong>你可以主动重分配它</strong>——只要你先承认，你现在看到的不是世界的全部实景，而是配额筛过之后的版本。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">二</span>第二章 · 寻求植物的视角<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>1862 年夏天，达尔文卧病在床，湿疹发作。他唯一的消遣是盯着窗台上几盆黄瓜幼苗伸出的卷须，看它们在空中画圈找东西攀。他对约瑟夫·胡克写道：「这种琐碎的工作正适合我。」四个月后，他写出一篇 118 页的专著《攀缘植物的运动和习性》。为了记录肉眼看不见的运动，他发明了一套极其巧妙的方法：在植物旁放一块玻璃板和一张纸，在植物器官上粘一根细丝，每隔固定时间用视线把细丝和纸上的参考点连起来，在玻璃板上记下交点——<strong>连点成线，植物的运动就被放大了。</strong></p><p>作者接着讲自己的版本：2016–17 年在爱丁堡休假时，他坐在凸窗前，一边看着一盆巨大的<strong>舞草</strong>缓缓打转，一边循环播放艾拉·费兹杰拉唱的《科尔·波特歌曲集》。歌里唱到「这件事鸟儿会做，蜜蜂会做，就连受过训练的跳蚤也会」——他意识到歌里点名的每一种生物都在显露各自的智能，包括不是动物的那些。由此他借用道金斯的<strong>「适应性山野」</strong>替换了「生命之树」的比喻：一片山野里没有哪座高峰是终极目标，每个物种都在爬自己的坡。</p><p>后半章是一份方法清单：延时摄影（1898–1900 年间 Pfeffer 就做出来了）、高速摄影（龙须兰弹射花粉块的速度可达每秒 3 米）、针孔相机。然后是全书最重要的一次坦白：<strong>每分钟拍一张相片，意味着你将错失植物 59/60 的行为</strong>；他编号为「尤塞恩·博尔特」的那株菜豆，能在几分钟内「抓住」一根杆子甚至不必先接触，快到延时影像反而抹掉了它。最后讲两种倾向——拟人化与人类中心主义——并正面回应 Taiz 在《纽约客》里的批评。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章贡献的是<strong>方法论的正当性</strong>。达尔文在这本书里是一个持续在场的人物（九章里引用了七次），但第二章把他从「被致敬的先贤」变成了「被继承的方法」：玻璃板法的核心思想——用技术手段把时间尺度换算到人类感官可以处理的范围——就是后面每一场实验的原型。<strong>没有这一章，第三章的实验读起来就像是在给结论找证据；有了这一章，它们读起来像是一套有标准的观察程序。</strong></p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>与第一章构成完整对偶：<strong>一个是为什么看不见，一个是拿什么才看得见</strong>。同时它给第三章铺路——第二章末尾承认「延时影像里的那种看起来有意图，当然是一种拟人的视角」，而第三章要做的正是<strong>补上这个漏洞</strong>：用「适应 vs 认知」的三条横线，把「看起来有意图」升级成「可以被验证的意图」。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“我近来发现卷须很有意思。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这种琐碎的工作正适合我。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“达尔文发明了一种方法来记录他用肉眼看到的景象。……通过依次连接玻璃板上的点，他画出了植物器官的运动轨迹，这让人能用肉眼更加清晰地看见这种运动，因为它已经被放大了许多倍。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“他比任何人都更早地明白，植物的身体方位和形态变化是一种行为，就像动物的运动一样。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“任何一株植物的生长部位都不会绝对静止。植物的所有器官都在动：根尖、卷须、叶片和花朵莫不如此。它们在生长中都会摇摇晃晃地绕圈子，达尔文将这一模式称为「回旋转头运动」。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这种弹射动作的速度可以达到惊人的每秒3米（即每小时10.8公里）。对一种没有神经或肌肉的生物而言，这算得上神速了。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“每分钟拍一张相片，意味着你将错失植物59/60的行为，而且植物的动作并不总是缓慢的。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“它们就在我们眼皮底下做到了意外而神秘的事情，就算我们布置好相机也没用。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“在这个问题上有两个极端：一个是拟人倾向，也就是在毫不相干的事物中看见我们自己；另一个是人类中心主义，也就是拒绝承认我们和其他生命形式之间存在联结。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“他们的解读代表了一种流传甚广的误解，即智能和意识与我们自己的知觉尺度所能觉察的反应类型（即快速运动）是不可分割的。但其实它们可以分割。构成智能证据的并不是行为的速度。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>延时摄影不是把植物的行为按比例压缩了，而是删掉了其中六十分之五十九，只留下肉眼能消化的那一份。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章真正值得记住的是那株「尤塞恩·博尔特」菜豆，因为它藏着作者整本书里唯一一次<strong>反过来替肉眼说话</strong>：延时摄影漏掉了最快的一抓，而当时在场的人眼看见了。作者把这件事写得很轻松，但它其实是一条很重要的原则：<strong>任何观测工具都在同时做两件事——揭示符合它采样频率的现象，删除不符合的。</strong> 高分辨率仪器配长时间在场，缺一不可。这个原则作者意识到了，但没有把它提炼成一条方法论条令，结果第三章很多证据仍然建立在单一方法上。</p><p>另一处更尖锐：Heider 与 Simmel 1944 年那个几何形状实验，作者用它说明「人类给任何移动的东西赋予意图的本能有多强」。但<strong>同一个实验也可以用来反驳他自己</strong>——如果人在一组纯几何图形上都能读出阴谋与爱恨，那么在一段延时影像上读到的「前瞻性」，完全有可能是观察者的投射而不是植物的属性。作者承认了这一步（「这当然是一种拟人的视角」），但他随即把话题转走了，真正的补救要等到第三章的三条横线。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>任何长期在外、偶尔回家的人都有过这个体验：一进门就觉得「我妈/我爸怎么突然老了这么多」，或者看邻居家的小孩觉得「这孩子怎么一下子长这么高」。而天天住在一起的人完全没有这种感觉。</p><p>这不是两种人对同一事实的眼光不同，是<strong>同一双眼睛配了两个不同的采样频率</strong>：隔半年看一次，等于把半年的变化压缩成一帧，变化跃到阈值以上被看见了；每天看一次，每帧的变化都低于察觉阈值，于是系统判定「没变化」。</p><p>第二章给的用法很直接：<strong>想知道一件事到底有没有在变，别加大观察力度，换采样周期。</strong> 对你担心在变坏的关系、在退步的孩子、在下滑的身体状态——改成隔三个月认真看一次，而不是天天盯着焦虑。<strong>天天盯着只会得到噪声，拉开距离才能得到信号。</strong></p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">三</span>第三章 · 聪明的植物行为<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>开头是一场聚会：作者和两位植物学家朋友（弗兰蒂泽克·鲍卢什考、斯蒂法诺·曼库索）在西班牙南部圣何塞村开的「圣何塞根脑风暴会」。当晚他们在海边酒吧清出一片白墙，用随身带的小投影仪反复播放曼库索拍的一株攀缘菜豆的延时影片，第二天又在沙滩上用一根拐杖画实验设计稿。</p><p>然后是本章第一份实打实的结果：2016 年，MINT 实验室搭了生长棚，延时拍摄菜豆幼苗伸向 50 厘米开外的爬杆。把数小时的动作制成图表后，<strong>运动轨迹大致是一根不断变大的螺线——总共旋转了 21 周，每周平均耗时 117 分钟</strong>，第一周最短 98 分钟，最长的一周 154 分钟；到某个时刻，嫩芽跳过螺线后半段，半路改道直接切向了爬杆。</p><p>接着是全章、乃至全书的枢纽：<strong>区分「适应」与「认知」</strong>。三条横线（预见性／灵活性／目标导向）。然后是一份从简单到复杂的标本序列——明确只是适应的：行走棕榈（作者随即承认「这个说法并没有证据支持」）、屋久岛寄生植物 Sciaphila yakushimensis、西红柿释放化学物质让毛毛虫同类相食；看起来是适应其实是预测的：向日葵与锦葵的夜间预转向；看起来是认知的：含羞草的习惯化（可维持 28 天，且光线不足时习惯化更快）、野草莓学会把光强与土壤肥力配对、豌豆在 Y 形迷宫里按资源状况选择保守或激进。</p><p>结尾处作者做了一件在科普里很少见的事——<strong>主动交代自己没能复制别人的关键实验。</strong></p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章是<strong>证据主力 + 判据来源</strong>。抽掉它，第四章要解释的那套硬件就失去了被解释的现象，第五、六章的理论也就没有了对象。同时它给出了全书唯一一条可操作的判据：三条横线。后面所有关于「某株植物是不是在思考」的判断，都要回到这里。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它是第一部的收束章，一头接第二章的方法（延时 → 实验结果），一头堵第二章留下的拟人漏洞（「看起来有意图」→「可以被检验的意图」）。它也给第四章留了一张明确的问题清单：这些本领到底靠什么硬件跑起来？此外，它埋下的一条伏笔要到第五章才兑现——<strong>作者停下来专门讲「综合（integration）与灵活（flexibility）这两个关键概念」的那一段，就是后来「预测机器」与「信息整合」两个理论框架的种子。</strong></p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“菜豆嫩芽顶端的运动轨迹大致相当于一根螺线，随着嫩芽的生长，它的运动逐渐从圆形变成了椭圆。它总共旋转了21周，每周平均耗时117分钟。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“「适应」通常是指对特定输入的自动反应。因为在演化史上的巨大优势，它已经被编入了遗传密码。它是反应性的，必须有刺激才会发生，并且每一次的反应都大致相同。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“它还有预见性，能使生物针对将来的环境变化做出最佳选择。它更有灵活性，能对各种不同的因素做出反应，并有着各种不同的表现。它还是目标导向的，其目标是改变环境或生物自身状态，而不仅仅是被动反应。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这些特质的要求远远超出「膝跳反射」。它们需要动用来自植物各个部位、从根到芽的多种来源的信息，这些信息还必须加以综合以做出协同的反应。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“在植物的结构中，就功能而言，没有一种比胚根的尖端更加奇妙。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“指导植物生长和行为的信息往往必须是关于未来的信息。植物的生长必须是预期性的生长，如果它要给植物带来好处的话。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“一种动物，无论在何种环境中发育，它的外观都大致相同。而一株植物如果换了一个环境，它在外观和行为上都会彻底变成另外一株植物。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“行走棕榈并不是真的会漫步。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“接着，饥饿的毛毛虫就会放下西红柿叶，转而相互攻击了。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“由VOC组成的遇险信号会警示附近的草类，提醒它们危险即将来临、赶紧组织防御。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“含羞草的习惯化并非暂时现象，而是可以维持28天之久。含羞草似乎具有长期记忆。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“我们在MINT实验室的研究就没有复制出莫妮卡团队对巴甫洛夫式条件反射的成果，但对这一点我们还要继续研究。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>本章的标本序列是从纯适应排到纯认知——但这个坡度是作者排的，不是证据自己排的。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章有一处诚实、也有一处滑移，两处都值得盯。</p><p><strong>滑移在标本序列。</strong> 作者排了一条很漂亮的坡度：先是明确只算适应的（行走棕榈、Sciaphila、西红柿让毛虫同类相食），再是看起来是适应其实是预测的（向日葵、锦葵），最后才是看起来就是认知的（学习、记忆、风险评估）。但<strong>这条坡序是修辞上的，不是证据等级上的</strong>。西红柿释放化学物质让毛虫同类相食被判为「只是适应」，理由是它「已经在漫长的演化中刻进了植物的基因」；而含羞草的习惯化被判为学习。可是习惯化同样是一种与生俱来的能力——两者的界线到底在哪？</p><p>真正站得住的三项是豌豆的风险敏感性（同一株植物按当前资源状况切换保守/激进）和野草莓的配对学习（把一种线索与另一种结果建立联系），因为它们的特点是<strong>在同一个个体身上按当前条件切换策略</strong>，这没法用固定的刺激—反应链条解释。最弱的是「亲属识别」和「VOC 报警」——它们完全可以是一次化学级联，不需要任何加工。</p><p><strong>诚实在末尾。</strong> 他写下了自己没能复制 Gagliano 团队的结果。但注意它在哪里：<strong>放在整章的最后一段</strong>。坏消息被安排在读完所有漂亮证据之后——这是诚实，但不是中立的排版。对一本要推进知识主张的书来说，这一段本该出现在开头。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>任何一个人在自己身上都可以验证这一章里那条最不起眼、却最扎心的发现：<strong>光线不足的含羞草会更快放弃防御。</strong></p><p>原实验是这样：受到触碰就合拢叶片，是含羞草防备被吃的方式。但如果把它放在光线不足的地方，它很快就「习惯」了触碰，不再合拢——不是不怕，<strong>是闭合一次就要损失一段本就稀缺的光合作用时间，它付不起这个代价</strong>，只好冒着被吃掉的风险继续摊开叶片。资源充足的同类则可以放心地一直保持警觉。</p><p>翻译成普通人的处境就是：<strong>一个人处在长期资源紧张的状态时（时间不够、钱不够、睡眠不够），最先被放弃掉的往往不是享乐，而是各种防御性的东西</strong>——拖着不去的体检、不再维护的朋友关系、停掉的储蓄、凑合着用的旧设备。每一项都明知重要，每一项都在消耗本已不够的资源。<strong>这不是懒，也不是糊涂，是预算被逼到那个位置上之后的结果。</strong></p><p>这一章给的用法也就清楚了：<strong>想让别人恢复那些「明明重要却一直不做」的事，催促基本无效</strong>——因为卡住他的不是认识问题。真正能重启防御的是把资源补足哪怕一小块：多出两小时的空档、多出一笔不必算计的钱、多睡两晚整觉。 <strong>防御是需要付费才能维持的功能，不是态度问题。</strong></p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">四</span>第四章 · 植物的神经系统<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>2018 年 6 月，作者在纽约植物园门口排队，翻着 J.C. 博斯爵士 1926 年的《植物的神经机制》。进园后他撞上了一场小展览——欧姬芙的夏威夷系列，其中一幅《番木瓜树》画的正是博斯书里那张显微照片拍的东西：番木瓜主茎里管状的维管组织。这幅画和那张照片在他脑子里叠在了一起。</p><p>接着是电生理学的简史：达尔文早就怀疑捕蝇草的反应背后有电化学信号，还把它称为「最像动物的植物」，并请伦敦大学学院的伯登-桑德森去测，后者果然在叶片上下表面之间测出了电压差；1930 年代研究者在轮藻和丽藻的巨大细胞里首次记录到类神经的电脉冲；博斯则详细研究了含羞草。作者甚至附了一个任何人都能在家做的实验：买一株捕蝇草、几根电极线和一只放大器，抹一点导电胶，就能在屏幕上看到动作电位传遍全身。</p><p>然后是核心论证：神经元做的事只是<strong>生产和传送电荷</strong>；而《牛津英文词典》给动作电位的定义（「一个脉冲在细胞膜上通过时的电位变化」）根本没提神经元。动物的心肌也靠电波收缩。<strong>植物没有神经元，但植物有维管系统（木质部 + 韧皮部）在传导电信号。</strong> 化学层面也是同一套：GABA、谷氨酸、乙酰胆碱、血清素、多巴胺、褪黑素——只是<strong>动物那边叫「神经递质」，植物这边叫「生物介体」</strong>。</p><p>后半章是学界论战：作者到格拉斯哥试图与一位植物生理学家沟通，失败；不久后 Taiz 等人发文攻击他们的研究「祸害这个科学分支」；接着第二篇论文用「远距离电压信号」这种措辞重写了同一件事，却不承认那是类神经系统。他顺手补了一段学科史：植物生理学直到 1856 年才起步，再过 60 年才被当作一门科学而不是空想。最后是化解方案——借 Llinás 与 Miguel-Tomé 的主张，<strong>扩展「神经系统」的定义，把功能作为评判标准</strong>。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这是承重墙之一：给第三章那一整份现象清单<strong>提供一个物理机制</strong>。没有这一章，第三章就只是一堆「看起来很聪明」的行为；有了这一章，它们才是「有一套硬件在跑」的行为。同时它也顺带回答了全书的书名问题：中译本把第五章的问句提到封面上，而这一章才是那个问句的技术答案。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它与第三章直接对偶：<strong>现象 ↔ 硬件</strong>。而它把「命名之争」整段放进正文，是为了给第五、六章铺路——只有先解决「能不能叫神经系统」，第五、六章搬用动物认知科学的工具箱才不显得是偷渡。<strong>这一章表面上在讲生物学，实际上在争的是术语的所有权。</strong></p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“在植物体内观察不到任何形式的神经节，但是将来的某一天，那些生理学事实得到组织学的验证也不是没有可能的。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这个神经系统让植物能像一个有机整体一般行动。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“根据《牛津英文词典》，形成动作电位的是「一个脉冲在细胞膜上通过时的电位变化」。细胞膜上电压变化的运动才是神经交流的实质。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“绝不能仅仅因为植物缺乏神经元就否认它们会使用电信号。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“你可以将维管系统想象成动物的神经系统，是短距离或长距离运送电信号的一条高速公路。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“在动物的神经元之间传导电信号的化学物质叫作「神经递质」，到了植物体内却被称为「生物介体」（biomediators）。然而在植物体内找到的乙酰胆碱、儿茶酚胺、组胺、血清素、多巴胺、褪黑素、谷氨酸和GABA，和动物生产的分子并无不同。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“说一句得罪好朋友的话，我认为「植物神经生物学」这个术语就好像「人类花朵生物学」一样可笑。植物没有神经元，就像人类不会开花！”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“虽然这是一个有趣的术语（植物神经生物学），很能激发思想，但它并非基于可靠的事实，也未必有助于我们推进科学研究。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“把「植物神经生物学」作为我们研究方向的名称固然启迪思想、激动人心，然而出于许多科学上的原因，这个名称也会激起争议并造成分裂。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“换言之，我们可以用一个系统能做什么来定义它是不是神经系统，而不是只看这些功能由哪些细胞和组织来实现。我们不必把植物说成绿色的动物，也能使用「神经系统」这几个字。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“如果我们想解决一个之前始终没有解决的问题，就必须给通向未知的门留一条缝。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“要用生理学来解释心理现象，首先必须有一个心理现象需要得到解释。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>植物生理学自己也是从「无聊的空想」变成科学的——作者讲这段学科史，是在提醒同行：你们现在的鄙视，和一百多年前别人对你们的鄙视是同一种东西。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章最好的部分其实是它的元科学部分（命名之争），但最可疑的也是这里。作者用「名字不该成为障碍」来化解「植物没有神经元」的批评，方法是一次<strong>定义权的争夺</strong>：他不证明植物有神经系统，他重新定义了神经系统。</p><p>真正该问而他没问的是：<strong>功能定义会不会泛化过度？</strong> 按「能做什么」来定义，蚁群的信息素网络、互联网、免疫系统、甚至一个国家的统计系统，都能被叫做神经系统。一旦边界这样松，这个词就失去了区分力。作者搬出 Llinás 是为了把权威外包出去，但<strong>权威不能替代边界条件</strong>。</p><p>另一处值得记住的是这一章里「自己人打自己人」的材料密度。反对这个术语的诺沃普兰斯基，正是作者研究的起点之一；把它当笑话的查莫维茨，是同领域的畅销书作者；而植物神经生物学学会自己也在 2009 年把这个名字改掉了。<strong>也就是说，在这个领域里，反对者不是外行，正是同行。</strong> 作者如实写了这些，很体面；读者应当把这个比例记住。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>这一章里最好用的不是电生理，是那句「术语双标」：同一件事，在 A 身上叫一个名字，在 B 身上就叫另一个名字，而东西本身完全一样。</p><p>任何人在办公室里就能验证：同一个行为——坚持己见、不按流程走——<strong>上位者做了叫「有魄力」，下属做了叫「不听话」；同一件事做成了叫「有主见」，没做成叫「一意孤行」。</strong> 名称不是中性的标签，名称自带一张理解的网络，它会改变别人对同一件事的判断。</p><p>第四章给的用法也很直接：<strong>当你在争论里发现双方卡住不动，先别急着加证据，去检查那个词的用法。</strong> 很多时候双方不是对事实有分歧，而是对同一个词的边界有分歧——而边界从来没人说清楚过。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">五</span>第五章 · 植物会思考吗？<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>从《蒙娜丽莎》讲起：我们觉得她在笑还是不笑，很大程度取决于观看者自己带进去的情绪状态。然后是一张著名的照片——罗纳德·C. 詹姆斯拍的斑点狗，起初只是一团散乱黑白，<strong>一旦看见那只狗，就再也看不见随机了</strong>。结论是：知觉不是被数据带动的，而是被预期带动的。作者又补了一个更硬的证据：2021 年耶鲁的研究发现，小鼠幼崽在睁眼之前，视网膜上就已经涌起模拟「自己在环境中移动」的电活动波；封堵掉这些波，小鼠睁眼后会难以分析运动的影像。</p><p>接着是理论主场：安迪·克拉克的延伸心智与预测性加工（作者与他曾在爱丁堡共用一间办公室，办公室里放着一张凹陷的「空的脸」模型，看久了会看成凸出的）；卡尔·弗里斯顿的自由能原理——大脑把「惊异」降到最小，手段只有两招：<strong>主动推断</strong>（改世界来贴合模型）与<strong>知觉推断</strong>（改模型来贴合世界）。2017 年两人合作发表了《Predicting Green》。</p><p>然后是全书最漂亮的一个思想实验：丁鱥、雪花、雏菊，哪个和另外两个不同？答案是雪花，因为它<strong>无法阻止自己融化</strong>。内稳态这一条，把动物和植物放在了同一边。</p><p>根系避盐是这一章的实证：根不是简单地讨厌盐，它记录一路上的<strong>盐度梯度</strong>，被「盐在降低」的趋势吸引；走错方向时惊异长期居高不下，于是放弃这个方向。</p><p>最后是植物心理学的考古：作者在他爱丁堡租住的房子里，追出了一条 1906 年的文章——C. F. 阿盖尔·萨克斯比的《植物会思考吗？关于植物神经学及心理学的一些猜想》。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章把植物从「能做出复杂行为」提升到了「按信息处理的方式组织行为」。<strong>它是全书离「智能」这个词最近的一章</strong>，也是中译本书名的出处。它同时回答了第四章留下的那个问题：既然有这张网络，那么网络里跑的是什么？答案是：预测与校正。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它是第二部理论层的<strong>贵版本</strong>，和第六章的便宜版本构成直接对立。它承接第四章（硬件 → 软件），又给第七章的「做一株植物是什么感觉」准备了前提：<strong>如果植物真的在用内部模型预测世界，那么它就有某种「对世界而言像是什么」的东西。</strong></p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“一旦在看似随机的黑色墨迹中发现了这只斑点狗，大脑对这张相片的理解就会彻底改变。……甚至，你现在想看不见它也做不到了。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“我们的知觉明显受到预期的带动：我们的预测会影响我们的体验。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“知觉不是由数据带动的。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“答案就是内稳态（homeostasis），或者说是「相似的状态」。……与它们相比，雪花在气温升到冰点以上时会直接融化。更重要的是，雪花根本无法阻止自身融化。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这个梯度很重要：根系会被盐分降低的趋势所吸引，因为这说明前方有更好的东西；盐分的绝对差异相比之下没有多少吸引力，因为那只说明这块土地暂时可以落脚。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“当两者相互一致、风险很低时，它们就可以放松。而一旦出现不一致，植物就会受到刺激并深入探索，寻找与它们的预测相吻合的区域。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“和我们一样，它们也是能够自我纠正的预测机器。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“物理上的细节只是大脑这台「电脑」的硬件，靠它们并不能解释程序如何工作，就像弄懂了一块电脑芯片仍无法明白电脑如何运作一样。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“《植物会思考吗？关于植物神经学及心理学的一些猜想（Do Plants Think? Some speculations concerning a neurology and psychology of plants）》”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>书名不是作者的发明——1906 年就有人把这个问句印在学报上了。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章有一处漂亮的方法论动作，读者容易在兴致里漏掉：<strong>预测加工框架在这里承担的功能，其实是转移举证责任。</strong></p><p>一旦把植物放进「预测机器」的框架，「植物没有智能」就变成了需要论证的一方——因为这个框架默认一切自我维持的系统都在做某种推断。这步棋很妙，但它属于<strong>换掉了默认立场</strong>，不属于增加了证据。作者赢得了一半的争论，靠的不是新事实，而是新默认。</p><p>第二处：内稳态那组思想实验其实非常强，但作者用得太快。丁鱥—雪花—雏菊所证明的是「植物是自我维持的系统」，由此可以推出「它必须为将来做准备」，但推不出「它有内部模型」。后一件恰恰是<strong>第六章要反对的</strong>。两个强度完全不同的结论被放在了同一章里，中间没有界线标记。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>斑点狗效应任何人都可以在三十秒内自己验证：抬头看一片云、或者看墙上一块水渍，随便找一个像脸的图案。<strong>一旦你「看出来了」，就再也回不到刚才那团无意义的形状了。</strong> 从此你每次看到它，看到的都是那张脸。</p><p>这条在日常生活中最贵的后果是：<strong>人一旦拿到一个说法，就再也看不见不符合它的东西了。</strong> 一个被大人反复说「他就是叛逆期」的孩子，此后所有行为都会被读成叛逆；一个被提过某种可能诊断的人，会把之后所有不适都往那个诊断上套。<strong>不是证据变了，是知觉被预期改写了。</strong></p><p>这一章给的用法也就很具体：<strong>当你对某个人、某件事形成了一种解读，先问一句——我是不是已经「看见了那只狗」？</strong> 验证办法很简单：去找一条明确不符合这个解读的事实，看你能不能真的看见它。看得见，说明解读还活着；看不见，说明你已经只看见自己的预期了。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">六</span>第六章 · 生态学上的认知<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>开头是几张图片的吐槽：《植物科学趋势》2005 年那期植物智能专号的封面，画着两朵向日葵在下国际象棋；《新科学家》2014 年的「聪明植物」专题，画的是一株大脑形状的盆栽对着罗丹的《思想者》；连作者儿子为他设计的封面，用的也是课堂。<strong>每一次，人们都用「下棋」「沉思」「上课」来表现植物的智能。</strong></p><p>然后作者拆这个比喻：计算机这个模型从巴贝奇的分析机（用雅卡尔织布机的打孔卡当软件）一路继承下来，暗示「认知就是按规则处理数据」。但国际象棋是形式化的，棋子用什么做不重要，规则才重要；<strong>植物的规则没那么重要——任凭一部机器怎么「织出花朵和叶片」，它也不可能复制活的器官。</strong></p><p>接着是三条反驳：蜜蜂的六边形巢房不是蜜蜂执行了六边形规则，而是圆形蜂蜡在表面张力下自然形成的（<strong>这一点上达尔文猜错了</strong>）；赫伯特·西蒙的蚂蚁在沙滩上走的复杂路线，只是绕过沙丘的结果；吉布森与克拉克、查默斯的延伸心灵，植物版就是「它们用根、芽、卷须和吸盘向世界延伸」。</p><p>最后是全章的技术核心：τ。它从弗雷德·霍伊尔 1957 年的科幻小说《黑云》讲起（天文学家不必知道黑云的距离和速度，只要看它在照片上变大的速率）；落到戴夫·李对塘鹅入水的研究——<strong>塘鹅对 τ 十分敏感，用视网膜上影像变大的速率估算还有多久入水，根本不必知道自己的绝对速度或高度</strong>。作者的猜想是：菜豆也在做同一件事——它不停地旋转，改变自己和杆子的相对位置，从而产生可读取的信息流。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章给「预测」提供了一个<strong>不需要内部模型的便宜版本</strong>，同时把植物的行为重新锚定回生态环境里。它也悄悄削弱了第五章：如果 τ 就够了，那就不必假设植物有一整套生成模型。<strong>这是全书唯一一次自我倒转，而且作者没有把它摆平。</strong></p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它与第五章互为对手，一贵一便宜。放在第五章之后、第七章之前，起的是<strong>刹车</strong>作用：先把「植物有内部模型」这个说法压回一个更保守的版本，再从那里往外推「做一株植物是什么感觉」。顺序上很讲究——先给贵的，再给便宜的，再谈体验。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“蜜蜂并未遵循什么构造六边形的规则。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“它们的路线看似复杂，其实都取决于环境的性质，是环境决定了它们的行为。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“不要问你的脑袋里面有什么，而要问你的脑袋外面是什么。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“τ是一个相对度量，描述的是物体和观察者之间距离的变化。你可以认为，τ和在当前速度下，物体与观察者接触的时间是成比例的。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“研究证实了他的想法：塘鹅对τ十分敏感。这些飞鸟利用视网膜上的影像大小变化来估算时间，并据此在入水的那一刹那收起翅膀。它们根本不必知道自己的绝对速度或高度是多少。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“光照引起的兴奋并不取决于具体的光照量，而取决于与之前光照量的差别。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“这种预期没有任何神秘或者牵涉计算的成分：仅仅是物理环境和感觉的互动，以及感觉对相对变化的觉察，就足够提供所有必要的信息了。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>达尔文在这本书里几乎从不犯错，但他在蜜蜂六边形这件事上猜错了——作者写得很平淡，但这是全书对他的唯一一次刹车。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章最该被记住的不是 τ，而是蜜蜂六边形那一段，因为它是全书唯一一次给作者自己上了一课的地方：<strong>达尔文猜测六边形是自然选择的结果，实际上它是物理法则的直接结果。</strong></p><p>这条的意义在于它反过来适用于作者自己的实验：当你在植物身上看到一个精妙的解决方案时，<strong>它有可能只是物理约束的直接结果，而不是任何加工</strong>。作者把这个警示讲给了蜜蜂听，但没有把它用在自己那些攀缘菜豆上。</p><p>第二处：第五、六章的冲突到底该怎么裁决？作者没有裁。给读者一个可操作的建议——<strong>把第五章当作植物行为的上界解释，把第六章当作下界解释。</strong> 同一个行为，用最便宜的机制能解释到什么程度，那就是下界；剩下解释不了的部分，才需要动用上界。作者本该为每一个现象做一遍这个减法，但他没做。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>西蒙的蚂蚁这一节，任何人都可以在自己每天的通勤上验证：</p><p>一个人每天上班走的那条路线看起来「很有讲究」——从哪个门进、在哪条路拐弯、在哪个口换乘。如果你问他为什么这么走，他通常能讲出一堆理由：那条路红灯少、那个口不用爬楼梯、那边早上不堵。</p><p>但把地图上的障碍物画出来（施工围挡、天桥台阶、单行道、早高峰的路口），你会发现那条路线<strong>是被地形唯一决定的</strong>。他并没有在做什么复杂决策，他只是在绕障碍。</p><p>这一章的用法也就在这里：<strong>很多被我们自己解释为「选择」的行为，其实是被环境结构决定的。</strong> 想判断它到底是选择还是地形，唯一的办法是把地形画出来——画完之后如果答案唯一，那它就不是选择；如果画完还有好几条路可走，那时候才轮到「选择」这个词。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">七</span>第七章 · 做一株植物是什么感觉？<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>从内格尔 1974 年那篇著名的《做一只蝙蝠是什么感觉？》切入，配上两个思想实验：弗兰克·杰克逊的「玛丽」（一个只见过黑白、却掌握全部颜色科学的科学家，她能算知道颜色是什么吗？）与保罗·丘奇兰德的反驳（加拿大人把华氏换成摄氏，人们重新校准了内在的温度感受——<strong>框架是可以被训练的</strong>）。</p><p>然后是一条更近的路径：章鱼。它和我们差距大到像外星人，一半以上的神经元分布在八条腕足里，每条腕足可以独立处理信息，寿命却只有两年。接着是作者最熟悉的藤本：菟丝子靠化学气味追踪宿主（在西红柿和小麦之间总是选西红柿，而小麦会放出「难闻的气息」伪装自己）、巨叶龟背竹的幼苗向暗处生长（因为树干是深色的）、牵牛花在彩色立柱间的选择、西番莲的卷须在八小时内三次改变姿态去追随被移动的支撑物。</p><p>下半章给了三个可操作的概念：<strong>环境界</strong>（每个生物活在自己那份由感官能力划定的世界里）、<strong>可供性</strong>（生物感知到的从来不是物体本身，而是这个物体对自己能做什么）、以及<strong>植物的性格</strong>（含羞草的「躲藏时间」存在稳定的个体差异；家养藤本被驯化后变得「懒洋洋」，觉察到的可供性和野生亲戚不同了）。最后一节落到室内盆栽——它们享受了最多照顾，也被剥夺了最多的能动性。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这一章把「认知」推进到「体验」，并且交出了三个可操作的概念：环境界、可供性、个体差异。同时它也是全书第一次正面处理「同一个东西对不同主体是不同的东西」——这一点在第九章会变成政治主张（植物不是资源，是行动者）。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>它是第三部的起点，方向从「植物做了什么」整个转成了「植物是什么」。与第八章构成明确对偶：<strong>认识论 ↔ 伦理学</strong>。它也回头兑现了第 2 章欠下的债——第二章承认「看起来有意图」只是拟人，而这一章用可供性理论给了它一个非拟人的说法：不是植物像人，是<strong>每个主体本来就只看得见与自己有关的那部分世界</strong>。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“遇到一只章鱼，在体验上大概最接近遇到一个拥有智力的外星人。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“环境的可供性就是环境可以给予动物的东西，这些东西可能好也可能坏。……其中包含了动物和环境的互补性。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“一株藤本感知到的也不是一根杆子，而是沿着它攀爬的可能。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“小麦会生产一种西红柿在营养窘迫、无法供养寄生者时散发的物质，自己就躲在这种难闻的气息后面。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“很长时间没有照射到太阳的植株，在出现危险迹象时只会「躲藏」很短时间。它们已经太久没有用光合作用生产充足的食物了，只能冒着被吃掉的风险出来露露头了。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“它们还会变得懒洋洋的，不如原来那样机警。这些植物其实已经长成了侏儒，它们觉察到的可供性也因此和野生的亲戚不同了。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“花朵在利用蜜蜂，蜜蜂也利用花朵。这段关系中，双方都在被对方塑造着。在某种程度上，双方都为对方所驯化、栽培了。这座紫外线花园是一座双向的花园。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“也许植物的「心灵」向世界延伸的方式，就是克拉克想象中我们的心灵向智能手机、铅笔和乐高积木延伸的方式。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>可供性理论真正的锋利之处不在于「植物会感知」，而在于它顺手把人也放进了同一套逻辑里——我们也只看得见与自己有关的那部分世界。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章最强的概念是可供性，但它藏着一个作者没有处理的张力：<strong>可供性理论本身是反内在表征的</strong>（吉布森传统坚持知觉是直接的，不需要内部模型），而这一章要论证的恰恰是「植物有内在世界」。两个东西被放在同一章里，没有调和。这是第五、六章冲突的第三度复现。</p><p>第二处：家养与野生那一段是全书最锋利的自省——实验室里的菜豆是「侏儒」，觉察到的可供性已经和野生亲戚不同。但这段话同时也是一把架在作者自己脖子上的刀：<strong>他的大部分实验数据正是从这些侏儒身上来的。</strong> 他意识到了，给出的补救只是「我们也需要观察野生的菜豆」。这是承诺，不是结果。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>任何一个人在租房看房时都能当场验证可供性：</p><p>同一间空房间，在四个人眼里是四种东西——中介看到的是「面积和朝向」，要开会的人看到的是「能坐下多少人」，搬家的人看到的是「能塞下多少箱子」，养猫的人看到的是「猫有没有地方躲」。四个人站在同一个房间里，看见的是四个不同的房间。</p><p>日常里最贵的后果是：<strong>当两个人就同一件东西判断完全相反时，他们以为自己在争论，其实只是在报告各自的「可供性」。</strong> 吵架吵不出结果，是因为双方从来没把「这个东西对我具体能做什么」说出来过。</p><p>这一章给的用法很省事：<strong>下一次争执，先花三十秒让双方各说一句「它对我能做什么／不能做什么」。</strong> 说完之后，你会发现大部分分歧立刻从「你讲不讲道理」降级成了「原来你要的不是这个」。剩下的那一小点，才是真正需要取舍的部分。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">八</span>第八章 · 植物的解放<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>开头是作者自己抛出的那个两难：每次公开演讲，第一批举手提问的总是吃素或严格素食的人——<strong>如果吃植物是「道德安全」的，那么植物有主观体验的可能性越高，这个安全垫就越薄。</strong></p><p>然后他正面处理 Taiz 等 2020 年的两条反驳（「信息加工能力 ≠ 主观体验」；「植物根本没必要演化出意识」），并给出两条回应。接着提出全书最锋利的一个类比：<strong>把一株菟丝子或菜豆类比成「闭锁综合征患者」</strong>——外表毫无反应，内在却知道在发生什么，只是无法表达。</p><p>中间三段铺陈：情绪行为（达尔文 1872 年《人和动物的感情表达》里甚至写到昆虫用摩擦音表达愤怒、恐惧、嫉妒和爱）；疼痛（彼得·辛格 1975 年《动物解放》给了三条理由证明动物会痛，并明确排除了植物，作者逐条反驳；又讲了布赖恩·基「鱼不会痛」与笛卡儿活体解剖狗的历史）；以及从痛觉退到更宽的概念「苦难」（植物也合成与动物对应的那些分子，乙烯只在应激或受伤时生产）。</p><p>最后给技术路径：CRISPR 找意识相关基因；用睡眠/麻醉做反向确认（蓝细菌的昼夜节律、仙后水母的睡眠态、斑马鱼的慢波、三齿蒿在日食里的反应）；以及托诺尼与科赫的整合信息理论（IIT）与「放和收」（zap and zip）测量法。收尾是伦理学：功利主义边界的扩张、瑞士 2008 年的《有关植物的生物尊严》，以及博斯在一百多年前给待移植的大树做麻醉的故事。</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>这是全书最难、也最容易被误读的一跃：从「植物能认知」跳到「我们对植物负有义务」。它同时也是序章那个悬着的问题（<strong>麻醉到底关掉了什么</strong>）的迟到答复——而答案是否定的：<strong>我们不知道那里面有什么被关上了。</strong></p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>与第七章构成对偶（认识论 ↔ 伦理学），与第九章并列为第三部两条外推。它在结构上的一个巧妙之处是：<strong>把最硬核的技术细节（IIT、zap and zip）放在伦理主张之前</strong>——先用客观测量的可能性撑住，再谈义务，这样伦理主张就不至于悬空。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“每当我向公众演讲介绍我的研究，第一批举手提问的总是那些吃素的人或严格素食者，听了我的讲话，他们的道德框架都被彻底动摇了。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“我会将一株菟丝子或菜豆类比成一个「闭锁综合征患者」，他们虽然外表是植物人状态，内心却知道在发生什么，他们有着外人无从知晓的内部状态。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“但我们同样无法假定它们没有。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“就连「昆虫也会用摩擦音来表达愤怒、恐惧、嫉妒和爱」。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“辛格在他的主张中明确排除了植物，认为「这些理由没有一个能让我们相信植物也有痛感」。我对他这样排除并不认同：植物也有积极回避的行为；植物也有「类神经」的系统，能协调起全身反应；相对于能够逃跑的生物，疼痛在长根生物的演化史中同样有用处。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“一只蝙蝠就是一部机器，它的内部电路早已焊死，膜翼上的肌肉会使它自动扑向昆虫，就像没有意识的导弹扑向一架飞机。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“雷伯主张，意识在整个生命之树中无处不在，因为内心体验是生命的固有特征。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“如果一方拥有心灵来指导进食，另一方为什么就不能拥有心灵来自卫呢？”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“那东西可以是硅片、神经元、单细胞膜、韧皮部组织：任何系统，只要能将输入转化为连贯的内在体验，都能创造出某个层面的意识。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“失去意识或被麻醉的患者，只呈现简单、规律的干扰模式，压缩值也低到0.31以下。有意识的患者则呈现涟漪般变动的模式，压缩值在0.31到0.7之间。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“令他们沮丧的是，近四分之一患者的数值显示他们仍有意识，却不能以任何方式表达。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“瑞士宪法规定生物的尊严应该得到尊重，植物是生物，因此也有尊严。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“我们不必先弄清楚「身为一株植物是什么感觉」再去关心它们遭受的苦难。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“既然我们这种生物会关心他者的痛苦，就自然应当为那些我们知道会受苦的生物着想。我们要做的只是把植物拥有感知的可能放在心里，并努力用新的眼光看待植物。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>这一章真正交付的不是「植物有感受」，而是「你已经不能再假定它们没有」——这两个句子的强度差得很远。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>本章最漂亮的一手是「闭锁综合征」类比，但它跳过了一个关键差别：<strong>闭锁综合征患者的意识是被从外部独立确认过的</strong>（他们能用眼球回答是/否，后来有 fMRI 与 zap-and-zip 的客观读数）；而<strong>植物没有任何可回答的通道</strong>。这个类比在伦理上完全成立（它提醒我们可能错了），在认识论上却是空的（它无法被验证）。作者把两者放在同一段里，读者很容易把伦理上的有效性误当成认识论上的证据。</p><p>第二处：作者的伦理推进其实是两步——先翻转举证责任，再扩张功利主义的边界。第二步才是真正危险的地方：功利主义一旦把「最多的人」改成「最多的物种」，就必须回答「到多简单的生物为止」。作者引用了这个问题，但只说「这一点还不确定」，没有给出原则。<strong>这是全书唯一一处他明确承认自己没有答案的地方</strong>，值得记一笔。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>这一章最容易被带走的一句话是最后那句：<strong>「我们要做的只是把植物拥有感知的可能放在心里。」</strong></p><p>任何人在生活里都已经在做这件事，只是没注意：给很久不联系的人发一条消息，明知道对方可能不看；对着已经认不出人的长辈把话说完，明知道可能听不懂；向一个正在闹别扭、肯定不会回的人解释一遍，明知道白解释。</p><p>这些行为的共同点是：<strong>在不确定对方能不能收到的情况下，仍然选择发出。</strong> 而它们的成本极低、代价极不对称——发出去没回应，损失几乎为零；真被收到了，收益很大。</p><p>这一章给的用法也就很朴素：<strong>别等到「确认了对方能收到」才行动。</strong> 对一段你想修复的关系、一个你想和解的人、一句你觉得该说的话，把「也许能收到」当成行动前提就够了。<strong>这一章说的不是植物，是不确定性下的行动原则。</strong></p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">九</span>第九章 · 绿色机器人<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>开头是两次太空任务：NASA 的勇气号与机遇号（原计划 90 天，机遇号撑到 2019 年，行驶近 48 公里，最终倒在一场沙尘暴里）；以及 2019 年 1 月 3 日嫦娥四号在月球背面软着陆，搭载的「月球微型生态系统」里有蚕和苍蝇的卵，还有拟南芥、马铃薯等植物的种子——种子发芽了，实验两周后终止。</p><p>然后是本章最锋利的一次重构：<strong>「假如你正在 A 处、想去 B 处，你的一个做法是直接从 A 处长到 B 处去。换言之，你可以到达 B 而不必离开 A。」</strong> 按这个思路，火星车不必有轮子，也就根本不存在「轮子卡进裂缝」这类问题——问题不是被解决，是被取消。</p><p>中间转到气候：作者在前沿论坛旁听艾尔·戈尔《论气候乐观主义》，散场讨论时他想插一句「怎么行动？」。他的主张是：植树这类方案是「创可贴」，真正的第一道障碍是<strong>把植物从资源改成行动者</strong>。</p><p>最后一节是全书最讽刺的一段对照：荷兰皇家航空为餐食里的鸡做了全套福利安排（散养、分区、24 小时直播），却对同一份餐盘里的胡萝卜、豌豆和土豆没有任何考虑。作者问莫妮卡·加利亚诺植物伦理委员会的事，得到的回答是：<strong>目前还没有任何法规从植物的伦理／福利／道德立场出发，对植物研究开展约束。</strong></p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>它把第三部的两条外推（伦理与技术）收在一起，并给全书一个行动性的结尾。它同时回头接住了第一章埋的那颗子弹——<strong>邱园壁画里植物只是背景</strong>——只不过这次的背景换成了气候模型与太空任务里的「饲料」。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>与第八章并列（伦理 ↔ 技术/政治），并回应序章（家养藤本 vs 野生藤本）。它在结构上的作用是<strong>把前三部的抽象结论变成两个可指认的场域</strong>：一个是政策场（植物算不算行动者），一个是工程场（能不能照植物的方式造机器）。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“假如你正在A处、想去B处，你的一个做法是直接从A处长到B处去。换言之，你可以到达B而不必离开A。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“包括植树在内的诸多实际方案，似乎都只是一块块徒劳无益的创可贴，盖不住下面那个巨大深刻的问题。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“我们必然会面对的第一重障碍、必须按下的第一个开关，是让自己转变心态，不再将植物只看作捕捉碳或是保障粮食生产的资源，而是看作在这场气候危机之中与我们并肩作战的行动者。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“一条象鼻有近四万块肌肉，全都能协同工作。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“他们发明了一种机器卷须，只需一个气动控件，就能轻轻地缠绕并抓紧一个直径仅一毫米的物体。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“它能挤过两张黏糊糊的捕蝇纸或是冲过一团胶水，方法是让表面保持静态，而核心的管道继续生长。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“目前还没有任何法规从植物的伦理/福利/道德立场出发，对植物研究开展约束/限制/支配，因此并没有一个委员会在监管植物研究。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“如果确认了植物真能「感知」，这会赋予它们权利，从而阻碍我们对它们的剥削吗？如果确认了植物是能感知的伦理实体，我们能花点心思改善它们的福利吗？我们不应该这么做吗？”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>我们一边在抄植物做事的方法（分布式、生长即运动），一边在把它们当资源——抄一个人的方法，等于承认他有本事。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>这一章最值得称道的是它把「技术借鉴」和「伦理地位」这两件通常被分开的事拧到了一起：<strong>我们正在抄植物做事的方法，同时把它们当资源。</strong> 这个矛盾作者点出来了，但没有展开，而它其实是全书最有力的一击——因为抄一个人的方法，等于承认他有本事。这一击如果展开写，会比第八章的所有论证加起来都更有说服力，可惜它只在结尾露了一次脸。</p><p>第二处是本章的弱点：从 NASA 漫游车一路到植物伦理委员会，中间缺一台桥。作者用「如果我们造出一台像植物的机器人，它会帮我们重新看待植物吗？」这个反问收尾——<strong>这是个提案，不是结论。</strong> 这一章的说服力在例子，不在论证。</p><p>第三处是一句提醒：这是全书政治性最强的部分，涉及对气候政策与具体机构、具体纪录片的评价。<strong>⚠️ 这一章对具体政策与具体机构的批评不宜直接搬进公开发布的内容，搬运前需做敏感筛查。</strong></p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>这一章最好用的不是机器人，是那句「从 A 长到 B」——<strong>取消问题，而不是解决问题。</strong></p><p>任何人都可以在今天做一次：挑一件你每周都要做、而且一直在优化的事——通勤路线、每周的采购、例行的报表、孩子的接送。然后问一句：<strong>这件事能不能不必发生？</strong></p><p>多数人会发现，自己花了几个月在优化流程，而「取消它」这个选项从来没被摆到桌面上过。远程两天、换个住处、错峰、合并——<strong>取消掉的部分省下的，通常比优化出来的多一个数量级。</strong> 这不是偷懒，是先做减法再做乘法。</p><p>至于荷兰皇家航空那个对照，它给的用法也很直接：<strong>看看你的生活里，哪个东西被认真对待、而另一个同等重要的东西完全没有标准。</strong> 你一定会找到至少一组，而那一组往往就是还没被命名、也因此还没被认真做过的领域。</p></div>
+      </div>
+    </details>
+    <details class="ch">
+      <summary><span class="ch-no">后记</span>后记 · 海马体的育肥场<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>1 · 本章讲了什么</h5><p>达尔文临终想葬在唐恩村圣玛丽教堂旁那棵古老红豆杉下，与家人一起。报纸已经刊出消息说遗愿会被尊重，但当局不允许一位国宝悄悄躲到一棵树下——他被运到威斯敏斯特教堂，举行了隆重的国葬。作者说：对政治和面子的关心剥夺了达尔文的权利，使他无法在那株红豆杉下平静地享受永恒的野餐。</p><p>接着是肯·罗宾逊 2006 年那场 TED 演讲《学校是否扼杀了创意？》（播放量 7000 多万），核心一句是「如果你没有准备好出错，你就提不出任何原创性见解」。作者由此造了一个词：<strong>「海马体的育肥场」</strong>——过度教育把年轻的心灵像藤蔓一样紧紧缠在栅格上，不断剥夺创造能力。然后是诺贝尔奖得主西德尼·布伦纳的另一面：「我很相信无知的力量。」</p></div>
+        <div class="ch-blk"><h5>2 · 对全文论点的作用</h5><p>它把全书落回了一个地方：<strong>这本书讲的其实不是植物，是「怎么才能看见自己看不见的东西」。</strong> 植物只是那个最极端的练习对象。</p></div>
+        <div class="ch-blk"><h5>3 · 结构用意</h5><p>首尾扣环——前言的「翁法洛斯综合征」（以为自己是世界中心）与后记的「海马体育肥场」（教育把人绕在栅格上），讲的是同一件事：<strong>人是怎样被自己的框架困住的，以及该怎么跳出来。</strong> 一头一尾同构，这是全书的结构闭环。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>“如果你没有准备好出错，你就提不出任何原创性见解。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“我很相信无知的力量。我觉得人总是知道得太多。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“做了某一领域的资深科学家有一点不好：它会限制人的创造力，因为你知道得太多，也知道如此这般是肯定行不通的。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“当局或许也听到了达尔文内心那个孩童的呼声，他知道那株红豆杉是真正的知善恶树。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star">★</span>“科学不是一个独立存在的泡泡，它是交织在人类丰富经验中的一项人类事业。它无可避免地存在缺陷，却也包含无限可能。”<span class="en">★ 可核对原文引文（中译本）</span></div>
+        <div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>达尔文一生都在教人换一种眼光看自然，到最后连自己想葬在哪棵树下都做不了主——传统从来不会放过任何人，包括推翻传统的人。<span class="en">☆ 拆解者提炼的章旨句，非原话，严禁加引号引用</span></div>
+        <div class="ch-blk think"><h5>5 · 发散思考</h5><p>后记其实把全书真正的主题说破了，而作者在前九章里一直没说破：<strong>植物只是那个最极端的练习对象，这本书真正训练的是「跳出自己框架」这件事本身。</strong></p><p>这一点如果放在前言，读者会更清楚该带着什么问题读；放在后记，反而说明作者是在写完九章之后才想明白的。</p><p>更实用的一条是布伦纳与肯·罗宾逊两条合起来给出的完整方法论：<strong>先允许自己不知道，再允许自己出错。</strong> 作者本人正是这套方法的受益者——他不是植物学家出身，正因如此他敢问那些内行不会问的问题。</p><p><strong>这是全书唯一一处可以被读者直接复制的东西</strong>：前面九章讲的是植物，这一章讲的是你自己。</p></div>
+        <div class="ch-blk life"><h5>6 · 现实链接</h5><p>任何一个人在开始一件新事之前都可以试一次，而且当场就能看出差别：</p><p>挑一件你一直想做、却一直在「做功课」的事——想开个小店、想写点东西、想换个行业、想学一门手艺。在去看任何专业资料之前，<strong>先写下三条「一个外行会怎么干这件事」的想法。</strong></p><p>然后再去看专业资料。看的时候你会立刻发现一件事：<strong>那三条想法已经提不出来了。</strong> 你已经知道了「标准做法是什么」，而标准做法会直接关掉那些不符合它的路径——这就是第五章那个斑点狗效应的第二遍，只不过这次被锁死的是你自己的思路。</p><p>后记给的用法也就很朴素：<strong>功课要做，但要留一半在看完资料之前做。</strong> 一个领域里最值钱的问题，往往在你还不知道答案应该长什么样的时候才会被提出来。</p></div>
+      </div>
+    </details>
+  </section>
+
+<!-- ============ PICKS（已移除）============
+       本技能不做内容发布排版：优先选题表 / 「如何做成小红书选题」/ 下一步建议 一律不进网页。
+       交付到网页「逐章精读」为止，选题建议在对话里口头给，不落 HTML。 -->
+</main>
+
+<footer>
+  <b>信源构成</b>：本书全部内容取自中译本《植物会思考吗？》（高天羽译，湖南科学技术出版社·博集天卷，2025 年 1 月）全文，A 级原文引文 156 条，全部经脚本与原文逐字比对（按「……」切段分别校验），0 处未命中。版本信息（原版 Planta Sapiens，The Bridge Street Press 2022-08-25 / W. W. Norton 2023-03-14，ISBN 9780393881080）为 B 级外部核对。<br>
+  <div class="legend">
+    <span><span class="s">★</span> 原文引文（可直接引用；均已在原书中逐字核对）</span>
+    <span><span class="f">☆</span> 章旨句（提炼，非原话，严禁加引号）</span>
+  </div>
+  <b>三处必须自己折价的地方</b>：①第 3 章的巴甫洛夫式条件反射实验，作者本人承认未能在 MINT 实验室复制出来；②第 5 章（预测加工）与第 6 章（生态光学 + τ）是两套互相拆台的理论框架，作者始终没说哪一套是主路；③从「认知」跳到「有感受」，书里只交付了可能性，没有交付事实。<br>
+  <b>合规提示</b>：本书第 9 章涉及气候政治与环保政策批评，做公开内容时须自行做敏感筛查；「植物有意识」「素食是否道德」属争议话题，引用时务必保留「可能性」这一强度限定。<br>
+  <b>生成</b>：基于拆解稿（骨架拆解 / 思维模型 / 批判性视角 / 逐章精读）整合。单文件 HTML，可离线阅读，可长期保存。
+</footer>
+
+<script>
+  // 书签色带：滚动高亮当前章节
+  const links = Array.from(document.querySelectorAll('.ribbon a'));
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = map.get(e.target.id);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  document.querySelectorAll('main section').forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

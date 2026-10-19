@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《自私的基因》读书笔记</title>
+<style>
+  :root{
+    --paper:#f3e9d8; --paper-2:#efe2cc; --ink:#2c2620; --ink-soft:#5a4f42; --ink-faint:#8a7a66;
+    --accent:#9b3b2e;   /* 书签朱红 oxblood */
+    --accent-2:#b8893a; /* 暖金 muted gold */
+    --line:#d8c8ab; --card:#fbf5e9;
+    --shadow:0 1px 2px rgba(60,40,20,.08),0 8px 30px rgba(60,40,20,.10);
+    --serif:"Songti SC","STSong","SimSun","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--serif); color:var(--ink); line-height:1.85;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%,rgba(184,137,58,.05),transparent 40%),
+      radial-gradient(circle at 80% 90%,rgba(155,59,46,.04),transparent 45%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:rgba(155,59,46,.18)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:clamp(420px,72vh,760px);display:flex;align-items:flex-end;overflow:hidden;
+    background:linear-gradient(135deg,#3a2c1c 0%,#574027 45%,#7a5630 100%);}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.85) brightness(.78);}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(28,20,12,.15) 0%,rgba(28,20,12,.35) 45%,rgba(28,20,12,.82) 100%);}
+  .bookmark{position:absolute;top:0;right:clamp(20px,6vw,90px);z-index:3;width:46px;height:120px;background:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.35);}
+  .bookmark::after{content:"";position:absolute;bottom:-1px;left:0;width:0;height:0;border-left:23px solid transparent;border-right:23px solid transparent;border-top:18px solid var(--accent);}
+  .hero-inner{position:relative;z-index:2;padding:clamp(28px,6vw,72px);max-width:920px;color:#f6ecd9}
+  .hero-eyebrow{font-family:var(--sans);font-size:clamp(.7rem,2vw,.82rem);letter-spacing:.42em;text-transform:uppercase;color:var(--accent-2);margin-bottom:14px;font-weight:600;}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.4rem,8vw,5rem);line-height:1.05;letter-spacing:.04em;color:#fbf3e2;text-shadow:0 1px 0 rgba(0,0,0,.5),0 2px 18px rgba(0,0,0,.45);}
+  .hero .sub{margin-top:18px;font-size:clamp(1rem,3vw,1.4rem);color:#e8d8bd;font-style:italic;letter-spacing:.03em;}
+  .hero .meta{margin-top:22px;font-family:var(--sans);font-size:.82rem;color:#cdbb9c;letter-spacing:.04em;line-height:1.6;}
+
+  /* ---------- RIBBON NAV ---------- */
+  .ribbon{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,#2b2014,#3a2c1c);box-shadow:0 2px 14px rgba(0,0,0,.25);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
+  .ribbon ul{display:flex;gap:2px;list-style:none;padding:0 10px;margin:0;min-width:max-content;}
+  .ribbon a{display:block;font-family:var(--sans);font-size:.78rem;color:#d8c6a6;text-decoration:none;white-space:nowrap;padding:13px 16px;position:relative;letter-spacing:.05em;transition:color .2s,background .2s;}
+  .ribbon a::before{content:"";position:absolute;left:0;top:22%;height:56%;width:3px;background:var(--accent-2);opacity:0;transition:opacity .2s;}
+  .ribbon a:hover{color:#fff}
+  .ribbon a.active{color:#fff;background:rgba(155,59,46,.30)}
+  .ribbon a.active::before{opacity:1}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:880px;margin:0 auto;padding:clamp(28px,6vw,64px) clamp(18px,5vw,40px) 40px}
+  section{margin-bottom:clamp(48px,9vw,84px);scroll-margin-top:64px}
+  .sec-tag{display:inline-block;font-family:var(--sans);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:4px;margin-bottom:14px;}
+  h2{font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;color:var(--ink);letter-spacing:.02em;margin-bottom:8px;line-height:1.25;}
+  h2 .en{display:block;font-family:var(--sans);font-size:.8rem;font-weight:400;letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase;margin-top:6px}
+  h3{font-family:var(--serif);font-size:1.22rem;color:var(--accent);margin:26px 0 10px;font-weight:700}
+  h4{font-family:var(--sans);font-size:.95rem;color:var(--ink-soft);margin:18px 0 6px;letter-spacing:.03em;font-weight:600}
+  p{margin:12px 0;color:var(--ink-soft);font-size:1.04rem}
+  .lead{font-size:1.12rem;color:var(--ink)}
+  strong{color:var(--ink);font-weight:700}
+  em{color:var(--accent)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:clamp(18px,4vw,26px);box-shadow:var(--shadow);margin:18px 0;}
+  .card.ribbon-left{border-left:5px solid var(--accent)}
+  .thesis{background:linear-gradient(135deg,#fbf3e2,#f3e6cf);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:clamp(22px,5vw,34px);box-shadow:var(--shadow);margin:22px 0;}
+  .thesis .q{font-size:clamp(1.15rem,3.4vw,1.5rem);line-height:1.6;color:var(--ink);font-weight:600}
+  .thesis .src{margin-top:14px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);letter-spacing:.04em}
+
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-family:var(--sans);font-size:.9rem}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+  th{background:rgba(155,59,46,.07);color:var(--accent);font-weight:700;letter-spacing:.03em}
+  tr:hover td{background:rgba(184,137,58,.05)}
+  td b{color:var(--ink)}
+
+  ul.clean{list-style:none;margin:12px 0;padding:0}
+  ul.clean>li{padding:10px 0 10px 22px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean>li:last-child{border-bottom:none}
+  ul.clean>li::before{content:"❧";position:absolute;left:0;top:10px;color:var(--accent-2);font-size:.9rem}
+  ol.num{margin:12px 0 12px 1.2em;padding:0}
+  ol.num li{margin:10px 0;padding-left:4px;color:var(--ink-soft)}
+  ol.num li::marker{color:var(--accent);font-weight:700}
+
+  .model{border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow);padding:clamp(20px,4vw,28px);margin:22px 0;position:relative;overflow:hidden}
+  .model .no{position:absolute;top:-14px;right:14px;font-family:var(--serif);font-size:5rem;color:rgba(155,59,46,.08);font-weight:700;line-height:1}
+  .model h3{margin-top:0}
+  .model .src{font-family:var(--sans);font-size:.74rem;color:var(--ink-faint);letter-spacing:.05em;margin-bottom:8px}
+  .mech{background:rgba(184,137,58,.08);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .scenario{border-top:1px dashed var(--line);margin-top:14px;padding-top:14px}
+
+  .blind{border-left:4px solid var(--ink-faint);padding:14px 18px;margin:14px 0;background:rgba(138,122,102,.06);border-radius:0 8px 8px 0}
+  .blind.hard{border-left-color:var(--accent)}
+  .blind .tag{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .blind.hard .tag{color:var(--accent);font-weight:700}
+
+  .book{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .book:last-child{border-bottom:none}
+  .book .dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:9px;background:var(--accent-2)}
+  .book .dot.opp{background:var(--accent)}
+  .book .b-title{font-weight:700;color:var(--ink);font-size:1.02rem}
+  .book .b-meta{font-family:var(--sans);font-size:.76rem;color:var(--ink-faint);margin:2px 0 4px}
+  .book .b-why{font-size:.94rem;color:var(--ink-soft)}
+
+  blockquote{margin:14px 0;padding:14px 18px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.07);border-radius:0 8px 8px 0;font-style:italic;color:var(--ink);}
+  blockquote .en{display:block;font-style:normal;font-family:var(--sans);font-size:.82rem;color:var(--ink-faint);margin-top:8px;line-height:1.5}
+  .star{color:var(--accent);font-weight:700;margin-right:6px}
+
+  /* ---------- 逐章精读：六层块 ---------- */
+  .ch-blk{margin:14px 0 0;padding:12px 14px;background:rgba(155,59,46,.035);border:1px solid rgba(155,59,46,.10);border-radius:6px}
+  .ch-blk h5{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:700}
+  .ch-blk p{font-size:.95rem;line-height:1.82;margin:0}
+  .ch-blk.think{background:rgba(184,137,58,.07);border-color:rgba(184,137,58,.18)}
+  .ch-blk.think h5{color:var(--accent-2)}
+  .ch-blk.life{background:rgba(90,79,66,.05);border-color:rgba(90,79,66,.13)}
+  .ch-blk.life h5{color:var(--ink-soft)}
+  .ch-sec-h{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;color:var(--ink-faint);margin:18px 0 2px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+  .ch-map td:first-child{white-space:nowrap;font-weight:700;color:var(--accent)}
+
+  details.ch{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:10px 0;overflow:hidden;box-shadow:0 1px 2px rgba(60,40,20,.05);}
+  details.ch[open]{box-shadow:var(--shadow)}
+  details.ch summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;align-items:baseline;gap:12px;font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--ink);transition:background .15s;}
+  details.ch summary:hover{background:rgba(184,137,58,.08)}
+  details.ch summary::-webkit-details-marker{display:none}
+  details.ch summary .ch-no{flex:0 0 auto;font-family:var(--sans);font-size:.72rem;font-weight:700;color:#fff;background:var(--accent);border-radius:5px;padding:3px 8px;letter-spacing:.03em;}
+  details.ch summary .ch-icon{margin-left:auto;color:var(--accent-2);transition:transform .2s;font-size:.9rem}
+  details.ch[open] summary .ch-icon{transform:rotate(90deg)}
+  .ch-body{padding:4px 18px 20px;border-top:1px solid var(--line)}
+  .ch-artifact{font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);margin:12px 0 4px;letter-spacing:.02em}
+  .ch-artifact b{color:var(--accent)}
+  .ch-gist{font-size:1.02rem;color:var(--ink);font-style:italic;margin:6px 0 12px}
+  .ch-quote{margin:10px 0;padding:10px 14px;border-left:3px solid var(--accent-2);background:rgba(184,137,58,.06);border-radius:0 6px 6px 0}
+  .ch-quote .en{display:block;font-family:var(--sans);font-size:.78rem;color:var(--ink-faint);margin-top:6px;line-height:1.5}
+  .ch-note{font-family:var(--sans);font-size:.78rem;color:var(--accent);margin-top:10px;letter-spacing:.02em}
+  .risk-low{color:#5b7a3a}.risk-mid{color:var(--accent-2)}
+
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:34px clamp(18px,5vw,40px) 70px;font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);line-height:1.9;max-width:880px;margin-left:auto;margin-right:auto;}
+  footer b{color:var(--ink-soft)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 18px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend .s{color:var(--accent);font-weight:700}
+  .legend .f{color:var(--ink-faint)}
+  a.inline{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(155,59,46,.35)}
+  a.inline:hover{border-bottom-color:var(--accent)}
+
+  @media (max-width:560px){
+    .hero .meta{font-size:.74rem}
+    table{font-size:.82rem}
+    th,td{padding:9px 8px}
+    .book{flex-direction:column;gap:6px}
+    table.ch-map{display:block;overflow-x:auto}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=2000&q=80" alt="图书馆书架" onerror="this.style.display='none'">
+  <div class="bookmark" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Reading Notes · 角落历史</div>
+    <h1>自私的基因</h1>
+    <div class="sub">我们都是生存机器——但只有我们能反抗缔造者</div>
+    <div class="meta">
+      [英]理查德·道金斯 著 · 卢允中、张岱云、陈复加、罗小舟、叶盛 译 · 中信出版集团 2018（40 周年增订版）<br>
+      原版 The Selfish Gene（Oxford University Press, 1976）／40 周年增订版 The Extended Selfish Gene（2016）
+    </div>
+  </div>
+</header>
+
+<nav class="ribbon" aria-label="目录">
+  <ul>
+    <li><a href="#about">关于本书</a></li>
+    <li><a href="#core">一句话核心</a></li>
+    <li><a href="#myths">认知误区</a></li>
+    <li><a href="#logic">六层逻辑</a></li>
+    <li><a href="#models">思维模型</a></li>
+    <li><a href="#critical">批判性视角</a></li>
+    <li><a href="#books">对读书单</a></li>
+    <li><a href="#chapters">逐章精读</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <span class="sec-tag">About · 关于本书</span>
+    <h2>它到底是什么书<span class="en">What kind of book is this</span></h2>
+    <p class="lead">这是一本<strong>论证型科普</strong>，不是专著也不是教材：15 章按一条清晰的论证链推进，从生命出现之前推到人类反抗复制因子的可能。理解它的前提是先核对版本——因为「40 周年增订版」并不是全新的一本书。</p>
+    <div class="card ribbon-left">
+      <h4>作者简介</h4>
+      <p>理查德·道金斯（Richard Dawkins，1941— ），牛津大学进化生物学家，1995–2008 年任牛津首位「西蒙尼公众理解科学教授」，英国皇家学会院士。本书立场上承四位理论家的 1960–70 年代工作：G. C. 威廉斯（基因定义，被作者称为「本书的英雄」）、W. D. 汉密尔顿（亲缘选择）、J. 梅纳德·史密斯（ESS）、R. 特里弗斯（亲代投资与互惠利他）。</p>
+      <h4>版本核对（关键）</h4>
+      <table>
+        <thead><tr><th>版本</th><th>事实</th></tr></thead>
+        <tbody>
+          <tr><td>初版</td><td>The Selfish Gene，Oxford University Press，<b>1976</b>，第 1–11 章</td></tr>
+          <tr><td>第二版</td><td>1989，新增第 12 章「好人终有好报」、第 13 章「基因的延伸」</td></tr>
+          <tr><td>30 周年版</td><td>2006，新增「30 周年版简介」</td></tr>
+          <tr><td>40 周年增订版</td><td>英文改名 <b>The Extended Selfish Gene</b>，Oxford（Oxford Landmark Science），<b>2016</b>；新增第 14、15 章</td></tr>
+          <tr><td>中译本</td><td>中信出版集团·见识丛书 25，2018 年 11 月平装（ISBN 9787508694498）／2019 年 6 月精装（9787508693279），六万字的增订内容</td></tr>
+          <tr><td>最容易被误传的一点</td><td>第 14、15 两章<b>不是 2016 年新写</b>，是从作者 1982 年专业著作《延伸的表型》第 2、3 章原样搬来 + 一份术语表。作者在「40 周年增订版说明」里明说了这件事</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.92rem;color:var(--ink-soft);margin-top:14px"><b>信源说明</b>：本笔记 ★ 引文以微信读书中译本原文为准（按章拉取热门划线，可逐字核对）。另核对过一份 epub 全文，经比对属<b>另一译本</b>（措辞与 40 周年增订版中译本不同，且文件有 4 处数据损坏、尾注正文恰在损坏区），故<b>不作为引文来源</b>，仅用于交叉核对各章的论证结构。</p>
+      <h4>全书三「不是」（作者开宗明义）</h4>
+      <ul class="clean">
+        <li><strong>不是</strong>道德倡议——描述事物如何进化，不讲人应当如何行动。</li>
+        <li><strong>不是</strong>基因决定论——基因只是统计学意义上的因果因子，不比环境更不可逆（第 14 章专拆）。</li>
+        <li><strong>不是</strong>适应论宣言——不是每个性状都有适应性功能（第 15 章专拆）。</li>
+      </ul>
+      <h4>方法论三设定（决定后面一切）</h4>
+      <ol class="num">
+        <li>观察单位 = <strong>基因</strong>，定义为「染色体物质中能够作为一个自然选择的单位对连续若干代起作用的任何一部分」（沿用威廉斯）。</li>
+        <li>证据入口 = <strong>可计数的频度</strong>——个体的基因频度恒为 100%，所以个体不在这场计数里。</li>
+        <li>立场 = <strong>是／应当二分</strong>——「自私」是行为效果层面的描述，不关主观动机，也不构成提倡。</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CORE ============ -->
+  <section id="core">
+    <span class="sec-tag">Thesis · 一句话核心</span>
+    <h2>全书终极论点<span class="en">The one-sentence core</span></h2>
+    <div class="thesis">
+      <div class="q">自然选择的真正单位不是物种、不是群体、也不是个体，而是<strong>基因</strong>；人和其他一切生物都只是基因造出来、用完即弃的「生存机器」。换到基因的视角看，自然界里那些看似无私的利他行为，全是基因自私性在特定条件下的表现形式——而人类是唯一能靠文化反抗这套复制因子暴政的物种。</div>
+      <div class="src">作者原话（前言，中译本原文，微信读书 2041 人划线）</div>
+    </div>
+    <blockquote>
+      <span class="star">★</span>我们都是生存机器——作为运载工具的机器人，其程序是盲目编制的，为的是永久保存所谓基因这种禀性自私的因子。
+      <span class="en">前言 · 全书第二热句</span>
+    </blockquote>
+    <blockquote>
+      <span class="star">★</span>成功基因的一个突出特性就是其无情的自私性。这种基因的自私性通常会导致个体行为的自私性。然而我们也会看到，基因为了更有效地达到其自私的目的，在某些特殊情况下，也会滋长一种有限的利他主义。
+      <span class="en">第 1 章 · 全书第一热句（7884 人划线）</span>
+    </blockquote>
+    <p><strong>反常识落点一</strong>：这个标题里需要着重强调的词不是「自私」，是「基因」——作者说本书「将更多的重心放在讨论利他主义上」。</p>
+    <p><strong>反常识落点二</strong>：书越往后越不冷酷。第 11 章给出出口——「在这个世界上，只有我们，我们人类，能够反抗自私的复制因子的暴政」。</p>
+  </section>
+
+  <!-- ============ MYTHS ============ -->
+  <section id="myths">
+    <span class="sec-tag">Myths · 核心痛点</span>
+    <h2>六个至今流行的认知误区<span class="en">Six misconceptions the book dismantles</span></h2>
+
+    <div class="card">
+      <h3>误区一：书名在鼓吹「人应该自私」</h3>
+      <p><strong>流行版本</strong>：「自私的基因」= 人性本自私 = 利己主义有理。<br>
+      <strong>错在哪</strong>：书里说的是基因层面的自私，而作者的结论恰恰相反——正因为人天生不慷慨，慷慨才需要被教。<br>
+      <strong>作者怎么破</strong>（第 1 章）：「我并不提倡以进化论为基础的道德观，我只是讲事物是如何进化的」；「让我们设法通过教育把慷慨大度和利他主义灌输到人们头脑中去吧！因为我们生来就是自私的。」</p>
+    </div>
+
+    <div class="card">
+      <h3>误区二：基因决定行为，改不了</h3>
+      <p><strong>流行版本</strong>：有「出轨基因」「暴力基因」，行为被编程好、不可逆转。<br>
+      <strong>错在哪</strong>：作者专门用一整章（第 14 章）拆它，称之为「伟大的基因决定论谬误」。<br>
+      <strong>作者怎么破</strong>（第 14 章）：「没有什么一般性的原因令我们可以去期望：基因的影响会比环境的影响更难以逆转。」</p>
+    </div>
+
+    <div class="card">
+      <h3>误区三：每个性状都有用、都是最优设计</h3>
+      <p><strong>流行版本</strong>：既然是自然选择造的，那每个特征都该有适应功能。<br>
+      <strong>错在哪</strong>：五类制约——时间滞后、历史约束、局部最优、缺乏可用突变、成本权衡。<br>
+      <strong>作者怎么破</strong>（第 15 章）：「由此得到的动物不是最完美的设计，甚至只是勉强度日而已。它是一系列历史改变的产物。」</p>
+    </div>
+
+    <div class="card">
+      <h3>误区四：动物会为物种利益节制生育</h3>
+      <p><strong>流行版本</strong>：动物自动计划生育，是为了避免耗尽资源。<br>
+      <strong>错在哪</strong>：群体层面的自我克制必被自私个体入侵——少生的人腾出的资源会被多生的人拿走。<br>
+      <strong>作者怎么破</strong>（第 7 章）：「生育太多子女的个体要受到惩罚，不是由于整个种群要走向灭绝，而是仅仅由于它们自己的子女能存活下来的越来越少。」</p>
+    </div>
+
+    <div class="card">
+      <h3>误区五：人是进化的顶点，比别的物种高尚</h3>
+      <p><strong>作者怎么破</strong>（序言）：「认为某一物种比另一物种高尚是毫无客观依据的。不论是黑猩猩和人类，还是蜥蜴和真菌，它们都是经过长约 30 亿年的所谓自然选择这一过程进化而来的。」</p>
+    </div>
+
+    <div class="card">
+      <h3>误区六：基因视角 = 基因有意识、在谋划</h3>
+      <p><strong>作者怎么破</strong>（第 11 章，全书最重要的免责声明）：「当我们说『基因试图增加它们在未来基因库中的数量』，我们的真正意思是『凡是由于基因本身的行为而使自己在未来的基因库中的数量增加的，往往就是我们在这个世界上所看到的那些有效基因』。」（第 2 章）「复制因子在进行这种斗争时不动任何感情。」</p>
+    </div>
+  </section>
+
+  <!-- ============ LOGIC ============ -->
+  <section id="logic">
+    <span class="sec-tag">Logic · 底层逻辑</span>
+    <h2>六层逻辑推演<span class="en">Six-layer reasoning</span></h2>
+    <p class="lead">前提层：观察单位是基因；证据来自动物行为学实验、博弈论模型与思想实验；立场是描述而非提倡。基因视角是一种计算工具——问「如果我是这个基因，我会怎么做」，不是宣称基因有意图。</p>
+    <table>
+      <thead><tr><th>层</th><th>动词</th><th>层结论</th><th>关键推论</th></tr></thead>
+      <tbody>
+        <tr><td>1 起源</td><td><b>稳</b></td><td>「适者生存」只是「稳定者生存」的特例；复制 + 变异 + 竞争三件事齐备，进化就会自己发生</td><td>差错是燃料不是故障；生命出现之前筛选就已在运行</td></tr>
+        <tr><td>2 定单位</td><td><b>存</b></td><td>个体会死、基因可以不死；能跨越世代被计数的只有基因</td><td>有性生殖下个体基因组合只存在一代；个体基因频度恒为 100%，不参与计数</td></tr>
+        <tr><td>3 造机器</td><td><b>控</b></td><td>基因是程序员不是提线人：只能事先部署，不能实时遥控</td><td>大脑是模拟器与学习机器；意识可能是模拟能力演化的副产物；联络系统必被欺骗者利用</td></tr>
+        <tr><td>4 定策略</td><td><b>衡</b></td><td>互动收敛到 ESS——不是最优解，而是无人能单方面背叛的策略组合</td><td>鹰鸽比例、还击策略、留驻者／闯入者规则；稳定只因「无内部背叛之隐患」</td></tr>
+        <tr><td>5 算亲疏</td><td><b>亲</b></td><td>rB &gt; C 时利他会被基因层面选中；亲缘只是识别自身拷贝的代理</td><td>父母之爱是特例；亲代投资、代际之战、性比 1:1 是同一算式的不同解</td></tr>
+        <tr><td>6 出逃</td><td><b>反</b></td><td>觅母是第二个复制因子；重复博弈中善良+宽容能赢；人能主动反抗</td><td>「针锋相对」胜出有前提；尾注：避孕是反抗的一小步</td></tr>
+      </tbody>
+    </table>
+    <p><em>每层比上一层多解决什么</em>：1 层解决「进化凭什么自己发生」→ 2 层解决「谁在进化」→ 3 层解决「不在场者怎么控制行为」→ 4 层解决「多个机器碰在一起会怎样」→ 5 层解决「那为什么还会有利他」→ 6 层解决「这套逻辑能不能被打破」。</p>
+    <div class="blind"><div class="tag">补一层</div><p>第 14、15 章不属于递进链，是<strong>防守层</strong>：对上面六层的两种误读（基因决定论、适应论）做排查。</p></div>
+  </section>
+
+  <!-- ============ MODELS ============ -->
+  <section id="models">
+    <span class="sec-tag">Models · 思维模型</span>
+    <h2>十个思维底层模型<span class="en">Mental models</span></h2>
+
+    <div class="model">
+      <div class="no">①</div>
+      <h3>稳定者生存：先问「留不留得住」，再问「好不好」</h3>
+      <div class="src">作者命题 · 第 2 章</div>
+      <div class="mech"><strong>运转机制</strong>：宇宙里凡是能长期存在的模式都会被留下，留不住的都会消失——不需要设计者，也不需要目标。「达尔文的『适者生存』其实是稳定者生存这个普遍法则的广义特殊情况。」</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人每年重设一次作息，年初立计划、下载新的时间管理 App、买打卡本，三月就废。问题不在方法的优劣，在于它<strong>留不留得住</strong>：一个每天都要消耗决策力才能启动的流程，在状态最差的那天会自动停摆。把判据从「最优」换成「能不能在最累的一天也照样跑完」，选出来的往往是看起来最笨、但几乎不需要做决定的版本。</div>
+      <p style="font-size:.9rem"><em>误用边界</em>：稳定 ≠ 正确。谣言和没人信却人人照做的流程，也都留得住。</p>
+    </div>
+
+    <div class="model">
+      <div class="no">②</div>
+      <h3>复制因子视角：问「谁能跨越时间」</h3>
+      <div class="src">作者命题 · 第 2、3 章</div>
+      <div class="mech"><strong>运转机制</strong>：一个东西是不是被选择的对象，看它能不能跨代被计数。个体会死，基因作为信息拷贝可以存续百万年。「单个生物体的基因频度都是 100%，因而无法『当作自然选择的单位』。」</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一家小店换了三任老板，招牌、供应链、那套话术没变，员工换了几茬。纠结「谁在管这家店」没意义，真正延续的是那套做法。一个家庭里被反复传下去的，往往也不是存折，是那几句口头禅和那套处理冲突的方式。</div>
+      <p style="font-size:.9rem"><em>误用边界</em>：这是计算工具，不是本体论宣称——作者自己写过长长的免责条款。</p>
+    </div>
+
+    <div class="model">
+      <div class="no">③</div>
+      <h3>程序员与提线人：不在场的人只能事先部署</h3>
+      <div class="src">作者命题 · 第 4 章</div>
+      <div class="mech"><strong>运转机制</strong>：基因的反应速度跟不上神经事件，只能事先写程序、造一台能自己跑的机器，剩下的交给学习与模拟。「基因所能做到的也只限于事先的部署，事后生存机器在独立操作时它们只能袖手旁观。」</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">给人立规矩最常见的失败是「规矩写的是理想情况」（要认真、要主动），一遇到没覆盖到的场景就全靠临场发挥。程序员模型的提醒是：<strong>事先部署的质量 = 对典型场景的覆盖度</strong>。与其写十条原则，不如把最常见的三件事写死，其余明确授权，并接受授权之后一定会有返工。</div>
+      <p style="font-size:.9rem"><em>误用边界</em>：事先部署 ≠ 不可更改。第 14 章明确说基因影响并不比环境影响更难以逆转。</p>
+    </div>
+
+    <div class="model">
+      <div class="no">④</div>
+      <h3>ESS：稳定不等于最优，只等于「没人能单方面背叛」</h3>
+      <div class="src">作者命题 · 第 5 章（源自梅纳德·史密斯）</div>
+      <div class="mech"><strong>运转机制</strong>：最后停下来的格局往往不是最好的那个，而是任何人单方面偏离都会吃亏的那个。「ESS 种群的稳定倒不是由于它特别有利于其中的个体，而仅仅是由于它无内部背叛行为之隐患。」</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个办公室里所有人都默认周末在群里回消息，没人喜欢，也没人先停——先停的人会被认为不积极，而其他人照旧。判据不是「这个做法对不对」，而是「在多数人这么做的前提下，我单独改会不会吃亏」。看懂之后就会算另一笔账：要么拉到足够多的人一起改，要么承认自己在为一个可预期的损失付费。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑤</div>
+      <h3>汉密尔顿法则：rB &gt; C，利他是有条件的</h3>
+      <div class="src">作者命题 · 第 6 章（源自汉密尔顿）</div>
+      <div class="mech"><strong>运转机制</strong>：利他能被基因层面选中，当且仅当受益者所得 B × 亲缘系数 r，大于利他者成本 C。作者强调动物不是在算这道题，而是「行动起来好像进行过一番复杂的演算」。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人长期借钱给某个亲戚，每次都说最后一次。摆开算式：亲缘系数固定，对方拿去解决什么（B）不清楚，自己的成本（C）持续累积——三个变量里两个在恶化，条件不成立，所以这件事不可能「自然停下来」，只能靠外部设限。反过来看父母对孩子那种不计成本的投入，是 r 值极高使然，不是因为父母更懂得爱。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑥</div>
+      <h3>亲代投资：谁付得多，谁掌握选择权</h3>
+      <div class="src">作者命题 · 第 8、9 章（源自特里弗斯）</div>
+      <div class="mech"><strong>运转机制</strong>：谁一开始投入得多，谁更容易被抛弃、也更有资格挑剔；于是出现「先让对方付费再成交」的种种策略。「雌性个体先迫使雄性个体对它们的后代进行昂贵的投资，然后再交配，这样雄性个体在交配之后再抛弃对方，也就不会有好处了。」</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">接活儿时对方说「先做一版看看，合适就签」。做完一版，对方说再改改；改完，说预算取消了。这不是运气差，是议价结构问题——不可回收的劳动已经交付，主动权就不在自己手里了。把「先付定金、先确认范围、先签字」放在动手之前，成本极低，但改变的是整个格局的走向。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑦</div>
+      <h3>重复博弈：让未来有重量，善良才划算</h3>
+      <div class="src">作者命题 · 第 12 章（源自阿克塞尔罗德竞赛）</div>
+      <div class="mech"><strong>运转机制</strong>：一次性博弈里背叛永远占优；只要还会再见面，最优策略就是「针锋相对」——第一回合合作，之后复制对方上一回合的做法。「我们算出了赢家策略的两个特点：善良与宽容。」</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">被同事甩过一次锅，从此对所有合作先设防、事事留痕、能推就推。短期没吃亏，长期把自己从重复博弈里挪了出去。针锋相对不是无条件善良，而是<strong>先给善意、被背叛立刻对等回击、对方回头就原谅</strong>——报复的能力是善良生效的前提。</div>
+      <p style="font-size:.9rem"><em>成立条件（作者自己写的）</em>：假如参赛的策略全为恶意策略，「针锋相对」不可能成功，因为「环境」太差了。对一锤子买卖不适用。</p>
+    </div>
+
+    <div class="model">
+      <div class="no">⑧</div>
+      <h3>觅母：观念也在自我复制，宿主是人</h3>
+      <div class="src">作者命题 · 第 11 章</div>
+      <div class="mech"><strong>运转机制</strong>：观念、曲调、口号靠模仿在人脑之间转移，其成败同样取决于保真度、繁殖力和寿命，且与宿主利益无关。「你把我的大脑变成了这个觅母的宿主，使之成为传播这个觅母的工具，就像病毒寄生于一个宿主细胞的遗传机制一样。」</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一天里转发的那些东西大多不是因为核实过，而是因为「适合被转发」。判据很简单：<strong>这条内容是否依赖我的愤怒或恐惧来提高传播力</strong>？凡是阻止你去核实的说法，用的都是同一招。</div>
+      <p style="font-size:.9rem"><em>误用边界</em>：全书离实证最远的一章。当提醒视角用，别当可测量的理论用。</p>
+    </div>
+
+    <div class="model">
+      <div class="no">⑨</div>
+      <h3>延伸表型：问「谁的基因受益」，别问「这对它有什么用」</h3>
+      <div class="src">作者命题 · 第 13 章</div>
+      <div class="mech"><strong>运转机制</strong>：一个行为的好处不一定落在行为者体内。「在延伸表型的世界里，不要问动物的行为如何使自己的基因受益，要问的是谁的基因能够受益。」</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人莫名其妙地频繁加班、主动揽下没人愿意干的活，看起来既不加薪也不晋升。用「他图什么」问不出答案；换成「谁受益」立刻清楚——中间那层人在受益。同样的问法能套在很多困惑上：一条明显伤人害己的规则被长期维持，通常是因为它在为某个不出现在这个场景里的人服务。</div>
+    </div>
+
+    <div class="model">
+      <div class="no">⑩</div>
+      <h3>反抗条款：描述不是命令</h3>
+      <div class="src">提炼（第 1 章 + 第 11 章 + 尾注的组合推论）</div>
+      <div class="mech"><strong>运转机制</strong>：知道机制不等于接受命运。前言把人定义为「基因造的机器」，结尾给出相反的出口——「在这个世界上，只有我们，我们人类，能够反抗自私的复制因子的暴政」。</div>
+      <h4>破局演示（现在普通人的真实处境）</h4>
+      <div class="scenario">一个人看穿了自己「刷手机停不下来」的机制——那些产品就是被设计来占用注意力的。之后有两种反应：一种是「既然机制是这样，那我没救了」，一种是「既然机制是这样，我就把手机放到另一个房间」。前者把描述当成了命令，后者才是在用描述。差别只在于有没有往里加一步行动。</div>
+    </div>
+  </section>
+
+  <!-- ============ CRITICAL ============ -->
+  <section id="critical">
+    <span class="sec-tag">Critical · 批判性视角</span>
+    <h2>盲区与落地坑<span class="en">Blind spots &amp; pitfalls</span></h2>
+
+    <h3>方法论盲区</h3>
+    <div class="blind hard"><div class="tag">硬伤</div><p><strong>选择层级之争没有结束，本书给的是一方的结案陈词。</strong>2010 年 Nowak、Tarnita、Wilson 在 <em>Nature</em> 撰文质疑 inclusive fitness 的普适性，随后百余位进化生物学家联名反驳；E. O. Wilson 在《社会征服地球》(2012) 把真社会性拉回群体选择；David Sloan Wilson 主张多层次选择。道金斯在 2016 年的序言里仍以广义适合度为测度，未正面处理这轮争论（待核实）。</p></div>
+    <div class="blind"><div class="tag">边界</div><p><strong>基因中心视角天然看不见「发育」与「生态位构建」。</strong>作者自己划了界：本书的基因定义「是为进化量身定做的，而不以描述发育问题为目的」。诚实，但代价是表观遗传、母体效应、生态位构建、共生这些 2000 年后的快速积累在书里没有位置。</p></div>
+    <div class="blind"><div class="tag">证据</div><p><strong>对人类行为的解释，证据强度低于叙事强度。</strong>第 9 章关于现代西方性别关系、第 15 章关于同性恋的「时间滞后」推想，作者自己用了大量问号与「可能」，读起来却顺畅得像结论。这正是 Gould 与 Lewontin 批评过的「适应主义故事」。</p></div>
+    <div class="blind"><div class="tag">未兑现</div><p><strong>「觅母」四十年没能长出可操作的研究程序。</strong>保真度低、无等位基因概念、无法定义频度——作者本人就承认了。后来真正做起来的文化演化走的是双重继承理论的路子，基本绕开 meme。</p></div>
+    <div class="blind"><div class="tag">年代</div><p><strong>具体数据与经典实验有年代。</strong>物种基因相似度数字来自基因组时代早期口径；阿克塞尔罗德竞赛是 1980 年代、参赛策略只有 14 个；职虫性比 3:1 的经典检验后来有方法学批评（待核实）。</p></div>
+
+    <h3>普通人最容易踩的坑</h3>
+    <div class="blind"><div class="tag">坑 1</div><p><strong>把「人天生自私」当成不必克制的许可证。</strong>记住书名，没读第 1 章那句反话：「因为我们生来就是自私的」，正是需要靠教育灌输慷慨的理由。</p></div>
+    <div class="blind"><div class="tag">坑 2</div><p><strong>用「基因就是这样」给自己发免罪证。</strong>「我脾气差是遗传的」「我们家人都不擅长表达」——说出口的那一刻，改变就被关掉了。第 14 章的反驳可直接使用：基因的影响并不比环境的影响更难以逆转。</p></div>
+    <div class="blind"><div class="tag">坑 3</div><p><strong>把「好人终有好报」当成无条件法则。</strong>被合作方坑过三次仍然坚持先付出，第四次继续被坑。作者写了前提：环境里恶意策略太多时，「针锋相对」不可能成功。</p></div>
+    <div class="blind"><div class="tag">坑 4</div><p><strong>拿「亲缘利他」给无底线的家庭索取背书。</strong>只记住「血浓于水」，漏掉汉密尔顿法则是个条件式。条件不成立时还在持续付出，那是失衡不是美德。</p></div>
+    <div class="blind"><div class="tag">坑 5</div><p><strong>见什么都问「这有什么进化上的用处」。</strong>正好是第 15 章要拆的适应论误解。作者列举的制约全是反例：时间滞后、历史约束、局部最优、缺乏突变、成本权衡。</p></div>
+    <div class="blind"><div class="tag">坑 6</div><p><strong>把「觅母」当万能标签。</strong>什么流行都叫 meme，标签一贴就以为解释完了。有用的问法只有一句：这个东西靠什么阻止你去核实？</p></div>
+  </section>
+
+  <!-- ============ BOOKS ============ -->
+  <section id="books">
+    <span class="sec-tag">Counterparts · 对读书单</span>
+    <h2>互补与对立<span class="en">What to read next</span></h2>
+
+    <h3>互补（同一框架往外推）</h3>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《延伸的表型》The Extended Phenotype</div><div class="b-meta">道金斯 · 1982</div><div class="b-why">第 14、15 两章的母书。想弄懂「延伸表型」和作者对两大误解的完整处理，得回这本。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《盲眼钟表匠》The Blind Watchmaker</div><div class="b-meta">道金斯 · 1986</div><div class="b-why">补上本书刻意省略的「复杂性如何从简单机制累积」；第 15 章的「制约」在这里有更充分的展开。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《美德的起源》The Origins of Virtue</div><div class="b-meta">马特·里德利 · 1996（中译：吴礼敬 译）</div><div class="b-why">与第 10、12 章同一议题（合作与美德从哪来），里德利更偏互惠与制度。</div></div></div>
+
+    <h3>对照（同议题不同切入）</h3>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《累赘原理》The Handicap Principle</div><div class="b-meta">扎哈维夫妇 · 1997（中译本情况 待核实）</div><div class="b-why">与第 9 章孔雀尾巴、第 10 章瞪羚跳跃直接对读：信号为什么必须是昂贵的。</div></div></div>
+    <div class="book"><div class="dot"></div><div><div class="b-title">《社会进化》Social Evolution</div><div class="b-meta">罗伯特·特里弗斯 · 1985</div><div class="b-why">亲代投资与互惠利他的原始出处，本书第 8–10 章的地基。</div></div></div>
+
+    <h3>对立（竞争框架 / 治盲区）</h3>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《社会征服地球》The Social Conquest of Earth</div><div class="b-meta">E. O. 威尔逊 · 2012</div><div class="b-why">群体选择立场的正面主张，用来检验「选择单位只能是基因」这一设定。</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《超级合作者》SuperCooperators</div><div class="b-meta">Martin Nowak · 2011</div><div class="b-why">合作的五种机制，直接挑战「亲缘选择是合作的主解释」。</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">The Spandrels of San Marco</div><div class="b-meta">Gould &amp; Lewontin · 1979</div><div class="b-why">适应论批评的源头。第 15 章部分回应了它，读原文才知道分歧有多深。</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《基因之外》Not by Genes Alone</div><div class="b-meta">Boyd &amp; Richerson · 2005</div><div class="b-why">文化演化的可操作路径，补上「觅母」没能长成的那套东西。</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《达尔文未完成的交响曲》Darwin's Unfinished Symphony</div><div class="b-meta">Kevin Laland · 2017</div><div class="b-why">生态位构建与双重继承，补上「基因中心视角看不见发育与环境」这一盲区。</div></div></div>
+    <div class="book"><div class="dot opp"></div><div><div class="b-title">《表观遗传学革命》The Epigenetics Revolution</div><div class="b-meta">Nessa Carey · 2011</div><div class="b-why">非 DNA 序列的跨代传递，用来检验「基因 = 唯一不朽复制因子」这一前提。</div></div></div>
+
+    <div class="blind"><div class="tag">不推荐</div><p>各类「一本书读懂《自私的基因》」式导读。可作入门索引，但<strong>不能作为引文来源</strong>——本笔记所有 ★ 引文均来自中译本原文，不取自二手解读。</p></div>
+  </section>
+
+  <!-- ============ CHAPTERS ============ -->
+  <section id="chapters">
+    <span class="sec-tag">Chapters · 逐章精读</span>
+    <h2>逐章精读<span class="en">Close reading, chapter by chapter</span></h2>
+
+    <div class="ch-sec-h">结构总图 · 各章到底在拆什么</div>
+    <p style="font-size:.92rem;color:var(--ink-soft);margin:8px 0 12px">15 章按论证推进分四段，暗线是「从基因本体往外推，一直推到体外世界和观念，最后推回人自己」。</p>
+    <table class="ch-map">
+      <thead><tr><th>章</th><th>处理的对象</th><th>性质</th><th>在序列里的位置</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><b>「为什么有人」这个问题的问法</b></td><td>立靶与定性</td><td>序曲：宣布单位之争（物种／群体／个体／基因）</td></tr>
+        <tr><td>2</td><td><b>生命出现之前的复制因子</b></td><td>起源</td><td>立论第一块砖：进化不需要目的</td></tr>
+        <tr><td>3</td><td><b>基因本身（不朽性、定义、衰老）</b></td><td>本体</td><td>立论第二块砖：谁有资格被计数</td></tr>
+        <tr><td>4</td><td><b>基因造的机器（神经、学习、模拟、意识）</b></td><td>机制</td><td>立论第三块砖：不在场者如何遥控</td></tr>
+        <tr><td>5</td><td><b>机器与机器（ESS、鹰鸽、还击策略）</b></td><td>策略</td><td>第一次引入博弈：稳定 ≠ 最优</td></tr>
+        <tr><td>6</td><td><b>血亲之间（汉密尔顿法则）</b></td><td>关系第 1 圈</td><td>由「最浓的血缘」开始向外</td></tr>
+        <tr><td>7</td><td><b>个体与种群（生育数量、群体选择之驳）</b></td><td>关系边界</td><td>先划清：不为群体，为基因</td></tr>
+        <tr><td>8</td><td><b>亲代与子代（断奶、窝内博弈、讹诈）</b></td><td>关系第 2 圈</td><td>最亲的关系里也有算计</td></tr>
+        <tr><td>9</td><td><b>雌与雄（配子差异、投资、炫耀、抛弃）</b></td><td>关系第 3 圈</td><td>无血缘的第一次合作／冲突</td></tr>
+        <tr><td>10</td><td><b>跨物种与无血缘（共生、清洁鱼、职虫）</b></td><td>关系第 4 圈</td><td>推到最外圈：陌生人之间</td></tr>
+        <tr><td>11</td><td><b>观念本身（觅母）</b></td><td>第二个复制因子</td><td>跳出生物界，为「人类例外」埋线</td></tr>
+        <tr><td>12</td><td><b>重复博弈（针锋相对、善良与宽容）</b></td><td>出路第 1 条</td><td>回到博弈论，给合作一个条件解</td></tr>
+        <tr><td>13</td><td><b>体外世界（延伸表型、寄生操控）</b></td><td>边界突破</td><td>基因的作用越出身体</td></tr>
+        <tr><td>14</td><td><b>误读之一：基因决定论</b></td><td>防守层</td><td>拆外推：行为不受基因单向决定</td></tr>
+        <tr><td>15</td><td><b>误读之二：适应论</b></td><td>防守层</td><td>拆外推：不是每个性状都有用</td></tr>
+        <tr><td>尾注</td><td><b>反抗条款</b></td><td>出口</td><td>首尾扣环：从「机器」回到「能反抗的人」</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.88rem;color:var(--ink-soft);margin:12px 0 4px"><strong>对偶组</strong>：1↔2（同一问题的两个问法）· 3↔4（不朽 vs 必死）· 5↔12（一次性博弈 vs 重复博弈，结论相反）· 6↔8（亲代利他 vs 子代索取）· 9↔10（配偶对抗 vs 跨物种互利）· 11↔尾注（觅母暴政 vs 反抗暴政）。<strong>首尾扣环</strong>：前言「我们都是生存机器」→ 第 11 章「只有我们人类能够反抗」→ 尾注「每一次使用避孕套的时候就走出了反抗的一小步了」。</p>
+    <p style="font-size:.88rem;color:var(--ink-faint);margin:10px 0 4px"><b>此表为拆解者重建，作者在书里没有这样排过。</b>作者明示的分段只有一条：第 14、15 章是 2016 年从《延伸的表型》搬来的回应性章节。</p>
+
+<details class="ch" open>
+      <summary><span class="ch-no">序 1</span>40 周年增订版说明 &amp; 40 周年增订版序言（2016）<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>「说明」交代版本来历：《延伸的表型》(1982) 第 2、3 章被原样搬进 40 周年版，成为第 14、15 章，另附术语表；作者自嘲「如果你从没读过我写的任何东西，那就请至少读一读这本书吧」指的是《延伸的表型》，不是本书。「序言」是全书最新的自我修订：他以「科学家与政客不同，能够以错为乐」开头，承认曾想收回核心思想但发现不必，然后把 40 年后的理解重新讲一遍——基因的定义沿用 G. C. 威廉斯（已故，被他称为「本书的英雄」），个体成功以广义适合度衡量，物种被重新定义为「相互兼容的基因所组成的合作联合体的栖息地」，并用线粒体单点回溯、人类彼此共享 99% 以上基因等新证据强化「我们都互为亲戚」。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>这是全书的<strong>补丁层</strong>：1976 年论证主线不变，但两个关键设定被加固——①「基因」是为进化量身定做的单位（不是发育单位），因此基因组学的进展不推翻本书；②合作不是「基因组作为一个整体被选择」，而是单个基因在基因库背景下被选择。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>放在最前，与最后的第 14、15 章<strong>首尾呼应</strong>：序言提出「误解必须被拆掉」，末两章执行。它让 1976 年的旧正文被 2016 年的框架罩住——读者先拿到修订后的口径，再读旧章节，就不会按 40 年前的误读去理解。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「科学家与政客不同，能够以错为乐。政客如果改变了主张，会被人说成是『反复无常』。」<span class="en">40 周年增订版说明 &amp; 40 周年增订版序言（2016） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「基因是染色体材料上任何一个可能存在得足够长久的代际，并且是可以当作自然选择的单位的部分。」<span class="en">40 周年增订版说明 &amp; 40 周年增订版序言（2016） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「单个生物体的基因频度都是 100%，因而无法『当作自然选择的单位』。」<span class="en">40 周年增订版说明 &amp; 40 周年增订版序言（2016） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「生物个体成功与否的测度是其所携带的基因在未来代际中出现的频度，而其奋力去争取最大化的那个量值是汉密尔顿所说的『广义适合度』(inclusive fitness)。」<span class="en">40 周年增订版说明 &amp; 40 周年增订版序言（2016） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「但是有性繁殖的一个结果就是，物种可以被创新性地定义为：相互兼容的基因所组成的合作联合体的栖息地。」<span class="en">40 周年增订版说明 &amp; 40 周年增订版序言（2016） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「合作性之所以得到青睐，并非是因为一组基因天然地作为一个整体接受选择，而是因为单个基因是单独接受选择的，但这个选择过程的背景是该基因在身体内有可能接触到的其他基因，也就是说物种的基因库内的其他基因。」<span class="en">40 周年增订版说明 &amp; 40 周年增订版序言（2016） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「『汉密尔顿法则』：如果一个利他性的基因能够在种群中扩散开来，那么必然满足以下条件，即利他者的成本 C 要小于受益者获得的价值 B 与两者之间的亲缘度系数 r 之积。」<span class="en">40 周年增订版说明 &amp; 40 周年增订版序言（2016） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>拆掉的不是结论，是误读：这本书 40 年后要修的不是论证，而是论证被读成的样子。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这一章最值得注意的不是它说了什么，而是它<strong>没</strong>说什么：2010 年 *Nature* 上关于 inclusive fitness 普适性的争论、群体选择/多层次选择的复苏，在这篇 2016 年的序言里没有出现。作者在序言里主动承认过错误（他自己举的例子），却对这场更根本的路线之争保持沉默——这是<strong>选择性的自我修订</strong>。把它当「作者已经吸收了所有新进展」是误读。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人翻出自己二十年前写的工作方案，发现大部分结论还成立，但表述方式已经过时。常见做法是重写一遍结论，更好的做法是像这篇序言一样：<strong>先说明哪些设定没变、为什么没变，再补上新证据</strong>。这样读者不会拿旧口径去套新场景。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">序 2</span>30 周年版简介（2006）<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>道金斯在这里正面处理「书名造成的伤害」：他记录了读者来信（有人读完觉得生命空虚无意义、有乡村教师写信责备他），回应「每天早上如何能离开床铺」这类质问，并给出全书最关键的读法：<strong>这个标题里需要着重强调的词应该是「基因」</strong>，本书的重心其实放在利他主义上。他还澄清了两件事——自然选择有两种单位（基因是复制因子单位，生物体是载体单位，二者同等重要）；以及人类的出路（大脑已进化到足以背叛自私基因，避孕是最明显的例子）。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>给出全书的<strong>阅读协议</strong>：描述 ≠ 提倡；自私 ≠ 人的私心；基因视角 ≠ 唯一视角（载体同样重要）。没有这一章，前 13 章极易被读成社会达尔文主义。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>它是 2016 年序言的<strong>前身</strong>，也是 40 周年版第 14、15 章的<strong>预告</strong>——这里列出的两个误解（基因决定论、适应论），在十年后被专门写成两章。放在正文之前，等于给整本书装了一道「防误读闸门」。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「如果重点在『自私』，你便会以为这本书在讨论人的私心，但是本书却将更多的重心放在讨论利他主义上。这个标题里需要着重强调的词应该是『基因』。」<span class="en">30 周年版简介（2006） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「许多批评家——特别是那些哗众取宠的批评家（我发现他们一般都有哲学背景）——喜欢不读书而只读标题。」<span class="en">30 周年版简介（2006） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「我们可以尝试传授慷慨和利他，因为我们生而自私。」<span class="en">30 周年版简介（2006） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「我们的大脑已经进化到一个程度，使我们得以背叛自身的自私基因。这种行为的一个明显现象便是我们使用的避孕方式。」<span class="en">30 周年版简介（2006） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「自然选择有两种单位，它们之间没有任何争议。基因是复制因子的单位，而生物体是载体的单位。它们同等重要，不可低估任何一方。」<span class="en">30 周年版简介（2006） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「想必宇宙的最终命运确实没有意义，但无论如何，我们真有必要将我们生命的希望寄托在宇宙的最终命运上吗？」<span class="en">30 周年版简介（2006） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>一本书的标题替它招来的误解，可能需要作者花四十年去收拾。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「读者来信含泪说生命变得空虚」这一段是全书最有价值的<strong>失败样本</strong>：它证明一个正确的科学论断，在被当作世界观消费时会产生真实的伤害。道金斯的处理方式是澄清读法而非修改论点——这是对的，但也暴露了科普写作的结构性风险：<strong>隐喻的传播力与它的精确性成反比</strong>。真正该问的是：如果明知道标题会被误读，是否仍该用它？作者的答案显然是「是」。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一份写得很好的说明，被人只截了标题转发，意思完全反了。多数人的第一反应是「他们没看内容」，但更有效的做法是像这一章一样：<strong>在开头就把最常见的误读写出来并直接反驳</strong>——因为大部分人真的只读标题。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">序 3</span>第 2 版前言 &amp; 序言（1989 / 1976）<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>「序言」交代学科背景：达尔文的自然选择学说长期被社会科学忽视，本书要系统梳理利他、自私、进犯行为、亲族学说、性比例、相互利他、欺骗、性差别的自然选择，并强调「自然选择造就了我们，因此要想了解自身的特性就必须理解自然选择」，同时给出反人类中心主义的立场。「第 2 版前言」讲的是学术方法论与学术风气：一个科学家最重要的贡献往往不是提出新理论，而是<strong>在旧理论上发现观察的新方法</strong>；他也顺手批评了资深研究者在他未参与的作品上署名的学界陋习。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>「序言」给出全书的<strong>野心边界</strong>——这本书要解释的是行为生态学层面的社会行为，不是伦理学；「第 2 版前言」给出<strong>方法论自我定位</strong>：本书的贡献是「视角」（gene's eye view），不是新事实。这解释了为什么 40 年后核心思想不用改——改的是事实，不是视角。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>两条前言分属 1976 与 1989，被并排放在 2006、2016 两篇新序之后，形成<strong>四层年代堆叠</strong>。读完全书再回看「最重要的贡献是发现观察的新方法」这句，才知道作者在给自己定位：他把赌注押在视角上，所以事实更新不打地基。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「认为某一物种比另一物种高尚是毫无客观依据的。不论是黑猩猩和人类，还是蜥蜴和真菌，它们都是经过长约 30 亿年的所谓自然选择这一过程进化而来的。」<span class="en">第 2 版前言 &amp; 序言（1989 / 1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「虽然黑猩猩和人类的进化史大约有 99.5% 是相同的，但人类的大多数思想家还是把黑猩猩视为畸形异状、与人类毫不相干的怪物，而把人类自己看成通向全能上帝的阶梯。」<span class="en">第 2 版前言 &amp; 序言（1989 / 1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「自然选择造就了我们，因此，要想了解我们自身的特性，就必须理解自然选择。」<span class="en">第 2 版前言 &amp; 序言（1989 / 1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「一个科学家最重要的贡献通常并不是提出一个新理论，或是揭示一个新现象，而是于旧理论和旧现象中发现观察的新方法。」<span class="en">第 2 版前言 &amp; 序言（1989 / 1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「将那些迄今只在专业文献中存在的思想仔细阐述出来，实在是一项困难的艺术。它需要语言上有洞察力的新方法与浅显易懂的比喻。」<span class="en">第 2 版前言 &amp; 序言（1989 / 1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「如果欺骗行为是动物间交往的基本活动的话，动物就一定存在对欺骗行为的强烈的选择性，而动物也转而必须选择一定程度的自我欺骗，使某些行为和动机变成无意识的，从而不致因极细微的自觉迹象，让正在进行的欺骗行为败露。」<span class="en">第 2 版前言 &amp; 序言（1989 / 1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>这本书押的是「换个看法」，不是「多知道点事实」——所以它能扛住四十年的数据更新。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「最重要的贡献是发现观察的新方法」这句话既是洞见也是<strong>免责声明</strong>：一旦论点被质疑，作者可以说自己在提供视角而非事实断言。同时它也预告了本书最大的软肋——<strong>视角的说服力会溢出证据的边界</strong>，后面第 9、15 章关于人类的推断正是溢出的地方。另外，「自我欺骗」这个提法在第 4 章会被重新捡起来，是全书中为数不多作者没展开、却极有解释力的想法。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>同一个问题，换个人看就换了解法——不是因为他知道得更多，而是因为他站的位置不同。日常里真正稀缺的往往不是新信息，而是把旧信息重新摆一遍的角度；反过来说，当有人只是换了个说法、没有任何新事实时，也要能看出这一点。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">序 4</span>前言（1976）<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>正式给出全书定义：人是「生存机器」，是基因为了保存自己而造的运载工具；作者声明自己的专业是行为生态学，主题是动物行为；写作方法是「假定外行人不具备专业知识，但并不认为他们愚昧无知」；他点明三位假想的读者（外行、专家、学生），并说明本书的雄心是「生物学的内容就是神话故事」——事实比想象更离奇。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>给出全书的<strong>唯一核心命题</strong>：「我们都是生存机器」；同时给出<strong>文体契约</strong>：用比喻换可读性，但比喻不是证据。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>放在所有序言之后、第 1 章之前，是<strong>从版本说明进入正文的门槛</strong>——读者在这里最后一次拿到「怎么读这本书」的说明，下一章就开始论证了。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「我们都是生存机器——作为运载工具的机器人，其程序是盲目编制的，为的是永久保存所谓基因这种禀性自私的因子。」<span class="en">前言（1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「我不明白为什么我们不把一些学术性刊物里的大部分术语也删掉呢？虽然我假定外行人不具备专业知识，但我却并不认为他们愚昧无知。」<span class="en">前言（1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「我一向认为，生物学犹如神话故事那样迷人，因为事实上，生物学的内容就是神话故事。」<span class="en">前言（1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「事实比想象更离奇。」<span class="en">前言（1976） · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>先把读者当聪明人，再给最难的东西——这是这本书能卖四十年的技术原因。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「生存机器」这个比喻是全书传播力的来源，也是全部误读的来源——「机器」暗示被操控、无自由，正与尾注的「反抗」条款冲突。作者并非没意识到，他在第 4 章专门讨论「生存机器最终从主宰它们的主人即基因那里解放出来」。但顺序问题仍在：读者先被植入「机器」，才在最后一章拿到「解放」。这是个<strong>修辞与论证不同步</strong>的结构性问题。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一份说明文档写得晦涩，通常不是因为内容难，而是因为写的人默认读者不懂。把它改成「假定对方没接触过这个领域，但一点都不笨」，删掉行话，保留逻辑——大多数时候这就够了。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 1 章</span>第 1 章 · 为什么会有人呢？<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>开章抛出「生命有什么意义」这类终极问题，但立刻把问题改写成可研究的：为什么个体会有利他与自私行为。作者驳掉当时流行的「群体选择」解释（个体为物种利益牺牲），用「群体灭绝慢于个体竞争」的时间尺度落差说明它站不住；然后宣布自己的主张——选择的基本单位是基因。他特意区分<strong>行为定义与主观动机</strong>（利他/自私指行为效果，不指心里想什么），并用螳螂吃夫等例子说明「明显的利他行为常常是伪装起来的自私行为」。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>立起全书唯一的靶：<strong>单位的争论</strong>（物种 vs 群体 vs 个体 vs 基因），并给出答案（基因）。后面 14 章全是在给这个答案提供机制与例证。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第 2 章构成对偶：第 1 章问「为什么」，第 2 章答「不需要为什么」。同时它把道德豁免条款写在最前面（描述而非提倡），为后面所有反直觉结论（杀兄弟姐妹、抛弃配偶、吃掉幼崽）预先免责——<strong>没有这一章的道德切割，后面每一章都会被读成教唆</strong>。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「成功基因的一个突出特性就是其无情的自私性。这种基因的自私性通常会导致个体行为的自私性。然而我们也会看到，基因为了更有效地达到其自私的目的，在某些特殊情况下，也会滋长一种有限的利他主义。」<span class="en">第 1 章 · 为什么会有人呢？ · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「我将论证的选择的基本单位，也就是自我利益的基本单位，既不是物种，也不是群体，严格说来，甚至也不是个体，而是遗传单位基因。」<span class="en">第 1 章 · 为什么会有人呢？ · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「我并不提倡以进化论为基础的道德观，我只是讲事物是如何进化的，而不是讲人类应该怎样行动才符合道德准则。」<span class="en">第 1 章 · 为什么会有人呢？ · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「让我们设法通过教育把慷慨大度和利他主义灌输到人们头脑中去吧！因为我们生来就是自私的。」<span class="en">第 1 章 · 为什么会有人呢？ · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「上述有关利他和自私的定义是指行为上的，而不是指主观意识上的，弄清这一点至关重要。」<span class="en">第 1 章 · 为什么会有人呢？ · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>一开篇就把「描述」和「提倡」切开——后面所有冷酷结论都靠这一刀免责。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>作者把群体选择驳得很轻巧（时间尺度论证），但这个论证只说明<strong>群体选择在多数情况下弱于个体/基因选择</strong>，不能说明它不成立——这正是后来多层次选择理论反击的入口。另外「行为定义不关主观动机」这条设定极为重要也很容易被绕过：它让全书能讨论人类行为而不必处理意识问题，代价是读者常把「行为上的利他」当成「动机上的无私」。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人帮同事加班到深夜，动机可能是真心帮忙，也可能是怕被说不合群——从结果看，两者都是「利他行为」。看结果不看动机，很多日常争执（「你是不是故意的」）会失去意义：真正影响关系走向的是行为的效果，动机只有当事人自己知道。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 2 章</span>第 2 章 · 复制因子<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>把时间推到生命出现之前：原始汤里分子随机组合，凡是<strong>稳定</strong>的结构就会留下来，于是「适者生存」被还原为「稳定者生存」。第一个能复制自己的分子（复制因子）出现后，靠复制迅速扩散；构件变稀缺 → 竞争开始；复制必然出错 → 差错积累 → 进化成为可能。作者用抄写员传抄的比喻说明错误的累积性，并强调这一整套过程没有任何目的、没有任何感受。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>提供全书的<strong>起点定理</strong>：进化只需要复制、变异、竞争三件事，不需要设计者、不需要目的、不需要「为了物种好」。这一章把「自私」这个概念锚定在最底层——所谓自私，就是<strong>让自己被更多地复制</strong>。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>承接第 1 章的「为什么有人」，用「不需要为什么」来回答；同时为第 3 章准备好主角（复制因子 → 基因）。它是全书唯一一章完全脱离生物的章节——<strong>作者要的就是在还没有生命的时候就把规则立好</strong>，这样后面所有生物现象都只是这条规则的推论。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「达尔文的『适者生存』其实是稳定者生存（survival of the stable）这个普遍法则的广义特殊情况。宇宙为稳定的物质所占据。」<span class="en">第 2 章 · 复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「到了某一时刻，一个非凡的分子偶然形成——我们称之为复制因子（replicator）。它并不见得是那些分子当中最大或最复杂的，但它具有一种特殊的性质——能够复制自己。」<span class="en">第 2 章 · 复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「任何复制过程都具有一个重要的特性：它不可能是完美无缺的。它准会发生差错。」<span class="en">第 2 章 · 复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「然而，差错最终使进化成为可能。」<span class="en">第 2 章 · 复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「复制因子的各品种之间发生过你死我活的搏斗。它们不知道自己在进行生存斗争，也不会因之而感到烦恼。」<span class="en">第 2 章 · 复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「但是我们人类在估计什么可能或什么不可能发生的时候，不习惯于将其放在几亿年这样长久的时间内去考虑。如果你在一亿年中每星期都购买一次彩票，说不定你会中上几次头等奖呢。」<span class="en">第 2 章 · 复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>进化不需要目的，只需要三件事：能复制、会出错、资源不够。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这一章是全书中<strong>证据最薄、但逻辑最强</strong>的一章——关于生命起源的化学细节（原始汤、第一个复制因子）在 1976 年之后有大量新进展（RNA 世界、热液喷口等），作者的叙述今天看是过时的科普版本。但主线不受影响：只要「复制+变异+竞争」，筛选就必然发生。另一个值得注意的是作者对「概率」的处理：他提醒人类不擅长想象亿年尺度——这个提醒本身比具体化学路径更有价值。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人总在找「更有效的办法」，每隔几个月换一套流程，结果哪套都没长出来。真正决定成败的往往不是方案有多好，而是它<strong>能不能留下</strong>：会不会在最忙、最累、最没动力的那天自动停摆。把评判标准从「最优」换成「留得住」，选出来的通常是那个最不起眼、但几乎不需要做决定的版本。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 3 章</span>第 3 章 · 不朽的双螺旋<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>主角正式登场：给出基因的定义（染色体物质中能作为自然选择单位连续起作用的任何一部分），论证<strong>有性生殖下个体的基因组合只存在一代，而基因可以延续百万年</strong>，所以个体是载体、基因才不朽。由此推出一串反直觉结论：衰老是晚期致死基因穿过选择之网的副产物；性（染色体交换）的作用是让有利突变在个体内累积；个体的死亡对整个物种是「利他」的；孟德尔式的颗粒遗传是自然选择得以存在的前提（如果基因持续混合，选择无从下手）。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>把第 2 章的抽象复制因子<strong>落到实体</strong>（DNA/基因），并给出「为什么是基因而不是个体」的核心论证：<strong>可计数者才是被选择者</strong>。个体基因频度恒为 100%，无法参与计数。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第 4 章构成对偶：第 3 章讲<strong>不朽者</strong>（基因），第 4 章讲<strong>必死者</strong>（生存机器）。同时它是后面所有章节的公理底座——第 6 章的亲缘系数、第 8 章的亲代投资、第 13 章的延伸表型，全都在数「同一份拷贝出现几次」。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「基因的定义是：染色体物质中能够作为一个自然选择的单位对连续若干代起作用的任何一部分。」<span class="en">第 3 章 · 不朽的双螺旋 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「最好不要把自然选择的基本单位看作物种，或者种群，甚至个体；最好把它看作遗传物质的某种小单位。」<span class="en">第 3 章 · 不朽的双螺旋 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「不论你一生获得的聪明才智有多少，绝不会有点滴经由遗传途径传给你的子女。新的一代都是从零开始的，人体只不过是基因保持自己不变的一种手段。」<span class="en">第 3 章 · 不朽的双螺旋 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「你的子女只有一半是你，而你的孙子孙女只是你的¼。」<span class="en">第 3 章 · 不朽的双螺旋 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「根据这一理论，年老体衰只是基因库中晚期活动致死基因同半致死基因的一种积累的副产品。」<span class="en">第 3 章 · 不朽的双螺旋 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「用博德默简单明了的话来说，性『促进了在单个个体内积累那些以往分别出现于不同个体内的有利突变』。」<span class="en">第 3 章 · 不朽的双螺旋 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>能被计数的才被选择——个体的基因频度恒为 100%，所以它根本不在这场比赛里。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「基因的定义」是一个<strong>为进化量身定做的功能性定义</strong>，不是分子生物学定义——这一点作者自己在 40 周年版序言里承认。这既是它的力量（不随基因组学进展而失效），也是它的软肋：按这个定义，「基因」的长度可变、边界可变，实践中很难真正「数」出频度。全书大量论证依赖「同一份拷贝」的可识别性，而可识别性在真实基因组里是模糊的。另外「性促进有利突变的累积」只是性的多种解释之一，作者只取了对自己论证有用的那种。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人把毕生经验写成了几页工作手册，人走了，手册还在，并且被新人一改再改。他这个人没法延续，那套做法能延续——判断一件事值不值得做，可以问：<strong>做成之后，哪一部分会留下来继续被使用？</strong> 只有能被传递、被复制的部分才算数。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 4 章</span>第 4 章 · 基因机器<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>讲基因如何控制行为：它们不是提线人，而是<strong>程序员</strong>——因为基因的反应速度跟不上神经事件，只能事先部署，把能预见的规律写进神经系统，剩下的交给学习与模拟。由此推出：大脑是一台模拟器；模拟能力演化到能包含自身模型时，主观意识出现了；而一旦存在联络系统，就必然出现利用它的欺骗者与识别欺骗的反制机制，形成军备竞赛。章节末点出关键转折：<strong>生存机器最终从基因那里解放出来，变成有执行能力的决策者</strong>。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>补上主线上最缺的一环：<strong>不在场的东西如何遥控在场的行为</strong>。同时给出「人类为什么可能反抗」的机械基础（第 11 章与尾注的出口全靠这一章）。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>夹在第 3 章（不朽的基因）与第 5 章（机器之间的博弈）之间，是<strong>从单个机器到多个机器的转轴</strong>：先说明一台机器怎么造、怎么跑，下一章才让它们互相碰。与第 3 章构成对偶（不朽 vs 必死），与第 5 章构成递进（单机 → 联网）。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「基因也控制它们所属生存机器的行为，但不是像直接用手指牵动木偶那样，而是像计算机的程序员一样通过间接的途径。基因所能做到的也只限于事先的部署，事后生存机器在独立操作时它们只能袖手旁观。」<span class="en">第 4 章 · 基因机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「基因并没有这样快的反应时间。和仙女座人一样，基因只能竭尽所能事先部署一切，为它们自己建造一台快速执行的计算机，使之掌握基因能够『预料』到的尽可能多的各种情况的规律……」<span class="en">第 4 章 · 基因机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「模拟能力的演化似乎最终导致了主观意识的产生，在我看来，这是当代生物学所面临的最不可思议的奥秘。」<span class="en">第 4 章 · 基因机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「实际的情况很可能是：从一开始，一切的动物联络行为就掺有某种欺诈的成分，因为所有的动物在相互交往时至少要牵涉某种利害冲突。」<span class="en">第 4 章 · 基因机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「生存机器最终从主宰它们的主人即基因那里解放出来，变成有执行能力的决策者。」<span class="en">第 4 章 · 基因机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「每当一个联络系统逐渐形成时，这样的风险总会出现：某些生物利用这个系统来为自己谋私利。」<span class="en">第 4 章 · 基因机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>基因只能事先部署、事后旁观——这条时间差，就是人和动物后来能「不听话」的机械原因。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这一章是全书<strong>技术含量最低、哲学含量最高</strong>的一章。作者对意识的解释（模拟达到包含自身模型的程度）是一个漂亮的猜想，但四十年来没有变成可检验的机制。「神经系统的反应快于基因，所以必须授权」这一论证是成立的，但它推导出的「基因只能袖手旁观」是否被过度延伸？现代表观遗传与神经内分泌的双向作用表明，基因表达会实时被环境改写——授权比作者写的更彻底，也更混乱。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人给团队立规矩，写满十条「要认真、要负责、要主动」，结果一遇到没写进去的情况就全乱。程序员模型的提醒是：<strong>事先部署的质量 = 对典型场景的覆盖度</strong>。把最常见的三件事的处理流程写死，其余明确授权「你自己判断」，同时接受授权之后一定会有返工——返工成本是事先就该预算进去的，不是意外。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 5 章</span>第 5 章 · 进犯行为：稳定性和自私的机器<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>引入博弈论与 ESS（进化稳定策略，源自梅纳德·史密斯）：用鹰/鸽/还击策略者/试探者等模型的算分，说明种群会停在某个策略比例上，而这个点不是「最优」，只是<strong>无人能通过单方面改变而获益</strong>。由此推出一串结论：动物的搏斗是有节制的（钝剑与手套）；「留驻者进攻、闯入者退却」这种任意规则一旦确立就稳定；习惯赢的就一直赢；进化是一系列从一个稳定台阶跳到另一个稳定台阶的不连续步伐。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>第一次把「自私的个体」放进<strong>相互作用</strong>里：个体的最优解不是孤立的，取决于其他个体在做什么。这是后面所有社会行为章节（6–10、12）的共同工具。同时它给出一个反直觉的核心洞察：<strong>稳定 ≠ 最优</strong>。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>处在第 4 章（一台机器）与第 6 章（血亲之间）之间，是<strong>从个体生理转向社会行为的分界点</strong>；与第 12 章构成对偶——同样是 ESS，在一次性博弈里背叛占优，在重复博弈里善良占优。作者把工具放在这里，后面四章反复调用。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「ESS 种群的稳定倒不是由于它特别有利于其中的个体，而仅仅是由于它无内部背叛行为之隐患。」<span class="en">第 5 章 · 进犯行为：稳定性和自私的机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「对于个体来说，最好的策略取决于种群的大多数成员在做什么。」<span class="en">第 5 章 · 进犯行为：稳定性和自私的机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「在一个庞大而复杂的竞争体系内，除掉一个对手并不见得就是一件好事，其他竞争对手很可能从中得到比你更多的好处。」<span class="en">第 5 章 · 进犯行为：稳定性和自私的机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「习惯于赢的个体就越是会赢，习惯于输的个体就越是要输。」<span class="en">第 5 章 · 进犯行为：稳定性和自私的机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「渐进的进化过程与其说是一个稳步向上爬的进程，倒不如说是一系列从一个稳定台阶走上另一个稳定台阶的不连续的步伐。」<span class="en">第 5 章 · 进犯行为：稳定性和自私的机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「在消耗战中，说谎和说实话同样都不是进化稳定策略，不动声色的面部表情方是进化稳定策略，即使最终认输，也是突如其来和难以预料的。」<span class="en">第 5 章 · 进犯行为：稳定性和自私的机器 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>稳定不等于最优，只等于「没人能单方面背叛」——这是全书最容易被拿去误用、也最有用的一条。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>ESS 的威力在于它<strong>不需要个体理性</strong>：策略分布靠差异繁殖自动收敛。但它的弱点也一样：模型里的「策略」是被遗传固定的简化类型，真实动物有大量条件性、学习性、情境依赖的行为，ESS 的解空间远比模型复杂。另外，「除掉一个对手可能便宜了第三方」这个洞察在书里只是一笔带过，却是理解办公室政治、平台竞争最好的一条——作者没有往人类社会推，是有分寸的做法。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个办公室里所有人都默认「周末在群里回消息」。没人喜欢，也没人先停——先停的人会被认为不积极，而其他人照旧。这就是 ESS：判断标准不是「这个做法对不对」，而是「在多数人这么做的前提下，我单独改会不会吃亏」。看明白这一点，就不会再花力气去论证周末回复不合理，而是算另一笔账：要么拉到足够多的人一起改（改变策略分布），要么承认自己在为一个可预期的损失付费，别再为它生闷气。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 6 章</span>第 6 章 · 基因种族<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>正式引入亲缘选择（汉密尔顿）：利他行为能在基因层面被选中，因为受益者体内很可能带着同一份拷贝。作者给出识别机制（绿胡须效应式的任意标志）、给出「亲缘关系的估计」比「真实亲缘关系」更重要（动物靠规则而非血缘检测行动）、并讨论代际方向（祖父母对孙辈 vs 孙辈对祖父母）、以及经典的「为一个近亲牺牲自己值不值」的计算。关键论点：<strong>父母之爱只是亲缘选择的一个特例</strong>，从遗传学看并不比兄弟姐妹之爱更特殊。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>给出全书<strong>第一大支柱</strong>：利他行为如何在自私基因的框架里成为可能。没有这一章，书名「自私的基因」无法解释自然界到处可见的合作与牺牲。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>处在第 5 章（工具准备：ESS）之后，是<strong>社会行为四章（6–10）的第一章</strong>，也是「由内向外」的第一圈（最浓的血缘）。与第 8 章构成对偶：本章讲亲代对子代的利他，第 8 章讲子代对亲代的索取——同一组关系从两端看的结论完全不同。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「如果 1 个个体为了拯救 10 个近亲而牺牲，操纵个体对亲属表现利他行为的基因可能因此失去一个拷贝，但同一基因的大量拷贝却得以保存。」<span class="en">第 6 章 · 基因种族 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「从遗传学的观点看，父母之爱和兄弟／姐妹的利他行为的形成都可以用完全相同的原因来解释：在受益者体内存在这个利他性基因的可能性很大。」<span class="en">第 6 章 · 基因种族 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「这种情况看起来倒像是个体的利他主义，但这样的利他主义出于基因的自私性。」<span class="en">第 6 章 · 基因种族 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「就利他行为的演化而言，『真正的』亲缘关系的重要性可能还不如动物对亲缘关系做出的力所能及的估计。」<span class="en">第 6 章 · 基因种族 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「如果你有两个血缘关系同样接近的亲属，其中一个已届风烛残年，另一个却是血气方刚的青年，那么对未来的基因库而言，挽救后者的生命所产生的影响要比挽救前者来得大。」<span class="en">第 6 章 · 基因种族 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「动物可能生来就是如此，以至于行动起来好像是进行过一番复杂的演算似的。」<span class="en">第 6 章 · 基因种族 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>利他不是自私的反面，是自私在特定条件下的最优解。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「动物靠估计而非真实亲缘」这一条是本章最有价值的自我限定，但也埋了个坑：如果行为基于<strong>估计</strong>，那么任何能被操纵的线索（气味、共处时间、长相）都能被用来骗——这在第 8、9 章会被反复使用。另一个问题是：汉密尔顿法则的 r 在真实种群里的估算极其困难，作者给的是算式，不是可操作的测量方法。2010 年 inclusive fitness 的争论正是从这里切入的。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人长期借钱给某个亲戚，每次都说「这是最后一次」。按 rB &gt; C 摆开：亲缘系数固定，对方拿去解决什么问题（B）不清楚，自己的成本（C）一直在累积——三个变量里两个在恶化，条件不成立，所以这件事不可能「自然停下来」，只能靠外部设限。反过来看父母对孩子那种看起来不计成本的投入，在这个模型里是 r 值极高使然，不是因为父母更懂得爱。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 7 章</span>第 7 章 · 计划生育<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>驳「群体选择」的核心一章：动物控制生育是为群体利益（温-爱德华兹的论点）还是为个体利益（Lack 的论点）？作者逐条反驳前者，指出「为群体节制生育」一旦出现，就会被自私个体入侵（装出密度很高的样子，自己照生不误）；正确解释是：每个个体在算「现在生还是等更好的时机」，生育过多会被惩罚——不是因为种群会灭绝，而是因为<strong>自己能养活的子女变少了</strong>。顺带讨论领地、等级制度、炫耀性展示等现象。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>这是全书<strong>唯一的「清场章」</strong>：把当时仍占主流的群体选择解释从动物行为学里赶出去，为后面所有「自私个体 + 基因视角」的解释扫清地基。没有这一章，第 8–10 章的每个结论都能被「这是为了物种好」轻松糊过去。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>夹在第 6 章（亲缘利他）与第 8 章（代际之战）之间，是<strong>从「利他如何可能」转向「自私如何被计算」的闸门</strong>——先证明利他不是为群体，接下来才好讲家庭内部的算计。它是社会行为四章的<strong>边界章</strong>：划清「不为群体」。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「生育太多子女的个体要受到惩罚，不是由于整个种群要走向灭绝，而是仅仅由于它们自己的子女能存活下来的越来越少。」<span class="en">第 7 章 · 计划生育 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「生存机器一般为自私的基因所操纵，完全可以肯定，自私的基因是不能够预见未来的，也不可能把整个物种的福利放在心上，这就是本书的基本假定。」<span class="en">第 7 章 · 计划生育 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「如果动物个体真的会根据对个体密度的估计而降低其窝卵数，那么，每一个自私个体都会立即向对手装出个体密度很高的样子，不管事实是不是这样，这样做对每一个自私的个体都是有好处的。」<span class="en">第 7 章 · 计划生育 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「而总的解释模式却永远相同：个体的最好赌注是，暂时自我克制，期望更好的时机来临。」<span class="en">第 7 章 · 计划生育 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「对一个赌徒来说，有时最好的策略不是穷凶极恶地主动出击，而是坐等良机。」<span class="en">第 7 章 · 计划生育 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>任何「为了大家好」的自我克制，都会被不克制的人吃掉——所以它撑不住。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>作者对温-爱德华兹的反驳有力但<strong>过强</strong>：他把群体选择整个扫地出门，而后来多层次选择理论的核心恰恰是「群体层面的选择在满足特定条件时可以压过个体层面」。本章的论证（自私个体入侵）只在<strong>群体内迁移率高、群体间差异小</strong>时成立——这是条件，不是普遍真理。另外「动物的炫耀性展示与等级制」这一段与第 9 章的性选择、第 10 章的瞪羚跳跃其实是一条线，作者在结构上把它们拆散了。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个团队里总有人说「大家少报点费用，公司才能活」。这句话的问题不在于道德，在于结构：只要有人多报而没被惩罚，少报的人就是自己吃亏。可持续的做法不是号召克制，而是<strong>让克制的人不被吃掉</strong>——把规则改到「单方面多报会付出代价」，克制才会自动扩散。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 8 章</span>第 8 章 · 代际之战<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>把亲代与子代的关系重新定义为<strong>利益不完全一致</strong>：母亲与每个子女的亲缘系数都是 1/2，但母亲对<strong>自己</strong>是 1，所以她的最优投入与每个子女想要的最优投入天然错位。由此推出：断奶冲突、幼儿的讹诈（装饿、大叫引来捕食者）、窝内的小个子策略（到临界点就停止挣扎、让父母把资源给同胞）、杀兄弟姐妹的条件、以及母亲的「宠儿」现象。章末给出全书最反道德直觉的一句：必须把利他主义的美德<strong>灌输</strong>给孩子，因为不能指望本性里有。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>第二根支柱：<strong>最亲密的关系也是算计的</strong>。它把第 6 章的亲缘选择从「利他如何可能」推到「利他的边界在哪里」——同一个 1/2，从母亲角度看和从子女角度看，得出的是两个不同的最优解。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第 6 章构成对偶（亲代利他 vs 子代索取），是「由内向外」的第二圈；同时它是第 9 章（两性战争）的<strong>预演</strong>——家庭内部的冲突模型（谁投资、谁索取、谁先抛弃）被原样搬到配偶之间。作者把「亲代投资」的定义放在这里（特里弗斯的定义），因为下一章整章都要用它。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「亲代投资的定义是：『亲代对子代个体进行的任何形式的投资，从而增加了该个体生存的机会（因而得以成功繁殖），但以牺牲亲代对子代其他个体进行投资的能力为代价。』」<span class="en">第 8 章 · 代际之战 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「正是由于甜蜜的笑脸和满意的叫声总会带来好处，孩子就能够利用笑脸或叫声来操纵父母，使自己获取额外的亲代投资。」<span class="en">第 8 章 · 代际之战 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「扎哈维指出，有一种幼儿的讹诈手段特别可怕：它放声大叫，故意把捕食者引来。它在『说』：『狐狸，狐狸，快来吃我！』父母只好用食物塞住它的嘴巴。」<span class="en">第 8 章 · 代际之战 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「小个子的生命航程中有一个有去无回的临界点。在达到这一临界点之前，它应当争取活下去，但到了临界点之后，它应停止挣扎，宁可让自己被骨肉兄弟或父母吃掉。」<span class="en">第 8 章 · 代际之战 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「如果其中有什么寓意深刻的地方可供人类借鉴，那就是我们必须把利他主义的美德灌输到我们子女的头脑中去，因为我们不能指望他们的本性里有利他主义的成分。」<span class="en">第 8 章 · 代际之战 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>同一个 1/2 的亲缘系数，站在父母那一端和站在孩子那一端，算出来的是两个答案。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>本章是全书中<strong>最能证明视角力量</strong>的一章：同一组关系，换个站位就换了结论。但风险也随之最大——把人类亲子关系读成「讹诈与反讹诈」，会系统性地漏掉依恋、文化与长期互惠这些真正主导人类家庭的机制。作者讨论的是鸟类和哺乳动物；他把结论「可供人类借鉴」地递了一句，但没有为他的人类推论提供任何独立证据。这一句恰恰最容易被记住、被传播。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个孩子哭闹要买东西，家长妥协了；下一次哭闹得更久。双方都没做错什么，只是各自的「最优投入」不同：孩子想要的是全部注意力，家长要在几个孩子和工作之间分配。看懂这是结构错位而不是谁的品行问题，处理办法就从「讲道理/发脾气」变成<strong>改规则</strong>：事先约定、当场一致执行、不给哭闹加码的机会。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 9 章</span>第 9 章 · 两性战争<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>把配偶关系定义为<strong>相互不信任和相互利用</strong>。起点是配子差异（卵子大、精子小）造成的初始投资不对称 → 谁投入多谁更容易被抛弃 → 于是出现一整套策略：雌性要求对方先付费（筑巢、杀死一条龙）再交配；雄性发展出炫耀性信号（孔雀尾巴、瞪羚跳跃）；出现「家庭幸福策略」与「大丈夫策略」两种 ESS；以及性比为何稳定在 1:1（费雪原理）。章末作者用大量问号讨论现代西方社会的性别关系变化。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>第三根支柱：<strong>没有血缘的合作关系里，冲突是默认值</strong>。它把 ESS（第 5 章）与亲代投资（第 8 章）两个工具合起来用，第一次处理「非亲缘个体之间的合作与背叛」。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第 8 章构成对偶（家庭内 vs 配偶间），是「由内向外」的第三圈；与第 10 章构成递进：本章是<strong>对抗</strong>，下一章是<strong>跨物种的互利</strong>——作者先写最坏的（配偶互相利用），再写最好的（清洁鱼与顾客、蚂蚁与蚜虫）。同时它也是本书最常被批评的一章（性别刻板印象），作者后来在第 14 章专门处理过相关误解。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「性配偶之间的关系是一种相互不信任和相互利用的关系。」<span class="en">第 9 章 · 两性战争 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「雌性个体受剥削，而这种剥削行为在进化上的主要基础是卵子比精子大。」<span class="en">第 9 章 · 两性战争 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「雌性个体先迫使雄性个体对它们的后代进行昂贵的投资，然后再交配，这样雄性个体在交配之后再抛弃对方，也就不会有好处了。」<span class="en">第 9 章 · 两性战争 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「一只雄鸟长了一条长长的、笨重的尾巴，为的是要向雌性个体夸耀，说明尽管它有这样一条长尾巴，像他这样一个健壮的大丈夫还是能够活下去的。」<span class="en">第 9 章 · 两性战争 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「凡一种性别的成员偏离其适中的稳定比率时，这种倾向必然受到另一种性别在策略比率方面相应变化的惩罚，这种变化对原来的偏离行为产生不利的影响。」<span class="en">第 9 章 · 两性战争 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「事实上，更有可能的是，所有的雄性个体——其实是所有的个体——多少都有点不老实，它们的程序编制就是会使它们利用机会去占配偶的便宜。」<span class="en">第 9 章 · 两性战争 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>谁先付出不可回收的成本，谁就交出了议价权——这是本章对日常工作最有迁移价值的一条。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>本章是全书<strong>证据与叙事落差最大</strong>的一章。动物部分（配子差异、炫耀信号、性比 1:1）证据扎实；人类部分（现代西方男性是否成了被追求的对象、谁在炫耀）几乎全是问号与推测。作者的诚实在于他写了问号，问题在于读者只会记住结论。另外，把「卵子大、精子小」当作两性策略差异的唯一源头，在今天看是过度简化——许多物种的亲代投入模式并不由配子大小单向决定，性别角色也有大量反转案例。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人接活儿，对方说「先做一版看看，合适就签」。做完一版，对方说再改改；改完，说预算取消了。这不是运气差，是议价结构问题——不可回收的劳动已经交付，主动权就不在自己手里了。把「先付定金、先确认范围、先签字」这三件事放在动手之前，成本极低，改变的是整个格局的走向。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 10 章</span>第 10 章 · 你为我搔痒，我就骑在你的头上<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>处理<strong>无血缘个体之间</strong>的合作：清洁鱼与大鱼的互利、蚜虫与蚂蚁的牧养、以及社会性昆虫（职虫为何不育、3:1 的性比投资比、职虫「操纵」蜂后）。核心工具是特里弗斯的互惠利他：延迟的相互利他能在<strong>个体能相互识别并记忆</strong>的物种中进化。作者由此推出一串关于欺骗与反欺骗的结论：嫉妒、内疚、感激、同情心可能是为提高欺骗与反欺骗能力而演化出来的心理机制，人类的大脑甚至可能是在这场军备竞赛里被撑大的。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>第四根支柱：<strong>合作可以出现在完全无亲缘的个体之间</strong>，条件是识别、记忆与重复。这既补完了第 6 章（亲缘利他）没覆盖的部分，又为第 12 章（重复博弈中的善良）铺路。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第 9 章构成对偶（对抗 vs 互利），是「由内向外」的<strong>最外圈</strong>——从血亲、配偶一路推到跨物种。放在第 11 章（觅母）之前，是因为它把合作推到了极限（连不同物种都能合作），紧接着下一章就要跳出生物界。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「即延迟的相互利他行为在其个体能够相互识别并记忆的物种中是可以进化的。」<span class="en">第 10 章 · 你为我搔痒，我就骑在你的头上 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「人类肿胀的大脑和精于理性算计的特征，甚至有可能就是随着越来越精致的欺骗和越来越强大的反欺骗机制进化而来的。」<span class="en">第 10 章 · 你为我搔痒，我就骑在你的头上 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「特里弗斯走得更远，他暗示，嫉妒、内疚、感激、同情心等等人类心理特征是人类为了提高欺骗、反欺骗与避免被视为骗子的能力，通过自然选择而形成的。」<span class="en">第 10 章 · 你为我搔痒，我就骑在你的头上 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「骗子的覆灭是不可挽回的，它们最终将慢慢地相继死去，留下斤斤计较者独占整个种群。说起来似乎有点自相矛盾，在最初阶段，傻瓜的存在实际上威胁到斤斤计较者的生存，因为傻瓜的存在带来了骗子的短暂繁荣。」<span class="en">第 10 章 · 你为我搔痒，我就骑在你的头上 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「斤斤计较的策略被证明是一种进化稳定策略，斤斤计较者优越于骗子或傻瓜，因为在斤斤计较者占多数的种群中，骗子或傻瓜都难以逞强。」<span class="en">第 10 章 · 你为我搔痒，我就骑在你的头上 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>合作不要求血缘，只要求三件事：认得出你、记得住账、还会再见。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「傻瓜的存在威胁到斤斤计较者」是全书最漂亮的反直觉推论之一——它说明<strong>善良的环境依赖他人的善良</strong>，一个群体里无条件善良的人越多，欺骗者的生存空间越大，反而会拖垮有条件善良的人。这个结论与第 12 章「善良与宽容取胜」看似矛盾，实则前提不同（一次性 vs 重复）。作者没有把这两处对读，是本书结构上的一处遗憾。另外，职虫 3:1 性比的经典检验后来有方法学争议（<strong>待核实</strong>）。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人在合租里总是主动打扫公共区域，另外两个人从不伸手。三个月后他也不做了。问题不在他变懒了，在于这个结构里「无条件付出」会喂养搭便车的人。有效的做法是<strong>把合作变成有记录的、可回报的</strong>：明确轮值、做完记一笔、不做的当场提醒。合作不需要人变好，只需要让账算得清。</p><p>---</p></div>
+        <div class="ch-note">信源说明：本章引用的职虫性比 3:1 经典检验，后续有方法学争议 · 待核实。</div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 11 章</span>第 11 章 · 觅母：新的复制因子<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>跳出生物界，提出第二个复制因子：觅母（meme）——曲调、观念、流行语、服装式样，通过模仿在人脑之间转移，在「觅母库」里繁殖。作者论证它满足复制因子的条件（复制、变异、竞争），讨论其成败取决于长寿、繁殖力、保真度，并指出它与基因的关键差异（传播受连续突变与混合影响，缺乏颗粒性）。章末给出全书最有名的两句：人类可以反抗复制因子的暴政；人死后能留下基因和觅母两种东西。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>给出<strong>人类例外论的机制</strong>：文化作为第二个复制系统，不必服从基因的利益。这是尾注「反抗」条款的理论支点——如果没有这一章，尾注那句「我们能反抗」就没有机制支撑。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>夹在第 10 章（生物界互助的极限）与第 12 章（重复博弈）之间，是<strong>全书的中轴转折</strong>：从此书不再只谈动物。它与尾注构成对偶（觅母的暴政 vs 反抗暴政），与第 2 章构成遥远呼应（复制因子的概念被第二次使用）。作者特意把它放在第二版新增章节之前，让 1976 年的初版在这里留下一个开放结尾。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「我们死后可以遗留给后代的东西有两种：基因和觅母。」<span class="en">第 11 章 · 觅母：新的复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「正如基因通过精子或卵子从一个个体转移到另一个个体，从而在基因库中进行繁殖一样，觅母通过广义上可以称为模仿的过程从一个大脑转移到另一个大脑，从而在觅母库中进行繁殖。」<span class="en">第 11 章 · 觅母：新的复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「当你把一个有生命力的觅母移植到我的心田上时，事实上你把我的大脑变成了这个觅母的宿主，使之成为传播这个觅母的工具，就像病毒寄生于一个宿主细胞的遗传机制一样。」<span class="en">第 11 章 · 觅母：新的复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「我们是作为基因机器而被建造的，是作为觅母机器而被培养的，但我们具备足够的力量去反对我们的缔造者。在这个世界上，只有我们，我们人类，能够反抗自私的复制因子的暴政。」<span class="en">第 11 章 · 觅母：新的复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「看来觅母传播受到连续发生的突变以及相互混合的影响。」<span class="en">第 11 章 · 觅母：新的复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「促使人们盲目信仰的觅母以简单而不自觉的办法阻止人们进行合理的调查研究，从而取得其自身的永恒性。」<span class="en">第 11 章 · 觅母：新的复制因子 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>第二个复制因子一旦出现，人的利益就不再自动等于基因的利益——这是全书唯一的出口。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这一章是全书<strong>最迷人、也最不科学</strong>的一章。作者自己承认了它的致命缺陷（缺乏颗粒性、受连续突变与混合影响），却仍然用它推出最强结论。四十年后，文化演化研究走的是双重继承理论的路子，meme 始终没有变成可测量的单位——这本身就说明：一个漂亮的比喻可以启发一个领域，但<strong>不能替代一个理论</strong>。另外，本章提到宗教与盲目信仰的部分属平台敏感内容，二次发布时只可转述论证结构。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人一天里转发的那些东西——吓人的消息、愤怒的段子、听起来很爽的结论——大多不是因为核实过，而是因为它们<strong>适合被转发</strong>。判据很简单：这条内容是不是依赖我的愤怒或恐惧来提高传播力？凡是阻止你去核实的说法，用的都是同一招。</p><p>---</p></div>
+        <div class="ch-note">⚠️ 本章涉及宗教与盲目信仰的段落属平台敏感题材，二次发布只可转述论证结构，不得搬运原文表述。</div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 12 章</span>第 12 章 · 好人终有好报<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>（1989 年第二版新增）引入阿克塞尔罗德的重复囚徒困境计算机竞赛：在一次性博弈里背叛永远占优，但只要双方还会再见面，「针锋相对」（第一回合合作，之后复制对方上一回合的做法）就胜出。作者总结出赢家策略的两个特点：<strong>善良与宽容</strong>，并指出成功的策略取决于对手的策略、取决于对博弈长度的预期。章末从博弈论跳回现实：一战堑壕里的「自己活也让别人活」系统、蝙蝠的反刍喂食、律师为何偏好零和博弈。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>给全书最黑暗的设定（自私是底层规则）配一个<strong>建设性的出口</strong>：合作的进化不需要血缘、不需要利他本能，只需要「还会再见面」。这让第 10 章的互惠利他有了数学支撑。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第 5 章构成对偶：同为 ESS 工具，一次性与重复两种时间尺度得出相反结论（背叛占优 vs 善良占优）。放在第 11 章（觅母）之后，是因为<strong>人类的合作能力</strong>既靠重复博弈（本章），也靠文化（上一章）——作者在这里把两条出路并排摆完。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「我们算出了赢家策略的两个特点：善良与宽容。这几乎是一个乌托邦式的结论：善良与宽容能得到好报。」<span class="en">第 12 章 · 好人终有好报 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「每一个选手都可以持续预测博弈进行的长度。他的估计越长，他的选择就会越接近数学家在重复博弈中的预测，更善良，更宽容，更不嫉妒。」<span class="en">第 12 章 · 好人终有好报 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「这揭晓了这些竞赛中非常重要的一点：成功的策略取决于你的对手的策略。」<span class="en">第 12 章 · 好人终有好报 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「假如 13 个策略全为恶意策略，『针锋相对』则不可能成功，因为『环境』太差了。」<span class="en">第 12 章 · 好人终有好报 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「它们昭示这一个善良的思想：即使我们都由自私的基因掌舵，好人终有好报。」<span class="en">第 12 章 · 好人终有好报 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「下一轮的游戏给予我们机会来重新建立信任与怀疑，实施对抗或和解，给予报复或宽恕。在这无限长的博弈里，我们最重要的任务是：赢了『银行家』，而不是对方。」<span class="en">第 12 章 · 好人终有好报 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>善良能赢，但前提是「还会再见面」，而且是「被背叛会立刻对等回击」的那种善良。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这一章的结论被误用得最厉害。作者自己写了两个限定（策略池里恶意策略多则针锋相对无法成功；成功取决于对手策略），但读者记住的只有「好人终有好报」。更实质的问题在于：竞赛的参赛策略只有 14 个、且由人类提交，<strong>策略池本身的分布决定了赢家</strong>——这是一个「样本决定结论」的实验，不是普适定理。后来的演化博弈研究把结论修正为：合作能否胜出，取决于博弈结构、群体规模、噪声与惩罚机制。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人被同事甩过一次锅，从此对所有合作都先设防、事事留痕、能推就推。短期没吃亏，长期把自己从重复博弈里挪了出去：没人愿意和他搭伙，机会不再流经他。针锋相对的做法不是无条件善良，而是<strong>先给出善意、被背叛后立刻对等回击、对方恢复合作就恢复合作</strong>——报复的能力是善良生效的前提。反过来，在明确一锤子买卖的场合，这套做法不适用。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 13 章</span>第 13 章 · 基因的延伸<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>（1989 年第二版新增，浓缩自《延伸的表型》)提出延伸表型：基因的作用不必止于产生它的身体。石蚕蛾的房子、寄生虫对宿主的操控、病毒引起的咳嗽、寄生去势——全都是「体外」的表型。由此给出中心法则：<strong>动物行为倾向于最大化指导此行为的基因的生存，无论这些基因是否在做出此行为的动物体内</strong>。后半章回答三个「为什么」：为什么基因要组成细胞、为什么细胞组成多细胞生物、为什么生命循环要经历「瓶颈」（回到绘图板）。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>把全书的分析单位从「身体里」解放到「身体外」，这是<strong>方法论上的最后一次扩张</strong>：判断一个行为的受益者时，不再默认就是行为者本人。同时也为「共生」（我们的细胞曾是独立生物）这类现象提供了框架。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>放在第 12 章（合作的出路）之后、第 14 章（防守）之前，是<strong>正文的最后一块扩张</strong>；与第 11 章构成呼应（第 11 章把复制因子扩张到文化，本章把表型扩张到体外）。它是 1976/1989 年内容与 2016 年增订内容之间的桥——《延伸的表型》既是本章的母书，也是末两章的母书。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「『延伸表型』的中心法则：动物行为倾向于最大化指导此行为的基因的生存，无论这些基因是否在做出此行为的动物体内。」<span class="en">第 13 章 · 基因的延伸 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「在延伸表型的世界里，不要问动物的行为如何使自己的基因受益，要问的是谁的基因能够受益。」<span class="en">第 13 章 · 基因的延伸 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「我们也可以说，基因影响了石蚕蛾房子的石头硬度。这听起来可能有点惊世骇俗，但其推理无懈可击。」<span class="en">第 13 章 · 基因的延伸 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「当我们感冒咳嗽时，我们通常认为这些惹人心烦的症状是病毒行为的副作用。但在某些情况下，它们更可能是病毒精心策划控制的方法，以帮助其寻得下一个宿主。」<span class="en">第 13 章 · 基因的延伸 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「无论在宇宙中哪一个地方，生命出现唯一需要的，只有不朽的复制因子。」<span class="en">第 13 章 · 基因的延伸 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「『瓶颈』般的生命循环的重要性在于它使『回到绘图板』成为可能。」<span class="en">第 13 章 · 基因的延伸 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>看到一个明显不合理的行为，别问「他图什么」，改问「这件事做成之后谁在受益」。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>延伸表型是道金斯<strong>技术贡献最大</strong>的想法，也是最不容易被误读的一个——因为它反直觉到没人会去通俗化地滥用它。本章真正的价值在于提问方式的转变（谁的基因受益），这个问法比它给出的答案更有生命力。弱点在于：如何界定「某个基因指导了某个行为」在操作上极难，尤其在寄生虫操控这种多基因、多物种参与的案例里，「一个基因—一个表型」的映射几乎无法验证。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人莫名其妙地频繁加班、主动揽下没人愿意干的活，看起来既不加薪也不晋升。用「他图什么」问不出答案；换成「谁受益」立刻清楚——中间那层人在受益。同样的问法能套在很多日常困惑上：一条明显伤人害己的规则被长期维持，通常是因为它在为某个不出现在这个场景里的人服务。</p><p>---</p></div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 14 章</span>第 14 章 · 基因决定论与基因选择论<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>（2016 年增订，来自《延伸的表型》第 2 章）拆「伟大的基因决定论谬误」：认为行为完全由基因决定、与环境和其它因素无关。作者的拆解分几步——①「决定」在生物学里只是统计学意义上的因果因子，不是命令；②基因的影响<strong>并不比环境影响更难以逆转</strong>；③统计差异不等于个体判断（女性平均更享受编织 ≠ 所有女性都享受）；④如果基因带来的差异经由区别对待的教育系统被放大，那仍是基因差异；⑤神经系统足够复杂，实践中就当自己有自由意志即可。他顺手批评了用「基因编程」为出轨开脱的通俗说法。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>这是<strong>防守章</strong>，不是递进章。它的作用是掐掉对前 13 章最常见的一种外推：既然基因决定行为，那行为就不可改变、也不必负责。作者要的是「基因是因果因子之一」这个弱版本。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第 15 章构成并列的一组「误读排查」；与第 1 章构成首尾呼应（第 1 章说描述而非提倡，本章说因果而非宿命）。它和第 15 章一起放在最后，等于给整本书装了<strong>刹车</strong>——读者带着「人是基因造的机器」的印象走出前 13 章之前，先被告知这个印象的边界。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「当我们说一样事物决定另一样事物时，到底意味着什么？哲学家更多考虑的是因果关系，可能还会给出证明。但是对于专业的生物学家而言，因果关系只不过是简单的统计学概念而已。」<span class="en">第 14 章 · 基因决定论与基因选择论 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「重点在于，没有什么一般性的原因令我们可以去期望：基因的影响会比环境的影响更难以逆转。」<span class="en">第 14 章 · 基因决定论与基因选择论 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「基因当然是盲目的，而它们所编程的动物却不是盲目的。神经系统像人造的计算机一样，能够复杂到足以展现出智能和预见性。」<span class="en">第 14 章 · 基因决定论与基因选择论 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「如果女性在统计学意义上比男性更享受编织的乐趣，这并不意味着所有女性都享受编织的乐趣，甚至都不意味着女性中的大多数会享受这种乐趣。」<span class="en">第 14 章 · 基因决定论与基因选择论 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「他的潜台词无非是：女士们，别责怪你的丈夫出去乱搞了，他们在遗传上就是如此编程设置的，那可不是他们的错。」<span class="en">第 14 章 · 基因决定论与基因选择论 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「人类的神经系统太复杂了，所以在实际处理问题时，我们大可以忘了决定论，就当作是我们真的有自由意志一样。」<span class="en">第 14 章 · 基因决定论与基因选择论 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>基因是统计学上的因果因子，不是不可撤销的判决——这条拆的是「我天生如此」这句话。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这一章的论证扎实，但它把问题<strong>限定在了认识论层面</strong>（「决定」是什么意思），而回避了政治层面：即使基因只是弱因果，一旦它进入公共话语，就会被用来给既有不平等做背书——作者自己也看到了（出轨那段），但他的处理方式是嘲笑，而不是正面反驳。另外「就当自己有自由意志」是一条<strong>实用主义</strong>收尾，不是哲学解答：他把 compatibilism 当默认立场推出去了，没有论证。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人说「我脾气差是遗传的」「我们家人都不擅长表达」。这类话说出口的那一刻，改变就被关掉了。作者在本章给出的反驳是可直接使用的：基因的影响并不比环境的影响更难以逆转。更隐蔽的一种用法是替别人开脱——「他天生就这样，改不了」。这两句的结构完全一样，都是把一个统计倾向说成了不可撤销的判决。</p><p>---</p></div>
+        <div class="ch-note">⚠️ 本章涉及性别差异与公共政策的段落具争议性，二次发布需避开性别对立表述。</div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">第 15 章</span>第 15 章 · 对于完美化的制约<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>（2016 年增订，来自《延伸的表型》第 3 章）拆「伟大的适应论误解」：认为生物的所有性状和行为都应被理解为适应性。作者列出五类制约——<strong>时间滞后</strong>（基因是在旧环境里被选出来的，今天可能过时）、<strong>历史约束</strong>（一旦走上某个方向，其它选项就被关闭）、<strong>局部最优</strong>（选择只能一步步爬，可能卡在小山坡上）、<strong>缺乏可用突变</strong>（想要翅膀但没有这个突变）、<strong>成本权衡</strong>（每个适应性都有机会成本，翅膀有收益也有成本）。他用蚂蚁皇后咬断翅膀、掘土蜂的「协和式谬误」等例子逐条说明，并把选择单位的讨论重新收回到基因层面。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>第二道防守：掐掉「既然是自然选择造的，那它一定有用、一定最优」这类外推。它也反向保护了全书主线——如果每个性状都必须有适应性解释，那「自私基因」这套框架就会被过度使用；承认制约的存在，才是让基因视角保持可信的前提。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与第 14 章并列，构成全书的<strong>双刹车</strong>。放在最后一章，还有一个隐藏作用：它把读者的期待从「这本书会解释一切」拉回到「这本书解释一类问题」——<strong>用一章的限制，换回前面十四章的可信度</strong>。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「每一种进化的适应性都要有其成本，成本可以体现为失去了完成其他事情的机会。」<span class="en">第 15 章 · 对于完美化的制约 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「可以想象，由此得到的动物不是最完美的设计，甚至只是勉强度日而已。它是一系列历史改变的产物，每一次改变最多也就是代表着当时恰好是更好的那一个可选项。」<span class="en">第 15 章 · 对于完美化的制约 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「我们今天所看到的动物很有可能是『过时的』，影响其建立过程的那些基因是在某个更早的时期为了应对与今天不同的条件而被选择出来的。」<span class="en">第 15 章 · 对于完美化的制约 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「一旦一个种系已经开始在一个给定的方向上进化，这本身可能就会关闭此前其他可用的选项，截断了去往全局最优的可能路径。」<span class="en">第 15 章 · 对于完美化的制约 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「不可能期望自然选择在寒武纪就青睐于某些无用的突变，只因为『它们可能会在白垩纪很有用处』。」<span class="en">第 15 章 · 对于完美化的制约 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「无论我们在信仰上是多么坚定的适应论者，我们只能期望动物是统计平均意义上的优化者，永远不可能对所有细节做出完美的预计与准备。」<span class="en">第 15 章 · 对于完美化的制约 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>承认「不是每个特征都有用」，恰恰是这套框架能继续可信的前提。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>这一章是全书中<strong>最能自救</strong>的一章：它提前把「适应主义故事」这个批评（Gould &amp; Lewontin, 1979）接了进来，让全书不至于被它一击致命。但它也暴露了一个尴尬：作者在第 9、15 章关于人类现象的推断，正是他自己警告过的那种故事——<strong>他承认了方法论的问题，却没有回头清理自己使用过它的段落</strong>。另外本章涉及同性恋的段落属推测性内容且平台敏感，二次发布只可转述论证结构。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人拿到体检报告，某项指标异常，第一反应不是看数值和成因，而是琢磨「这个特征存在一定有它的道理」。作者列举的制约全是反例：可能是环境变了而它没跟上、可能是历史路径锁死、可能只是卡在局部最优、也可能纯粹是成本权衡的结果。「存在即合理」这句话在生物学站不住，在其它地方也一样。</p><p>---</p></div>
+        <div class="ch-note">⚠️ 本章关于人类同性恋的段落属作者推测性内容且平台敏感，二次发布只可转述论证结构。</div>
+      </div>
+    </details>
+
+    <details class="ch">
+      <summary><span class="ch-no">尾注</span>尾注<span class="ch-icon">▸</span></summary>
+      <div class="ch-body">
+        <div class="ch-blk"><h5>本章讲了什么</h5><p>1976 年初版的尾注在 40 周年版中被保留并补充，是全书真正的<strong>落点</strong>。它汇总了几个关键申明：人类的大脑已经和基因分开、足够独立到能反抗它们；反抗的实例是避孕；以及几条与主线呼应的补论——奴隶/主人的稳定策略、内部审视（心理学的「内在之眼」）、时间作为经济学商品、以及「在达尔文游戏里，一个方面努力了，另一个方面就会欠缺」的权衡原则。</p></div>
+        <div class="ch-blk"><h5>对全文论点的作用</h5><p>给出全书唯一的<strong>规范性出口</strong>：从「人是机器」到「人能反抗」。没有尾注，这本书会停在冷酷的描述上；有了尾注，它才成为一本有立场的书。</p></div>
+        <div class="ch-blk"><h5>结构用意</h5><p>与前言构成首尾扣环：前言说「我们都是生存机器」，尾注说「我们每一次使用避孕套的时候就走出了反抗的一小步了」。也与第 11 章构成对偶（觅母的暴政 vs 反抗暴政）。作者把最重的主张放在尾注而不是正文章节里，是本书结构上的一个怪处——<strong>全书最重要的那句话，写在注释里</strong>。</p></div>
+        <div class="ch-sec-h">精读原文</div>
+        <div class="ch-quote"><span class="star">★</span>「我们，这里指的是我们的大脑，已经和我们的基因分开并足够独立去反抗它们了。就像已经提过的一样，我们每一次使用避孕套的时候就走出了反抗的一小步了。没有任何理由不相信我们能够进行更大的反抗。」<span class="en">尾注 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「时间是一个经济学商品：在生活的某一方面花费了较多时间，能花在另一方面的时间就少了。」<span class="en">尾注 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「在达尔文游戏里，在一个方面做出的努力就意味着在另一个方面会有所欠缺。就像是你在一场比赛中投入过多精力的话，你就很难赢得下一场比赛了，因为那时你已精疲力竭。」<span class="en">尾注 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star">★</span>「所以从整体『策略』来看，『如果强势去做奴隶，弱势去做主人』，双方都能够得到回报，该策略就成了一个稳定的策略。」<span class="en">尾注 · 中译本原文</span></div>
+<div class="ch-quote"><span class="star" style="color:var(--ink-faint)">☆</span>全书最重的一句话写在尾注里：我们能反抗——这是前言那句「我们是机器」的答案。<span class="en">章旨提炼 · 非原话，勿加引号</span></div>
+        <div class="ch-blk think"><h5>发散思考</h5><p>「反抗」条款在逻辑上有个缺口：如果大脑是基因造的，那么「大脑反抗基因」这件事本身也需要一个进化解释——作者没有给。他把反抗归结为文化（觅母）带来的第二套复制系统，但觅母理论本身的强度不足以承担这个重量。这是全书<strong>论证最薄却最关键的接缝</strong>：所有人记住的是这句出口，而支撑它的只有第 11 章那个没有量尺的比喻。</p></div>
+        <div class="ch-blk life"><h5>现实链接</h5><p>一个人看穿了自己「刷手机停不下来」的机制——那些产品就是被设计来占用注意力的。看穿之后有两种反应：一种是「既然机制是这样，那我没救了」，一种是「既然机制是这样，我就把手机放到另一个房间」。前者把描述当成了命令，后者才是在用描述。同一套知识，差别只在于有没有往里加一步行动。</p></div>
+      </div>
+    </details>
+  </section>
+</main>
+
+<footer>
+  <b>信源构成</b>：本笔记 ★ 引文全部取自微信读书中译本原文（热门划线，按章拉取，覆盖 15 章正文 + 前言体系 + 尾注），属 A 级可核对来源；版本信息来自出版方公开数据与微信读书书目接口；学术争议背景来自公开报道，未逐条回溯原始论文，相关处已标「待核实」。英文原文<b>未逐字并列</b>，如需英中对照须另行核对纸本／原版。<br>
+  <div class="legend">
+    <span><span class="s">★</span> 中译本原文引文（可直接引用；争议处标「待核实」）</span>
+    <span><span class="f">☆</span> 章旨句（拆解者提炼，非原话，严禁加引号）</span>
+  </div>
+  <b>合规提示</b>：第 11 章（宗教与盲目信仰）、第 14 章（性别差异与公共政策）、第 15 章（人类同性恋）属平台敏感题材，二次发布只可转述论证结构，不得搬运原文表述，并须避开涉政与性别对立的说法。<br>
+  <b>生成</b>：基于四份拆解稿（骨架 / 思维模型 / 批判视角 / 逐章精读）整合。逐章精读每章固定六层：本章讲了什么 → 对全文论点的作用 → 结构用意 → 精读原文 → 发散思考 → 现实链接。单文件 HTML，可离线阅读。
+</footer>
+
+<script>
+  const links = Array.from(document.querySelectorAll('.ribbon a'));
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = map.get(e.target.id);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  document.querySelectorAll('main section').forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
